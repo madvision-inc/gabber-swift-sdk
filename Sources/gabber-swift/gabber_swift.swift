@@ -89,14 +89,13 @@ class SessionEngine: RoomDelegate {
     
     // Room Delegate
     func roomDidConnect(_ room: Room) {
-        //      this.resolveMicrophoneState();
-//      this.onConnectionStateChanged("waiting_for_agent");
+        self.resolveMicrophoneState()
+        self.delegate?.ConnectionStateChanged(state: .waitingForAgent)
     }
     
     func room(_ room: Room, didDisconnectWithError error: LiveKitError?) {
-        //      console.log("Room disconnected");
-//      this.resolveMicrophoneState();
-//      this.onConnectionStateChanged("not_connected");
+        self.resolveMicrophoneState()
+        self.delegate?.ConnectionStateChanged(state: .notConnected)
     }
     
     func room(_ room: Room, participant: Participant, didUpdateMetadata metadata: String?) {
@@ -155,28 +154,35 @@ class SessionEngine: RoomDelegate {
     }
     
     func room(_ room: Room, participant: RemoteParticipant?, didReceiveData data: Data, forTopic topic: String) {
-        //      if (participant !== this.agentParticipant) {
-//        return;
-//      }
-//
-//      const decoded = new TextDecoder().decode(data);
-//      console.log("Data received", decoded, participant, topic);
-//      if (topic === "message") {
-//        const message = JSON.parse(decoded) as SessionMessage;
-//        for (let i = 0; i < this.messages.length; i++) {
-//          if (this.messages[i].id === message.id) {
-//            this.messages[i] = message;
-//            this.onMessagesChanged(this.messages);
-//            return;
-//          }
-//        }
-//
-//        this.messages.push(message);
-//        this.onMessagesChanged(this.messages);
-//      } else if (topic === "error") {
-//        const payload = JSON.parse(decoded);
-//        this.onAgentError(payload.message);
-//      }
+        if participant?.identity != self.agentParticipant {
+            return;
+        }
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        let decoded = String(decoding: data, as: UTF8.self)
+        if topic == "message" {
+            do {
+                let sm = try decoder.decode(SessionMessage.self, from: data)
+                for  i in 0...self.messages.count {
+                    if self.messages[i].id == sm.id {
+                        self.messages[i] = sm
+                        self.delegate?.MessagesChanged(messages: self.messages)
+                        return
+                    }
+                }
+                self.messages.append(sm)
+                self.delegate?.MessagesChanged(messages: self.messages)
+            } catch {
+                print("Error decoding session message")
+            }
+        } else if topic == "error" {
+            do {
+                let ae = try decoder.decode(AgentErrorMessage.self, from: data)
+                self.delegate?.AgentError(msg: ae.message)
+            } catch {
+                print("Agent error decode error")
+            }
+        }
     }
     
     func room(_ room: Room, participant: LocalParticipant, didPublishTrack publication: LocalTrackPublication) {
@@ -240,7 +246,7 @@ public struct SendChatMessageParams {
     var text: String
 }
 
-public struct SessionMessage {
+public struct SessionMessage: Decodable {
     var id: Int
     var agent: Bool
     var final: Bool
@@ -249,5 +255,10 @@ public struct SessionMessage {
     var deletedAt: Date?
     var session: String
     var text: String
+}
+
+
+private struct AgentErrorMessage: Decodable {
+    var message: String
 }
 
