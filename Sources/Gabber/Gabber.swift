@@ -4,7 +4,7 @@
 import Foundation
 import LiveKit
 
-public protocol SessionEngineDelegate: AnyObject {
+public protocol GabberDelegate: AnyObject {
     func ConnectionStateChanged(state: ConnectionState) -> Void
     func MessagesChanged(messages: [SessionMessage]) -> Void
     func MicrophoneStateChanged(enabled: Bool) -> Void
@@ -15,8 +15,8 @@ public protocol SessionEngineDelegate: AnyObject {
     func AgentError(msg: String) -> Void
 }
 
-class SessionEngine: RoomDelegate {
-    private weak var delegate: SessionEngineDelegate?;
+public class Gabber: RoomDelegate {
+    private weak var delegate: GabberDelegate?;
     private var url: String;
     private var token: String;
     
@@ -60,7 +60,7 @@ class SessionEngine: RoomDelegate {
         }
     }
 
-    init(connectionDetails: ConnectionDetails, delegate: SessionEngineDelegate) {
+    init(connectionDetails: ConnectionDetails, delegate: GabberDelegate) {
         self.url = connectionDetails.url
         self.token = connectionDetails.token
         self.livekitRoom = Room()
@@ -88,17 +88,17 @@ class SessionEngine: RoomDelegate {
     }
     
     // Room Delegate
-    func roomDidConnect(_ room: Room) {
+    public func roomDidConnect(_ room: Room) {
         self.resolveMicrophoneState()
         self.delegate?.ConnectionStateChanged(state: .waitingForAgent)
     }
     
-    func room(_ room: Room, didDisconnectWithError error: LiveKitError?) {
+    public func room(_ room: Room, didDisconnectWithError error: LiveKitError?) {
         self.resolveMicrophoneState()
         self.delegate?.ConnectionStateChanged(state: .notConnected)
     }
     
-    func room(_ room: Room, participant: Participant, didUpdateMetadata metadata: String?) {
+    public func room(_ room: Room, participant: Participant, didUpdateMetadata metadata: String?) {
         if participant.kind != .agent {
             return;
         }
@@ -119,7 +119,7 @@ class SessionEngine: RoomDelegate {
         }
     }
     
-    func room(_ room: Room, participant: RemoteParticipant, didSubscribeTrack publication: RemoteTrackPublication) {
+    public func room(_ room: Room, participant: RemoteParticipant, didSubscribeTrack publication: RemoteTrackPublication) {
         guard let track = publication.track else {
             return
         }
@@ -141,7 +141,7 @@ class SessionEngine: RoomDelegate {
         self.delegate?.ConnectionStateChanged(state: .connected)
     }
     
-    func room(_ room: Room, participant: RemoteParticipant, didUnsubscribeTrack publication: RemoteTrackPublication) {
+    public func room(_ room: Room, participant: RemoteParticipant, didUnsubscribeTrack publication: RemoteTrackPublication) {
         if publication.track?.sid != self.agentTrack?.sid {
             print("Unsubscribing from unkown track")
             return
@@ -153,7 +153,7 @@ class SessionEngine: RoomDelegate {
         }
     }
     
-    func room(_ room: Room, participant: RemoteParticipant?, didReceiveData data: Data, forTopic topic: String) {
+    public func room(_ room: Room, participant: RemoteParticipant?, didReceiveData data: Data, forTopic topic: String) {
         if participant?.identity != self.agentParticipant {
             return;
         }
@@ -185,7 +185,7 @@ class SessionEngine: RoomDelegate {
         }
     }
     
-    func room(_ room: Room, participant: LocalParticipant, didPublishTrack publication: LocalTrackPublication) {
+    public func room(_ room: Room, participant: LocalParticipant, didPublishTrack publication: LocalTrackPublication) {
         //      console.log("Local track published", publication, participant);
 //      if (publication.kind === Track.Kind.Audio) {
 //        this.userVolumeVisualizer.setTrack(
@@ -195,11 +195,11 @@ class SessionEngine: RoomDelegate {
         self.resolveMicrophoneState();
     }
     
-    func room(_ room: Room, participant: LocalParticipant, didUnpublishTrack publication: LocalTrackPublication) {
+    public func room(_ room: Room, participant: LocalParticipant, didUnpublishTrack publication: LocalTrackPublication) {
         self.resolveMicrophoneState()
     }
     
-    func room(_ room: Room, participant: Participant, trackPublication: TrackPublication, didUpdateIsMuted isMuted: Bool) {
+    public func room(_ room: Room, participant: Participant, trackPublication: TrackPublication, didUpdateIsMuted isMuted: Bool) {
         self.resolveMicrophoneState()
     }
     
