@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "gabber-swift",
+    name: "Gabber",
     platforms: [
         .iOS(.v13),
         .macOS(.v10_15),
@@ -13,8 +13,8 @@ let package = Package(
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "gabber-swift",
-            targets: ["gabber-swift"]),
+            name: "Gabber",
+            targets: ["Gabber"]),
     ],
     dependencies: [
         .package(name:"LiveKit", url: "https://github.com/livekit/client-sdk-swift.git", from: "2.0.14"),
@@ -23,9 +23,9 @@ let package = Package(
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "gabber-swift", dependencies: ["LiveKit"]),
+            name: "Gabber", dependencies: ["LiveKit"]),
         .testTarget(
-            name: "gabber-swiftTests",
-            dependencies: ["gabber-swift"]),
+            name: "GabberTests",
+            dependencies: ["Gabber"]),
     ]
 )
