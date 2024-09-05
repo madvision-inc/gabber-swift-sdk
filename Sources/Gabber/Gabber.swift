@@ -60,7 +60,7 @@ public class Gabber: RoomDelegate {
         }
     }
 
-    init(connectionDetails: ConnectionDetails, delegate: GabberDelegate) {
+    public init(connectionDetails: ConnectionDetails, delegate: GabberDelegate) {
         self.url = connectionDetails.url
         self.token = connectionDetails.token
         self.livekitRoom = Room()
