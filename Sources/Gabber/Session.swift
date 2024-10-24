@@ -1,9 +1,11 @@
 import Foundation
 import LiveKit
 import os
+import OpenAPIURLSession
+import OpenAPIRuntime
 
 
-public protocol GabberDelegate: AnyObject {
+public protocol SessionDelegate: AnyObject {
     func ConnectionStateChanged(state: ConnectionState) -> Void
     func MessagesChanged(messages: [SessionMessage]) -> Void
     func MicrophoneStateChanged(enabled: Bool) -> Void
@@ -14,19 +16,26 @@ public protocol GabberDelegate: AnyObject {
     func AgentError(msg: String) -> Void
 }
 
-public class Gabber: RoomDelegate {
+public class Session: RoomDelegate {
 
-    private weak var delegate: GabberDelegate?
-    private var url: String
-    private var token: String
+    private weak var delegate: SessionDelegate?
+    private var tokenGenerator: () async throws -> String
     
-    private var livekitRoom: Room
     private var agentParticipant: RemoteParticipant? = nil
     private var agentTrack: RemoteAudioTrack? = nil
-    private var messages: [SessionMessage] = []
+    private var messages: [Components.Schemas.SessionMessage] = []
     private var agentVolumeVisualizer: TrackVolumeVisualizer = TrackVolumeVisualizer()
     private var userVolumeVisualizer: TrackVolumeVisualizer = TrackVolumeVisualizer()
     private var _agentState = AgentState.warmup
+    
+    public init(tokenGenerator: @escaping () async throws -> String, delegate: SessionDelegate) {
+        self.tokenGenerator = tokenGenerator
+        self.delegate = delegate
+    }
+    
+    private lazy var livekitRoom: Room = {
+        return Room(delegate: self)
+    }()
     
     //this should be private
     public var agentState: AgentState {
@@ -66,22 +75,47 @@ public class Gabber: RoomDelegate {
         }
     }
 
-    public init(connectionDetails: ConnectionDetails, delegate: GabberDelegate) {
-        self.url = connectionDetails.url
-        self.token = connectionDetails.token
-        self.livekitRoom = Room()
-        self.delegate = delegate
-        NSLog("Gabber initialized with URL: \(url) and Token: \(token.prefix(10))...")
-    }
+
     
-    public func connect() async throws {
-        NSLog("Attempting to connect to LiveKit room...")
+    public func connect(opts: ConnectOptions) async throws {
+        print("Attempting to connect to LiveKit room...")
+        
+        let token = try await self.tokenGenerator()
+        let url: String
+        let connectToken: String
+        let sessionConfiguration = URLSessionConfiguration.default
+
+        sessionConfiguration.httpAdditionalHeaders = [
+            "Authorization": "Bearer \(token)",
+            "Content-Type": "application/json"
+        ]
+        var config = Configuration.init()
+        config.dateTranscoder = .iso8601WithFractionalSeconds
+
+        // Create the URLSessionTransport with the modified configuration
+        let transport = URLSessionTransport(configuration: URLSessionTransport.Configuration(session: URLSession(configuration: sessionConfiguration)))
+        let client = Client(
+            serverURL: URL(string: "https://app.gabber.dev")!,
+            configuration: config,
+            transport: transport
+        )
+        
+        switch opts {
+        case .connectionDetails(let _url, let _connectToken):
+            url = _url
+            connectToken = _connectToken
+        case .sessionStartRequest(let req):
+            let resp = try await client.post_sol_api_sol_v1_sol_session_sol_start(body: .json(req)).ok.body.json
+            connectToken = resp.connection_details.token!
+            url = resp.connection_details.url!
+        }
+        
         
         do {
-            try await self.livekitRoom.connect(url: self.url, token: self.token)
-            NSLog("LiveKit connection initiated.")
+            try await self.livekitRoom.connect(url: url, token: connectToken)
+            print("LiveKit connection initiated.")
         } catch {
-            NSLog("Failed to connect to LiveKit room with error: \(error.localizedDescription)")
+            print("Failed to connect to LiveKit room with error: \(error.localizedDescription)")
             self.delegate?.ConnectionStateChanged(state: .notConnected)  // Notify delegate of failure
             throw error  // Rethrow the error after logging it
         }
@@ -124,7 +158,6 @@ public class Gabber: RoomDelegate {
 
     
     public func room(_ room: Room, participant: Participant, didUpdateMetadata metadata: String?) {
-        NSLog("Participant \(participant.identity) metadata updated: \(String(describing: metadata))")
         if participant.kind != .agent {
             return
         }
@@ -145,27 +178,27 @@ public class Gabber: RoomDelegate {
     }
     
     public func room(_ room: Room, participant: RemoteParticipant, didSubscribeTrack publication: RemoteTrackPublication) {
+        print("Subscribed to track")
         // Ensure track is valid and log the correct type for Track.Sid
         if let track = publication.track {
-            NSLog("Participant \(participant.identity) subscribed to track: \(track.sid)")
             if track.kind == .audio {
                 if self.agentParticipant == nil {
                     self.agentParticipant = participant
                     if let remoteAudioTrack = track as? RemoteAudioTrack {
+                        print("Subscribed to agent track")
                         self.agentTrack = remoteAudioTrack
                         self.delegate?.ConnectionStateChanged(state: .connected)
                     }
                 }
             }
         } else {
-            NSLog("No track to subscribe to for participant \(participant.identity)")
+            print("No track to subscribe to for participant \(participant.identity)")
         }
     }
     
     public func room(_ room: Room, participant: RemoteParticipant, didUnsubscribeTrack publication: RemoteTrackPublication) {
         // Ensure correct handling of Track.Sid type
         if let trackSid = publication.track?.sid {
-            NSLog("Participant \(participant.identity) unsubscribed from track: \(trackSid)")
             if trackSid == self.agentTrack?.sid {
                 self.agentParticipant = nil
                 self.agentTrack = nil
@@ -174,7 +207,6 @@ public class Gabber: RoomDelegate {
                 }
             }
         } else {
-            NSLog("No track found for unsubscription")
         }
     }
     
@@ -188,8 +220,7 @@ public class Gabber: RoomDelegate {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         if topic == "message" {
             do {
-                let sm = try decoder.decode(SessionMessage.self, from: data)
-                NSLog("Decoded session message: \(sm.text)")
+                let sm = try decoder.decode(Components.Schemas.SessionMessage.self, from: data)
                 if let index = self.messages.firstIndex(where: { $0.id == sm.id }) {
                     self.messages[index] = sm
                 } else {
@@ -197,33 +228,33 @@ public class Gabber: RoomDelegate {
                 }
                 self.delegate?.MessagesChanged(messages: self.messages)
             } catch {
-                NSLog("Error decoding session message: \(error)")
+                print("Error decoding message \(error)")
             }
         } else if topic == "error" {
             do {
                 let ae = try decoder.decode(AgentErrorMessage.self, from: data)
-                NSLog("Agent error received: \(ae.message)")
+                print("Agent error received: \(ae.message)")
                 self.delegate?.AgentError(msg: ae.message)
             } catch {
-                NSLog("Error decoding agent error: \(error)")
+                print("Error decoding agent error: \(error)")
             }
         }
     }
     
     public func room(_ room: Room, participant: LocalParticipant, didPublishTrack publication: LocalTrackPublication) {
         if let trackSid = publication.track?.sid {
-            NSLog("Local participant \(participant.identity) published track with sid: \(trackSid)")
+            print("Local participant \(participant.identity?.stringValue ?? "") published track with sid: \(trackSid)")
         } else {
-            NSLog("Local participant \(participant.identity) published track with unknown sid")
+            print("Local participant \(participant.identity?.stringValue ?? "") published track with unknown sid")
         }
         self.resolveMicrophoneState()
     }
 
     public func room(_ room: Room, participant: LocalParticipant, didUnpublishTrack publication: LocalTrackPublication) {
         if let trackSid = publication.track?.sid {
-            NSLog("Local participant \(participant.identity) unpublished track with sid: \(trackSid)")
+            print("Local participant \(participant.identity?.stringValue ?? "") unpublished track with sid: \(trackSid)")
         } else {
-            NSLog("Local participant \(participant.identity) unpublished track with unknown sid")
+            print("Local participant \(participant.identity?.stringValue ?? "") unpublished track with unknown sid")
         }
         self.resolveMicrophoneState()
     }
@@ -271,27 +302,11 @@ public enum AgentState {
     }
 }
 
-public struct ConnectionDetails {
-    public var url: String
-    public var token: String
-
-    public init(url: String, token: String) {
-        self.url = url
-        self.token = token
-    }
-}
-
-public struct SessionMessage: Decodable {
-    public var id: Int     // Make id public
-    public var agent: Bool
-    public var final: Bool
-    public var createdAt: Date
-    public var speakingEndedAt: Date
-    public var deletedAt: Date?
-    public var session: String
-    public var text: String // Make text public
-}
-
 private struct AgentErrorMessage: Decodable {
     var message: String
+}
+
+public enum ConnectOptions {
+    case sessionStartRequest(req: Components.Schemas.SessionStartRequest)
+    case connectionDetails(url: String, token: String)
 }
