@@ -3,11 +3,12 @@ import LiveKit
 import os
 import OpenAPIURLSession
 import OpenAPIRuntime
+import AVFoundation
 
 
 public protocol SessionDelegate: AnyObject {
     func ConnectionStateChanged(state: ConnectionState) -> Void
-    func MessagesChanged(messages: [SessionMessage]) -> Void
+    func MessagesChanged(messages: [SessionTranscription]) -> Void
     func MicrophoneStateChanged(enabled: Bool) -> Void
     func AgentStateChanged(_ state: AgentState) -> Void
     func AgentVolumeChanged(bands: [Float], volume: Float) -> Void
@@ -23,7 +24,7 @@ public class Session: RoomDelegate {
     
     private var agentParticipant: RemoteParticipant? = nil
     private var agentTrack: RemoteAudioTrack? = nil
-    private var messages: [Components.Schemas.SessionMessage] = []
+    private var messages: [SessionTranscription] = []
     private var agentVolumeVisualizer: TrackVolumeVisualizer = TrackVolumeVisualizer()
     private var userVolumeVisualizer: TrackVolumeVisualizer = TrackVolumeVisualizer()
     private var _agentState = AgentState.warmup
@@ -68,6 +69,15 @@ public class Session: RoomDelegate {
         set {
             _microphoneEnabledState = newValue
             NSLog("Microphone state changed: \(newValue)")
+            if(newValue) {
+                let audioSession = AVAudioSession.sharedInstance()
+                do {
+                    try audioSession.setCategory(.playAndRecord, mode: .voiceChat, options: .defaultToSpeaker)
+                    try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+                } catch {
+                    print("Audio session configuration failed: \(error)")
+                }
+            }
             self.delegate?.MicrophoneStateChanged(enabled: newValue)
         }
         get {
@@ -134,9 +144,10 @@ public class Session: RoomDelegate {
     }
     
     public func sendChat(message: String) async throws {
-        NSLog("Sending chat message: \(message)")
-        try await self.livekitRoom.localParticipant.publish(data: message.data(using: .utf8)!, options: DataPublishOptions(topic: "chat_input"))
-        NSLog("Chat message sent.")
+        print("Sending chat message: \(message)")
+        let messageData = ["text": message]
+        let jsonData = try JSONSerialization.data(withJSONObject: messageData, options: [])
+        try await self.livekitRoom.localParticipant.publish(data: jsonData, options: DataPublishOptions(topic: "chat_input"))
     }
     
     private func resolveMicrophoneState() {
@@ -192,7 +203,7 @@ public class Session: RoomDelegate {
                 }
             }
         } else {
-            print("No track to subscribe to for participant \(participant.identity)")
+            print("No track to subscribe to for participant \(participant.identity?.stringValue ?? "")")
         }
     }
     
@@ -211,17 +222,18 @@ public class Session: RoomDelegate {
     }
     
     public func room(_ room: Room, participant: RemoteParticipant?, didReceiveData data: Data, forTopic topic: String) {
-        NSLog("Received data for topic \(topic) from participant \(String(describing: participant?.identity))")
+        print("Received data for topic \(topic) from participant \(String(describing: participant?.identity))")
         if participant?.identity != self.agentParticipant?.identity {
             return
         }
         
         let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        
+
         if topic == "message" {
             do {
-                let sm = try decoder.decode(Components.Schemas.SessionMessage.self, from: data)
-                if let index = self.messages.firstIndex(where: { $0.id == sm.id }) {
+                let sm = try decoder.decode(SessionTranscription.self, from: data)
+                if let index = self.messages.firstIndex(where: { $0.id == sm.id && $0.agent == sm.agent }) {
                     self.messages[index] = sm
                 } else {
                     self.messages.append(sm)
@@ -261,9 +273,9 @@ public class Session: RoomDelegate {
 
     public func room(_ room: Room, participant: Participant, trackPublication: TrackPublication, didUpdateIsMuted isMuted: Bool) {
         if let trackSid = trackPublication.track?.sid {
-            NSLog("Participant \(participant.identity) track \(trackSid) muted state changed to: \(isMuted)")
+            print("Participant \(participant.identity?.stringValue ?? "") track \(trackSid) muted state changed to: \(isMuted)")
         } else {
-            NSLog("Participant \(participant.identity) track has unknown sid, muted state changed to: \(isMuted)")
+            print("Participant \(participant.identity?.stringValue ?? "") track has unknown sid, muted state changed to: \(isMuted)")
         }
         self.resolveMicrophoneState()
     }
@@ -309,4 +321,14 @@ private struct AgentErrorMessage: Decodable {
 public enum ConnectOptions {
     case sessionStartRequest(req: Components.Schemas.SessionStartRequest)
     case connectionDetails(url: String, token: String)
+}
+
+public struct SessionTranscription: Decodable {
+    public var id: Int
+    public var agent: Bool
+    public var text: String
+    
+    public var uniqueId: String {
+        "\(agent ? "agent" : "user")_\(id)"
+    }
 }
