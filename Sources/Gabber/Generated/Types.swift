@@ -11,258 +11,349 @@ import struct Foundation.Date
 #endif
 /// A type that performs HTTP operations defined by the OpenAPI document.
 public protocol APIProtocol: Sendable {
-    /// Create a new session
-    ///
-    /// Creates a new session based on the input request data
-    ///
-    /// - Remark: HTTP `POST /api/v1/session/start`.
-    /// - Remark: Generated from `#/paths//api/v1/session/start/post`.
-    func post_sol_api_sol_v1_sol_session_sol_start(_ input: Operations.post_sol_api_sol_v1_sol_session_sol_start.Input) async throws -> Operations.post_sol_api_sol_v1_sol_session_sol_start.Output
-    /// Get a session by id
-    ///
-    /// - Remark: HTTP `GET /api/v1/session/{session_id}`.
-    /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/get`.
-    func get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_(_ input: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Input) async throws -> Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Output
-    /// Update a session by id
-    ///
-    /// - Remark: HTTP `PUT /api/v1/session/{session_id}`.
-    /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/put`.
-    func put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_(_ input: Operations.put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Input) async throws -> Operations.put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Output
-    /// Get session messages
-    ///
-    /// - Remark: HTTP `GET /api/v1/session/{session_id}/messages`.
-    /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/messages/get`.
-    func get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_messages(_ input: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_messages.Input) async throws -> Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_messages.Output
-    /// Get a session timeline
-    ///
-    /// - Remark: HTTP `GET /api/v1/session/{session_id}/timeline`.
-    /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/timeline/get`.
-    func get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_timeline(_ input: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_timeline.Input) async throws -> Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_timeline.Output
     /// Get a list of personas
     ///
-    /// - Remark: HTTP `GET /api/v1/persona/list`.
-    /// - Remark: Generated from `#/paths//api/v1/persona/list/get`.
-    func get_sol_api_sol_v1_sol_persona_sol_list(_ input: Operations.get_sol_api_sol_v1_sol_persona_sol_list.Input) async throws -> Operations.get_sol_api_sol_v1_sol_persona_sol_list.Output
-    /// Get a list of scenarios
-    ///
-    /// - Remark: HTTP `GET /api/v1/scenario/list`.
-    /// - Remark: Generated from `#/paths//api/v1/scenario/list/get`.
-    func get_sol_api_sol_v1_sol_scenario_sol_list(_ input: Operations.get_sol_api_sol_v1_sol_scenario_sol_list.Input) async throws -> Operations.get_sol_api_sol_v1_sol_scenario_sol_list.Output
-    /// Get a list of voices
-    ///
-    /// - Remark: HTTP `GET /api/v1/voice/list`.
-    /// - Remark: Generated from `#/paths//api/v1/voice/list/get`.
-    func get_sol_api_sol_v1_sol_voice_sol_list(_ input: Operations.get_sol_api_sol_v1_sol_voice_sol_list.Input) async throws -> Operations.get_sol_api_sol_v1_sol_voice_sol_list.Output
-    /// Preview a voice
-    ///
-    /// Previews a voice based on the input text
-    ///
-    /// - Remark: HTTP `POST /api/v1/voice/preview`.
-    /// - Remark: Generated from `#/paths//api/v1/voice/preview/post`.
-    func post_sol_api_sol_v1_sol_voice_sol_preview(_ input: Operations.post_sol_api_sol_v1_sol_voice_sol_preview.Input) async throws -> Operations.post_sol_api_sol_v1_sol_voice_sol_preview.Output
-    /// End a session
-    ///
-    /// - Remark: HTTP `POST /api/v1/session/{session_id}/end`.
-    /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/end/post`.
-    func post_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_end(_ input: Operations.post_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_end.Input) async throws -> Operations.post_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_end.Output
-    /// Request new human token
+    /// - Remark: HTTP `GET /v1/persona/list`.
+    /// - Remark: Generated from `#/paths//v1/persona/list/get(listPersonas)`.
+    func listPersonas(_ input: Operations.listPersonas.Input) async throws -> Operations.listPersonas.Output
+    /// Create a new usage token
     ///
     /// Requests a token for a human
     ///
-    /// - Remark: HTTP `POST /api/v1/usage/token`.
-    /// - Remark: Generated from `#/paths//api/v1/usage/token/post`.
-    func post_sol_api_sol_v1_sol_usage_sol_token(_ input: Operations.post_sol_api_sol_v1_sol_usage_sol_token.Input) async throws -> Operations.post_sol_api_sol_v1_sol_usage_sol_token.Output
-    /// Update human usage limits
+    /// - Remark: HTTP `POST /v1/usage/token`.
+    /// - Remark: Generated from `#/paths//v1/usage/token/post(createUsageToken)`.
+    func createUsageToken(_ input: Operations.createUsageToken.Input) async throws -> Operations.createUsageToken.Output
+    /// Update limits on a usage token
     ///
     /// Updates the usage limits of a human
     ///
-    /// - Remark: HTTP `PUT /api/v1/usage/token`.
-    /// - Remark: Generated from `#/paths//api/v1/usage/token/put`.
-    func put_sol_api_sol_v1_sol_usage_sol_token(_ input: Operations.put_sol_api_sol_v1_sol_usage_sol_token.Input) async throws -> Operations.put_sol_api_sol_v1_sol_usage_sol_token.Output
+    /// - Remark: HTTP `PUT /v1/usage/token`.
+    /// - Remark: Generated from `#/paths//v1/usage/token/put(updateUsageToken)`.
+    func updateUsageToken(_ input: Operations.updateUsageToken.Input) async throws -> Operations.updateUsageToken.Output
     /// Get usage limits
     ///
     /// Gets the usage limits of a token
     ///
-    /// - Remark: HTTP `GET /api/v1/usage/limits`.
-    /// - Remark: Generated from `#/paths//api/v1/usage/limits/get`.
-    func get_sol_api_sol_v1_sol_usage_sol_limits(_ input: Operations.get_sol_api_sol_v1_sol_usage_sol_limits.Input) async throws -> Operations.get_sol_api_sol_v1_sol_usage_sol_limits.Output
+    /// - Remark: HTTP `GET /v1/usage/limits`.
+    /// - Remark: Generated from `#/paths//v1/usage/limits/get(getUsageLimits)`.
+    func getUsageLimits(_ input: Operations.getUsageLimits.Input) async throws -> Operations.getUsageLimits.Output
     /// Clone a voice
     ///
     /// Creates a new cloned voice based on the input audio file
     ///
-    /// - Remark: HTTP `POST /api/v1/voice/clone`.
-    /// - Remark: Generated from `#/paths//api/v1/voice/clone/post`.
-    func post_sol_api_sol_v1_sol_voice_sol_clone(_ input: Operations.post_sol_api_sol_v1_sol_voice_sol_clone.Input) async throws -> Operations.post_sol_api_sol_v1_sol_voice_sol_clone.Output
+    /// - Remark: HTTP `POST /v1/voice/clone`.
+    /// - Remark: Generated from `#/paths//v1/voice/clone/post(cloneVoice)`.
+    func cloneVoice(_ input: Operations.cloneVoice.Input) async throws -> Operations.cloneVoice.Output
     /// Generate voice
     ///
     /// Generates speech from input text and specified voice
     ///
-    /// - Remark: HTTP `POST /api/v1/voice/generate`.
-    /// - Remark: Generated from `#/paths//api/v1/voice/generate/post`.
-    func post_sol_api_sol_v1_sol_voice_sol_generate(_ input: Operations.post_sol_api_sol_v1_sol_voice_sol_generate.Input) async throws -> Operations.post_sol_api_sol_v1_sol_voice_sol_generate.Output
+    /// - Remark: HTTP `POST /v1/voice/generate`.
+    /// - Remark: Generated from `#/paths//v1/voice/generate/post(generateVoice)`.
+    func generateVoice(_ input: Operations.generateVoice.Input) async throws -> Operations.generateVoice.Output
+    /// Get a voice
+    ///
+    /// - Remark: HTTP `GET /v1/voice/{voice_id}`.
+    /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/get(getVoice)`.
+    func getVoice(_ input: Operations.getVoice.Input) async throws -> Operations.getVoice.Output
+    /// Update a voice
+    ///
+    /// Updates a voice based on the input request data
+    ///
+    /// - Remark: HTTP `PUT /v1/voice/{voice_id}`.
+    /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/put(updateVoice)`.
+    func updateVoice(_ input: Operations.updateVoice.Input) async throws -> Operations.updateVoice.Output
     /// Delete a voice
     ///
-    /// - Remark: HTTP `DELETE /api/v1/voice/{voice_id}`.
-    /// - Remark: Generated from `#/paths//api/v1/voice/{voice_id}/delete`.
-    func delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_(_ input: Operations.delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_.Input) async throws -> Operations.delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_.Output
+    /// - Remark: HTTP `DELETE /v1/voice/{voice_id}`.
+    /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/delete(deleteVoice)`.
+    func deleteVoice(_ input: Operations.deleteVoice.Input) async throws -> Operations.deleteVoice.Output
+    /// Get a list of voices
+    ///
+    /// - Remark: HTTP `GET /v1/voice/list`.
+    /// - Remark: Generated from `#/paths//v1/voice/list/get(listVoices)`.
+    func listVoices(_ input: Operations.listVoices.Input) async throws -> Operations.listVoices.Output
+    /// Get a single credit object
+    ///
+    /// - Remark: HTTP `GET /v1/credit/{credit}`.
+    /// - Remark: Generated from `#/paths//v1/credit/{credit}/get(getCredit)`.
+    func getCredit(_ input: Operations.getCredit.Input) async throws -> Operations.getCredit.Output
+    /// Create a new credit type
+    ///
+    /// Creates a new credit based on the input request data.
+    ///
+    ///
+    /// - Remark: HTTP `POST /v1/credit`.
+    /// - Remark: Generated from `#/paths//v1/credit/post(createCredit)`.
+    func createCredit(_ input: Operations.createCredit.Input) async throws -> Operations.createCredit.Output
+    /// Get a list of credits
+    ///
+    /// - Remark: HTTP `GET /v1/credit/list`.
+    /// - Remark: Generated from `#/paths//v1/credit/list/get(listCredits)`.
+    func listCredits(_ input: Operations.listCredits.Input) async throws -> Operations.listCredits.Output
+    /// Create a new credit ledger entry
+    ///
+    /// Creates a new credit ledger entry for human. Requires a human id.
+    ///
+    /// - Remark: HTTP `POST /v1/credit/{credit}/ledger`.
+    /// - Remark: Generated from `#/paths//v1/credit/{credit}/ledger/post(createCreditLedgerEntry)`.
+    func createCreditLedgerEntry(_ input: Operations.createCreditLedgerEntry.Input) async throws -> Operations.createCreditLedgerEntry.Output
+    /// Get the latest credit ledger entry for a human. Requires a human id.
+    ///
+    /// - Remark: HTTP `GET /v1/credit/{credit}/ledger/latest`.
+    /// - Remark: Generated from `#/paths//v1/credit/{credit}/ledger/latest/get(getLatestCreditLedgerEntry)`.
+    func getLatestCreditLedgerEntry(_ input: Operations.getLatestCreditLedgerEntry.Input) async throws -> Operations.getLatestCreditLedgerEntry.Output
+    /// Chat Completions (+ Voice)
+    ///
+    /// Given messages, generates LLM output text and optionally speech
+    ///
+    /// - Remark: HTTP `POST /v1/chat/completions`.
+    /// - Remark: Generated from `#/paths//v1/chat/completions/post(chatCompletions)`.
+    func chatCompletions(_ input: Operations.chatCompletions.Input) async throws -> Operations.chatCompletions.Output
+    /// Get a persona
+    ///
+    /// - Remark: HTTP `GET /v1/persona/{persona_id}`.
+    /// - Remark: Generated from `#/paths//v1/persona/{persona_id}/get(getPersona)`.
+    func getPersona(_ input: Operations.getPersona.Input) async throws -> Operations.getPersona.Output
+    /// Update a persona
+    ///
+    /// - Remark: HTTP `PUT /v1/persona/{persona_id}`.
+    /// - Remark: Generated from `#/paths//v1/persona/{persona_id}/put(updatePersona)`.
+    func updatePersona(_ input: Operations.updatePersona.Input) async throws -> Operations.updatePersona.Output
     /// Delete a persona
     ///
-    /// - Remark: HTTP `DELETE /api/v1/persona/{persona_id}`.
-    /// - Remark: Generated from `#/paths//api/v1/persona/{persona_id}/delete`.
-    func delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_(_ input: Operations.delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_.Input) async throws -> Operations.delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_.Output
+    /// - Remark: HTTP `DELETE /v1/persona/{persona_id}`.
+    /// - Remark: Generated from `#/paths//v1/persona/{persona_id}/delete(deletePersona)`.
+    func deletePersona(_ input: Operations.deletePersona.Input) async throws -> Operations.deletePersona.Output
+    /// Create a persona
+    ///
+    /// - Remark: HTTP `POST /v1/persona`.
+    /// - Remark: Generated from `#/paths//v1/persona/post(createPersona)`.
+    func createPersona(_ input: Operations.createPersona.Input) async throws -> Operations.createPersona.Output
+    /// Get a scenario
+    ///
+    /// - Remark: HTTP `GET /v1/scenario/{scenario_id}`.
+    /// - Remark: Generated from `#/paths//v1/scenario/{scenario_id}/get(getScenario)`.
+    func getScenario(_ input: Operations.getScenario.Input) async throws -> Operations.getScenario.Output
+    /// Update a scenario
+    ///
+    /// - Remark: HTTP `PUT /v1/scenario/{scenario_id}`.
+    /// - Remark: Generated from `#/paths//v1/scenario/{scenario_id}/put(updateScenario)`.
+    func updateScenario(_ input: Operations.updateScenario.Input) async throws -> Operations.updateScenario.Output
     /// Delete a scenario
     ///
-    /// - Remark: HTTP `DELETE /api/v1/scenario/{scenario_id}`.
-    /// - Remark: Generated from `#/paths//api/v1/scenario/{scenario_id}/delete`.
-    func delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_(_ input: Operations.delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_.Input) async throws -> Operations.delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_.Output
+    /// - Remark: HTTP `DELETE /v1/scenario/{scenario_id}`.
+    /// - Remark: Generated from `#/paths//v1/scenario/{scenario_id}/delete(deleteScenario)`.
+    func deleteScenario(_ input: Operations.deleteScenario.Input) async throws -> Operations.deleteScenario.Output
+    /// Get a list of scenarios
+    ///
+    /// - Remark: HTTP `GET /v1/scenario/list`.
+    /// - Remark: Generated from `#/paths//v1/scenario/list/get(listScenarios)`.
+    func listScenarios(_ input: Operations.listScenarios.Input) async throws -> Operations.listScenarios.Output
+    /// Create a scenario
+    ///
+    /// - Remark: HTTP `POST /v1/scenario`.
+    /// - Remark: Generated from `#/paths//v1/scenario/post(CreateScenario)`.
+    func CreateScenario(_ input: Operations.CreateScenario.Input) async throws -> Operations.CreateScenario.Output
+    /// Get a list of llms
+    ///
+    /// - Remark: HTTP `GET /v1/llm/list`.
+    /// - Remark: Generated from `#/paths//v1/llm/list/get(listLLMs)`.
+    func listLLMs(_ input: Operations.listLLMs.Input) async throws -> Operations.listLLMs.Output
+    /// Get a list of llms
+    ///
+    /// - Remark: HTTP `GET /v1/llm/{llm}`.
+    /// - Remark: Generated from `#/paths//v1/llm/{llm}/get(getLLM)`.
+    func getLLM(_ input: Operations.getLLM.Input) async throws -> Operations.getLLM.Output
+    /// Create a new Context.
+    ///
+    /// Create a new Context with the given configuration.
+    ///
+    ///
+    /// - Remark: HTTP `POST /v1/llm/context`.
+    /// - Remark: Generated from `#/paths//v1/llm/context/post(createContext)`.
+    func createContext(_ input: Operations.createContext.Input) async throws -> Operations.createContext.Output
+    /// Retrieve a Context.
+    ///
+    /// Retrieve the Context with the given identifier.
+    ///
+    ///
+    /// - Remark: HTTP `GET /v1/llm/context/{context}`.
+    /// - Remark: Generated from `#/paths//v1/llm/context/{context}/get(getContext)`.
+    func getContext(_ input: Operations.getContext.Input) async throws -> Operations.getContext.Output
+    /// List ContextMessages.
+    ///
+    /// List all ContextMessages associated with the given Context.
+    ///
+    ///
+    /// - Remark: HTTP `GET /v1/llm/context/{context}/message/list`.
+    /// - Remark: Generated from `#/paths//v1/llm/context/{context}/message/list/get(listContextMessages)`.
+    func listContextMessages(_ input: Operations.listContextMessages.Input) async throws -> Operations.listContextMessages.Output
+    /// Create a new ContextMessage.
+    ///
+    /// Create a new ContextMessage with the given configuration.
+    ///
+    ///
+    /// - Remark: HTTP `POST /v1/llm/context/{context}/message`.
+    /// - Remark: Generated from `#/paths//v1/llm/context/{context}/message/post(createContextMessage)`.
+    func createContextMessage(_ input: Operations.createContextMessage.Input) async throws -> Operations.createContextMessage.Output
+    /// Retrieve a ContextMessage.
+    ///
+    /// Retrieve the ContextMessage with the given identifier.
+    ///
+    ///
+    /// - Remark: HTTP `GET /v1/llm/context/{context}/message/{message}`.
+    /// - Remark: Generated from `#/paths//v1/llm/context/{context}/message/{message}/get(getContextMessage)`.
+    func getContextMessage(_ input: Operations.getContextMessage.Input) async throws -> Operations.getContextMessage.Output
+    /// Start a new RealtimeSession.
+    ///
+    /// Start a new RealtimeSession with the given configuration.
+    ///
+    ///
+    /// - Remark: HTTP `POST /v1/realtime/start`.
+    /// - Remark: Generated from `#/paths//v1/realtime/start/post(startRealtimeSession)`.
+    func startRealtimeSession(_ input: Operations.startRealtimeSession.Input) async throws -> Operations.startRealtimeSession.Output
+    /// Update a RealtimeSession.
+    ///
+    /// Update the RealtimeSession with the given identifier.
+    ///
+    ///
+    /// - Remark: HTTP `POST /v1/realtime/{session}/update`.
+    /// - Remark: Generated from `#/paths//v1/realtime/{session}/update/post(updateRealtimeSession)`.
+    func updateRealtimeSession(_ input: Operations.updateRealtimeSession.Input) async throws -> Operations.updateRealtimeSession.Output
+    /// End a RealtimeSession.
+    ///
+    /// End the RealtimeSession with the given identifier.
+    ///
+    ///
+    /// - Remark: HTTP `POST /v1/realtime/{session}/end`.
+    /// - Remark: Generated from `#/paths//v1/realtime/{session}/end/post(endRealtimeSession)`.
+    func endRealtimeSession(_ input: Operations.endRealtimeSession.Input) async throws -> Operations.endRealtimeSession.Output
+    /// Get a RealtimeSession.
+    ///
+    /// End the RealtimeSession with the given identifier.
+    ///
+    ///
+    /// - Remark: HTTP `GET /v1/realtime/{session}`.
+    /// - Remark: Generated from `#/paths//v1/realtime/{session}/get(getRealtimeSession)`.
+    func getRealtimeSession(_ input: Operations.getRealtimeSession.Input) async throws -> Operations.getRealtimeSession.Output
+    /// Get a RealtimeSession timeline.
+    ///
+    /// Get the timeline of the RealtimeSession with the given identifier.
+    ///
+    ///
+    /// - Remark: HTTP `GET /v1/realtime/{session}/timeline`.
+    /// - Remark: Generated from `#/paths//v1/realtime/{session}/timeline/get(getRealtimeSessionTimeline)`.
+    func getRealtimeSessionTimeline(_ input: Operations.getRealtimeSessionTimeline.Input) async throws -> Operations.getRealtimeSessionTimeline.Output
+    /// Get a RealtimeSession messages.
+    ///
+    /// Get all ContextMessages associated with the given RealtimeSession.
+    ///
+    ///
+    /// - Remark: HTTP `GET /v1/realtime/{session}/messages`.
+    /// - Remark: Generated from `#/paths//v1/realtime/{session}/messages/get(getRealtimeSessionMessages)`.
+    func getRealtimeSessionMessages(_ input: Operations.getRealtimeSessionMessages.Input) async throws -> Operations.getRealtimeSessionMessages.Output
+    /// List Realtime Sessions.
+    ///
+    /// List all Realtime Sessions.
+    ///
+    ///
+    /// - Remark: HTTP `GET /v1/realtime/list`.
+    /// - Remark: Generated from `#/paths//v1/realtime/list/get(listRealtimeSessions)`.
+    func listRealtimeSessions(_ input: Operations.listRealtimeSessions.Input) async throws -> Operations.listRealtimeSessions.Output
+    /// Attach a human to a RealtimeSession
+    ///
+    /// Attaches a human to a RealtimeSession. This is useful for previously anonymous sessions, for example sessions created via a phone call.
+    ///
+    /// - Remark: HTTP `POST /v1/realtime/session/{session}/attach_human`.
+    /// - Remark: Generated from `#/paths//v1/realtime/session/{session}/attach_human/post(attachHuman)`.
+    func attachHuman(_ input: Operations.attachHuman.Input) async throws -> Operations.attachHuman.Output
+    /// Speak
+    ///
+    /// For a live session, force the agent to speak a given text.
+    ///
+    /// - Remark: HTTP `POST /v1/realtime/{session}/speak`.
+    /// - Remark: Generated from `#/paths//v1/realtime/{session}/speak/post(speak)`.
+    func speak(_ input: Operations.speak.Input) async throws -> Operations.speak.Output
+    /// Create a tool definition
+    ///
+    /// Create a tool definition
+    ///
+    /// - Remark: HTTP `POST /v1/tool`.
+    /// - Remark: Generated from `#/paths//v1/tool/post(createToolDefinition)`.
+    func createToolDefinition(_ input: Operations.createToolDefinition.Input) async throws -> Operations.createToolDefinition.Output
+    /// Get a tool definition
+    ///
+    /// Get a tool definition
+    ///
+    /// - Remark: HTTP `GET /v1/tool/{tool}`.
+    /// - Remark: Generated from `#/paths//v1/tool/{tool}/get(getToolDefinition)`.
+    func getToolDefinition(_ input: Operations.getToolDefinition.Input) async throws -> Operations.getToolDefinition.Output
+    /// Delete a tool definition
+    ///
+    /// Delete a tool definition
+    ///
+    /// - Remark: HTTP `DELETE /v1/tool/{tool}`.
+    /// - Remark: Generated from `#/paths//v1/tool/{tool}/delete(deleteToolDefinition)`.
+    func deleteToolDefinition(_ input: Operations.deleteToolDefinition.Input) async throws -> Operations.deleteToolDefinition.Output
+    /// List tools
+    ///
+    /// List tools
+    ///
+    /// - Remark: HTTP `GET /v1/tool/list`.
+    /// - Remark: Generated from `#/paths//v1/tool/list/get(listToolDefinitions)`.
+    func listToolDefinitions(_ input: Operations.listToolDefinitions.Input) async throws -> Operations.listToolDefinitions.Output
+    /// Get a tool call result
+    ///
+    /// Get a tool call result
+    ///
+    /// - Remark: HTTP `GET /v1/tool/call/{call}/result`.
+    /// - Remark: Generated from `#/paths//v1/tool/call/{call}/result/get(getToolCallResult)`.
+    func getToolCallResult(_ input: Operations.getToolCallResult.Input) async throws -> Operations.getToolCallResult.Output
+    /// Dummy endpoint
+    ///
+    /// Dummy endpoint for forcing generation objeects
+    ///
+    /// - Remark: HTTP `GET /dummy`.
+    /// - Remark: Generated from `#/paths//dummy/get`.
+    func get_sol_dummy(_ input: Operations.get_sol_dummy.Input) async throws -> Operations.get_sol_dummy.Output
 }
 
 /// Convenience overloads for operation inputs.
 extension APIProtocol {
-    /// Create a new session
-    ///
-    /// Creates a new session based on the input request data
-    ///
-    /// - Remark: HTTP `POST /api/v1/session/start`.
-    /// - Remark: Generated from `#/paths//api/v1/session/start/post`.
-    public func post_sol_api_sol_v1_sol_session_sol_start(
-        headers: Operations.post_sol_api_sol_v1_sol_session_sol_start.Input.Headers = .init(),
-        body: Operations.post_sol_api_sol_v1_sol_session_sol_start.Input.Body
-    ) async throws -> Operations.post_sol_api_sol_v1_sol_session_sol_start.Output {
-        try await post_sol_api_sol_v1_sol_session_sol_start(Operations.post_sol_api_sol_v1_sol_session_sol_start.Input(
-            headers: headers,
-            body: body
-        ))
-    }
-    /// Get a session by id
-    ///
-    /// - Remark: HTTP `GET /api/v1/session/{session_id}`.
-    /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/get`.
-    public func get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_(
-        path: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Input.Path,
-        headers: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Input.Headers = .init()
-    ) async throws -> Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Output {
-        try await get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_(Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Input(
-            path: path,
-            headers: headers
-        ))
-    }
-    /// Update a session by id
-    ///
-    /// - Remark: HTTP `PUT /api/v1/session/{session_id}`.
-    /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/put`.
-    public func put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_(
-        path: Operations.put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Input.Path,
-        headers: Operations.put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Input.Headers = .init(),
-        body: Operations.put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Input.Body
-    ) async throws -> Operations.put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Output {
-        try await put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_(Operations.put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Input(
-            path: path,
-            headers: headers,
-            body: body
-        ))
-    }
-    /// Get session messages
-    ///
-    /// - Remark: HTTP `GET /api/v1/session/{session_id}/messages`.
-    /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/messages/get`.
-    public func get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_messages(
-        path: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_messages.Input.Path,
-        headers: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_messages.Input.Headers = .init()
-    ) async throws -> Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_messages.Output {
-        try await get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_messages(Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_messages.Input(
-            path: path,
-            headers: headers
-        ))
-    }
-    /// Get a session timeline
-    ///
-    /// - Remark: HTTP `GET /api/v1/session/{session_id}/timeline`.
-    /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/timeline/get`.
-    public func get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_timeline(
-        path: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_timeline.Input.Path,
-        headers: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_timeline.Input.Headers = .init()
-    ) async throws -> Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_timeline.Output {
-        try await get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_timeline(Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_timeline.Input(
-            path: path,
-            headers: headers
-        ))
-    }
     /// Get a list of personas
     ///
-    /// - Remark: HTTP `GET /api/v1/persona/list`.
-    /// - Remark: Generated from `#/paths//api/v1/persona/list/get`.
-    public func get_sol_api_sol_v1_sol_persona_sol_list(headers: Operations.get_sol_api_sol_v1_sol_persona_sol_list.Input.Headers = .init()) async throws -> Operations.get_sol_api_sol_v1_sol_persona_sol_list.Output {
-        try await get_sol_api_sol_v1_sol_persona_sol_list(Operations.get_sol_api_sol_v1_sol_persona_sol_list.Input(headers: headers))
+    /// - Remark: HTTP `GET /v1/persona/list`.
+    /// - Remark: Generated from `#/paths//v1/persona/list/get(listPersonas)`.
+    public func listPersonas(headers: Operations.listPersonas.Input.Headers = .init()) async throws -> Operations.listPersonas.Output {
+        try await listPersonas(Operations.listPersonas.Input(headers: headers))
     }
-    /// Get a list of scenarios
-    ///
-    /// - Remark: HTTP `GET /api/v1/scenario/list`.
-    /// - Remark: Generated from `#/paths//api/v1/scenario/list/get`.
-    public func get_sol_api_sol_v1_sol_scenario_sol_list(headers: Operations.get_sol_api_sol_v1_sol_scenario_sol_list.Input.Headers = .init()) async throws -> Operations.get_sol_api_sol_v1_sol_scenario_sol_list.Output {
-        try await get_sol_api_sol_v1_sol_scenario_sol_list(Operations.get_sol_api_sol_v1_sol_scenario_sol_list.Input(headers: headers))
-    }
-    /// Get a list of voices
-    ///
-    /// - Remark: HTTP `GET /api/v1/voice/list`.
-    /// - Remark: Generated from `#/paths//api/v1/voice/list/get`.
-    public func get_sol_api_sol_v1_sol_voice_sol_list(headers: Operations.get_sol_api_sol_v1_sol_voice_sol_list.Input.Headers = .init()) async throws -> Operations.get_sol_api_sol_v1_sol_voice_sol_list.Output {
-        try await get_sol_api_sol_v1_sol_voice_sol_list(Operations.get_sol_api_sol_v1_sol_voice_sol_list.Input(headers: headers))
-    }
-    /// Preview a voice
-    ///
-    /// Previews a voice based on the input text
-    ///
-    /// - Remark: HTTP `POST /api/v1/voice/preview`.
-    /// - Remark: Generated from `#/paths//api/v1/voice/preview/post`.
-    public func post_sol_api_sol_v1_sol_voice_sol_preview(
-        headers: Operations.post_sol_api_sol_v1_sol_voice_sol_preview.Input.Headers = .init(),
-        body: Operations.post_sol_api_sol_v1_sol_voice_sol_preview.Input.Body
-    ) async throws -> Operations.post_sol_api_sol_v1_sol_voice_sol_preview.Output {
-        try await post_sol_api_sol_v1_sol_voice_sol_preview(Operations.post_sol_api_sol_v1_sol_voice_sol_preview.Input(
-            headers: headers,
-            body: body
-        ))
-    }
-    /// End a session
-    ///
-    /// - Remark: HTTP `POST /api/v1/session/{session_id}/end`.
-    /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/end/post`.
-    public func post_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_end(
-        path: Operations.post_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_end.Input.Path,
-        headers: Operations.post_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_end.Input.Headers = .init()
-    ) async throws -> Operations.post_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_end.Output {
-        try await post_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_end(Operations.post_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_end.Input(
-            path: path,
-            headers: headers
-        ))
-    }
-    /// Request new human token
+    /// Create a new usage token
     ///
     /// Requests a token for a human
     ///
-    /// - Remark: HTTP `POST /api/v1/usage/token`.
-    /// - Remark: Generated from `#/paths//api/v1/usage/token/post`.
-    public func post_sol_api_sol_v1_sol_usage_sol_token(
-        headers: Operations.post_sol_api_sol_v1_sol_usage_sol_token.Input.Headers = .init(),
-        body: Operations.post_sol_api_sol_v1_sol_usage_sol_token.Input.Body
-    ) async throws -> Operations.post_sol_api_sol_v1_sol_usage_sol_token.Output {
-        try await post_sol_api_sol_v1_sol_usage_sol_token(Operations.post_sol_api_sol_v1_sol_usage_sol_token.Input(
+    /// - Remark: HTTP `POST /v1/usage/token`.
+    /// - Remark: Generated from `#/paths//v1/usage/token/post(createUsageToken)`.
+    public func createUsageToken(
+        headers: Operations.createUsageToken.Input.Headers = .init(),
+        body: Operations.createUsageToken.Input.Body
+    ) async throws -> Operations.createUsageToken.Output {
+        try await createUsageToken(Operations.createUsageToken.Input(
             headers: headers,
             body: body
         ))
     }
-    /// Update human usage limits
+    /// Update limits on a usage token
     ///
     /// Updates the usage limits of a human
     ///
-    /// - Remark: HTTP `PUT /api/v1/usage/token`.
-    /// - Remark: Generated from `#/paths//api/v1/usage/token/put`.
-    public func put_sol_api_sol_v1_sol_usage_sol_token(
-        headers: Operations.put_sol_api_sol_v1_sol_usage_sol_token.Input.Headers = .init(),
-        body: Operations.put_sol_api_sol_v1_sol_usage_sol_token.Input.Body
-    ) async throws -> Operations.put_sol_api_sol_v1_sol_usage_sol_token.Output {
-        try await put_sol_api_sol_v1_sol_usage_sol_token(Operations.put_sol_api_sol_v1_sol_usage_sol_token.Input(
+    /// - Remark: HTTP `PUT /v1/usage/token`.
+    /// - Remark: Generated from `#/paths//v1/usage/token/put(updateUsageToken)`.
+    public func updateUsageToken(
+        headers: Operations.updateUsageToken.Input.Headers = .init(),
+        body: Operations.updateUsageToken.Input.Body
+    ) async throws -> Operations.updateUsageToken.Output {
+        try await updateUsageToken(Operations.updateUsageToken.Input(
             headers: headers,
             body: body
         ))
@@ -271,22 +362,22 @@ extension APIProtocol {
     ///
     /// Gets the usage limits of a token
     ///
-    /// - Remark: HTTP `GET /api/v1/usage/limits`.
-    /// - Remark: Generated from `#/paths//api/v1/usage/limits/get`.
-    public func get_sol_api_sol_v1_sol_usage_sol_limits(headers: Operations.get_sol_api_sol_v1_sol_usage_sol_limits.Input.Headers = .init()) async throws -> Operations.get_sol_api_sol_v1_sol_usage_sol_limits.Output {
-        try await get_sol_api_sol_v1_sol_usage_sol_limits(Operations.get_sol_api_sol_v1_sol_usage_sol_limits.Input(headers: headers))
+    /// - Remark: HTTP `GET /v1/usage/limits`.
+    /// - Remark: Generated from `#/paths//v1/usage/limits/get(getUsageLimits)`.
+    public func getUsageLimits(headers: Operations.getUsageLimits.Input.Headers = .init()) async throws -> Operations.getUsageLimits.Output {
+        try await getUsageLimits(Operations.getUsageLimits.Input(headers: headers))
     }
     /// Clone a voice
     ///
     /// Creates a new cloned voice based on the input audio file
     ///
-    /// - Remark: HTTP `POST /api/v1/voice/clone`.
-    /// - Remark: Generated from `#/paths//api/v1/voice/clone/post`.
-    public func post_sol_api_sol_v1_sol_voice_sol_clone(
-        headers: Operations.post_sol_api_sol_v1_sol_voice_sol_clone.Input.Headers = .init(),
-        body: Operations.post_sol_api_sol_v1_sol_voice_sol_clone.Input.Body
-    ) async throws -> Operations.post_sol_api_sol_v1_sol_voice_sol_clone.Output {
-        try await post_sol_api_sol_v1_sol_voice_sol_clone(Operations.post_sol_api_sol_v1_sol_voice_sol_clone.Input(
+    /// - Remark: HTTP `POST /v1/voice/clone`.
+    /// - Remark: Generated from `#/paths//v1/voice/clone/post(cloneVoice)`.
+    public func cloneVoice(
+        headers: Operations.cloneVoice.Input.Headers = .init(),
+        body: Operations.cloneVoice.Input.Body
+    ) async throws -> Operations.cloneVoice.Output {
+        try await cloneVoice(Operations.cloneVoice.Input(
             headers: headers,
             body: body
         ))
@@ -295,55 +386,584 @@ extension APIProtocol {
     ///
     /// Generates speech from input text and specified voice
     ///
-    /// - Remark: HTTP `POST /api/v1/voice/generate`.
-    /// - Remark: Generated from `#/paths//api/v1/voice/generate/post`.
-    public func post_sol_api_sol_v1_sol_voice_sol_generate(
-        headers: Operations.post_sol_api_sol_v1_sol_voice_sol_generate.Input.Headers = .init(),
-        body: Operations.post_sol_api_sol_v1_sol_voice_sol_generate.Input.Body
-    ) async throws -> Operations.post_sol_api_sol_v1_sol_voice_sol_generate.Output {
-        try await post_sol_api_sol_v1_sol_voice_sol_generate(Operations.post_sol_api_sol_v1_sol_voice_sol_generate.Input(
+    /// - Remark: HTTP `POST /v1/voice/generate`.
+    /// - Remark: Generated from `#/paths//v1/voice/generate/post(generateVoice)`.
+    public func generateVoice(
+        headers: Operations.generateVoice.Input.Headers = .init(),
+        body: Operations.generateVoice.Input.Body
+    ) async throws -> Operations.generateVoice.Output {
+        try await generateVoice(Operations.generateVoice.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Get a voice
+    ///
+    /// - Remark: HTTP `GET /v1/voice/{voice_id}`.
+    /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/get(getVoice)`.
+    public func getVoice(
+        path: Operations.getVoice.Input.Path,
+        headers: Operations.getVoice.Input.Headers = .init()
+    ) async throws -> Operations.getVoice.Output {
+        try await getVoice(Operations.getVoice.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Update a voice
+    ///
+    /// Updates a voice based on the input request data
+    ///
+    /// - Remark: HTTP `PUT /v1/voice/{voice_id}`.
+    /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/put(updateVoice)`.
+    public func updateVoice(
+        path: Operations.updateVoice.Input.Path,
+        headers: Operations.updateVoice.Input.Headers = .init(),
+        body: Operations.updateVoice.Input.Body
+    ) async throws -> Operations.updateVoice.Output {
+        try await updateVoice(Operations.updateVoice.Input(
+            path: path,
             headers: headers,
             body: body
         ))
     }
     /// Delete a voice
     ///
-    /// - Remark: HTTP `DELETE /api/v1/voice/{voice_id}`.
-    /// - Remark: Generated from `#/paths//api/v1/voice/{voice_id}/delete`.
-    public func delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_(
-        path: Operations.delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_.Input.Path,
-        headers: Operations.delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_.Input.Headers = .init()
-    ) async throws -> Operations.delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_.Output {
-        try await delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_(Operations.delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_.Input(
+    /// - Remark: HTTP `DELETE /v1/voice/{voice_id}`.
+    /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/delete(deleteVoice)`.
+    public func deleteVoice(
+        path: Operations.deleteVoice.Input.Path,
+        headers: Operations.deleteVoice.Input.Headers = .init()
+    ) async throws -> Operations.deleteVoice.Output {
+        try await deleteVoice(Operations.deleteVoice.Input(
             path: path,
             headers: headers
+        ))
+    }
+    /// Get a list of voices
+    ///
+    /// - Remark: HTTP `GET /v1/voice/list`.
+    /// - Remark: Generated from `#/paths//v1/voice/list/get(listVoices)`.
+    public func listVoices(headers: Operations.listVoices.Input.Headers = .init()) async throws -> Operations.listVoices.Output {
+        try await listVoices(Operations.listVoices.Input(headers: headers))
+    }
+    /// Get a single credit object
+    ///
+    /// - Remark: HTTP `GET /v1/credit/{credit}`.
+    /// - Remark: Generated from `#/paths//v1/credit/{credit}/get(getCredit)`.
+    public func getCredit(
+        path: Operations.getCredit.Input.Path,
+        headers: Operations.getCredit.Input.Headers = .init()
+    ) async throws -> Operations.getCredit.Output {
+        try await getCredit(Operations.getCredit.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Create a new credit type
+    ///
+    /// Creates a new credit based on the input request data.
+    ///
+    ///
+    /// - Remark: HTTP `POST /v1/credit`.
+    /// - Remark: Generated from `#/paths//v1/credit/post(createCredit)`.
+    public func createCredit(
+        headers: Operations.createCredit.Input.Headers = .init(),
+        body: Operations.createCredit.Input.Body
+    ) async throws -> Operations.createCredit.Output {
+        try await createCredit(Operations.createCredit.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Get a list of credits
+    ///
+    /// - Remark: HTTP `GET /v1/credit/list`.
+    /// - Remark: Generated from `#/paths//v1/credit/list/get(listCredits)`.
+    public func listCredits(headers: Operations.listCredits.Input.Headers = .init()) async throws -> Operations.listCredits.Output {
+        try await listCredits(Operations.listCredits.Input(headers: headers))
+    }
+    /// Create a new credit ledger entry
+    ///
+    /// Creates a new credit ledger entry for human. Requires a human id.
+    ///
+    /// - Remark: HTTP `POST /v1/credit/{credit}/ledger`.
+    /// - Remark: Generated from `#/paths//v1/credit/{credit}/ledger/post(createCreditLedgerEntry)`.
+    public func createCreditLedgerEntry(
+        path: Operations.createCreditLedgerEntry.Input.Path,
+        headers: Operations.createCreditLedgerEntry.Input.Headers = .init(),
+        body: Operations.createCreditLedgerEntry.Input.Body
+    ) async throws -> Operations.createCreditLedgerEntry.Output {
+        try await createCreditLedgerEntry(Operations.createCreditLedgerEntry.Input(
+            path: path,
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Get the latest credit ledger entry for a human. Requires a human id.
+    ///
+    /// - Remark: HTTP `GET /v1/credit/{credit}/ledger/latest`.
+    /// - Remark: Generated from `#/paths//v1/credit/{credit}/ledger/latest/get(getLatestCreditLedgerEntry)`.
+    public func getLatestCreditLedgerEntry(
+        path: Operations.getLatestCreditLedgerEntry.Input.Path,
+        headers: Operations.getLatestCreditLedgerEntry.Input.Headers = .init()
+    ) async throws -> Operations.getLatestCreditLedgerEntry.Output {
+        try await getLatestCreditLedgerEntry(Operations.getLatestCreditLedgerEntry.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Chat Completions (+ Voice)
+    ///
+    /// Given messages, generates LLM output text and optionally speech
+    ///
+    /// - Remark: HTTP `POST /v1/chat/completions`.
+    /// - Remark: Generated from `#/paths//v1/chat/completions/post(chatCompletions)`.
+    public func chatCompletions(
+        headers: Operations.chatCompletions.Input.Headers = .init(),
+        body: Operations.chatCompletions.Input.Body
+    ) async throws -> Operations.chatCompletions.Output {
+        try await chatCompletions(Operations.chatCompletions.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Get a persona
+    ///
+    /// - Remark: HTTP `GET /v1/persona/{persona_id}`.
+    /// - Remark: Generated from `#/paths//v1/persona/{persona_id}/get(getPersona)`.
+    public func getPersona(
+        path: Operations.getPersona.Input.Path,
+        headers: Operations.getPersona.Input.Headers = .init()
+    ) async throws -> Operations.getPersona.Output {
+        try await getPersona(Operations.getPersona.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Update a persona
+    ///
+    /// - Remark: HTTP `PUT /v1/persona/{persona_id}`.
+    /// - Remark: Generated from `#/paths//v1/persona/{persona_id}/put(updatePersona)`.
+    public func updatePersona(
+        path: Operations.updatePersona.Input.Path,
+        headers: Operations.updatePersona.Input.Headers = .init(),
+        body: Operations.updatePersona.Input.Body
+    ) async throws -> Operations.updatePersona.Output {
+        try await updatePersona(Operations.updatePersona.Input(
+            path: path,
+            headers: headers,
+            body: body
         ))
     }
     /// Delete a persona
     ///
-    /// - Remark: HTTP `DELETE /api/v1/persona/{persona_id}`.
-    /// - Remark: Generated from `#/paths//api/v1/persona/{persona_id}/delete`.
-    public func delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_(
-        path: Operations.delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_.Input.Path,
-        headers: Operations.delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_.Input.Headers = .init()
-    ) async throws -> Operations.delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_.Output {
-        try await delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_(Operations.delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_.Input(
+    /// - Remark: HTTP `DELETE /v1/persona/{persona_id}`.
+    /// - Remark: Generated from `#/paths//v1/persona/{persona_id}/delete(deletePersona)`.
+    public func deletePersona(
+        path: Operations.deletePersona.Input.Path,
+        headers: Operations.deletePersona.Input.Headers = .init()
+    ) async throws -> Operations.deletePersona.Output {
+        try await deletePersona(Operations.deletePersona.Input(
             path: path,
             headers: headers
         ))
     }
-    /// Delete a scenario
+    /// Create a persona
     ///
-    /// - Remark: HTTP `DELETE /api/v1/scenario/{scenario_id}`.
-    /// - Remark: Generated from `#/paths//api/v1/scenario/{scenario_id}/delete`.
-    public func delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_(
-        path: Operations.delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_.Input.Path,
-        headers: Operations.delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_.Input.Headers = .init()
-    ) async throws -> Operations.delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_.Output {
-        try await delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_(Operations.delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_.Input(
+    /// - Remark: HTTP `POST /v1/persona`.
+    /// - Remark: Generated from `#/paths//v1/persona/post(createPersona)`.
+    public func createPersona(
+        headers: Operations.createPersona.Input.Headers = .init(),
+        body: Operations.createPersona.Input.Body
+    ) async throws -> Operations.createPersona.Output {
+        try await createPersona(Operations.createPersona.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Get a scenario
+    ///
+    /// - Remark: HTTP `GET /v1/scenario/{scenario_id}`.
+    /// - Remark: Generated from `#/paths//v1/scenario/{scenario_id}/get(getScenario)`.
+    public func getScenario(
+        path: Operations.getScenario.Input.Path,
+        headers: Operations.getScenario.Input.Headers = .init()
+    ) async throws -> Operations.getScenario.Output {
+        try await getScenario(Operations.getScenario.Input(
             path: path,
             headers: headers
         ))
+    }
+    /// Update a scenario
+    ///
+    /// - Remark: HTTP `PUT /v1/scenario/{scenario_id}`.
+    /// - Remark: Generated from `#/paths//v1/scenario/{scenario_id}/put(updateScenario)`.
+    public func updateScenario(
+        path: Operations.updateScenario.Input.Path,
+        headers: Operations.updateScenario.Input.Headers = .init(),
+        body: Operations.updateScenario.Input.Body
+    ) async throws -> Operations.updateScenario.Output {
+        try await updateScenario(Operations.updateScenario.Input(
+            path: path,
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Delete a scenario
+    ///
+    /// - Remark: HTTP `DELETE /v1/scenario/{scenario_id}`.
+    /// - Remark: Generated from `#/paths//v1/scenario/{scenario_id}/delete(deleteScenario)`.
+    public func deleteScenario(
+        path: Operations.deleteScenario.Input.Path,
+        headers: Operations.deleteScenario.Input.Headers = .init()
+    ) async throws -> Operations.deleteScenario.Output {
+        try await deleteScenario(Operations.deleteScenario.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Get a list of scenarios
+    ///
+    /// - Remark: HTTP `GET /v1/scenario/list`.
+    /// - Remark: Generated from `#/paths//v1/scenario/list/get(listScenarios)`.
+    public func listScenarios(headers: Operations.listScenarios.Input.Headers = .init()) async throws -> Operations.listScenarios.Output {
+        try await listScenarios(Operations.listScenarios.Input(headers: headers))
+    }
+    /// Create a scenario
+    ///
+    /// - Remark: HTTP `POST /v1/scenario`.
+    /// - Remark: Generated from `#/paths//v1/scenario/post(CreateScenario)`.
+    public func CreateScenario(
+        headers: Operations.CreateScenario.Input.Headers = .init(),
+        body: Operations.CreateScenario.Input.Body
+    ) async throws -> Operations.CreateScenario.Output {
+        try await CreateScenario(Operations.CreateScenario.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Get a list of llms
+    ///
+    /// - Remark: HTTP `GET /v1/llm/list`.
+    /// - Remark: Generated from `#/paths//v1/llm/list/get(listLLMs)`.
+    public func listLLMs(headers: Operations.listLLMs.Input.Headers = .init()) async throws -> Operations.listLLMs.Output {
+        try await listLLMs(Operations.listLLMs.Input(headers: headers))
+    }
+    /// Get a list of llms
+    ///
+    /// - Remark: HTTP `GET /v1/llm/{llm}`.
+    /// - Remark: Generated from `#/paths//v1/llm/{llm}/get(getLLM)`.
+    public func getLLM(
+        path: Operations.getLLM.Input.Path,
+        headers: Operations.getLLM.Input.Headers = .init()
+    ) async throws -> Operations.getLLM.Output {
+        try await getLLM(Operations.getLLM.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Create a new Context.
+    ///
+    /// Create a new Context with the given configuration.
+    ///
+    ///
+    /// - Remark: HTTP `POST /v1/llm/context`.
+    /// - Remark: Generated from `#/paths//v1/llm/context/post(createContext)`.
+    public func createContext(
+        headers: Operations.createContext.Input.Headers = .init(),
+        body: Operations.createContext.Input.Body
+    ) async throws -> Operations.createContext.Output {
+        try await createContext(Operations.createContext.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Retrieve a Context.
+    ///
+    /// Retrieve the Context with the given identifier.
+    ///
+    ///
+    /// - Remark: HTTP `GET /v1/llm/context/{context}`.
+    /// - Remark: Generated from `#/paths//v1/llm/context/{context}/get(getContext)`.
+    public func getContext(
+        path: Operations.getContext.Input.Path,
+        headers: Operations.getContext.Input.Headers = .init()
+    ) async throws -> Operations.getContext.Output {
+        try await getContext(Operations.getContext.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// List ContextMessages.
+    ///
+    /// List all ContextMessages associated with the given Context.
+    ///
+    ///
+    /// - Remark: HTTP `GET /v1/llm/context/{context}/message/list`.
+    /// - Remark: Generated from `#/paths//v1/llm/context/{context}/message/list/get(listContextMessages)`.
+    public func listContextMessages(
+        path: Operations.listContextMessages.Input.Path,
+        headers: Operations.listContextMessages.Input.Headers = .init()
+    ) async throws -> Operations.listContextMessages.Output {
+        try await listContextMessages(Operations.listContextMessages.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Create a new ContextMessage.
+    ///
+    /// Create a new ContextMessage with the given configuration.
+    ///
+    ///
+    /// - Remark: HTTP `POST /v1/llm/context/{context}/message`.
+    /// - Remark: Generated from `#/paths//v1/llm/context/{context}/message/post(createContextMessage)`.
+    public func createContextMessage(
+        path: Operations.createContextMessage.Input.Path,
+        headers: Operations.createContextMessage.Input.Headers = .init(),
+        body: Operations.createContextMessage.Input.Body
+    ) async throws -> Operations.createContextMessage.Output {
+        try await createContextMessage(Operations.createContextMessage.Input(
+            path: path,
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Retrieve a ContextMessage.
+    ///
+    /// Retrieve the ContextMessage with the given identifier.
+    ///
+    ///
+    /// - Remark: HTTP `GET /v1/llm/context/{context}/message/{message}`.
+    /// - Remark: Generated from `#/paths//v1/llm/context/{context}/message/{message}/get(getContextMessage)`.
+    public func getContextMessage(
+        path: Operations.getContextMessage.Input.Path,
+        headers: Operations.getContextMessage.Input.Headers = .init()
+    ) async throws -> Operations.getContextMessage.Output {
+        try await getContextMessage(Operations.getContextMessage.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Start a new RealtimeSession.
+    ///
+    /// Start a new RealtimeSession with the given configuration.
+    ///
+    ///
+    /// - Remark: HTTP `POST /v1/realtime/start`.
+    /// - Remark: Generated from `#/paths//v1/realtime/start/post(startRealtimeSession)`.
+    public func startRealtimeSession(
+        headers: Operations.startRealtimeSession.Input.Headers = .init(),
+        body: Operations.startRealtimeSession.Input.Body
+    ) async throws -> Operations.startRealtimeSession.Output {
+        try await startRealtimeSession(Operations.startRealtimeSession.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Update a RealtimeSession.
+    ///
+    /// Update the RealtimeSession with the given identifier.
+    ///
+    ///
+    /// - Remark: HTTP `POST /v1/realtime/{session}/update`.
+    /// - Remark: Generated from `#/paths//v1/realtime/{session}/update/post(updateRealtimeSession)`.
+    public func updateRealtimeSession(
+        path: Operations.updateRealtimeSession.Input.Path,
+        headers: Operations.updateRealtimeSession.Input.Headers = .init(),
+        body: Operations.updateRealtimeSession.Input.Body
+    ) async throws -> Operations.updateRealtimeSession.Output {
+        try await updateRealtimeSession(Operations.updateRealtimeSession.Input(
+            path: path,
+            headers: headers,
+            body: body
+        ))
+    }
+    /// End a RealtimeSession.
+    ///
+    /// End the RealtimeSession with the given identifier.
+    ///
+    ///
+    /// - Remark: HTTP `POST /v1/realtime/{session}/end`.
+    /// - Remark: Generated from `#/paths//v1/realtime/{session}/end/post(endRealtimeSession)`.
+    public func endRealtimeSession(
+        path: Operations.endRealtimeSession.Input.Path,
+        headers: Operations.endRealtimeSession.Input.Headers = .init()
+    ) async throws -> Operations.endRealtimeSession.Output {
+        try await endRealtimeSession(Operations.endRealtimeSession.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Get a RealtimeSession.
+    ///
+    /// End the RealtimeSession with the given identifier.
+    ///
+    ///
+    /// - Remark: HTTP `GET /v1/realtime/{session}`.
+    /// - Remark: Generated from `#/paths//v1/realtime/{session}/get(getRealtimeSession)`.
+    public func getRealtimeSession(
+        path: Operations.getRealtimeSession.Input.Path,
+        headers: Operations.getRealtimeSession.Input.Headers = .init()
+    ) async throws -> Operations.getRealtimeSession.Output {
+        try await getRealtimeSession(Operations.getRealtimeSession.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Get a RealtimeSession timeline.
+    ///
+    /// Get the timeline of the RealtimeSession with the given identifier.
+    ///
+    ///
+    /// - Remark: HTTP `GET /v1/realtime/{session}/timeline`.
+    /// - Remark: Generated from `#/paths//v1/realtime/{session}/timeline/get(getRealtimeSessionTimeline)`.
+    public func getRealtimeSessionTimeline(
+        path: Operations.getRealtimeSessionTimeline.Input.Path,
+        headers: Operations.getRealtimeSessionTimeline.Input.Headers = .init()
+    ) async throws -> Operations.getRealtimeSessionTimeline.Output {
+        try await getRealtimeSessionTimeline(Operations.getRealtimeSessionTimeline.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Get a RealtimeSession messages.
+    ///
+    /// Get all ContextMessages associated with the given RealtimeSession.
+    ///
+    ///
+    /// - Remark: HTTP `GET /v1/realtime/{session}/messages`.
+    /// - Remark: Generated from `#/paths//v1/realtime/{session}/messages/get(getRealtimeSessionMessages)`.
+    public func getRealtimeSessionMessages(
+        path: Operations.getRealtimeSessionMessages.Input.Path,
+        headers: Operations.getRealtimeSessionMessages.Input.Headers = .init()
+    ) async throws -> Operations.getRealtimeSessionMessages.Output {
+        try await getRealtimeSessionMessages(Operations.getRealtimeSessionMessages.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// List Realtime Sessions.
+    ///
+    /// List all Realtime Sessions.
+    ///
+    ///
+    /// - Remark: HTTP `GET /v1/realtime/list`.
+    /// - Remark: Generated from `#/paths//v1/realtime/list/get(listRealtimeSessions)`.
+    public func listRealtimeSessions(headers: Operations.listRealtimeSessions.Input.Headers = .init()) async throws -> Operations.listRealtimeSessions.Output {
+        try await listRealtimeSessions(Operations.listRealtimeSessions.Input(headers: headers))
+    }
+    /// Attach a human to a RealtimeSession
+    ///
+    /// Attaches a human to a RealtimeSession. This is useful for previously anonymous sessions, for example sessions created via a phone call.
+    ///
+    /// - Remark: HTTP `POST /v1/realtime/session/{session}/attach_human`.
+    /// - Remark: Generated from `#/paths//v1/realtime/session/{session}/attach_human/post(attachHuman)`.
+    public func attachHuman(
+        path: Operations.attachHuman.Input.Path,
+        headers: Operations.attachHuman.Input.Headers = .init(),
+        body: Operations.attachHuman.Input.Body
+    ) async throws -> Operations.attachHuman.Output {
+        try await attachHuman(Operations.attachHuman.Input(
+            path: path,
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Speak
+    ///
+    /// For a live session, force the agent to speak a given text.
+    ///
+    /// - Remark: HTTP `POST /v1/realtime/{session}/speak`.
+    /// - Remark: Generated from `#/paths//v1/realtime/{session}/speak/post(speak)`.
+    public func speak(
+        path: Operations.speak.Input.Path,
+        headers: Operations.speak.Input.Headers = .init(),
+        body: Operations.speak.Input.Body
+    ) async throws -> Operations.speak.Output {
+        try await speak(Operations.speak.Input(
+            path: path,
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Create a tool definition
+    ///
+    /// Create a tool definition
+    ///
+    /// - Remark: HTTP `POST /v1/tool`.
+    /// - Remark: Generated from `#/paths//v1/tool/post(createToolDefinition)`.
+    public func createToolDefinition(
+        headers: Operations.createToolDefinition.Input.Headers = .init(),
+        body: Operations.createToolDefinition.Input.Body
+    ) async throws -> Operations.createToolDefinition.Output {
+        try await createToolDefinition(Operations.createToolDefinition.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Get a tool definition
+    ///
+    /// Get a tool definition
+    ///
+    /// - Remark: HTTP `GET /v1/tool/{tool}`.
+    /// - Remark: Generated from `#/paths//v1/tool/{tool}/get(getToolDefinition)`.
+    public func getToolDefinition(
+        path: Operations.getToolDefinition.Input.Path,
+        headers: Operations.getToolDefinition.Input.Headers = .init()
+    ) async throws -> Operations.getToolDefinition.Output {
+        try await getToolDefinition(Operations.getToolDefinition.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Delete a tool definition
+    ///
+    /// Delete a tool definition
+    ///
+    /// - Remark: HTTP `DELETE /v1/tool/{tool}`.
+    /// - Remark: Generated from `#/paths//v1/tool/{tool}/delete(deleteToolDefinition)`.
+    public func deleteToolDefinition(
+        path: Operations.deleteToolDefinition.Input.Path,
+        headers: Operations.deleteToolDefinition.Input.Headers = .init()
+    ) async throws -> Operations.deleteToolDefinition.Output {
+        try await deleteToolDefinition(Operations.deleteToolDefinition.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// List tools
+    ///
+    /// List tools
+    ///
+    /// - Remark: HTTP `GET /v1/tool/list`.
+    /// - Remark: Generated from `#/paths//v1/tool/list/get(listToolDefinitions)`.
+    public func listToolDefinitions(headers: Operations.listToolDefinitions.Input.Headers = .init()) async throws -> Operations.listToolDefinitions.Output {
+        try await listToolDefinitions(Operations.listToolDefinitions.Input(headers: headers))
+    }
+    /// Get a tool call result
+    ///
+    /// Get a tool call result
+    ///
+    /// - Remark: HTTP `GET /v1/tool/call/{call}/result`.
+    /// - Remark: Generated from `#/paths//v1/tool/call/{call}/result/get(getToolCallResult)`.
+    public func getToolCallResult(
+        path: Operations.getToolCallResult.Input.Path,
+        headers: Operations.getToolCallResult.Input.Headers = .init()
+    ) async throws -> Operations.getToolCallResult.Output {
+        try await getToolCallResult(Operations.getToolCallResult.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Dummy endpoint
+    ///
+    /// Dummy endpoint for forcing generation objeects
+    ///
+    /// - Remark: HTTP `GET /dummy`.
+    /// - Remark: Generated from `#/paths//dummy/get`.
+    public func get_sol_dummy(headers: Operations.get_sol_dummy.Input.Headers = .init()) async throws -> Operations.get_sol_dummy.Output {
+        try await get_sol_dummy(Operations.get_sol_dummy.Input(headers: headers))
     }
 }
 
@@ -352,7 +972,7 @@ public enum Servers {
     public enum Server1 {
         public static func url() throws -> Foundation.URL {
             try Foundation.URL(
-                validatingOpenAPIServerURL: "https://app.gabber.dev",
+                validatingOpenAPIServerURL: "https://api.gabber.dev",
                 variables: []
             )
         }
@@ -360,7 +980,7 @@ public enum Servers {
     @available(*, deprecated, renamed: "Servers.Server1.url")
     public static func server1() throws -> Foundation.URL {
         try Foundation.URL(
-            validatingOpenAPIServerURL: "https://app.gabber.dev",
+            validatingOpenAPIServerURL: "https://api.gabber.dev",
             variables: []
         )
     }
@@ -370,6 +990,2096 @@ public enum Servers {
 public enum Components {
     /// Types generated from the `#/components/schemas` section of the OpenAPI document.
     public enum Schemas {
+        /// - Remark: Generated from `#/components/schemas/SDKSessionTranscription`.
+        public struct SDKSessionTranscription: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/SDKSessionTranscription/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/SDKSessionTranscription/agent`.
+            public var agent: Swift.Bool
+            /// - Remark: Generated from `#/components/schemas/SDKSessionTranscription/final`.
+            public var final: Swift.Bool
+            /// - Remark: Generated from `#/components/schemas/SDKSessionTranscription/created_at`.
+            public var created_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/SDKSessionTranscription/speaking_ended_at`.
+            public var speaking_ended_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/SDKSessionTranscription/text`.
+            public var text: Swift.String
+            /// Creates a new `SDKSessionTranscription`.
+            ///
+            /// - Parameters:
+            ///   - id:
+            ///   - agent:
+            ///   - final:
+            ///   - created_at:
+            ///   - speaking_ended_at:
+            ///   - text:
+            public init(
+                id: Swift.String,
+                agent: Swift.Bool,
+                final: Swift.Bool,
+                created_at: Foundation.Date,
+                speaking_ended_at: Foundation.Date,
+                text: Swift.String
+            ) {
+                self.id = id
+                self.agent = agent
+                self.final = final
+                self.created_at = created_at
+                self.speaking_ended_at = speaking_ended_at
+                self.text = text
+            }
+            public enum CodingKeys: String, CodingKey {
+                case id
+                case agent
+                case final
+                case created_at
+                case speaking_ended_at
+                case text
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/SDKConnectOptions`.
+        @frozen public enum SDKConnectOptions: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/SDKConnectOptions/case1`.
+            public struct Case1Payload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/SDKConnectOptions/case1/connection_details`.
+                public var connection_details: Components.Schemas.RealtimeSessionConnectionDetails
+                /// Creates a new `Case1Payload`.
+                ///
+                /// - Parameters:
+                ///   - connection_details:
+                public init(connection_details: Components.Schemas.RealtimeSessionConnectionDetails) {
+                    self.connection_details = connection_details
+                }
+                public enum CodingKeys: String, CodingKey {
+                    case connection_details
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/SDKConnectOptions/case1`.
+            case case1(Components.Schemas.SDKConnectOptions.Case1Payload)
+            /// - Remark: Generated from `#/components/schemas/SDKConnectOptions/case2`.
+            public struct Case2Payload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/SDKConnectOptions/case2/token`.
+                public var token: Swift.String
+                /// - Remark: Generated from `#/components/schemas/SDKConnectOptions/case2/config`.
+                public var config: Components.Schemas.RealtimeSessionConfigCreate
+                /// Creates a new `Case2Payload`.
+                ///
+                /// - Parameters:
+                ///   - token:
+                ///   - config:
+                public init(
+                    token: Swift.String,
+                    config: Components.Schemas.RealtimeSessionConfigCreate
+                ) {
+                    self.token = token
+                    self.config = config
+                }
+                public enum CodingKeys: String, CodingKey {
+                    case token
+                    case config
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/SDKConnectOptions/case2`.
+            case case2(Components.Schemas.SDKConnectOptions.Case2Payload)
+            public init(from decoder: any Decoder) throws {
+                var errors: [any Error] = []
+                do {
+                    self = .case1(try .init(from: decoder))
+                    return
+                } catch {
+                    errors.append(error)
+                }
+                do {
+                    self = .case2(try .init(from: decoder))
+                    return
+                } catch {
+                    errors.append(error)
+                }
+                throw Swift.DecodingError.failedToDecodeOneOfSchema(
+                    type: Self.self,
+                    codingPath: decoder.codingPath,
+                    errors: errors
+                )
+            }
+            public func encode(to encoder: any Encoder) throws {
+                switch self {
+                case let .case1(value):
+                    try value.encode(to: encoder)
+                case let .case2(value):
+                    try value.encode(to: encoder)
+                }
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/SDKSendChatMessageParams`.
+        public struct SDKSendChatMessageParams: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/SDKSendChatMessageParams/text`.
+            public var text: Swift.String?
+            /// Creates a new `SDKSendChatMessageParams`.
+            ///
+            /// - Parameters:
+            ///   - text:
+            public init(text: Swift.String? = nil) {
+                self.text = text
+            }
+            public enum CodingKeys: String, CodingKey {
+                case text
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/SDKConnectionState`.
+        @frozen public enum SDKConnectionState: String, Codable, Hashable, Sendable, CaseIterable {
+            case not_connected = "not_connected"
+            case connecting = "connecting"
+            case waiting_for_agent = "waiting_for_agent"
+            case connected = "connected"
+        }
+        /// - Remark: Generated from `#/components/schemas/SDKAgentState`.
+        @frozen public enum SDKAgentState: String, Codable, Hashable, Sendable, CaseIterable {
+            case warmup = "warmup"
+            case listening = "listening"
+            case thinking = "thinking"
+            case speaking = "speaking"
+            case time_limit_exceeded = "time_limit_exceeded"
+            case usage_limit_exceeded = "usage_limit_exceeded"
+        }
+        /// - Remark: Generated from `#/components/schemas/Persona`.
+        public struct Persona: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/Persona/created_at`.
+            public var created_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/Persona/description`.
+            public var description: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Persona/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Persona/image_url`.
+            public var image_url: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/Persona/name`.
+            public var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Persona/project`.
+            public var project: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Persona/human`.
+            public var human: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/Persona/gender`.
+            @frozen public enum genderPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case male = "male"
+                case female = "female"
+            }
+            /// - Remark: Generated from `#/components/schemas/Persona/gender`.
+            public var gender: Components.Schemas.Persona.genderPayload?
+            /// - Remark: Generated from `#/components/schemas/Persona/tagsPayload`.
+            public struct tagsPayloadPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/Persona/tagsPayload/human_name`.
+                public var human_name: Swift.String
+                /// - Remark: Generated from `#/components/schemas/Persona/tagsPayload/name`.
+                public var name: Swift.String
+                /// Creates a new `tagsPayloadPayload`.
+                ///
+                /// - Parameters:
+                ///   - human_name:
+                ///   - name:
+                public init(
+                    human_name: Swift.String,
+                    name: Swift.String
+                ) {
+                    self.human_name = human_name
+                    self.name = name
+                }
+                public enum CodingKeys: String, CodingKey {
+                    case human_name
+                    case name
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/Persona/tags`.
+            public typealias tagsPayload = [Components.Schemas.Persona.tagsPayloadPayload]
+            /// - Remark: Generated from `#/components/schemas/Persona/tags`.
+            public var tags: Components.Schemas.Persona.tagsPayload?
+            /// - Remark: Generated from `#/components/schemas/Persona/voice`.
+            public var voice: Swift.String
+            /// Creates a new `Persona`.
+            ///
+            /// - Parameters:
+            ///   - created_at:
+            ///   - description:
+            ///   - id:
+            ///   - image_url:
+            ///   - name:
+            ///   - project:
+            ///   - human:
+            ///   - gender:
+            ///   - tags:
+            ///   - voice:
+            public init(
+                created_at: Foundation.Date,
+                description: Swift.String,
+                id: Swift.String,
+                image_url: Swift.String? = nil,
+                name: Swift.String,
+                project: Swift.String,
+                human: Swift.String? = nil,
+                gender: Components.Schemas.Persona.genderPayload? = nil,
+                tags: Components.Schemas.Persona.tagsPayload? = nil,
+                voice: Swift.String
+            ) {
+                self.created_at = created_at
+                self.description = description
+                self.id = id
+                self.image_url = image_url
+                self.name = name
+                self.project = project
+                self.human = human
+                self.gender = gender
+                self.tags = tags
+                self.voice = voice
+            }
+            public enum CodingKeys: String, CodingKey {
+                case created_at
+                case description
+                case id
+                case image_url
+                case name
+                case project
+                case human
+                case gender
+                case tags
+                case voice
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CreatePersonaRequest`.
+        public struct CreatePersonaRequest: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CreatePersonaRequest/description`.
+            public var description: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CreatePersonaRequest/image_url`.
+            public var image_url: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/CreatePersonaRequest/name`.
+            public var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CreatePersonaRequest/gender`.
+            @frozen public enum genderPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case male = "male"
+                case female = "female"
+            }
+            /// - Remark: Generated from `#/components/schemas/CreatePersonaRequest/gender`.
+            public var gender: Components.Schemas.CreatePersonaRequest.genderPayload?
+            /// - Remark: Generated from `#/components/schemas/CreatePersonaRequest/voice`.
+            public var voice: Swift.String
+            /// Creates a new `CreatePersonaRequest`.
+            ///
+            /// - Parameters:
+            ///   - description:
+            ///   - image_url:
+            ///   - name:
+            ///   - gender:
+            ///   - voice:
+            public init(
+                description: Swift.String,
+                image_url: Swift.String? = nil,
+                name: Swift.String,
+                gender: Components.Schemas.CreatePersonaRequest.genderPayload? = nil,
+                voice: Swift.String
+            ) {
+                self.description = description
+                self.image_url = image_url
+                self.name = name
+                self.gender = gender
+                self.voice = voice
+            }
+            public enum CodingKeys: String, CodingKey {
+                case description
+                case image_url
+                case name
+                case gender
+                case voice
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/UpdatePersonaRequest`.
+        public struct UpdatePersonaRequest: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/UpdatePersonaRequest/description`.
+            public var description: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/UpdatePersonaRequest/image_url`.
+            public var image_url: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/UpdatePersonaRequest/name`.
+            public var name: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/UpdatePersonaRequest/gender`.
+            @frozen public enum genderPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case male = "male"
+                case female = "female"
+            }
+            /// - Remark: Generated from `#/components/schemas/UpdatePersonaRequest/gender`.
+            public var gender: Components.Schemas.UpdatePersonaRequest.genderPayload?
+            /// - Remark: Generated from `#/components/schemas/UpdatePersonaRequest/voice`.
+            public var voice: Swift.String?
+            /// Creates a new `UpdatePersonaRequest`.
+            ///
+            /// - Parameters:
+            ///   - description:
+            ///   - image_url:
+            ///   - name:
+            ///   - gender:
+            ///   - voice:
+            public init(
+                description: Swift.String? = nil,
+                image_url: Swift.String? = nil,
+                name: Swift.String? = nil,
+                gender: Components.Schemas.UpdatePersonaRequest.genderPayload? = nil,
+                voice: Swift.String? = nil
+            ) {
+                self.description = description
+                self.image_url = image_url
+                self.name = name
+                self.gender = gender
+                self.voice = voice
+            }
+            public enum CodingKeys: String, CodingKey {
+                case description
+                case image_url
+                case name
+                case gender
+                case voice
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/Scenario`.
+        public struct Scenario: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/Scenario/created_at`.
+            public var created_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/Scenario/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Scenario/name`.
+            public var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Scenario/project`.
+            public var project: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Scenario/prompt`.
+            public var prompt: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Scenario/human`.
+            public var human: Swift.String?
+            /// Creates a new `Scenario`.
+            ///
+            /// - Parameters:
+            ///   - created_at:
+            ///   - id:
+            ///   - name:
+            ///   - project:
+            ///   - prompt:
+            ///   - human:
+            public init(
+                created_at: Foundation.Date,
+                id: Swift.String,
+                name: Swift.String,
+                project: Swift.String,
+                prompt: Swift.String,
+                human: Swift.String? = nil
+            ) {
+                self.created_at = created_at
+                self.id = id
+                self.name = name
+                self.project = project
+                self.prompt = prompt
+                self.human = human
+            }
+            public enum CodingKeys: String, CodingKey {
+                case created_at
+                case id
+                case name
+                case project
+                case prompt
+                case human
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CreateScenarioRequest`.
+        public struct CreateScenarioRequest: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CreateScenarioRequest/name`.
+            public var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CreateScenarioRequest/project`.
+            public var project: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CreateScenarioRequest/prompt`.
+            public var prompt: Swift.String
+            /// Creates a new `CreateScenarioRequest`.
+            ///
+            /// - Parameters:
+            ///   - name:
+            ///   - project:
+            ///   - prompt:
+            public init(
+                name: Swift.String,
+                project: Swift.String,
+                prompt: Swift.String
+            ) {
+                self.name = name
+                self.project = project
+                self.prompt = prompt
+            }
+            public enum CodingKeys: String, CodingKey {
+                case name
+                case project
+                case prompt
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/UpdateScenarioRequest`.
+        public struct UpdateScenarioRequest: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/UpdateScenarioRequest/name`.
+            public var name: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/UpdateScenarioRequest/project`.
+            public var project: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/UpdateScenarioRequest/prompt`.
+            public var prompt: Swift.String?
+            /// Creates a new `UpdateScenarioRequest`.
+            ///
+            /// - Parameters:
+            ///   - name:
+            ///   - project:
+            ///   - prompt:
+            public init(
+                name: Swift.String? = nil,
+                project: Swift.String? = nil,
+                prompt: Swift.String? = nil
+            ) {
+                self.name = name
+                self.project = project
+                self.prompt = prompt
+            }
+            public enum CodingKeys: String, CodingKey {
+                case name
+                case project
+                case prompt
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/Usage`.
+        public struct Usage: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/Usage/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Usage/type`.
+            public var _type: Components.Schemas.UsageType
+            /// - Remark: Generated from `#/components/schemas/Usage/value`.
+            public var value: Swift.Double
+            /// - Remark: Generated from `#/components/schemas/Usage/human`.
+            public var human: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/Usage/project`.
+            public var project: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Usage/metadata`.
+            public struct metadataPayload: Codable, Hashable, Sendable {
+                /// A container of undocumented properties.
+                public var additionalProperties: OpenAPIRuntime.OpenAPIObjectContainer
+                /// Creates a new `metadataPayload`.
+                ///
+                /// - Parameters:
+                ///   - additionalProperties: A container of undocumented properties.
+                public init(additionalProperties: OpenAPIRuntime.OpenAPIObjectContainer = .init()) {
+                    self.additionalProperties = additionalProperties
+                }
+                public init(from decoder: any Decoder) throws {
+                    additionalProperties = try decoder.decodeAdditionalProperties(knownKeys: [])
+                }
+                public func encode(to encoder: any Encoder) throws {
+                    try encoder.encodeAdditionalProperties(additionalProperties)
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/Usage/metadata`.
+            public var metadata: Components.Schemas.Usage.metadataPayload?
+            /// Creates a new `Usage`.
+            ///
+            /// - Parameters:
+            ///   - id:
+            ///   - _type:
+            ///   - value:
+            ///   - human:
+            ///   - project:
+            ///   - metadata:
+            public init(
+                id: Swift.String,
+                _type: Components.Schemas.UsageType,
+                value: Swift.Double,
+                human: Swift.String? = nil,
+                project: Swift.String,
+                metadata: Components.Schemas.Usage.metadataPayload? = nil
+            ) {
+                self.id = id
+                self._type = _type
+                self.value = value
+                self.human = human
+                self.project = project
+                self.metadata = metadata
+            }
+            public enum CodingKeys: String, CodingKey {
+                case id
+                case _type = "type"
+                case value
+                case human
+                case project
+                case metadata
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/UsageTokenRequest`.
+        public struct UsageTokenRequest: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/UsageTokenRequest/limits`.
+            public var limits: Components.Schemas.UsageLimits
+            /// The ID of the human that the token is for. (this is typically your user id from your system)
+            ///
+            /// - Remark: Generated from `#/components/schemas/UsageTokenRequest/human_id`.
+            public var human_id: Swift.String
+            /// Creates a new `UsageTokenRequest`.
+            ///
+            /// - Parameters:
+            ///   - limits:
+            ///   - human_id: The ID of the human that the token is for. (this is typically your user id from your system)
+            public init(
+                limits: Components.Schemas.UsageLimits,
+                human_id: Swift.String
+            ) {
+                self.limits = limits
+                self.human_id = human_id
+            }
+            public enum CodingKeys: String, CodingKey {
+                case limits
+                case human_id
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/UsageLimits`.
+        public struct UsageLimitsPayload: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/UsageLimits/type`.
+            public var _type: Components.Schemas.UsageType
+            /// - Remark: Generated from `#/components/schemas/UsageLimits/value`.
+            public var value: Swift.Double
+            /// Creates a new `UsageLimitsPayload`.
+            ///
+            /// - Parameters:
+            ///   - _type:
+            ///   - value:
+            public init(
+                _type: Components.Schemas.UsageType,
+                value: Swift.Double
+            ) {
+                self._type = _type
+                self.value = value
+            }
+            public enum CodingKeys: String, CodingKey {
+                case _type = "type"
+                case value
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/UsageLimits`.
+        public typealias UsageLimits = [Components.Schemas.UsageLimitsPayload]
+        /// - Remark: Generated from `#/components/schemas/UsageType`.
+        @frozen public enum UsageType: String, Codable, Hashable, Sendable, CaseIterable {
+            case conversational_seconds = "conversational_seconds"
+            case voice_synthesis_seconds = "voice_synthesis_seconds"
+            case token_cnt = "token_cnt"
+        }
+        /// - Remark: Generated from `#/components/schemas/UpdateUsageLimitsRequest`.
+        public struct UpdateUsageLimitsRequest: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/UpdateUsageLimitsRequest/limits`.
+            public var limits: Components.Schemas.UsageLimits
+            /// The ID of the human that the token is for. (this is typically your user id from your system)
+            ///
+            /// - Remark: Generated from `#/components/schemas/UpdateUsageLimitsRequest/human_id`.
+            public var human_id: Swift.String
+            /// Creates a new `UpdateUsageLimitsRequest`.
+            ///
+            /// - Parameters:
+            ///   - limits:
+            ///   - human_id: The ID of the human that the token is for. (this is typically your user id from your system)
+            public init(
+                limits: Components.Schemas.UsageLimits,
+                human_id: Swift.String
+            ) {
+                self.limits = limits
+                self.human_id = human_id
+            }
+            public enum CodingKeys: String, CodingKey {
+                case limits
+                case human_id
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/HumanDataType`.
+        @frozen public enum HumanDataType: String, Codable, Hashable, Sendable, CaseIterable {
+            case phone_number = "phone_number"
+        }
+        /// - Remark: Generated from `#/components/schemas/HumanData`.
+        public struct HumanData: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/HumanData/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/HumanData/created_at`.
+            public var created_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/HumanData/human`.
+            public var human: Swift.String
+            /// - Remark: Generated from `#/components/schemas/HumanData/project`.
+            public var project: Swift.String
+            /// - Remark: Generated from `#/components/schemas/HumanData/type`.
+            public var _type: Components.Schemas.HumanDataType
+            /// - Remark: Generated from `#/components/schemas/HumanData/value`.
+            public var value: Swift.String
+            /// Creates a new `HumanData`.
+            ///
+            /// - Parameters:
+            ///   - id:
+            ///   - created_at:
+            ///   - human:
+            ///   - project:
+            ///   - _type:
+            ///   - value:
+            public init(
+                id: Swift.String,
+                created_at: Foundation.Date,
+                human: Swift.String,
+                project: Swift.String,
+                _type: Components.Schemas.HumanDataType,
+                value: Swift.String
+            ) {
+                self.id = id
+                self.created_at = created_at
+                self.human = human
+                self.project = project
+                self._type = _type
+                self.value = value
+            }
+            public enum CodingKeys: String, CodingKey {
+                case id
+                case created_at
+                case human
+                case project
+                case _type = "type"
+                case value
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/Voice`.
+        public struct Voice: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/Voice/created_at`.
+            public var created_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/Voice/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Voice/name`.
+            public var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Voice/language`.
+            public var language: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Voice/service`.
+            public var service: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/Voice/model`.
+            public var model: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/Voice/voice`.
+            public var voice: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/Voice/embeddings`.
+            public var embeddings: [Swift.Double]?
+            /// - Remark: Generated from `#/components/schemas/Voice/cartesia_voice_id`.
+            public var cartesia_voice_id: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/Voice/elevenlabs_voice_id`.
+            public var elevenlabs_voice_id: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/Voice/project`.
+            public var project: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/Voice/human`.
+            public var human: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/Voice/preview_url`.
+            public var preview_url: Swift.String?
+            /// Extra configuration for the voice. Usually this is for internal purposes.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Voice/_extra`.
+            public struct _extraPayload: Codable, Hashable, Sendable {
+                /// A container of undocumented properties.
+                public var additionalProperties: OpenAPIRuntime.OpenAPIObjectContainer
+                /// Creates a new `_extraPayload`.
+                ///
+                /// - Parameters:
+                ///   - additionalProperties: A container of undocumented properties.
+                public init(additionalProperties: OpenAPIRuntime.OpenAPIObjectContainer = .init()) {
+                    self.additionalProperties = additionalProperties
+                }
+                public init(from decoder: any Decoder) throws {
+                    additionalProperties = try decoder.decodeAdditionalProperties(knownKeys: [])
+                }
+                public func encode(to encoder: any Encoder) throws {
+                    try encoder.encodeAdditionalProperties(additionalProperties)
+                }
+            }
+            /// Extra configuration for the voice. Usually this is for internal purposes.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Voice/_extra`.
+            public var _extra: Components.Schemas.Voice._extraPayload?
+            /// Creates a new `Voice`.
+            ///
+            /// - Parameters:
+            ///   - created_at:
+            ///   - id:
+            ///   - name:
+            ///   - language:
+            ///   - service:
+            ///   - model:
+            ///   - voice:
+            ///   - embeddings:
+            ///   - cartesia_voice_id:
+            ///   - elevenlabs_voice_id:
+            ///   - project:
+            ///   - human:
+            ///   - preview_url:
+            ///   - _extra: Extra configuration for the voice. Usually this is for internal purposes.
+            public init(
+                created_at: Foundation.Date,
+                id: Swift.String,
+                name: Swift.String,
+                language: Swift.String,
+                service: Swift.String? = nil,
+                model: Swift.String? = nil,
+                voice: Swift.String? = nil,
+                embeddings: [Swift.Double]? = nil,
+                cartesia_voice_id: Swift.String? = nil,
+                elevenlabs_voice_id: Swift.String? = nil,
+                project: Swift.String? = nil,
+                human: Swift.String? = nil,
+                preview_url: Swift.String? = nil,
+                _extra: Components.Schemas.Voice._extraPayload? = nil
+            ) {
+                self.created_at = created_at
+                self.id = id
+                self.name = name
+                self.language = language
+                self.service = service
+                self.model = model
+                self.voice = voice
+                self.embeddings = embeddings
+                self.cartesia_voice_id = cartesia_voice_id
+                self.elevenlabs_voice_id = elevenlabs_voice_id
+                self.project = project
+                self.human = human
+                self.preview_url = preview_url
+                self._extra = _extra
+            }
+            public enum CodingKeys: String, CodingKey {
+                case created_at
+                case id
+                case name
+                case language
+                case service
+                case model
+                case voice
+                case embeddings
+                case cartesia_voice_id
+                case elevenlabs_voice_id
+                case project
+                case human
+                case preview_url
+                case _extra
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/UpdateVoiceRequest`.
+        public struct UpdateVoiceRequest: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/UpdateVoiceRequest/name`.
+            public var name: Swift.String
+            /// The language of the voice
+            ///
+            /// - Remark: Generated from `#/components/schemas/UpdateVoiceRequest/language`.
+            public var language: Swift.String
+            /// Creates a new `UpdateVoiceRequest`.
+            ///
+            /// - Parameters:
+            ///   - name:
+            ///   - language: The language of the voice
+            public init(
+                name: Swift.String,
+                language: Swift.String
+            ) {
+                self.name = name
+                self.language = language
+            }
+            public enum CodingKeys: String, CodingKey {
+                case name
+                case language
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/Credit`.
+        public struct Credit: Codable, Hashable, Sendable {
+            /// The date and time the credit was created.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Credit/created_at`.
+            public var created_at: Foundation.Date
+            /// The unique identifier of the credit.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Credit/id`.
+            public var id: Swift.String
+            /// The project the credit belongs to.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Credit/project`.
+            public var project: Swift.String
+            /// The name of the credit.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Credit/name`.
+            public var name: Swift.String
+            /// The description of the credit.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Credit/description`.
+            public var description: Swift.String
+            /// Whether the credit can have a negative balance.
+            ///
+            /// - Remark: Generated from `#/components/schemas/Credit/allow_negative_balance`.
+            public var allow_negative_balance: Swift.Bool
+            /// Creates a new `Credit`.
+            ///
+            /// - Parameters:
+            ///   - created_at: The date and time the credit was created.
+            ///   - id: The unique identifier of the credit.
+            ///   - project: The project the credit belongs to.
+            ///   - name: The name of the credit.
+            ///   - description: The description of the credit.
+            ///   - allow_negative_balance: Whether the credit can have a negative balance.
+            public init(
+                created_at: Foundation.Date,
+                id: Swift.String,
+                project: Swift.String,
+                name: Swift.String,
+                description: Swift.String,
+                allow_negative_balance: Swift.Bool
+            ) {
+                self.created_at = created_at
+                self.id = id
+                self.project = project
+                self.name = name
+                self.description = description
+                self.allow_negative_balance = allow_negative_balance
+            }
+            public enum CodingKeys: String, CodingKey {
+                case created_at
+                case id
+                case project
+                case name
+                case description
+                case allow_negative_balance
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CreateCreditRequest`.
+        public struct CreateCreditRequest: Codable, Hashable, Sendable {
+            /// The name of the credit.
+            ///
+            /// - Remark: Generated from `#/components/schemas/CreateCreditRequest/name`.
+            public var name: Swift.String
+            /// The description of the credit.
+            ///
+            /// - Remark: Generated from `#/components/schemas/CreateCreditRequest/description`.
+            public var description: Swift.String
+            /// Whether the credit can have a negative balance.
+            ///
+            /// - Remark: Generated from `#/components/schemas/CreateCreditRequest/allow_negative_balance`.
+            public var allow_negative_balance: Swift.Bool
+            /// Creates a new `CreateCreditRequest`.
+            ///
+            /// - Parameters:
+            ///   - name: The name of the credit.
+            ///   - description: The description of the credit.
+            ///   - allow_negative_balance: Whether the credit can have a negative balance.
+            public init(
+                name: Swift.String,
+                description: Swift.String,
+                allow_negative_balance: Swift.Bool
+            ) {
+                self.name = name
+                self.description = description
+                self.allow_negative_balance = allow_negative_balance
+            }
+            public enum CodingKeys: String, CodingKey {
+                case name
+                case description
+                case allow_negative_balance
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CreditLedgerEntry`.
+        public struct CreditLedgerEntry: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CreditLedgerEntry/created_at`.
+            public var created_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/CreditLedgerEntry/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CreditLedgerEntry/credit`.
+            public var credit: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CreditLedgerEntry/human`.
+            public var human: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CreditLedgerEntry/amount`.
+            public var amount: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/CreditLedgerEntry/balance`.
+            public var balance: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/CreditLedgerEntry/idempotency_key`.
+            public var idempotency_key: Swift.String
+            /// Creates a new `CreditLedgerEntry`.
+            ///
+            /// - Parameters:
+            ///   - created_at:
+            ///   - id:
+            ///   - credit:
+            ///   - human:
+            ///   - amount:
+            ///   - balance:
+            ///   - idempotency_key:
+            public init(
+                created_at: Foundation.Date,
+                id: Swift.String,
+                credit: Swift.String,
+                human: Swift.String,
+                amount: Swift.Int,
+                balance: Swift.Int,
+                idempotency_key: Swift.String
+            ) {
+                self.created_at = created_at
+                self.id = id
+                self.credit = credit
+                self.human = human
+                self.amount = amount
+                self.balance = balance
+                self.idempotency_key = idempotency_key
+            }
+            public enum CodingKeys: String, CodingKey {
+                case created_at
+                case id
+                case credit
+                case human
+                case amount
+                case balance
+                case idempotency_key
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CreateCreditLedgerEntryRequest`.
+        public struct CreateCreditLedgerEntryRequest: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CreateCreditLedgerEntryRequest/amount`.
+            public var amount: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/CreateCreditLedgerEntryRequest/idempotency_key`.
+            public var idempotency_key: Swift.String
+            /// Creates a new `CreateCreditLedgerEntryRequest`.
+            ///
+            /// - Parameters:
+            ///   - amount:
+            ///   - idempotency_key:
+            public init(
+                amount: Swift.Int,
+                idempotency_key: Swift.String
+            ) {
+                self.amount = amount
+                self.idempotency_key = idempotency_key
+            }
+            public enum CodingKeys: String, CodingKey {
+                case amount
+                case idempotency_key
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/LLM`.
+        public struct LLM: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/LLM/created_at`.
+            public var created_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/LLM/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/LLM/name`.
+            public var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/LLM/project`.
+            public var project: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/LLM/type`.
+            public var _type: Swift.String
+            /// - Remark: Generated from `#/components/schemas/LLM/compliance`.
+            public var compliance: Swift.Bool
+            /// - Remark: Generated from `#/components/schemas/LLM/description`.
+            public var description: Swift.String
+            /// Creates a new `LLM`.
+            ///
+            /// - Parameters:
+            ///   - created_at:
+            ///   - id:
+            ///   - name:
+            ///   - project:
+            ///   - _type:
+            ///   - compliance:
+            ///   - description:
+            public init(
+                created_at: Foundation.Date,
+                id: Swift.String,
+                name: Swift.String,
+                project: Swift.String? = nil,
+                _type: Swift.String,
+                compliance: Swift.Bool,
+                description: Swift.String
+            ) {
+                self.created_at = created_at
+                self.id = id
+                self.name = name
+                self.project = project
+                self._type = _type
+                self.compliance = compliance
+                self.description = description
+            }
+            public enum CodingKeys: String, CodingKey {
+                case created_at
+                case id
+                case name
+                case project
+                case _type = "type"
+                case compliance
+                case description
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/Context`.
+        public struct Context: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/Context/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Context/created_at`.
+            public var created_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/Context/project`.
+            public var project: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Context/human`.
+            public var human: Swift.String?
+            /// Creates a new `Context`.
+            ///
+            /// - Parameters:
+            ///   - id:
+            ///   - created_at:
+            ///   - project:
+            ///   - human:
+            public init(
+                id: Swift.String,
+                created_at: Foundation.Date,
+                project: Swift.String,
+                human: Swift.String? = nil
+            ) {
+                self.id = id
+                self.created_at = created_at
+                self.project = project
+                self.human = human
+            }
+            public enum CodingKeys: String, CodingKey {
+                case id
+                case created_at
+                case project
+                case human
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ContextCreateRequest`.
+        public struct ContextCreateRequest: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ContextCreateRequest/persona`.
+            public var persona: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/ContextCreateRequest/scenario`.
+            public var scenario: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/ContextCreateRequest/messages`.
+            public var messages: [Components.Schemas.ContextMessageCreateParams]?
+            /// Creates a new `ContextCreateRequest`.
+            ///
+            /// - Parameters:
+            ///   - persona:
+            ///   - scenario:
+            ///   - messages:
+            public init(
+                persona: Swift.String? = nil,
+                scenario: Swift.String? = nil,
+                messages: [Components.Schemas.ContextMessageCreateParams]? = nil
+            ) {
+                self.persona = persona
+                self.scenario = scenario
+                self.messages = messages
+            }
+            public enum CodingKeys: String, CodingKey {
+                case persona
+                case scenario
+                case messages
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ContextMessageToolCallFunction`.
+        public struct ContextMessageToolCallFunction: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ContextMessageToolCallFunction/name`.
+            public var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/ContextMessageToolCallFunction/arguments`.
+            public struct argumentsPayload: Codable, Hashable, Sendable {
+                /// A container of undocumented properties.
+                public var additionalProperties: OpenAPIRuntime.OpenAPIObjectContainer
+                /// Creates a new `argumentsPayload`.
+                ///
+                /// - Parameters:
+                ///   - additionalProperties: A container of undocumented properties.
+                public init(additionalProperties: OpenAPIRuntime.OpenAPIObjectContainer = .init()) {
+                    self.additionalProperties = additionalProperties
+                }
+                public init(from decoder: any Decoder) throws {
+                    additionalProperties = try decoder.decodeAdditionalProperties(knownKeys: [])
+                }
+                public func encode(to encoder: any Encoder) throws {
+                    try encoder.encodeAdditionalProperties(additionalProperties)
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/ContextMessageToolCallFunction/arguments`.
+            public var arguments: Components.Schemas.ContextMessageToolCallFunction.argumentsPayload
+            /// Creates a new `ContextMessageToolCallFunction`.
+            ///
+            /// - Parameters:
+            ///   - name:
+            ///   - arguments:
+            public init(
+                name: Swift.String,
+                arguments: Components.Schemas.ContextMessageToolCallFunction.argumentsPayload
+            ) {
+                self.name = name
+                self.arguments = arguments
+            }
+            public enum CodingKeys: String, CodingKey {
+                case name
+                case arguments
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ContextMessageToolCall`.
+        public struct ContextMessageToolCall: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ContextMessageToolCall/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/ContextMessageToolCall/type`.
+            @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case function = "function"
+                case gabber_tool = "gabber_tool"
+            }
+            /// - Remark: Generated from `#/components/schemas/ContextMessageToolCall/type`.
+            public var _type: Components.Schemas.ContextMessageToolCall._typePayload
+            /// - Remark: Generated from `#/components/schemas/ContextMessageToolCall/function`.
+            public var function: Components.Schemas.ContextMessageToolCallFunction
+            /// Creates a new `ContextMessageToolCall`.
+            ///
+            /// - Parameters:
+            ///   - id:
+            ///   - _type:
+            ///   - function:
+            public init(
+                id: Swift.String,
+                _type: Components.Schemas.ContextMessageToolCall._typePayload,
+                function: Components.Schemas.ContextMessageToolCallFunction
+            ) {
+                self.id = id
+                self._type = _type
+                self.function = function
+            }
+            public enum CodingKeys: String, CodingKey {
+                case id
+                case _type = "type"
+                case function
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ContextMessageCreateParams`.
+        public struct ContextMessageCreateParams: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ContextMessageCreateParams/speaking_ended_at`.
+            public var speaking_ended_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/ContextMessageCreateParams/speaking_started_at`.
+            public var speaking_started_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/ContextMessageCreateParams/role`.
+            @frozen public enum rolePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case assistant = "assistant"
+                case system = "system"
+                case user = "user"
+                case tool = "tool"
+            }
+            /// - Remark: Generated from `#/components/schemas/ContextMessageCreateParams/role`.
+            public var role: Components.Schemas.ContextMessageCreateParams.rolePayload
+            /// - Remark: Generated from `#/components/schemas/ContextMessageCreateParams/content`.
+            public var content: Swift.String
+            /// - Remark: Generated from `#/components/schemas/ContextMessageCreateParams/tool_calls`.
+            public var tool_calls: [Components.Schemas.ContextMessageToolCall]?
+            /// Creates a new `ContextMessageCreateParams`.
+            ///
+            /// - Parameters:
+            ///   - speaking_ended_at:
+            ///   - speaking_started_at:
+            ///   - role:
+            ///   - content:
+            ///   - tool_calls:
+            public init(
+                speaking_ended_at: Foundation.Date? = nil,
+                speaking_started_at: Foundation.Date? = nil,
+                role: Components.Schemas.ContextMessageCreateParams.rolePayload,
+                content: Swift.String,
+                tool_calls: [Components.Schemas.ContextMessageToolCall]? = nil
+            ) {
+                self.speaking_ended_at = speaking_ended_at
+                self.speaking_started_at = speaking_started_at
+                self.role = role
+                self.content = content
+                self.tool_calls = tool_calls
+            }
+            public enum CodingKeys: String, CodingKey {
+                case speaking_ended_at
+                case speaking_started_at
+                case role
+                case content
+                case tool_calls
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ContextMessage`.
+        public struct ContextMessage: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ContextMessage/value1`.
+            public var value1: Components.Schemas.ContextMessageCreateParams
+            /// - Remark: Generated from `#/components/schemas/ContextMessage/value2`.
+            public struct Value2Payload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/ContextMessage/value2/id`.
+                public var id: Swift.String
+                /// - Remark: Generated from `#/components/schemas/ContextMessage/value2/created_at`.
+                public var created_at: Foundation.Date
+                /// Creates a new `Value2Payload`.
+                ///
+                /// - Parameters:
+                ///   - id:
+                ///   - created_at:
+                public init(
+                    id: Swift.String,
+                    created_at: Foundation.Date
+                ) {
+                    self.id = id
+                    self.created_at = created_at
+                }
+                public enum CodingKeys: String, CodingKey {
+                    case id
+                    case created_at
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/ContextMessage/value2`.
+            public var value2: Components.Schemas.ContextMessage.Value2Payload
+            /// Creates a new `ContextMessage`.
+            ///
+            /// - Parameters:
+            ///   - value1:
+            ///   - value2:
+            public init(
+                value1: Components.Schemas.ContextMessageCreateParams,
+                value2: Components.Schemas.ContextMessage.Value2Payload
+            ) {
+                self.value1 = value1
+                self.value2 = value2
+            }
+            public init(from decoder: any Decoder) throws {
+                self.value1 = try .init(from: decoder)
+                self.value2 = try .init(from: decoder)
+            }
+            public func encode(to encoder: any Encoder) throws {
+                try self.value1.encode(to: encoder)
+                try self.value2.encode(to: encoder)
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/RealtimeSessionDataType`.
+        @frozen public enum RealtimeSessionDataType: String, Codable, Hashable, Sendable, CaseIterable {
+            case caller_phone_number = "caller_phone_number"
+            case agent_phone_number = "agent_phone_number"
+        }
+        /// - Remark: Generated from `#/components/schemas/RealtimeSessionData`.
+        public struct RealtimeSessionData: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionData/type`.
+            @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case caller_phone_number = "caller_phone_number"
+                case agent_phone_number = "agent_phone_number"
+            }
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionData/type`.
+            public var _type: Components.Schemas.RealtimeSessionData._typePayload
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionData/value`.
+            public var value: Swift.String
+            /// Creates a new `RealtimeSessionData`.
+            ///
+            /// - Parameters:
+            ///   - _type:
+            ///   - value:
+            public init(
+                _type: Components.Schemas.RealtimeSessionData._typePayload,
+                value: Swift.String
+            ) {
+                self._type = _type
+                self.value = value
+            }
+            public enum CodingKeys: String, CodingKey {
+                case _type = "type"
+                case value
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/RealtimeSession`.
+        public struct RealtimeSession: Codable, Hashable, Sendable {
+            /// The unique identifier of the RealtimeSession.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSession/id`.
+            public var id: Swift.String
+            /// The current state of the RealtimeSession.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSession/state`.
+            @frozen public enum statePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case ended = "ended"
+                case in_progress = "in_progress"
+                case not_started = "not_started"
+            }
+            /// The current state of the RealtimeSession.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSession/state`.
+            public var state: Components.Schemas.RealtimeSession.statePayload
+            /// The time the RealtimeSession was created.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSession/created_at`.
+            public var created_at: Foundation.Date
+            /// The time the RealtimeSession ended.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSession/ended_at`.
+            public var ended_at: Foundation.Date?
+            /// The project identifier.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSession/project`.
+            public var project: Swift.String
+            /// The human identifier.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSession/human`.
+            public var human: Swift.String?
+            /// Whether the session is simulated or not.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSession/simulated`.
+            public var simulated: Swift.Bool
+            /// - Remark: Generated from `#/components/schemas/RealtimeSession/config`.
+            public var config: Components.Schemas.RealtimeSessionConfig
+            /// - Remark: Generated from `#/components/schemas/RealtimeSession/data`.
+            public var data: [Components.Schemas.RealtimeSessionData]
+            /// Extra configuration for the RealtimeSession. Usually this is for internal purposes.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSession/_extra`.
+            public struct _extraPayload: Codable, Hashable, Sendable {
+                /// A container of undocumented properties.
+                public var additionalProperties: OpenAPIRuntime.OpenAPIObjectContainer
+                /// Creates a new `_extraPayload`.
+                ///
+                /// - Parameters:
+                ///   - additionalProperties: A container of undocumented properties.
+                public init(additionalProperties: OpenAPIRuntime.OpenAPIObjectContainer = .init()) {
+                    self.additionalProperties = additionalProperties
+                }
+                public init(from decoder: any Decoder) throws {
+                    additionalProperties = try decoder.decodeAdditionalProperties(knownKeys: [])
+                }
+                public func encode(to encoder: any Encoder) throws {
+                    try encoder.encodeAdditionalProperties(additionalProperties)
+                }
+            }
+            /// Extra configuration for the RealtimeSession. Usually this is for internal purposes.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSession/_extra`.
+            public var _extra: Components.Schemas.RealtimeSession._extraPayload?
+            /// Creates a new `RealtimeSession`.
+            ///
+            /// - Parameters:
+            ///   - id: The unique identifier of the RealtimeSession.
+            ///   - state: The current state of the RealtimeSession.
+            ///   - created_at: The time the RealtimeSession was created.
+            ///   - ended_at: The time the RealtimeSession ended.
+            ///   - project: The project identifier.
+            ///   - human: The human identifier.
+            ///   - simulated: Whether the session is simulated or not.
+            ///   - config:
+            ///   - data:
+            ///   - _extra: Extra configuration for the RealtimeSession. Usually this is for internal purposes.
+            public init(
+                id: Swift.String,
+                state: Components.Schemas.RealtimeSession.statePayload,
+                created_at: Foundation.Date,
+                ended_at: Foundation.Date? = nil,
+                project: Swift.String,
+                human: Swift.String? = nil,
+                simulated: Swift.Bool,
+                config: Components.Schemas.RealtimeSessionConfig,
+                data: [Components.Schemas.RealtimeSessionData],
+                _extra: Components.Schemas.RealtimeSession._extraPayload? = nil
+            ) {
+                self.id = id
+                self.state = state
+                self.created_at = created_at
+                self.ended_at = ended_at
+                self.project = project
+                self.human = human
+                self.simulated = simulated
+                self.config = config
+                self.data = data
+                self._extra = _extra
+            }
+            public enum CodingKeys: String, CodingKey {
+                case id
+                case state
+                case created_at
+                case ended_at
+                case project
+                case human
+                case simulated
+                case config
+                case data
+                case _extra
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/RealtimeSessionConfig`.
+        public struct RealtimeSessionConfig: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionConfig/general`.
+            public var general: Components.Schemas.RealtimeSessionGeneralConfig
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionConfig/input`.
+            public var input: Components.Schemas.RealtimeSessionInputConfig
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionConfig/generative`.
+            public var generative: Components.Schemas.RealtimeSessionGenerativeConfig
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionConfig/output`.
+            public var output: Components.Schemas.RealtimeSessionOutputConfig
+            /// Creates a new `RealtimeSessionConfig`.
+            ///
+            /// - Parameters:
+            ///   - general:
+            ///   - input:
+            ///   - generative:
+            ///   - output:
+            public init(
+                general: Components.Schemas.RealtimeSessionGeneralConfig,
+                input: Components.Schemas.RealtimeSessionInputConfig,
+                generative: Components.Schemas.RealtimeSessionGenerativeConfig,
+                output: Components.Schemas.RealtimeSessionOutputConfig
+            ) {
+                self.general = general
+                self.input = input
+                self.generative = generative
+                self.output = output
+            }
+            public enum CodingKeys: String, CodingKey {
+                case general
+                case input
+                case generative
+                case output
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/RealtimeSessionGeneralConfig`.
+        public struct RealtimeSessionGeneralConfig: Codable, Hashable, Sendable {
+            /// The time limit in seconds for the RealtimeSession.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGeneralConfig/time_limit_s`.
+            public var time_limit_s: Swift.Int?
+            /// Whether to save messages in the RealtimeSession.
+            /// These will be saved to the context provided in the generative config.
+            /// If no context is provided, a new context will be created when the session starts.
+            ///
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGeneralConfig/save_messages`.
+            public var save_messages: Swift.Bool
+            /// Creates a new `RealtimeSessionGeneralConfig`.
+            ///
+            /// - Parameters:
+            ///   - time_limit_s: The time limit in seconds for the RealtimeSession.
+            ///   - save_messages: Whether to save messages in the RealtimeSession.
+            public init(
+                time_limit_s: Swift.Int? = nil,
+                save_messages: Swift.Bool
+            ) {
+                self.time_limit_s = time_limit_s
+                self.save_messages = save_messages
+            }
+            public enum CodingKeys: String, CodingKey {
+                case time_limit_s
+                case save_messages
+            }
+        }
+        /// Configuration for the generative AI in the RealtimeSession.
+        ///
+        /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfig`.
+        public struct RealtimeSessionGenerativeConfig: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfig/llm`.
+            public var llm: Components.Schemas.LLM
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfig/voice_override`.
+            public var voice_override: Components.Schemas.Voice?
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfig/persona`.
+            public var persona: Components.Schemas.Persona?
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfig/scenario`.
+            public var scenario: Components.Schemas.Scenario?
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfig/context`.
+            public var context: Components.Schemas.Context
+            /// The tool definitions to use for the generative AI.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfig/tool_definitions`.
+            public var tool_definitions: [Components.Schemas.ToolDefinition]
+            /// Extra configuration for the generative AI. Usually this is for internal purposes.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfig/_extra`.
+            public struct _extraPayload: Codable, Hashable, Sendable {
+                /// A container of undocumented properties.
+                public var additionalProperties: OpenAPIRuntime.OpenAPIObjectContainer
+                /// Creates a new `_extraPayload`.
+                ///
+                /// - Parameters:
+                ///   - additionalProperties: A container of undocumented properties.
+                public init(additionalProperties: OpenAPIRuntime.OpenAPIObjectContainer = .init()) {
+                    self.additionalProperties = additionalProperties
+                }
+                public init(from decoder: any Decoder) throws {
+                    additionalProperties = try decoder.decodeAdditionalProperties(knownKeys: [])
+                }
+                public func encode(to encoder: any Encoder) throws {
+                    try encoder.encodeAdditionalProperties(additionalProperties)
+                }
+            }
+            /// Extra configuration for the generative AI. Usually this is for internal purposes.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfig/_extra`.
+            public var _extra: Components.Schemas.RealtimeSessionGenerativeConfig._extraPayload?
+            /// Creates a new `RealtimeSessionGenerativeConfig`.
+            ///
+            /// - Parameters:
+            ///   - llm:
+            ///   - voice_override:
+            ///   - persona:
+            ///   - scenario:
+            ///   - context:
+            ///   - tool_definitions: The tool definitions to use for the generative AI.
+            ///   - _extra: Extra configuration for the generative AI. Usually this is for internal purposes.
+            public init(
+                llm: Components.Schemas.LLM,
+                voice_override: Components.Schemas.Voice? = nil,
+                persona: Components.Schemas.Persona? = nil,
+                scenario: Components.Schemas.Scenario? = nil,
+                context: Components.Schemas.Context,
+                tool_definitions: [Components.Schemas.ToolDefinition],
+                _extra: Components.Schemas.RealtimeSessionGenerativeConfig._extraPayload? = nil
+            ) {
+                self.llm = llm
+                self.voice_override = voice_override
+                self.persona = persona
+                self.scenario = scenario
+                self.context = context
+                self.tool_definitions = tool_definitions
+                self._extra = _extra
+            }
+            public enum CodingKeys: String, CodingKey {
+                case llm
+                case voice_override
+                case persona
+                case scenario
+                case context
+                case tool_definitions
+                case _extra
+            }
+        }
+        /// Configuration for the generative AI in the RealtimeSession.
+        ///
+        /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfigCreate`.
+        public struct RealtimeSessionGenerativeConfigCreate: Codable, Hashable, Sendable {
+            /// The LLM to use for the RealtimeSession.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfigCreate/llm`.
+            public var llm: Swift.String
+            /// The voice to use for the RealtimeSession.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfigCreate/voice_override`.
+            public var voice_override: Swift.String?
+            /// The persona to use for the RealtimeSession.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfigCreate/persona`.
+            public var persona: Swift.String?
+            /// The scenario to use for the RealtimeSession.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfigCreate/scenario`.
+            public var scenario: Swift.String?
+            /// The context to use for the RealtimeSession. If unspecified, a new context will be created.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfigCreate/context`.
+            public var context: Swift.String?
+            /// The tool definitions to use for the generative AI.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfigCreate/tool_definitions`.
+            public var tool_definitions: [Swift.String]?
+            /// Extra configuration for the generative AI. Usually this is for internal purposes.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfigCreate/_extra`.
+            public struct _extraPayload: Codable, Hashable, Sendable {
+                /// A container of undocumented properties.
+                public var additionalProperties: OpenAPIRuntime.OpenAPIObjectContainer
+                /// Creates a new `_extraPayload`.
+                ///
+                /// - Parameters:
+                ///   - additionalProperties: A container of undocumented properties.
+                public init(additionalProperties: OpenAPIRuntime.OpenAPIObjectContainer = .init()) {
+                    self.additionalProperties = additionalProperties
+                }
+                public init(from decoder: any Decoder) throws {
+                    additionalProperties = try decoder.decodeAdditionalProperties(knownKeys: [])
+                }
+                public func encode(to encoder: any Encoder) throws {
+                    try encoder.encodeAdditionalProperties(additionalProperties)
+                }
+            }
+            /// Extra configuration for the generative AI. Usually this is for internal purposes.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfigCreate/_extra`.
+            public var _extra: Components.Schemas.RealtimeSessionGenerativeConfigCreate._extraPayload?
+            /// Creates a new `RealtimeSessionGenerativeConfigCreate`.
+            ///
+            /// - Parameters:
+            ///   - llm: The LLM to use for the RealtimeSession.
+            ///   - voice_override: The voice to use for the RealtimeSession.
+            ///   - persona: The persona to use for the RealtimeSession.
+            ///   - scenario: The scenario to use for the RealtimeSession.
+            ///   - context: The context to use for the RealtimeSession. If unspecified, a new context will be created.
+            ///   - tool_definitions: The tool definitions to use for the generative AI.
+            ///   - _extra: Extra configuration for the generative AI. Usually this is for internal purposes.
+            public init(
+                llm: Swift.String,
+                voice_override: Swift.String? = nil,
+                persona: Swift.String? = nil,
+                scenario: Swift.String? = nil,
+                context: Swift.String? = nil,
+                tool_definitions: [Swift.String]? = nil,
+                _extra: Components.Schemas.RealtimeSessionGenerativeConfigCreate._extraPayload? = nil
+            ) {
+                self.llm = llm
+                self.voice_override = voice_override
+                self.persona = persona
+                self.scenario = scenario
+                self.context = context
+                self.tool_definitions = tool_definitions
+                self._extra = _extra
+            }
+            public enum CodingKeys: String, CodingKey {
+                case llm
+                case voice_override
+                case persona
+                case scenario
+                case context
+                case tool_definitions
+                case _extra
+            }
+        }
+        /// Configuration for the generative AI in the RealtimeSession.
+        ///
+        /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfigUpdate`.
+        public struct RealtimeSessionGenerativeConfigUpdate: Codable, Hashable, Sendable {
+            /// The LLM to use for the RealtimeSession.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfigUpdate/llm`.
+            public var llm: Swift.String?
+            /// The voice to use for the RealtimeSession.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfigUpdate/voice_override`.
+            public var voice_override: Swift.String?
+            /// The persona to use for the RealtimeSession.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfigUpdate/persona`.
+            public var persona: Swift.String?
+            /// The scenario to use for the RealtimeSession.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfigUpdate/scenario`.
+            public var scenario: Swift.String?
+            /// The context to use for the RealtimeSession. If unspecified, a new context will be created.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfigUpdate/context`.
+            public var context: Swift.String?
+            /// The tool definitions to use for the generative AI.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfigUpdate/tool_definitions`.
+            public var tool_definitions: [Swift.String]?
+            /// Extra configuration for the generative AI. Usually this is for internal purposes.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfigUpdate/_extra`.
+            public struct _extraPayload: Codable, Hashable, Sendable {
+                /// A container of undocumented properties.
+                public var additionalProperties: OpenAPIRuntime.OpenAPIObjectContainer
+                /// Creates a new `_extraPayload`.
+                ///
+                /// - Parameters:
+                ///   - additionalProperties: A container of undocumented properties.
+                public init(additionalProperties: OpenAPIRuntime.OpenAPIObjectContainer = .init()) {
+                    self.additionalProperties = additionalProperties
+                }
+                public init(from decoder: any Decoder) throws {
+                    additionalProperties = try decoder.decodeAdditionalProperties(knownKeys: [])
+                }
+                public func encode(to encoder: any Encoder) throws {
+                    try encoder.encodeAdditionalProperties(additionalProperties)
+                }
+            }
+            /// Extra configuration for the generative AI. Usually this is for internal purposes.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionGenerativeConfigUpdate/_extra`.
+            public var _extra: Components.Schemas.RealtimeSessionGenerativeConfigUpdate._extraPayload?
+            /// Creates a new `RealtimeSessionGenerativeConfigUpdate`.
+            ///
+            /// - Parameters:
+            ///   - llm: The LLM to use for the RealtimeSession.
+            ///   - voice_override: The voice to use for the RealtimeSession.
+            ///   - persona: The persona to use for the RealtimeSession.
+            ///   - scenario: The scenario to use for the RealtimeSession.
+            ///   - context: The context to use for the RealtimeSession. If unspecified, a new context will be created.
+            ///   - tool_definitions: The tool definitions to use for the generative AI.
+            ///   - _extra: Extra configuration for the generative AI. Usually this is for internal purposes.
+            public init(
+                llm: Swift.String? = nil,
+                voice_override: Swift.String? = nil,
+                persona: Swift.String? = nil,
+                scenario: Swift.String? = nil,
+                context: Swift.String? = nil,
+                tool_definitions: [Swift.String]? = nil,
+                _extra: Components.Schemas.RealtimeSessionGenerativeConfigUpdate._extraPayload? = nil
+            ) {
+                self.llm = llm
+                self.voice_override = voice_override
+                self.persona = persona
+                self.scenario = scenario
+                self.context = context
+                self.tool_definitions = tool_definitions
+                self._extra = _extra
+            }
+            public enum CodingKeys: String, CodingKey {
+                case llm
+                case voice_override
+                case persona
+                case scenario
+                case context
+                case tool_definitions
+                case _extra
+            }
+        }
+        /// Configuration for the output of the RealtimeSession.
+        ///
+        /// - Remark: Generated from `#/components/schemas/RealtimeSessionInputConfig`.
+        public struct RealtimeSessionInputConfig: Codable, Hashable, Sendable {
+            /// Whether the system allows interruption during speech.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionInputConfig/interruptable`.
+            public var interruptable: Swift.Bool
+            /// Whether the AI should continue listening while speaking.
+            /// If true, the AI will produce another response immediately after the first one.
+            /// This is only relevant if interruptable is false.
+            ///
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionInputConfig/parallel_listening`.
+            public var parallel_listening: Swift.Bool
+            /// Creates a new `RealtimeSessionInputConfig`.
+            ///
+            /// - Parameters:
+            ///   - interruptable: Whether the system allows interruption during speech.
+            ///   - parallel_listening: Whether the AI should continue listening while speaking.
+            public init(
+                interruptable: Swift.Bool,
+                parallel_listening: Swift.Bool
+            ) {
+                self.interruptable = interruptable
+                self.parallel_listening = parallel_listening
+            }
+            public enum CodingKeys: String, CodingKey {
+                case interruptable
+                case parallel_listening
+            }
+        }
+        /// Configuration for the output of the RealtimeSession.
+        ///
+        /// - Remark: Generated from `#/components/schemas/RealtimeSessionOutputConfig`.
+        public struct RealtimeSessionOutputConfig: Codable, Hashable, Sendable {
+            /// Whether to stream agent spoken transcript or send full transcript when it's available all at once.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionOutputConfig/stream_transcript`.
+            public var stream_transcript: Swift.Bool
+            /// Whether to enable speech synthesis for the RealtimeSession.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionOutputConfig/speech_synthesis_enabled`.
+            public var speech_synthesis_enabled: Swift.Bool
+            /// The message for the agent to speak first when the human joins. If exluded the agent will not speak first.
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionOutputConfig/answer_message`.
+            public var answer_message: Swift.String?
+            /// Creates a new `RealtimeSessionOutputConfig`.
+            ///
+            /// - Parameters:
+            ///   - stream_transcript: Whether to stream agent spoken transcript or send full transcript when it's available all at once.
+            ///   - speech_synthesis_enabled: Whether to enable speech synthesis for the RealtimeSession.
+            ///   - answer_message: The message for the agent to speak first when the human joins. If exluded the agent will not speak first.
+            public init(
+                stream_transcript: Swift.Bool,
+                speech_synthesis_enabled: Swift.Bool,
+                answer_message: Swift.String? = nil
+            ) {
+                self.stream_transcript = stream_transcript
+                self.speech_synthesis_enabled = speech_synthesis_enabled
+                self.answer_message = answer_message
+            }
+            public enum CodingKeys: String, CodingKey {
+                case stream_transcript
+                case speech_synthesis_enabled
+                case answer_message
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/RealtimeSessionConfigCreate`.
+        public struct RealtimeSessionConfigCreate: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionConfigCreate/general`.
+            public var general: Components.Schemas.RealtimeSessionGeneralConfig
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionConfigCreate/input`.
+            public var input: Components.Schemas.RealtimeSessionInputConfig
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionConfigCreate/generative`.
+            public var generative: Components.Schemas.RealtimeSessionGenerativeConfigCreate
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionConfigCreate/output`.
+            public var output: Components.Schemas.RealtimeSessionOutputConfig
+            /// Creates a new `RealtimeSessionConfigCreate`.
+            ///
+            /// - Parameters:
+            ///   - general:
+            ///   - input:
+            ///   - generative:
+            ///   - output:
+            public init(
+                general: Components.Schemas.RealtimeSessionGeneralConfig,
+                input: Components.Schemas.RealtimeSessionInputConfig,
+                generative: Components.Schemas.RealtimeSessionGenerativeConfigCreate,
+                output: Components.Schemas.RealtimeSessionOutputConfig
+            ) {
+                self.general = general
+                self.input = input
+                self.generative = generative
+                self.output = output
+            }
+            public enum CodingKeys: String, CodingKey {
+                case general
+                case input
+                case generative
+                case output
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/RealtimeSessionConfigUpdate`.
+        public struct RealtimeSessionConfigUpdate: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionConfigUpdate/general`.
+            public var general: Components.Schemas.RealtimeSessionGeneralConfig?
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionConfigUpdate/input`.
+            public var input: Components.Schemas.RealtimeSessionInputConfig?
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionConfigUpdate/generative`.
+            public var generative: Components.Schemas.RealtimeSessionGenerativeConfigUpdate?
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionConfigUpdate/output`.
+            public var output: Components.Schemas.RealtimeSessionOutputConfig?
+            /// Creates a new `RealtimeSessionConfigUpdate`.
+            ///
+            /// - Parameters:
+            ///   - general:
+            ///   - input:
+            ///   - generative:
+            ///   - output:
+            public init(
+                general: Components.Schemas.RealtimeSessionGeneralConfig? = nil,
+                input: Components.Schemas.RealtimeSessionInputConfig? = nil,
+                generative: Components.Schemas.RealtimeSessionGenerativeConfigUpdate? = nil,
+                output: Components.Schemas.RealtimeSessionOutputConfig? = nil
+            ) {
+                self.general = general
+                self.input = input
+                self.generative = generative
+                self.output = output
+            }
+            public enum CodingKeys: String, CodingKey {
+                case general
+                case input
+                case generative
+                case output
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/RealtimeSessionStartResponse`.
+        public struct RealtimeSessionStartResponse: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionStartResponse/session`.
+            public var session: Components.Schemas.RealtimeSession
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionStartResponse/connection_details`.
+            public var connection_details: Components.Schemas.RealtimeSessionConnectionDetails
+            /// Creates a new `RealtimeSessionStartResponse`.
+            ///
+            /// - Parameters:
+            ///   - session:
+            ///   - connection_details:
+            public init(
+                session: Components.Schemas.RealtimeSession,
+                connection_details: Components.Schemas.RealtimeSessionConnectionDetails
+            ) {
+                self.session = session
+                self.connection_details = connection_details
+            }
+            public enum CodingKeys: String, CodingKey {
+                case session
+                case connection_details
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/RealtimeSessionTimelineItem`.
+        public struct RealtimeSessionTimelineItem: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionTimelineItem/seconds`.
+            public var seconds: Swift.Double?
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionTimelineItem/type`.
+            @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case silence = "silence"
+                case agent = "agent"
+                case user = "user"
+            }
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionTimelineItem/type`.
+            public var _type: Components.Schemas.RealtimeSessionTimelineItem._typePayload?
+            /// Creates a new `RealtimeSessionTimelineItem`.
+            ///
+            /// - Parameters:
+            ///   - seconds:
+            ///   - _type:
+            public init(
+                seconds: Swift.Double? = nil,
+                _type: Components.Schemas.RealtimeSessionTimelineItem._typePayload? = nil
+            ) {
+                self.seconds = seconds
+                self._type = _type
+            }
+            public enum CodingKeys: String, CodingKey {
+                case seconds
+                case _type = "type"
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/RealtimeSessionConnectionDetails`.
+        public struct RealtimeSessionConnectionDetails: Codable, Hashable, Sendable {
+            /// The URL to connect to the RealtimeSession
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionConnectionDetails/url`.
+            public var url: Swift.String
+            /// The token to use to connect to the RealtimeSession
+            ///
+            /// - Remark: Generated from `#/components/schemas/RealtimeSessionConnectionDetails/token`.
+            public var token: Swift.String
+            /// Creates a new `RealtimeSessionConnectionDetails`.
+            ///
+            /// - Parameters:
+            ///   - url: The URL to connect to the RealtimeSession
+            ///   - token: The token to use to connect to the RealtimeSession
+            public init(
+                url: Swift.String,
+                token: Swift.String
+            ) {
+                self.url = url
+                self.token = token
+            }
+            public enum CodingKeys: String, CodingKey {
+                case url
+                case token
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/Session`.
+        public struct Session: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/Session/created_at`.
+            public var created_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/Session/ended_at`.
+            public var ended_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/Session/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Session/livekit_room`.
+            public var livekit_room: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Session/metadata`.
+            public var metadata: OpenAPIRuntime.OpenAPIValueContainer
+            /// - Remark: Generated from `#/components/schemas/Session/persona`.
+            public var persona: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/Session/project`.
+            public var project: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Session/scenario`.
+            public var scenario: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/Session/llm`.
+            public var llm: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/Session/state`.
+            @frozen public enum statePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case ended = "ended"
+                case in_progress = "in_progress"
+                case not_started = "not_started"
+            }
+            /// - Remark: Generated from `#/components/schemas/Session/state`.
+            public var state: Components.Schemas.Session.statePayload
+            /// - Remark: Generated from `#/components/schemas/Session/voice_override`.
+            public var voice_override: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/Session/time_limit_s`.
+            public var time_limit_s: Swift.Int?
+            /// Creates a new `Session`.
+            ///
+            /// - Parameters:
+            ///   - created_at:
+            ///   - ended_at:
+            ///   - id:
+            ///   - livekit_room:
+            ///   - metadata:
+            ///   - persona:
+            ///   - project:
+            ///   - scenario:
+            ///   - llm:
+            ///   - state:
+            ///   - voice_override:
+            ///   - time_limit_s:
+            public init(
+                created_at: Foundation.Date,
+                ended_at: Foundation.Date? = nil,
+                id: Swift.String,
+                livekit_room: Swift.String,
+                metadata: OpenAPIRuntime.OpenAPIValueContainer,
+                persona: Swift.String? = nil,
+                project: Swift.String,
+                scenario: Swift.String? = nil,
+                llm: Swift.String? = nil,
+                state: Components.Schemas.Session.statePayload,
+                voice_override: Swift.String? = nil,
+                time_limit_s: Swift.Int? = nil
+            ) {
+                self.created_at = created_at
+                self.ended_at = ended_at
+                self.id = id
+                self.livekit_room = livekit_room
+                self.metadata = metadata
+                self.persona = persona
+                self.project = project
+                self.scenario = scenario
+                self.llm = llm
+                self.state = state
+                self.voice_override = voice_override
+                self.time_limit_s = time_limit_s
+            }
+            public enum CodingKeys: String, CodingKey {
+                case created_at
+                case ended_at
+                case id
+                case livekit_room
+                case metadata
+                case persona
+                case project
+                case scenario
+                case llm
+                case state
+                case voice_override
+                case time_limit_s
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/SessionMessage`.
+        public struct SessionMessage: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/SessionMessage/agent`.
+            public var agent: Swift.Bool
+            /// - Remark: Generated from `#/components/schemas/SessionMessage/created_at`.
+            public var created_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/SessionMessage/deleted_at`.
+            public var deleted_at: Foundation.Date?
+            /// - Remark: Generated from `#/components/schemas/SessionMessage/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/SessionMessage/import_id`.
+            public var import_id: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/SessionMessage/media`.
+            public var media: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/SessionMessage/session`.
+            public var session: Swift.String
+            /// - Remark: Generated from `#/components/schemas/SessionMessage/speaking_ended_at`.
+            public var speaking_ended_at: Foundation.Date
+            /// - Remark: Generated from `#/components/schemas/SessionMessage/text`.
+            public var text: Swift.String?
+            /// Creates a new `SessionMessage`.
+            ///
+            /// - Parameters:
+            ///   - agent:
+            ///   - created_at:
+            ///   - deleted_at:
+            ///   - id:
+            ///   - import_id:
+            ///   - media:
+            ///   - session:
+            ///   - speaking_ended_at:
+            ///   - text:
+            public init(
+                agent: Swift.Bool,
+                created_at: Foundation.Date,
+                deleted_at: Foundation.Date? = nil,
+                id: Swift.String,
+                import_id: Swift.String? = nil,
+                media: Swift.String? = nil,
+                session: Swift.String,
+                speaking_ended_at: Foundation.Date,
+                text: Swift.String? = nil
+            ) {
+                self.agent = agent
+                self.created_at = created_at
+                self.deleted_at = deleted_at
+                self.id = id
+                self.import_id = import_id
+                self.media = media
+                self.session = session
+                self.speaking_ended_at = speaking_ended_at
+                self.text = text
+            }
+            public enum CodingKeys: String, CodingKey {
+                case agent
+                case created_at
+                case deleted_at
+                case id
+                case import_id
+                case media
+                case session
+                case speaking_ended_at
+                case text
+            }
+        }
         /// - Remark: Generated from `#/components/schemas/HistoryMessage`.
         public struct HistoryMessage: Codable, Hashable, Sendable {
             /// - Remark: Generated from `#/components/schemas/HistoryMessage/content`.
@@ -405,6 +3115,35 @@ public enum Components {
                 case role
             }
         }
+        /// - Remark: Generated from `#/components/schemas/SessionTimelineItem`.
+        public struct SessionTimelineItem: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/SessionTimelineItem/seconds`.
+            public var seconds: Swift.Double?
+            /// - Remark: Generated from `#/components/schemas/SessionTimelineItem/type`.
+            @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case silence = "silence"
+                case agent = "agent"
+                case user = "user"
+            }
+            /// - Remark: Generated from `#/components/schemas/SessionTimelineItem/type`.
+            public var _type: Components.Schemas.SessionTimelineItem._typePayload?
+            /// Creates a new `SessionTimelineItem`.
+            ///
+            /// - Parameters:
+            ///   - seconds:
+            ///   - _type:
+            public init(
+                seconds: Swift.Double? = nil,
+                _type: Components.Schemas.SessionTimelineItem._typePayload? = nil
+            ) {
+                self.seconds = seconds
+                self._type = _type
+            }
+            public enum CodingKeys: String, CodingKey {
+                case seconds
+                case _type = "type"
+            }
+        }
         /// - Remark: Generated from `#/components/schemas/SessionStartRequest`.
         @frozen public enum SessionStartRequest: Codable, Hashable, Sendable {
             /// - Remark: Generated from `#/components/schemas/SessionStartRequest/case1`.
@@ -412,7 +3151,7 @@ public enum Components {
                 /// - Remark: Generated from `#/components/schemas/SessionStartRequest/case1/history`.
                 public var history: [Components.Schemas.HistoryMessage]?
                 /// - Remark: Generated from `#/components/schemas/SessionStartRequest/case1/time_limit_s`.
-                public var time_limit_s: Swift.Double?
+                public var time_limit_s: Swift.Int?
                 /// - Remark: Generated from `#/components/schemas/SessionStartRequest/case1/voice_override`.
                 public var voice_override: Swift.String?
                 /// - Remark: Generated from `#/components/schemas/SessionStartRequest/case1/llm`.
@@ -439,7 +3178,7 @@ public enum Components {
                 ///   - _extra: reserved for internal use
                 public init(
                     history: [Components.Schemas.HistoryMessage]? = nil,
-                    time_limit_s: Swift.Double? = nil,
+                    time_limit_s: Swift.Int? = nil,
                     voice_override: Swift.String? = nil,
                     llm: Swift.String? = nil,
                     persona: Swift.String? = nil,
@@ -469,7 +3208,7 @@ public enum Components {
             /// - Remark: Generated from `#/components/schemas/SessionStartRequest/case2`.
             public struct Case2Payload: Codable, Hashable, Sendable {
                 /// - Remark: Generated from `#/components/schemas/SessionStartRequest/case2/time_limit_s`.
-                public var time_limit_s: Swift.Double?
+                public var time_limit_s: Swift.Int?
                 /// - Remark: Generated from `#/components/schemas/SessionStartRequest/case2/voice_override`.
                 public var voice_override: Swift.String?
                 /// - Remark: Generated from `#/components/schemas/SessionStartRequest/case2/llm`.
@@ -497,7 +3236,7 @@ public enum Components {
                 ///   - save_messages: save session messages
                 ///   - _extra: reserved for internal use
                 public init(
-                    time_limit_s: Swift.Double? = nil,
+                    time_limit_s: Swift.Int? = nil,
                     voice_override: Swift.String? = nil,
                     llm: Swift.String? = nil,
                     scenario: Swift.String? = nil,
@@ -552,220 +3291,6 @@ public enum Components {
                 case let .case2(value):
                     try value.encode(to: encoder)
                 }
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/SessionState`.
-        @frozen public enum SessionState: String, Codable, Hashable, Sendable, CaseIterable {
-            case ended = "ended"
-            case in_progress = "in_progress"
-            case not_started = "not_started"
-        }
-        /// - Remark: Generated from `#/components/schemas/Session`.
-        public struct Session: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/Session/created_at`.
-            public var created_at: Foundation.Date
-            /// - Remark: Generated from `#/components/schemas/Session/ended_at`.
-            public var ended_at: Foundation.Date?
-            /// - Remark: Generated from `#/components/schemas/Session/id`.
-            public var id: Swift.String
-            /// - Remark: Generated from `#/components/schemas/Session/livekit_room`.
-            public var livekit_room: Swift.String
-            /// - Remark: Generated from `#/components/schemas/Session/metadata`.
-            public var metadata: OpenAPIRuntime.OpenAPIValueContainer
-            /// - Remark: Generated from `#/components/schemas/Session/persona`.
-            public var persona: Swift.String?
-            /// - Remark: Generated from `#/components/schemas/Session/project`.
-            public var project: Swift.String
-            /// - Remark: Generated from `#/components/schemas/Session/scenario`.
-            public var scenario: Swift.String?
-            /// - Remark: Generated from `#/components/schemas/Session/llm`.
-            public var llm: Swift.String?
-            /// - Remark: Generated from `#/components/schemas/Session/state`.
-            public var state: Components.Schemas.SessionState
-            /// - Remark: Generated from `#/components/schemas/Session/voice_override`.
-            public var voice_override: Swift.String?
-            /// - Remark: Generated from `#/components/schemas/Session/time_limit_s`.
-            public var time_limit_s: Swift.Double?
-            /// Creates a new `Session`.
-            ///
-            /// - Parameters:
-            ///   - created_at:
-            ///   - ended_at:
-            ///   - id:
-            ///   - livekit_room:
-            ///   - metadata:
-            ///   - persona:
-            ///   - project:
-            ///   - scenario:
-            ///   - llm:
-            ///   - state:
-            ///   - voice_override:
-            ///   - time_limit_s:
-            public init(
-                created_at: Foundation.Date,
-                ended_at: Foundation.Date? = nil,
-                id: Swift.String,
-                livekit_room: Swift.String,
-                metadata: OpenAPIRuntime.OpenAPIValueContainer,
-                persona: Swift.String? = nil,
-                project: Swift.String,
-                scenario: Swift.String? = nil,
-                llm: Swift.String? = nil,
-                state: Components.Schemas.SessionState,
-                voice_override: Swift.String? = nil,
-                time_limit_s: Swift.Double? = nil
-            ) {
-                self.created_at = created_at
-                self.ended_at = ended_at
-                self.id = id
-                self.livekit_room = livekit_room
-                self.metadata = metadata
-                self.persona = persona
-                self.project = project
-                self.scenario = scenario
-                self.llm = llm
-                self.state = state
-                self.voice_override = voice_override
-                self.time_limit_s = time_limit_s
-            }
-            public enum CodingKeys: String, CodingKey {
-                case created_at
-                case ended_at
-                case id
-                case livekit_room
-                case metadata
-                case persona
-                case project
-                case scenario
-                case llm
-                case state
-                case voice_override
-                case time_limit_s
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/Persona`.
-        public struct Persona: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/Persona/created_at`.
-            public var created_at: Foundation.Date
-            /// - Remark: Generated from `#/components/schemas/Persona/description`.
-            public var description: Swift.String
-            /// - Remark: Generated from `#/components/schemas/Persona/id`.
-            public var id: Swift.String
-            /// - Remark: Generated from `#/components/schemas/Persona/image_url`.
-            public var image_url: Swift.String?
-            /// - Remark: Generated from `#/components/schemas/Persona/name`.
-            public var name: Swift.String
-            /// - Remark: Generated from `#/components/schemas/Persona/project`.
-            public var project: Swift.String
-            /// - Remark: Generated from `#/components/schemas/Persona/tagsPayload`.
-            public struct tagsPayloadPayload: Codable, Hashable, Sendable {
-                /// - Remark: Generated from `#/components/schemas/Persona/tagsPayload/human_name`.
-                public var human_name: Swift.String
-                /// - Remark: Generated from `#/components/schemas/Persona/tagsPayload/name`.
-                public var name: Swift.String
-                /// Creates a new `tagsPayloadPayload`.
-                ///
-                /// - Parameters:
-                ///   - human_name:
-                ///   - name:
-                public init(
-                    human_name: Swift.String,
-                    name: Swift.String
-                ) {
-                    self.human_name = human_name
-                    self.name = name
-                }
-                public enum CodingKeys: String, CodingKey {
-                    case human_name
-                    case name
-                }
-            }
-            /// - Remark: Generated from `#/components/schemas/Persona/tags`.
-            public typealias tagsPayload = [Components.Schemas.Persona.tagsPayloadPayload]
-            /// - Remark: Generated from `#/components/schemas/Persona/tags`.
-            public var tags: Components.Schemas.Persona.tagsPayload
-            /// - Remark: Generated from `#/components/schemas/Persona/voice`.
-            public var voice: Swift.String
-            /// Creates a new `Persona`.
-            ///
-            /// - Parameters:
-            ///   - created_at:
-            ///   - description:
-            ///   - id:
-            ///   - image_url:
-            ///   - name:
-            ///   - project:
-            ///   - tags:
-            ///   - voice:
-            public init(
-                created_at: Foundation.Date,
-                description: Swift.String,
-                id: Swift.String,
-                image_url: Swift.String? = nil,
-                name: Swift.String,
-                project: Swift.String,
-                tags: Components.Schemas.Persona.tagsPayload,
-                voice: Swift.String
-            ) {
-                self.created_at = created_at
-                self.description = description
-                self.id = id
-                self.image_url = image_url
-                self.name = name
-                self.project = project
-                self.tags = tags
-                self.voice = voice
-            }
-            public enum CodingKeys: String, CodingKey {
-                case created_at
-                case description
-                case id
-                case image_url
-                case name
-                case project
-                case tags
-                case voice
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/Scenario`.
-        public struct Scenario: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/Scenario/created_at`.
-            public var created_at: Foundation.Date
-            /// - Remark: Generated from `#/components/schemas/Scenario/id`.
-            public var id: Swift.String
-            /// - Remark: Generated from `#/components/schemas/Scenario/name`.
-            public var name: Swift.String
-            /// - Remark: Generated from `#/components/schemas/Scenario/project`.
-            public var project: Swift.String
-            /// - Remark: Generated from `#/components/schemas/Scenario/prompt`.
-            public var prompt: Swift.String
-            /// Creates a new `Scenario`.
-            ///
-            /// - Parameters:
-            ///   - created_at:
-            ///   - id:
-            ///   - name:
-            ///   - project:
-            ///   - prompt:
-            public init(
-                created_at: Foundation.Date,
-                id: Swift.String,
-                name: Swift.String,
-                project: Swift.String,
-                prompt: Swift.String
-            ) {
-                self.created_at = created_at
-                self.id = id
-                self.name = name
-                self.project = project
-                self.prompt = prompt
-            }
-            public enum CodingKeys: String, CodingKey {
-                case created_at
-                case id
-                case name
-                case project
-                case prompt
             }
         }
         /// - Remark: Generated from `#/components/schemas/SessionStartResponse`.
@@ -849,244 +3374,1978 @@ public enum Components {
                 case voice_override
             }
         }
-        /// - Remark: Generated from `#/components/schemas/SessionMessage`.
-        public struct SessionMessage: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/SessionMessage/agent`.
-            public var agent: Swift.Bool
-            /// - Remark: Generated from `#/components/schemas/SessionMessage/created_at`.
-            public var created_at: Foundation.Date
-            /// - Remark: Generated from `#/components/schemas/SessionMessage/deleted_at`.
-            public var deleted_at: Foundation.Date?
-            /// - Remark: Generated from `#/components/schemas/SessionMessage/id`.
-            public var id: Swift.String
-            /// - Remark: Generated from `#/components/schemas/SessionMessage/import_id`.
-            public var import_id: Swift.String?
-            /// - Remark: Generated from `#/components/schemas/SessionMessage/media`.
-            public var media: Swift.String?
-            /// - Remark: Generated from `#/components/schemas/SessionMessage/session`.
-            public var session: Swift.String
-            /// - Remark: Generated from `#/components/schemas/SessionMessage/speaking_ended_at`.
-            public var speaking_ended_at: Foundation.Date
-            /// - Remark: Generated from `#/components/schemas/SessionMessage/text`.
-            public var text: Swift.String?
-            /// Creates a new `SessionMessage`.
+        /// - Remark: Generated from `#/components/schemas/FunctionObject`.
+        public struct FunctionObject: Codable, Hashable, Sendable {
+            /// A description of what the function does, used by the model to choose when and how to call the function.
             ///
-            /// - Parameters:
-            ///   - agent:
-            ///   - created_at:
-            ///   - deleted_at:
-            ///   - id:
-            ///   - import_id:
-            ///   - media:
-            ///   - session:
-            ///   - speaking_ended_at:
-            ///   - text:
-            public init(
-                agent: Swift.Bool,
-                created_at: Foundation.Date,
-                deleted_at: Foundation.Date? = nil,
-                id: Swift.String,
-                import_id: Swift.String? = nil,
-                media: Swift.String? = nil,
-                session: Swift.String,
-                speaking_ended_at: Foundation.Date,
-                text: Swift.String? = nil
-            ) {
-                self.agent = agent
-                self.created_at = created_at
-                self.deleted_at = deleted_at
-                self.id = id
-                self.import_id = import_id
-                self.media = media
-                self.session = session
-                self.speaking_ended_at = speaking_ended_at
-                self.text = text
-            }
-            public enum CodingKeys: String, CodingKey {
-                case agent
-                case created_at
-                case deleted_at
-                case id
-                case import_id
-                case media
-                case session
-                case speaking_ended_at
-                case text
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/SessionTimelineItem`.
-        public struct SessionTimelineItem: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/SessionTimelineItem/seconds`.
-            public var seconds: Swift.Double?
-            /// - Remark: Generated from `#/components/schemas/SessionTimelineItem/type`.
-            @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
-                case silence = "silence"
-                case agent = "agent"
-                case user = "user"
-            }
-            /// - Remark: Generated from `#/components/schemas/SessionTimelineItem/type`.
-            public var _type: Components.Schemas.SessionTimelineItem._typePayload?
-            /// Creates a new `SessionTimelineItem`.
+            /// - Remark: Generated from `#/components/schemas/FunctionObject/description`.
+            public var description: Swift.String?
+            /// The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
             ///
-            /// - Parameters:
-            ///   - seconds:
-            ///   - _type:
-            public init(
-                seconds: Swift.Double? = nil,
-                _type: Components.Schemas.SessionTimelineItem._typePayload? = nil
-            ) {
-                self.seconds = seconds
-                self._type = _type
-            }
-            public enum CodingKeys: String, CodingKey {
-                case seconds
-                case _type = "type"
-            }
-        }
-        /// - Remark: Generated from `#/components/schemas/Voice`.
-        public struct Voice: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/Voice/created_at`.
-            public var created_at: Foundation.Date
-            /// - Remark: Generated from `#/components/schemas/Voice/id`.
-            public var id: Swift.String
-            /// - Remark: Generated from `#/components/schemas/Voice/name`.
+            /// - Remark: Generated from `#/components/schemas/FunctionObject/name`.
             public var name: Swift.String
-            /// - Remark: Generated from `#/components/schemas/Voice/language`.
-            public var language: Swift.String
-            /// Creates a new `Voice`.
+            /// - Remark: Generated from `#/components/schemas/FunctionObject/parameters`.
+            public var parameters: Components.Schemas.FunctionParameters?
+            /// Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the `parameters` field. Only a subset of JSON Schema is supported when `strict` is `true`. Learn more about Structured Outputs in the [function calling guide](docs/guides/function-calling).
+            ///
+            /// - Remark: Generated from `#/components/schemas/FunctionObject/strict`.
+            public var strict: Swift.Bool?
+            /// Creates a new `FunctionObject`.
             ///
             /// - Parameters:
-            ///   - created_at:
-            ///   - id:
-            ///   - name:
-            ///   - language:
+            ///   - description: A description of what the function does, used by the model to choose when and how to call the function.
+            ///   - name: The name of the function to be called. Must be a-z, A-Z, 0-9, or contain underscores and dashes, with a maximum length of 64.
+            ///   - parameters:
+            ///   - strict: Whether to enable strict schema adherence when generating the function call. If set to true, the model will follow the exact schema defined in the `parameters` field. Only a subset of JSON Schema is supported when `strict` is `true`. Learn more about Structured Outputs in the [function calling guide](docs/guides/function-calling).
             public init(
-                created_at: Foundation.Date,
-                id: Swift.String,
+                description: Swift.String? = nil,
                 name: Swift.String,
-                language: Swift.String
+                parameters: Components.Schemas.FunctionParameters? = nil,
+                strict: Swift.Bool? = nil
             ) {
-                self.created_at = created_at
-                self.id = id
+                self.description = description
                 self.name = name
-                self.language = language
+                self.parameters = parameters
+                self.strict = strict
             }
             public enum CodingKeys: String, CodingKey {
-                case created_at
-                case id
+                case description
                 case name
-                case language
+                case parameters
+                case strict
             }
         }
-        /// - Remark: Generated from `#/components/schemas/VoicePreviewRequest`.
-        public struct VoicePreviewRequest: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/VoicePreviewRequest/voice`.
-            public var voice: Swift.String
-            /// Creates a new `VoicePreviewRequest`.
+        /// The parameters the functions accepts, described as a JSON Schema object. See the [guide](/docs/guides/function-calling) for examples, and the [JSON Schema reference](https://json-schema.org/understanding-json-schema/) for documentation about the format. 
+        ///
+        /// Omitting `parameters` defines a function with an empty parameter list.
+        ///
+        /// - Remark: Generated from `#/components/schemas/FunctionParameters`.
+        public struct FunctionParameters: Codable, Hashable, Sendable {
+            /// A container of undocumented properties.
+            public var additionalProperties: OpenAPIRuntime.OpenAPIObjectContainer
+            /// Creates a new `FunctionParameters`.
+            ///
+            /// - Parameters:
+            ///   - additionalProperties: A container of undocumented properties.
+            public init(additionalProperties: OpenAPIRuntime.OpenAPIObjectContainer = .init()) {
+                self.additionalProperties = additionalProperties
+            }
+            public init(from decoder: any Decoder) throws {
+                additionalProperties = try decoder.decodeAdditionalProperties(knownKeys: [])
+            }
+            public func encode(to encoder: any Encoder) throws {
+                try encoder.encodeAdditionalProperties(additionalProperties)
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionTool`.
+        public struct ChatCompletionTool: Codable, Hashable, Sendable {
+            /// The type of the tool.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionTool/type`.
+            @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case function = "function"
+                case gabber_tool = "gabber_tool"
+            }
+            /// The type of the tool.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionTool/type`.
+            public var _type: Components.Schemas.ChatCompletionTool._typePayload
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionTool/function`.
+            public var function: Components.Schemas.FunctionObject
+            /// Creates a new `ChatCompletionTool`.
+            ///
+            /// - Parameters:
+            ///   - _type: The type of the tool.
+            ///   - function:
+            public init(
+                _type: Components.Schemas.ChatCompletionTool._typePayload,
+                function: Components.Schemas.FunctionObject
+            ) {
+                self._type = _type
+                self.function = function
+            }
+            public enum CodingKeys: String, CodingKey {
+                case _type = "type"
+                case function
+            }
+        }
+        /// Specifies a tool the model should use. Use to force the model to call a specific function.
+        ///
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionNamedToolChoice`.
+        public struct ChatCompletionNamedToolChoice: Codable, Hashable, Sendable {
+            /// The type of the tool. Currently, only `function` is supported.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionNamedToolChoice/type`.
+            @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case function = "function"
+            }
+            /// The type of the tool. Currently, only `function` is supported.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionNamedToolChoice/type`.
+            public var _type: Components.Schemas.ChatCompletionNamedToolChoice._typePayload
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionNamedToolChoice/function`.
+            public struct functionPayload: Codable, Hashable, Sendable {
+                /// The name of the function to call.
+                ///
+                /// - Remark: Generated from `#/components/schemas/ChatCompletionNamedToolChoice/function/name`.
+                public var name: Swift.String
+                /// Creates a new `functionPayload`.
+                ///
+                /// - Parameters:
+                ///   - name: The name of the function to call.
+                public init(name: Swift.String) {
+                    self.name = name
+                }
+                public enum CodingKeys: String, CodingKey {
+                    case name
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionNamedToolChoice/function`.
+            public var function: Components.Schemas.ChatCompletionNamedToolChoice.functionPayload
+            /// Creates a new `ChatCompletionNamedToolChoice`.
+            ///
+            /// - Parameters:
+            ///   - _type: The type of the tool. Currently, only `function` is supported.
+            ///   - function:
+            public init(
+                _type: Components.Schemas.ChatCompletionNamedToolChoice._typePayload,
+                function: Components.Schemas.ChatCompletionNamedToolChoice.functionPayload
+            ) {
+                self._type = _type
+                self.function = function
+            }
+            public enum CodingKeys: String, CodingKey {
+                case _type = "type"
+                case function
+            }
+        }
+        /// Controls which (if any) tool is called by the model.
+        /// `none` means the model will not call any tool and instead generates a message.
+        /// `auto` means the model can pick between generating a message or calling one or more tools.
+        /// `required` means the model must call one or more tools.
+        /// Specifying a particular tool via `{"type": "function", "function": {"name": "my_function"}}` forces the model to call that tool.
+        ///
+        /// `none` is the default when no tools are present. `auto` is the default if tools are present.
+        ///
+        ///
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionToolChoiceOption`.
+        @frozen public enum ChatCompletionToolChoiceOption: Codable, Hashable, Sendable {
+            /// `none` means the model will not call any tool and instead generates a message. `auto` means the model can pick between generating a message or calling one or more tools. `required` means the model must call one or more tools.
+            ///
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionToolChoiceOption/case1`.
+            @frozen public enum Case1Payload: String, Codable, Hashable, Sendable, CaseIterable {
+                case none = "none"
+                case auto = "auto"
+                case required = "required"
+            }
+            /// `none` means the model will not call any tool and instead generates a message. `auto` means the model can pick between generating a message or calling one or more tools. `required` means the model must call one or more tools.
+            ///
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionToolChoiceOption/case1`.
+            case case1(Components.Schemas.ChatCompletionToolChoiceOption.Case1Payload)
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionToolChoiceOption/case2`.
+            case ChatCompletionNamedToolChoice(Components.Schemas.ChatCompletionNamedToolChoice)
+            public init(from decoder: any Decoder) throws {
+                var errors: [any Error] = []
+                do {
+                    self = .case1(try decoder.decodeFromSingleValueContainer())
+                    return
+                } catch {
+                    errors.append(error)
+                }
+                do {
+                    self = .ChatCompletionNamedToolChoice(try .init(from: decoder))
+                    return
+                } catch {
+                    errors.append(error)
+                }
+                throw Swift.DecodingError.failedToDecodeOneOfSchema(
+                    type: Self.self,
+                    codingPath: decoder.codingPath,
+                    errors: errors
+                )
+            }
+            public func encode(to encoder: any Encoder) throws {
+                switch self {
+                case let .case1(value):
+                    try encoder.encodeToSingleValueContainer(value)
+                case let .ChatCompletionNamedToolChoice(value):
+                    try value.encode(to: encoder)
+                }
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestGabber`.
+        public struct ChatCompletionRequestGabber: Codable, Hashable, Sendable {
+            /// Gabber voice id
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestGabber/voice`.
+            public var voice: Swift.String?
+            /// Gabber memory context id
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestGabber/context`.
+            public var context: Swift.String?
+            /// Creates a new `ChatCompletionRequestGabber`.
+            ///
+            /// - Parameters:
+            ///   - voice: Gabber voice id
+            ///   - context: Gabber memory context id
+            public init(
+                voice: Swift.String? = nil,
+                context: Swift.String? = nil
+            ) {
+                self.voice = voice
+                self.context = context
+            }
+            public enum CodingKeys: String, CodingKey {
+                case voice
+                case context
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionRequest`.
+        public struct ChatCompletionRequest: Codable, Hashable, Sendable {
+            /// Chat context
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequest/messages`.
+            public var messages: [Components.Schemas.ChatCompletionRequestMessage]
+            /// Gabber llm_id
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequest/model`.
+            public var model: Swift.String
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequest/metadata`.
+            public var metadata: OpenAPIRuntime.OpenAPIObjectContainer?
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequest/gabber`.
+            public var gabber: Components.Schemas.ChatCompletionRequestGabber?
+            /// If set, partial message deltas will be sent, like in ChatGPT.
+            ///
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequest/stream`.
+            public var stream: Swift.Bool?
+            /// Temperature for sampling from the model. Higher values mean more randomness.
+            ///
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequest/temperature`.
+            public var temperature: Swift.Double?
+            /// Maximum number of tokens to generate. Requests can be up to 4096 tokens.
+            ///
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequest/max_tokens`.
+            public var max_tokens: Swift.Int?
+            /// List of tools to call during the completion. Each tool will be called in the order they are listed.
+            ///
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequest/tools`.
+            public var tools: [Components.Schemas.ChatCompletionTool]?
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequest/tool_choice`.
+            public var tool_choice: Components.Schemas.ChatCompletionToolChoiceOption?
+            /// Whether to enable parallel function calling
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequest/parallel_tool_calls`.
+            public var parallel_tool_calls: Swift.Bool?
+            /// Creates a new `ChatCompletionRequest`.
+            ///
+            /// - Parameters:
+            ///   - messages: Chat context
+            ///   - model: Gabber llm_id
+            ///   - metadata:
+            ///   - gabber:
+            ///   - stream: If set, partial message deltas will be sent, like in ChatGPT.
+            ///   - temperature: Temperature for sampling from the model. Higher values mean more randomness.
+            ///   - max_tokens: Maximum number of tokens to generate. Requests can be up to 4096 tokens.
+            ///   - tools: List of tools to call during the completion. Each tool will be called in the order they are listed.
+            ///   - tool_choice:
+            ///   - parallel_tool_calls: Whether to enable parallel function calling
+            public init(
+                messages: [Components.Schemas.ChatCompletionRequestMessage],
+                model: Swift.String,
+                metadata: OpenAPIRuntime.OpenAPIObjectContainer? = nil,
+                gabber: Components.Schemas.ChatCompletionRequestGabber? = nil,
+                stream: Swift.Bool? = nil,
+                temperature: Swift.Double? = nil,
+                max_tokens: Swift.Int? = nil,
+                tools: [Components.Schemas.ChatCompletionTool]? = nil,
+                tool_choice: Components.Schemas.ChatCompletionToolChoiceOption? = nil,
+                parallel_tool_calls: Swift.Bool? = nil
+            ) {
+                self.messages = messages
+                self.model = model
+                self.metadata = metadata
+                self.gabber = gabber
+                self.stream = stream
+                self.temperature = temperature
+                self.max_tokens = max_tokens
+                self.tools = tools
+                self.tool_choice = tool_choice
+                self.parallel_tool_calls = parallel_tool_calls
+            }
+            public enum CodingKeys: String, CodingKey {
+                case messages
+                case model
+                case metadata
+                case gabber
+                case stream
+                case temperature
+                case max_tokens
+                case tools
+                case tool_choice
+                case parallel_tool_calls
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionMessageToolCallFunction`.
+        public struct ChatCompletionMessageToolCallFunction: Codable, Hashable, Sendable {
+            /// The name of the function to call.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionMessageToolCallFunction/name`.
+            public var name: Swift.String
+            /// The arguments to call the function with, as generated by the model in JSON format. Note that the model does not always generate valid JSON, and may hallucinate parameters not defined by your function schema. Validate the arguments in your code before calling your function.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionMessageToolCallFunction/arguments`.
+            public var arguments: Swift.String
+            /// Creates a new `ChatCompletionMessageToolCallFunction`.
+            ///
+            /// - Parameters:
+            ///   - name: The name of the function to call.
+            ///   - arguments: The arguments to call the function with, as generated by the model in JSON format. Note that the model does not always generate valid JSON, and may hallucinate parameters not defined by your function schema. Validate the arguments in your code before calling your function.
+            public init(
+                name: Swift.String,
+                arguments: Swift.String
+            ) {
+                self.name = name
+                self.arguments = arguments
+            }
+            public enum CodingKeys: String, CodingKey {
+                case name
+                case arguments
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionMessageToolCall`.
+        public struct ChatCompletionMessageToolCall: Codable, Hashable, Sendable {
+            /// The ID of the tool call.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionMessageToolCall/id`.
+            public var id: Swift.String
+            /// The type of the tool. Currently, only `function` is supported.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionMessageToolCall/type`.
+            @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case function = "function"
+                case gabber_tool = "gabber_tool"
+            }
+            /// The type of the tool. Currently, only `function` is supported.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionMessageToolCall/type`.
+            public var _type: Components.Schemas.ChatCompletionMessageToolCall._typePayload
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionMessageToolCall/function`.
+            public var function: Components.Schemas.ChatCompletionMessageToolCallFunction
+            /// Creates a new `ChatCompletionMessageToolCall`.
+            ///
+            /// - Parameters:
+            ///   - id: The ID of the tool call.
+            ///   - _type: The type of the tool. Currently, only `function` is supported.
+            ///   - function:
+            public init(
+                id: Swift.String,
+                _type: Components.Schemas.ChatCompletionMessageToolCall._typePayload,
+                function: Components.Schemas.ChatCompletionMessageToolCallFunction
+            ) {
+                self.id = id
+                self._type = _type
+                self.function = function
+            }
+            public enum CodingKeys: String, CodingKey {
+                case id
+                case _type = "type"
+                case function
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionMessageToolCallChunk`.
+        public struct ChatCompletionMessageToolCallChunk: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionMessageToolCallChunk/index`.
+            public var index: Swift.Int
+            /// The ID of the tool call.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionMessageToolCallChunk/id`.
+            public var id: Swift.String?
+            /// The type of the tool. If 'gabber' is specified, the id will be the gabber call id.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionMessageToolCallChunk/type`.
+            @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case function = "function"
+                case gabber_tool = "gabber_tool"
+            }
+            /// The type of the tool. If 'gabber' is specified, the id will be the gabber call id.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionMessageToolCallChunk/type`.
+            public var _type: Components.Schemas.ChatCompletionMessageToolCallChunk._typePayload?
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionMessageToolCallChunk/function`.
+            public var function: Components.Schemas.ChatCompletionMessageToolCallFunction?
+            /// Creates a new `ChatCompletionMessageToolCallChunk`.
+            ///
+            /// - Parameters:
+            ///   - index:
+            ///   - id: The ID of the tool call.
+            ///   - _type: The type of the tool. If 'gabber' is specified, the id will be the gabber call id.
+            ///   - function:
+            public init(
+                index: Swift.Int,
+                id: Swift.String? = nil,
+                _type: Components.Schemas.ChatCompletionMessageToolCallChunk._typePayload? = nil,
+                function: Components.Schemas.ChatCompletionMessageToolCallFunction? = nil
+            ) {
+                self.index = index
+                self.id = id
+                self._type = _type
+                self.function = function
+            }
+            public enum CodingKeys: String, CodingKey {
+                case index
+                case id
+                case _type = "type"
+                case function
+            }
+        }
+        /// The tool calls generated by the model, such as function calls.
+        ///
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionMessageToolCalls`.
+        public typealias ChatCompletionMessageToolCalls = [Components.Schemas.ChatCompletionMessageToolCall]
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionResponseGabberMessageData`.
+        public struct ChatCompletionResponseGabberMessageData: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionResponseGabberMessageData/message_index`.
+            public var message_index: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionResponseGabberMessageData/content_index`.
+            public var content_index: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionResponseGabberMessageData/type`.
+            @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case audio_transcript = "audio_transcript"
+            }
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionResponseGabberMessageData/type`.
+            public var _type: Components.Schemas.ChatCompletionResponseGabberMessageData._typePayload
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionResponseGabberMessageData/data`.
+            public struct dataPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/ChatCompletionResponseGabberMessageData/data/transcript`.
+                public var transcript: Swift.String
+                /// Creates a new `dataPayload`.
+                ///
+                /// - Parameters:
+                ///   - transcript:
+                public init(transcript: Swift.String) {
+                    self.transcript = transcript
+                }
+                public enum CodingKeys: String, CodingKey {
+                    case transcript
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionResponseGabberMessageData/data`.
+            public var data: Components.Schemas.ChatCompletionResponseGabberMessageData.dataPayload
+            /// Creates a new `ChatCompletionResponseGabberMessageData`.
+            ///
+            /// - Parameters:
+            ///   - message_index:
+            ///   - content_index:
+            ///   - _type:
+            ///   - data:
+            public init(
+                message_index: Swift.Int,
+                content_index: Swift.Int,
+                _type: Components.Schemas.ChatCompletionResponseGabberMessageData._typePayload,
+                data: Components.Schemas.ChatCompletionResponseGabberMessageData.dataPayload
+            ) {
+                self.message_index = message_index
+                self.content_index = content_index
+                self._type = _type
+                self.data = data
+            }
+            public enum CodingKeys: String, CodingKey {
+                case message_index
+                case content_index
+                case _type = "type"
+                case data
+            }
+        }
+        /// Gabber-specific fields
+        ///
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionResponseGabber`.
+        public struct ChatCompletionResponseGabber: Codable, Hashable, Sendable {
+            /// Gabber usage for this request
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionResponseGabber/usage`.
+            public var usage: [Components.Schemas.Usage]
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionResponseGabber/message_data`.
+            public var message_data: [Components.Schemas.ChatCompletionResponseGabberMessageData]
+            /// Creates a new `ChatCompletionResponseGabber`.
+            ///
+            /// - Parameters:
+            ///   - usage: Gabber usage for this request
+            ///   - message_data:
+            public init(
+                usage: [Components.Schemas.Usage],
+                message_data: [Components.Schemas.ChatCompletionResponseGabberMessageData]
+            ) {
+                self.usage = usage
+                self.message_data = message_data
+            }
+            public enum CodingKeys: String, CodingKey {
+                case usage
+                case message_data
+            }
+        }
+        /// Represents a completion response from the API. Note: both the streamed and non-streamed response objects share the same shape.
+        ///
+        ///
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionResponse`.
+        public struct ChatCompletionResponse: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionResponse/choicesPayload`.
+            public struct choicesPayloadPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/ChatCompletionResponse/choicesPayload/message`.
+                public var message: Components.Schemas.ChatCompletionResponseMessage
+                /// Creates a new `choicesPayloadPayload`.
+                ///
+                /// - Parameters:
+                ///   - message:
+                public init(message: Components.Schemas.ChatCompletionResponseMessage) {
+                    self.message = message
+                }
+                public enum CodingKeys: String, CodingKey {
+                    case message
+                }
+            }
+            /// A list of chat completion choices.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionResponse/choices`.
+            public typealias choicesPayload = [Components.Schemas.ChatCompletionResponse.choicesPayloadPayload]
+            /// A list of chat completion choices.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionResponse/choices`.
+            public var choices: Components.Schemas.ChatCompletionResponse.choicesPayload
+            /// The model used for completion.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionResponse/model`.
+            public var model: Swift.String
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionResponse/gabber`.
+            public var gabber: Components.Schemas.ChatCompletionResponseGabber?
+            /// Creates a new `ChatCompletionResponse`.
+            ///
+            /// - Parameters:
+            ///   - choices: A list of chat completion choices.
+            ///   - model: The model used for completion.
+            ///   - gabber:
+            public init(
+                choices: Components.Schemas.ChatCompletionResponse.choicesPayload,
+                model: Swift.String,
+                gabber: Components.Schemas.ChatCompletionResponseGabber? = nil
+            ) {
+                self.choices = choices
+                self.model = model
+                self.gabber = gabber
+            }
+            public enum CodingKeys: String, CodingKey {
+                case choices
+                case model
+                case gabber
+            }
+        }
+        /// Represents a streamed chunk of a chat completion response returned by model, based on the provided input.
+        ///
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponse`.
+        public struct ChatCompletionStreamResponse: Codable, Hashable, Sendable {
+            /// A unique identifier for the chat completion. Each chunk has the same ID.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponse/id`.
+            public var id: Swift.String
+            /// A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the
+            /// last chunk if you set `stream_options: {"include_usage": true}`.
+            ///
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponse/choices`.
+            public var choices: [Components.Schemas.ChatCompletionStreamResponseChoice]
+            /// The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponse/created`.
+            public var created: Swift.Int
+            /// The model to generate the completion.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponse/model`.
+            public var model: Swift.String
+            /// The object type, which is always `chat.completion.chunk`.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponse/object`.
+            @frozen public enum objectPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case chat_period_completion_period_chunk = "chat.completion.chunk"
+            }
+            /// The object type, which is always `chat.completion.chunk`.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponse/object`.
+            public var object: Components.Schemas.ChatCompletionStreamResponse.objectPayload
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponse/gabber`.
+            public var gabber: Components.Schemas.ChatCompletionResponseGabber?
+            /// Creates a new `ChatCompletionStreamResponse`.
+            ///
+            /// - Parameters:
+            ///   - id: A unique identifier for the chat completion. Each chunk has the same ID.
+            ///   - choices: A list of chat completion choices. Can contain more than one elements if `n` is greater than 1. Can also be empty for the
+            ///   - created: The Unix timestamp (in seconds) of when the chat completion was created. Each chunk has the same timestamp.
+            ///   - model: The model to generate the completion.
+            ///   - object: The object type, which is always `chat.completion.chunk`.
+            ///   - gabber:
+            public init(
+                id: Swift.String,
+                choices: [Components.Schemas.ChatCompletionStreamResponseChoice],
+                created: Swift.Int,
+                model: Swift.String,
+                object: Components.Schemas.ChatCompletionStreamResponse.objectPayload,
+                gabber: Components.Schemas.ChatCompletionResponseGabber? = nil
+            ) {
+                self.id = id
+                self.choices = choices
+                self.created = created
+                self.model = model
+                self.object = object
+                self.gabber = gabber
+            }
+            public enum CodingKeys: String, CodingKey {
+                case id
+                case choices
+                case created
+                case model
+                case object
+                case gabber
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponseChoice`.
+        public struct ChatCompletionStreamResponseChoice: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponseChoice/delta`.
+            public var delta: Components.Schemas.ChatCompletionStreamResponseDelta
+            /// The reason the model stopped generating tokens.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponseChoice/finish_reason`.
+            @frozen public enum finish_reasonPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case stop = "stop"
+                case length = "length"
+                case tool_calls = "tool_calls"
+                case content_filter = "content_filter"
+                case function_call = "function_call"
+            }
+            /// The reason the model stopped generating tokens.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponseChoice/finish_reason`.
+            public var finish_reason: Components.Schemas.ChatCompletionStreamResponseChoice.finish_reasonPayload
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponseChoice/index`.
+            public var index: Swift.Int
+            /// Creates a new `ChatCompletionStreamResponseChoice`.
+            ///
+            /// - Parameters:
+            ///   - delta:
+            ///   - finish_reason: The reason the model stopped generating tokens.
+            ///   - index:
+            public init(
+                delta: Components.Schemas.ChatCompletionStreamResponseDelta,
+                finish_reason: Components.Schemas.ChatCompletionStreamResponseChoice.finish_reasonPayload,
+                index: Swift.Int
+            ) {
+                self.delta = delta
+                self.finish_reason = finish_reason
+                self.index = index
+            }
+            public enum CodingKeys: String, CodingKey {
+                case delta
+                case finish_reason
+                case index
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponseDeltaGabberVoice`.
+        public struct ChatCompletionStreamResponseDeltaGabberVoice: Codable, Hashable, Sendable {
+            /// This will be the URL to the audio file
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponseDeltaGabberVoice/audio_url`.
+            public var audio_url: Swift.String
+            /// The Unix timestamp (in seconds) when the audio file expires
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponseDeltaGabberVoice/expires_at`.
+            public var expires_at: Swift.Int
+            /// Creates a new `ChatCompletionStreamResponseDeltaGabberVoice`.
+            ///
+            /// - Parameters:
+            ///   - audio_url: This will be the URL to the audio file
+            ///   - expires_at: The Unix timestamp (in seconds) when the audio file expires
+            public init(
+                audio_url: Swift.String,
+                expires_at: Swift.Int
+            ) {
+                self.audio_url = audio_url
+                self.expires_at = expires_at
+            }
+            public enum CodingKeys: String, CodingKey {
+                case audio_url
+                case expires_at
+            }
+        }
+        /// If the audio output modality is requested, this object contains data
+        ///
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponseDeltaGabber`.
+        public struct ChatCompletionStreamResponseDeltaGabber: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponseDeltaGabber/voice`.
+            public var voice: Components.Schemas.ChatCompletionStreamResponseDeltaGabberVoice?
+            /// Creates a new `ChatCompletionStreamResponseDeltaGabber`.
             ///
             /// - Parameters:
             ///   - voice:
-            public init(voice: Swift.String) {
+            public init(voice: Components.Schemas.ChatCompletionStreamResponseDeltaGabberVoice? = nil) {
                 self.voice = voice
             }
             public enum CodingKeys: String, CodingKey {
                 case voice
             }
         }
-        /// - Remark: Generated from `#/components/schemas/UsageType`.
-        @frozen public enum UsageType: String, Codable, Hashable, Sendable, CaseIterable {
-            case conversational_seconds = "conversational_seconds"
-            case voice_synthesis_seconds = "voice_synthesis_seconds"
-            case token_cnt = "token_cnt"
-        }
-        /// - Remark: Generated from `#/components/schemas/UsageLimits`.
-        public struct UsageLimitsPayload: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/UsageLimits/type`.
-            public var _type: Components.Schemas.UsageType
-            /// - Remark: Generated from `#/components/schemas/UsageLimits/value`.
-            public var value: Swift.Double
-            /// Creates a new `UsageLimitsPayload`.
+        /// A chat completion delta generated by streamed model responses.
+        ///
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponseDelta`.
+        public struct ChatCompletionStreamResponseDelta: Codable, Hashable, Sendable {
+            /// The contents of the chunk message.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponseDelta/content`.
+            public var content: Swift.String
+            /// The role of the author of this message.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponseDelta/role`.
+            @frozen public enum rolePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case system = "system"
+                case user = "user"
+                case assistant = "assistant"
+            }
+            /// The role of the author of this message.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponseDelta/role`.
+            public var role: Components.Schemas.ChatCompletionStreamResponseDelta.rolePayload
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponseDelta/tool_calls`.
+            public var tool_calls: [Components.Schemas.ChatCompletionMessageToolCallChunk]?
+            /// The refusal message generated by the model.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponseDelta/refusal`.
+            public var refusal: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionStreamResponseDelta/gabber`.
+            public var gabber: Components.Schemas.ChatCompletionStreamResponseDeltaGabber?
+            /// Creates a new `ChatCompletionStreamResponseDelta`.
             ///
             /// - Parameters:
-            ///   - _type:
-            ///   - value:
+            ///   - content: The contents of the chunk message.
+            ///   - role: The role of the author of this message.
+            ///   - tool_calls:
+            ///   - refusal: The refusal message generated by the model.
+            ///   - gabber:
             public init(
-                _type: Components.Schemas.UsageType,
-                value: Swift.Double
+                content: Swift.String,
+                role: Components.Schemas.ChatCompletionStreamResponseDelta.rolePayload,
+                tool_calls: [Components.Schemas.ChatCompletionMessageToolCallChunk]? = nil,
+                refusal: Swift.String? = nil,
+                gabber: Components.Schemas.ChatCompletionStreamResponseDeltaGabber? = nil
+            ) {
+                self.content = content
+                self.role = role
+                self.tool_calls = tool_calls
+                self.refusal = refusal
+                self.gabber = gabber
+            }
+            public enum CodingKeys: String, CodingKey {
+                case content
+                case role
+                case tool_calls
+                case refusal
+                case gabber
+            }
+        }
+        /// Text content
+        ///
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestMessageContentPartText`.
+        public struct ChatCompletionRequestMessageContentPartText: Codable, Hashable, Sendable {
+            /// The type of the content part.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestMessageContentPartText/type`.
+            @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case text = "text"
+            }
+            /// The type of the content part.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestMessageContentPartText/type`.
+            public var _type: Components.Schemas.ChatCompletionRequestMessageContentPartText._typePayload
+            /// The text content.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestMessageContentPartText/text`.
+            public var text: Swift.String
+            /// Creates a new `ChatCompletionRequestMessageContentPartText`.
+            ///
+            /// - Parameters:
+            ///   - _type: The type of the content part.
+            ///   - text: The text content.
+            public init(
+                _type: Components.Schemas.ChatCompletionRequestMessageContentPartText._typePayload,
+                text: Swift.String
             ) {
                 self._type = _type
-                self.value = value
+                self.text = text
             }
             public enum CodingKeys: String, CodingKey {
                 case _type = "type"
-                case value
+                case text
             }
         }
-        /// - Remark: Generated from `#/components/schemas/UsageLimits`.
-        public typealias UsageLimits = [Components.Schemas.UsageLimitsPayload]
-        /// - Remark: Generated from `#/components/schemas/UpdateUsageLimitsRequest`.
-        public struct UpdateUsageLimitsRequest: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/UpdateUsageLimitsRequest/limits`.
-            public var limits: Components.Schemas.UsageLimits
-            /// The ID of the human that the token is for. (this is typically your user id from your system)
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestMessageContentPartAudio`.
+        public struct ChatCompletionRequestMessageContentPartAudio: Codable, Hashable, Sendable {
+            /// Audio content type.
             ///
-            /// - Remark: Generated from `#/components/schemas/UpdateUsageLimitsRequest/human_id`.
-            public var human_id: Swift.String
-            /// Creates a new `UpdateUsageLimitsRequest`.
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestMessageContentPartAudio/type`.
+            @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case input_audio = "input_audio"
+            }
+            /// Audio content type.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestMessageContentPartAudio/type`.
+            public var _type: Components.Schemas.ChatCompletionRequestMessageContentPartAudio._typePayload
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestMessageContentPartAudio/input_audio`.
+            public struct input_audioPayload: Codable, Hashable, Sendable {
+                /// Base64 encoded audio data.
+                ///
+                /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestMessageContentPartAudio/input_audio/data`.
+                public var data: Swift.String
+                /// The format of the audio data.
+                ///
+                /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestMessageContentPartAudio/input_audio/format`.
+                @frozen public enum formatPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                    case wav = "wav"
+                    case mp3 = "mp3"
+                    case ogg = "ogg"
+                }
+                /// The format of the audio data.
+                ///
+                /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestMessageContentPartAudio/input_audio/format`.
+                public var format: Components.Schemas.ChatCompletionRequestMessageContentPartAudio.input_audioPayload.formatPayload
+                /// Creates a new `input_audioPayload`.
+                ///
+                /// - Parameters:
+                ///   - data: Base64 encoded audio data.
+                ///   - format: The format of the audio data.
+                public init(
+                    data: Swift.String,
+                    format: Components.Schemas.ChatCompletionRequestMessageContentPartAudio.input_audioPayload.formatPayload
+                ) {
+                    self.data = data
+                    self.format = format
+                }
+                public enum CodingKeys: String, CodingKey {
+                    case data
+                    case format
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestMessageContentPartAudio/input_audio`.
+            public var input_audio: Components.Schemas.ChatCompletionRequestMessageContentPartAudio.input_audioPayload
+            /// Creates a new `ChatCompletionRequestMessageContentPartAudio`.
             ///
             /// - Parameters:
-            ///   - limits:
-            ///   - human_id: The ID of the human that the token is for. (this is typically your user id from your system)
+            ///   - _type: Audio content type.
+            ///   - input_audio:
             public init(
-                limits: Components.Schemas.UsageLimits,
-                human_id: Swift.String
+                _type: Components.Schemas.ChatCompletionRequestMessageContentPartAudio._typePayload,
+                input_audio: Components.Schemas.ChatCompletionRequestMessageContentPartAudio.input_audioPayload
             ) {
-                self.limits = limits
-                self.human_id = human_id
+                self._type = _type
+                self.input_audio = input_audio
             }
             public enum CodingKeys: String, CodingKey {
-                case limits
-                case human_id
+                case _type = "type"
+                case input_audio
             }
         }
-        /// - Remark: Generated from `#/components/schemas/TokenRequest`.
-        public struct TokenRequest: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/TokenRequest/limits`.
-            public var limits: Components.Schemas.UsageLimits
-            /// The ID of the human that the token is for. (this is typically your user id from your system)
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestUserMessageContentPart`.
+        @frozen public enum ChatCompletionRequestUserMessageContentPart: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestUserMessageContentPart/case1`.
+            case ChatCompletionRequestMessageContentPartText(Components.Schemas.ChatCompletionRequestMessageContentPartText)
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestUserMessageContentPart/case2`.
+            case ChatCompletionRequestMessageContentPartAudio(Components.Schemas.ChatCompletionRequestMessageContentPartAudio)
+            public init(from decoder: any Decoder) throws {
+                var errors: [any Error] = []
+                do {
+                    self = .ChatCompletionRequestMessageContentPartText(try .init(from: decoder))
+                    return
+                } catch {
+                    errors.append(error)
+                }
+                do {
+                    self = .ChatCompletionRequestMessageContentPartAudio(try .init(from: decoder))
+                    return
+                } catch {
+                    errors.append(error)
+                }
+                throw Swift.DecodingError.failedToDecodeOneOfSchema(
+                    type: Self.self,
+                    codingPath: decoder.codingPath,
+                    errors: errors
+                )
+            }
+            public func encode(to encoder: any Encoder) throws {
+                switch self {
+                case let .ChatCompletionRequestMessageContentPartText(value):
+                    try value.encode(to: encoder)
+                case let .ChatCompletionRequestMessageContentPartAudio(value):
+                    try value.encode(to: encoder)
+                }
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestSystemMessage`.
+        public struct ChatCompletionRequestSystemMessage: Codable, Hashable, Sendable {
+            /// The contents of the message.
             ///
-            /// - Remark: Generated from `#/components/schemas/TokenRequest/human_id`.
-            public var human_id: Swift.String
-            /// Creates a new `TokenRequest`.
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestSystemMessage/content`.
+            @frozen public enum contentPayload: Codable, Hashable, Sendable {
+                /// The text contents of the message.
+                ///
+                /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestSystemMessage/content/case1`.
+                case case1(Swift.String)
+                /// An array of content parts with a defined type.
+                ///
+                /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestSystemMessage/content/case2`.
+                case case2([Components.Schemas.ChatCompletionRequestMessageContentPartText])
+                public init(from decoder: any Decoder) throws {
+                    var errors: [any Error] = []
+                    do {
+                        self = .case1(try decoder.decodeFromSingleValueContainer())
+                        return
+                    } catch {
+                        errors.append(error)
+                    }
+                    do {
+                        self = .case2(try decoder.decodeFromSingleValueContainer())
+                        return
+                    } catch {
+                        errors.append(error)
+                    }
+                    throw Swift.DecodingError.failedToDecodeOneOfSchema(
+                        type: Self.self,
+                        codingPath: decoder.codingPath,
+                        errors: errors
+                    )
+                }
+                public func encode(to encoder: any Encoder) throws {
+                    switch self {
+                    case let .case1(value):
+                        try encoder.encodeToSingleValueContainer(value)
+                    case let .case2(value):
+                        try encoder.encodeToSingleValueContainer(value)
+                    }
+                }
+            }
+            /// The contents of the message.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestSystemMessage/content`.
+            public var content: Components.Schemas.ChatCompletionRequestSystemMessage.contentPayload
+            /// The role of the messages author.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestSystemMessage/role`.
+            @frozen public enum rolePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case system = "system"
+            }
+            /// The role of the messages author.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestSystemMessage/role`.
+            public var role: Components.Schemas.ChatCompletionRequestSystemMessage.rolePayload
+            /// Creates a new `ChatCompletionRequestSystemMessage`.
             ///
             /// - Parameters:
-            ///   - limits:
-            ///   - human_id: The ID of the human that the token is for. (this is typically your user id from your system)
+            ///   - content: The contents of the message.
+            ///   - role: The role of the messages author.
             public init(
-                limits: Components.Schemas.UsageLimits,
-                human_id: Swift.String
+                content: Components.Schemas.ChatCompletionRequestSystemMessage.contentPayload,
+                role: Components.Schemas.ChatCompletionRequestSystemMessage.rolePayload
             ) {
-                self.limits = limits
-                self.human_id = human_id
+                self.content = content
+                self.role = role
             }
             public enum CodingKeys: String, CodingKey {
-                case limits
-                case human_id
+                case content
+                case role
             }
         }
-        /// - Remark: Generated from `#/components/schemas/WebhookBase`.
-        public struct WebhookBase: Codable, Hashable, Sendable {
-            /// The type of the event
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestUserMessage`.
+        public struct ChatCompletionRequestUserMessage: Codable, Hashable, Sendable {
+            /// The contents of the message.
             ///
-            /// - Remark: Generated from `#/components/schemas/WebhookBase/type`.
-            public var _type: Swift.String
-            /// The event-specific data
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestUserMessage/content`.
+            @frozen public enum contentPayload: Codable, Hashable, Sendable {
+                /// The text contents of the message.
+                ///
+                /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestUserMessage/content/case1`.
+                case case1(Swift.String)
+                /// An array of content parts with a defined type.
+                ///
+                /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestUserMessage/content/case2`.
+                case case2([Components.Schemas.ChatCompletionRequestUserMessageContentPart])
+                public init(from decoder: any Decoder) throws {
+                    var errors: [any Error] = []
+                    do {
+                        self = .case1(try decoder.decodeFromSingleValueContainer())
+                        return
+                    } catch {
+                        errors.append(error)
+                    }
+                    do {
+                        self = .case2(try decoder.decodeFromSingleValueContainer())
+                        return
+                    } catch {
+                        errors.append(error)
+                    }
+                    throw Swift.DecodingError.failedToDecodeOneOfSchema(
+                        type: Self.self,
+                        codingPath: decoder.codingPath,
+                        errors: errors
+                    )
+                }
+                public func encode(to encoder: any Encoder) throws {
+                    switch self {
+                    case let .case1(value):
+                        try encoder.encodeToSingleValueContainer(value)
+                    case let .case2(value):
+                        try encoder.encodeToSingleValueContainer(value)
+                    }
+                }
+            }
+            /// The contents of the message.
             ///
-            /// - Remark: Generated from `#/components/schemas/WebhookBase/payload`.
-            public struct payloadPayload: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestUserMessage/content`.
+            public var content: Components.Schemas.ChatCompletionRequestUserMessage.contentPayload
+            /// The role of the messages author.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestUserMessage/role`.
+            @frozen public enum rolePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case user = "user"
+            }
+            /// The role of the messages author.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestUserMessage/role`.
+            public var role: Components.Schemas.ChatCompletionRequestUserMessage.rolePayload
+            /// Creates a new `ChatCompletionRequestUserMessage`.
+            ///
+            /// - Parameters:
+            ///   - content: The contents of the message.
+            ///   - role: The role of the messages author.
+            public init(
+                content: Components.Schemas.ChatCompletionRequestUserMessage.contentPayload,
+                role: Components.Schemas.ChatCompletionRequestUserMessage.rolePayload
+            ) {
+                self.content = content
+                self.role = role
+            }
+            public enum CodingKeys: String, CodingKey {
+                case content
+                case role
+            }
+        }
+        /// Messages sent by the model in response to user messages.
+        ///
+        ///
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestAssistantMessage`.
+        public struct ChatCompletionRequestAssistantMessage: Codable, Hashable, Sendable {
+            /// The contents of the message.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestAssistantMessage/content`.
+            @frozen public enum contentPayload: Codable, Hashable, Sendable {
+                /// The text contents of the message.
+                ///
+                /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestAssistantMessage/content/case1`.
+                case case1(Swift.String)
+                /// An array of content parts with a defined type.
+                ///
+                /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestAssistantMessage/content/case2`.
+                case case2([Components.Schemas.ChatCompletionRequestMessageContentPartText])
+                public init(from decoder: any Decoder) throws {
+                    var errors: [any Error] = []
+                    do {
+                        self = .case1(try decoder.decodeFromSingleValueContainer())
+                        return
+                    } catch {
+                        errors.append(error)
+                    }
+                    do {
+                        self = .case2(try decoder.decodeFromSingleValueContainer())
+                        return
+                    } catch {
+                        errors.append(error)
+                    }
+                    throw Swift.DecodingError.failedToDecodeOneOfSchema(
+                        type: Self.self,
+                        codingPath: decoder.codingPath,
+                        errors: errors
+                    )
+                }
+                public func encode(to encoder: any Encoder) throws {
+                    switch self {
+                    case let .case1(value):
+                        try encoder.encodeToSingleValueContainer(value)
+                    case let .case2(value):
+                        try encoder.encodeToSingleValueContainer(value)
+                    }
+                }
+            }
+            /// The contents of the message.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestAssistantMessage/content`.
+            public var content: Components.Schemas.ChatCompletionRequestAssistantMessage.contentPayload?
+            /// The refusal message by the assistant.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestAssistantMessage/refusal`.
+            public var refusal: Swift.String?
+            /// The role of the messages author, in this case `assistant`.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestAssistantMessage/role`.
+            @frozen public enum rolePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case assistant = "assistant"
+            }
+            /// The role of the messages author, in this case `assistant`.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestAssistantMessage/role`.
+            public var role: Components.Schemas.ChatCompletionRequestAssistantMessage.rolePayload
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestAssistantMessage/tool_calls`.
+            public var tool_calls: Components.Schemas.ChatCompletionMessageToolCalls?
+            /// Creates a new `ChatCompletionRequestAssistantMessage`.
+            ///
+            /// - Parameters:
+            ///   - content: The contents of the message.
+            ///   - refusal: The refusal message by the assistant.
+            ///   - role: The role of the messages author, in this case `assistant`.
+            ///   - tool_calls:
+            public init(
+                content: Components.Schemas.ChatCompletionRequestAssistantMessage.contentPayload? = nil,
+                refusal: Swift.String? = nil,
+                role: Components.Schemas.ChatCompletionRequestAssistantMessage.rolePayload,
+                tool_calls: Components.Schemas.ChatCompletionMessageToolCalls? = nil
+            ) {
+                self.content = content
+                self.refusal = refusal
+                self.role = role
+                self.tool_calls = tool_calls
+            }
+            public enum CodingKeys: String, CodingKey {
+                case content
+                case refusal
+                case role
+                case tool_calls
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestToolMessage`.
+        public struct ChatCompletionRequestToolMessage: Codable, Hashable, Sendable {
+            /// The role of the messages author, in this case `tool`.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestToolMessage/role`.
+            @frozen public enum rolePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case tool = "tool"
+            }
+            /// The role of the messages author, in this case `tool`.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestToolMessage/role`.
+            public var role: Components.Schemas.ChatCompletionRequestToolMessage.rolePayload
+            /// The contents of the message.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestToolMessage/content`.
+            @frozen public enum contentPayload: Codable, Hashable, Sendable {
+                /// The text contents of the message.
+                ///
+                /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestToolMessage/content/case1`.
+                case case1(Swift.String)
+                /// An array of content parts with a defined type.
+                ///
+                /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestToolMessage/content/case2`.
+                case case2([Components.Schemas.ChatCompletionRequestMessageContentPartText])
+                public init(from decoder: any Decoder) throws {
+                    var errors: [any Error] = []
+                    do {
+                        self = .case1(try decoder.decodeFromSingleValueContainer())
+                        return
+                    } catch {
+                        errors.append(error)
+                    }
+                    do {
+                        self = .case2(try decoder.decodeFromSingleValueContainer())
+                        return
+                    } catch {
+                        errors.append(error)
+                    }
+                    throw Swift.DecodingError.failedToDecodeOneOfSchema(
+                        type: Self.self,
+                        codingPath: decoder.codingPath,
+                        errors: errors
+                    )
+                }
+                public func encode(to encoder: any Encoder) throws {
+                    switch self {
+                    case let .case1(value):
+                        try encoder.encodeToSingleValueContainer(value)
+                    case let .case2(value):
+                        try encoder.encodeToSingleValueContainer(value)
+                    }
+                }
+            }
+            /// The contents of the message.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestToolMessage/content`.
+            public var content: Components.Schemas.ChatCompletionRequestToolMessage.contentPayload
+            /// Tool call that this message is responding to.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestToolMessage/tool_call_id`.
+            public var tool_call_id: Swift.String
+            /// Creates a new `ChatCompletionRequestToolMessage`.
+            ///
+            /// - Parameters:
+            ///   - role: The role of the messages author, in this case `tool`.
+            ///   - content: The contents of the message.
+            ///   - tool_call_id: Tool call that this message is responding to.
+            public init(
+                role: Components.Schemas.ChatCompletionRequestToolMessage.rolePayload,
+                content: Components.Schemas.ChatCompletionRequestToolMessage.contentPayload,
+                tool_call_id: Swift.String
+            ) {
+                self.role = role
+                self.content = content
+                self.tool_call_id = tool_call_id
+            }
+            public enum CodingKeys: String, CodingKey {
+                case role
+                case content
+                case tool_call_id
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestMessage`.
+        @frozen public enum ChatCompletionRequestMessage: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestMessage/case1`.
+            case ChatCompletionRequestSystemMessage(Components.Schemas.ChatCompletionRequestSystemMessage)
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestMessage/case2`.
+            case ChatCompletionRequestUserMessage(Components.Schemas.ChatCompletionRequestUserMessage)
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestMessage/case3`.
+            case ChatCompletionRequestAssistantMessage(Components.Schemas.ChatCompletionRequestAssistantMessage)
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionRequestMessage/case4`.
+            case ChatCompletionRequestToolMessage(Components.Schemas.ChatCompletionRequestToolMessage)
+            public init(from decoder: any Decoder) throws {
+                var errors: [any Error] = []
+                do {
+                    self = .ChatCompletionRequestSystemMessage(try .init(from: decoder))
+                    return
+                } catch {
+                    errors.append(error)
+                }
+                do {
+                    self = .ChatCompletionRequestUserMessage(try .init(from: decoder))
+                    return
+                } catch {
+                    errors.append(error)
+                }
+                do {
+                    self = .ChatCompletionRequestAssistantMessage(try .init(from: decoder))
+                    return
+                } catch {
+                    errors.append(error)
+                }
+                do {
+                    self = .ChatCompletionRequestToolMessage(try .init(from: decoder))
+                    return
+                } catch {
+                    errors.append(error)
+                }
+                throw Swift.DecodingError.failedToDecodeOneOfSchema(
+                    type: Self.self,
+                    codingPath: decoder.codingPath,
+                    errors: errors
+                )
+            }
+            public func encode(to encoder: any Encoder) throws {
+                switch self {
+                case let .ChatCompletionRequestSystemMessage(value):
+                    try value.encode(to: encoder)
+                case let .ChatCompletionRequestUserMessage(value):
+                    try value.encode(to: encoder)
+                case let .ChatCompletionRequestAssistantMessage(value):
+                    try value.encode(to: encoder)
+                case let .ChatCompletionRequestToolMessage(value):
+                    try value.encode(to: encoder)
+                }
+            }
+        }
+        /// A chat completion message generated by the model.
+        ///
+        /// - Remark: Generated from `#/components/schemas/ChatCompletionResponseMessage`.
+        public struct ChatCompletionResponseMessage: Codable, Hashable, Sendable {
+            /// The contents of the message.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionResponseMessage/content`.
+            public var content: Swift.String?
+            /// The refusal message generated by the model.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionResponseMessage/refusal`.
+            public var refusal: Swift.String?
+            /// The role of the author of this message.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionResponseMessage/role`.
+            @frozen public enum rolePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case assistant = "assistant"
+            }
+            /// The role of the author of this message.
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionResponseMessage/role`.
+            public var role: Components.Schemas.ChatCompletionResponseMessage.rolePayload
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionResponseMessage/tool_calls`.
+            public var tool_calls: [Components.Schemas.ChatCompletionMessageToolCall]?
+            /// If the audio output modality is requested, this object contains data
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionResponseMessage/gabber`.
+            public struct gabberPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/ChatCompletionResponseMessage/gabber/voice`.
+                public struct voicePayload: Codable, Hashable, Sendable {
+                    /// This will be the URL to the audio file
+                    ///
+                    /// - Remark: Generated from `#/components/schemas/ChatCompletionResponseMessage/gabber/voice/audio_url`.
+                    public var audio_url: Swift.String
+                    /// The Unix timestamp (in seconds) when the audio file expires
+                    ///
+                    /// - Remark: Generated from `#/components/schemas/ChatCompletionResponseMessage/gabber/voice/expires_at`.
+                    public var expires_at: Swift.Int
+                    /// Creates a new `voicePayload`.
+                    ///
+                    /// - Parameters:
+                    ///   - audio_url: This will be the URL to the audio file
+                    ///   - expires_at: The Unix timestamp (in seconds) when the audio file expires
+                    public init(
+                        audio_url: Swift.String,
+                        expires_at: Swift.Int
+                    ) {
+                        self.audio_url = audio_url
+                        self.expires_at = expires_at
+                    }
+                    public enum CodingKeys: String, CodingKey {
+                        case audio_url
+                        case expires_at
+                    }
+                }
+                /// - Remark: Generated from `#/components/schemas/ChatCompletionResponseMessage/gabber/voice`.
+                public var voice: Components.Schemas.ChatCompletionResponseMessage.gabberPayload.voicePayload?
+                /// Creates a new `gabberPayload`.
+                ///
+                /// - Parameters:
+                ///   - voice:
+                public init(voice: Components.Schemas.ChatCompletionResponseMessage.gabberPayload.voicePayload? = nil) {
+                    self.voice = voice
+                }
+                public enum CodingKeys: String, CodingKey {
+                    case voice
+                }
+            }
+            /// If the audio output modality is requested, this object contains data
+            ///
+            /// - Remark: Generated from `#/components/schemas/ChatCompletionResponseMessage/gabber`.
+            public var gabber: Components.Schemas.ChatCompletionResponseMessage.gabberPayload?
+            /// Creates a new `ChatCompletionResponseMessage`.
+            ///
+            /// - Parameters:
+            ///   - content: The contents of the message.
+            ///   - refusal: The refusal message generated by the model.
+            ///   - role: The role of the author of this message.
+            ///   - tool_calls:
+            ///   - gabber: If the audio output modality is requested, this object contains data
+            public init(
+                content: Swift.String? = nil,
+                refusal: Swift.String? = nil,
+                role: Components.Schemas.ChatCompletionResponseMessage.rolePayload,
+                tool_calls: [Components.Schemas.ChatCompletionMessageToolCall]? = nil,
+                gabber: Components.Schemas.ChatCompletionResponseMessage.gabberPayload? = nil
+            ) {
+                self.content = content
+                self.refusal = refusal
+                self.role = role
+                self.tool_calls = tool_calls
+                self.gabber = gabber
+            }
+            public enum CodingKeys: String, CodingKey {
+                case content
+                case refusal
+                case role
+                case tool_calls
+                case gabber
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ToolDefinitionParameter`.
+        public struct ToolDefinitionParameter: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ToolDefinitionParameter/name`.
+            public var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/ToolDefinitionParameter/description`.
+            public var description: Swift.String
+            /// - Remark: Generated from `#/components/schemas/ToolDefinitionParameter/type`.
+            @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case string = "string"
+                case number = "number"
+                case boolean = "boolean"
+                case object = "object"
+                case array = "array"
+            }
+            /// - Remark: Generated from `#/components/schemas/ToolDefinitionParameter/type`.
+            public var _type: Components.Schemas.ToolDefinitionParameter._typePayload
+            /// - Remark: Generated from `#/components/schemas/ToolDefinitionParameter/required`.
+            public var required: Swift.Bool
+            /// - Remark: Generated from `#/components/schemas/ToolDefinitionParameter/default`.
+            public var _default: Swift.String?
+            /// Creates a new `ToolDefinitionParameter`.
+            ///
+            /// - Parameters:
+            ///   - name:
+            ///   - description:
+            ///   - _type:
+            ///   - required:
+            ///   - _default:
+            public init(
+                name: Swift.String,
+                description: Swift.String,
+                _type: Components.Schemas.ToolDefinitionParameter._typePayload,
+                required: Swift.Bool,
+                _default: Swift.String? = nil
+            ) {
+                self.name = name
+                self.description = description
+                self._type = _type
+                self.required = required
+                self._default = _default
+            }
+            public enum CodingKeys: String, CodingKey {
+                case name
+                case description
+                case _type = "type"
+                case required
+                case _default = "default"
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ToolDefinitionCallSettingDestinationWebRequest`.
+        public struct ToolDefinitionCallSettingDestinationWebRequest: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ToolDefinitionCallSettingDestinationWebRequest/type`.
+            @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case web_request = "web_request"
+            }
+            /// - Remark: Generated from `#/components/schemas/ToolDefinitionCallSettingDestinationWebRequest/type`.
+            public var _type: Components.Schemas.ToolDefinitionCallSettingDestinationWebRequest._typePayload
+            /// - Remark: Generated from `#/components/schemas/ToolDefinitionCallSettingDestinationWebRequest/url`.
+            public var url: Swift.String
+            /// Creates a new `ToolDefinitionCallSettingDestinationWebRequest`.
+            ///
+            /// - Parameters:
+            ///   - _type:
+            ///   - url:
+            public init(
+                _type: Components.Schemas.ToolDefinitionCallSettingDestinationWebRequest._typePayload,
+                url: Swift.String
+            ) {
+                self._type = _type
+                self.url = url
+            }
+            public enum CodingKeys: String, CodingKey {
+                case _type = "type"
+                case url
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ToolDefinitionCallSettingDestinationClientApp`.
+        public struct ToolDefinitionCallSettingDestinationClientApp: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ToolDefinitionCallSettingDestinationClientApp/type`.
+            @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case client_app = "client_app"
+            }
+            /// - Remark: Generated from `#/components/schemas/ToolDefinitionCallSettingDestinationClientApp/type`.
+            public var _type: Components.Schemas.ToolDefinitionCallSettingDestinationClientApp._typePayload
+            /// Creates a new `ToolDefinitionCallSettingDestinationClientApp`.
+            ///
+            /// - Parameters:
+            ///   - _type:
+            public init(_type: Components.Schemas.ToolDefinitionCallSettingDestinationClientApp._typePayload) {
+                self._type = _type
+            }
+            public enum CodingKeys: String, CodingKey {
+                case _type = "type"
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ToolDefinitionCallSettings`.
+        public struct ToolDefinitionCallSettings: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ToolDefinitionCallSettings/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/ToolDefinitionCallSettings/destination`.
+            @frozen public enum destinationPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/ToolDefinitionCallSettings/destination/case1`.
+                case ToolDefinitionCallSettingDestinationWebRequest(Components.Schemas.ToolDefinitionCallSettingDestinationWebRequest)
+                public init(from decoder: any Decoder) throws {
+                    var errors: [any Error] = []
+                    do {
+                        self = .ToolDefinitionCallSettingDestinationWebRequest(try .init(from: decoder))
+                        return
+                    } catch {
+                        errors.append(error)
+                    }
+                    throw Swift.DecodingError.failedToDecodeOneOfSchema(
+                        type: Self.self,
+                        codingPath: decoder.codingPath,
+                        errors: errors
+                    )
+                }
+                public func encode(to encoder: any Encoder) throws {
+                    switch self {
+                    case let .ToolDefinitionCallSettingDestinationWebRequest(value):
+                        try value.encode(to: encoder)
+                    }
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/ToolDefinitionCallSettings/destination`.
+            public var destination: Components.Schemas.ToolDefinitionCallSettings.destinationPayload
+            /// Creates a new `ToolDefinitionCallSettings`.
+            ///
+            /// - Parameters:
+            ///   - id:
+            ///   - destination:
+            public init(
+                id: Swift.String,
+                destination: Components.Schemas.ToolDefinitionCallSettings.destinationPayload
+            ) {
+                self.id = id
+                self.destination = destination
+            }
+            public enum CodingKeys: String, CodingKey {
+                case id
+                case destination
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ToolDefinition`.
+        public struct ToolDefinition: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ToolDefinition/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/ToolDefinition/name`.
+            public var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/ToolDefinition/description`.
+            public var description: Swift.String
+            /// - Remark: Generated from `#/components/schemas/ToolDefinition/parameters`.
+            public var parameters: [Components.Schemas.ToolDefinitionParameter]
+            /// - Remark: Generated from `#/components/schemas/ToolDefinition/call_settings`.
+            public var call_settings: Components.Schemas.ToolDefinitionCallSettings
+            /// Creates a new `ToolDefinition`.
+            ///
+            /// - Parameters:
+            ///   - id:
+            ///   - name:
+            ///   - description:
+            ///   - parameters:
+            ///   - call_settings:
+            public init(
+                id: Swift.String,
+                name: Swift.String,
+                description: Swift.String,
+                parameters: [Components.Schemas.ToolDefinitionParameter],
+                call_settings: Components.Schemas.ToolDefinitionCallSettings
+            ) {
+                self.id = id
+                self.name = name
+                self.description = description
+                self.parameters = parameters
+                self.call_settings = call_settings
+            }
+            public enum CodingKeys: String, CodingKey {
+                case id
+                case name
+                case description
+                case parameters
+                case call_settings
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CreateToolDefinitionCallSettings`.
+        public struct CreateToolDefinitionCallSettings: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CreateToolDefinitionCallSettings/destination`.
+            @frozen public enum destinationPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/CreateToolDefinitionCallSettings/destination/case1`.
+                case ToolDefinitionCallSettingDestinationWebRequest(Components.Schemas.ToolDefinitionCallSettingDestinationWebRequest)
+                /// - Remark: Generated from `#/components/schemas/CreateToolDefinitionCallSettings/destination/case2`.
+                case ToolDefinitionCallSettingDestinationClientApp(Components.Schemas.ToolDefinitionCallSettingDestinationClientApp)
+                public init(from decoder: any Decoder) throws {
+                    var errors: [any Error] = []
+                    do {
+                        self = .ToolDefinitionCallSettingDestinationWebRequest(try .init(from: decoder))
+                        return
+                    } catch {
+                        errors.append(error)
+                    }
+                    do {
+                        self = .ToolDefinitionCallSettingDestinationClientApp(try .init(from: decoder))
+                        return
+                    } catch {
+                        errors.append(error)
+                    }
+                    throw Swift.DecodingError.failedToDecodeOneOfSchema(
+                        type: Self.self,
+                        codingPath: decoder.codingPath,
+                        errors: errors
+                    )
+                }
+                public func encode(to encoder: any Encoder) throws {
+                    switch self {
+                    case let .ToolDefinitionCallSettingDestinationWebRequest(value):
+                        try value.encode(to: encoder)
+                    case let .ToolDefinitionCallSettingDestinationClientApp(value):
+                        try value.encode(to: encoder)
+                    }
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/CreateToolDefinitionCallSettings/destination`.
+            public var destination: Components.Schemas.CreateToolDefinitionCallSettings.destinationPayload
+            /// Creates a new `CreateToolDefinitionCallSettings`.
+            ///
+            /// - Parameters:
+            ///   - destination:
+            public init(destination: Components.Schemas.CreateToolDefinitionCallSettings.destinationPayload) {
+                self.destination = destination
+            }
+            public enum CodingKeys: String, CodingKey {
+                case destination
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CreateToolDefinitionRequest`.
+        public struct CreateToolDefinitionRequest: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CreateToolDefinitionRequest/name`.
+            public var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CreateToolDefinitionRequest/description`.
+            public var description: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CreateToolDefinitionRequest/parameters`.
+            public var parameters: [Components.Schemas.ToolDefinitionParameter]
+            /// - Remark: Generated from `#/components/schemas/CreateToolDefinitionRequest/call_settings`.
+            public var call_settings: Components.Schemas.CreateToolDefinitionCallSettings
+            /// Creates a new `CreateToolDefinitionRequest`.
+            ///
+            /// - Parameters:
+            ///   - name:
+            ///   - description:
+            ///   - parameters:
+            ///   - call_settings:
+            public init(
+                name: Swift.String,
+                description: Swift.String,
+                parameters: [Components.Schemas.ToolDefinitionParameter],
+                call_settings: Components.Schemas.CreateToolDefinitionCallSettings
+            ) {
+                self.name = name
+                self.description = description
+                self.parameters = parameters
+                self.call_settings = call_settings
+            }
+            public enum CodingKeys: String, CodingKey {
+                case name
+                case description
+                case parameters
+                case call_settings
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ToolCallResult`.
+        public struct ToolCallResult: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ToolCallResult/tool_call_id`.
+            public var tool_call_id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/ToolCallResult/tool_definition_id`.
+            public var tool_definition_id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/ToolCallResult/response_string`.
+            public var response_string: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/ToolCallResult/error_message`.
+            public var error_message: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/ToolCallResult/code`.
+            public var code: Swift.Int
+            /// Creates a new `ToolCallResult`.
+            ///
+            /// - Parameters:
+            ///   - tool_call_id:
+            ///   - tool_definition_id:
+            ///   - response_string:
+            ///   - error_message:
+            ///   - code:
+            public init(
+                tool_call_id: Swift.String,
+                tool_definition_id: Swift.String,
+                response_string: Swift.String? = nil,
+                error_message: Swift.String? = nil,
+                code: Swift.Int
+            ) {
+                self.tool_call_id = tool_call_id
+                self.tool_definition_id = tool_definition_id
+                self.response_string = response_string
+                self.error_message = error_message
+                self.code = code
+            }
+            public enum CodingKeys: String, CodingKey {
+                case tool_call_id
+                case tool_definition_id
+                case response_string
+                case error_message
+                case code
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/WebhookMessageUsageTrackedPayload`.
+        public struct WebhookMessageUsageTrackedPayload: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageUsageTrackedPayload/value1`.
+            public var value1: Components.Schemas.Usage
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageUsageTrackedPayload/value2`.
+            public struct Value2Payload: Codable, Hashable, Sendable {
+                /// Use `human` instead.
+                ///
+                /// - Remark: Generated from `#/components/schemas/WebhookMessageUsageTrackedPayload/value2/human_id`.
+                @available(*, deprecated)
+                public var human_id: Swift.String?
+                /// - Remark: Generated from `#/components/schemas/WebhookMessageUsageTrackedPayload/value2/extra`.
+                public struct extraPayload: Codable, Hashable, Sendable {
+                    /// A container of undocumented properties.
+                    public var additionalProperties: OpenAPIRuntime.OpenAPIObjectContainer
+                    /// Creates a new `extraPayload`.
+                    ///
+                    /// - Parameters:
+                    ///   - additionalProperties: A container of undocumented properties.
+                    public init(additionalProperties: OpenAPIRuntime.OpenAPIObjectContainer = .init()) {
+                        self.additionalProperties = additionalProperties
+                    }
+                    public init(from decoder: any Decoder) throws {
+                        additionalProperties = try decoder.decodeAdditionalProperties(knownKeys: [])
+                    }
+                    public func encode(to encoder: any Encoder) throws {
+                        try encoder.encodeAdditionalProperties(additionalProperties)
+                    }
+                }
+                /// - Remark: Generated from `#/components/schemas/WebhookMessageUsageTrackedPayload/value2/extra`.
+                public var extra: Components.Schemas.WebhookMessageUsageTrackedPayload.Value2Payload.extraPayload?
+                /// Creates a new `Value2Payload`.
+                ///
+                /// - Parameters:
+                ///   - human_id: Use `human` instead.
+                ///   - extra:
+                public init(
+                    human_id: Swift.String? = nil,
+                    extra: Components.Schemas.WebhookMessageUsageTrackedPayload.Value2Payload.extraPayload? = nil
+                ) {
+                    self.human_id = human_id
+                    self.extra = extra
+                }
+                public enum CodingKeys: String, CodingKey {
+                    case human_id
+                    case extra
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageUsageTrackedPayload/value2`.
+            public var value2: Components.Schemas.WebhookMessageUsageTrackedPayload.Value2Payload
+            /// Creates a new `WebhookMessageUsageTrackedPayload`.
+            ///
+            /// - Parameters:
+            ///   - value1:
+            ///   - value2:
+            public init(
+                value1: Components.Schemas.Usage,
+                value2: Components.Schemas.WebhookMessageUsageTrackedPayload.Value2Payload
+            ) {
+                self.value1 = value1
+                self.value2 = value2
+            }
+            public init(from decoder: any Decoder) throws {
+                self.value1 = try .init(from: decoder)
+                self.value2 = try .init(from: decoder)
+            }
+            public func encode(to encoder: any Encoder) throws {
+                try self.value1.encode(to: encoder)
+                try self.value2.encode(to: encoder)
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/WebhookMessageUsageTracked`.
+        public struct WebhookMessageUsageTracked: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageUsageTracked/type`.
+            @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case usage_period_tracked = "usage.tracked"
+            }
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageUsageTracked/type`.
+            public var _type: Components.Schemas.WebhookMessageUsageTracked._typePayload
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageUsageTracked/payload`.
+            public var payload: Components.Schemas.WebhookMessageUsageTrackedPayload
+            /// Creates a new `WebhookMessageUsageTracked`.
+            ///
+            /// - Parameters:
+            ///   - _type:
+            ///   - payload:
+            public init(
+                _type: Components.Schemas.WebhookMessageUsageTracked._typePayload,
+                payload: Components.Schemas.WebhookMessageUsageTrackedPayload
+            ) {
+                self._type = _type
+                self.payload = payload
+            }
+            public enum CodingKeys: String, CodingKey {
+                case _type = "type"
+                case payload
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/WebhookMessageRealtimeSessionStateChangedPayload`.
+        public struct WebhookMessageRealtimeSessionStateChangedPayload: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageRealtimeSessionStateChangedPayload/previous_realtime_session`.
+            public struct previous_realtime_sessionPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/WebhookMessageRealtimeSessionStateChangedPayload/previous_realtime_session/id`.
+                public var id: Swift.String?
+                /// - Remark: Generated from `#/components/schemas/WebhookMessageRealtimeSessionStateChangedPayload/previous_realtime_session/state`.
+                @frozen public enum statePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                    case not_started = "not_started"
+                    case in_progress = "in_progress"
+                    case ended = "ended"
+                    case time_limit_exceeded = "time_limit_exceeded"
+                }
+                /// - Remark: Generated from `#/components/schemas/WebhookMessageRealtimeSessionStateChangedPayload/previous_realtime_session/state`.
+                public var state: Components.Schemas.WebhookMessageRealtimeSessionStateChangedPayload.previous_realtime_sessionPayload.statePayload?
+                /// Creates a new `previous_realtime_sessionPayload`.
+                ///
+                /// - Parameters:
+                ///   - id:
+                ///   - state:
+                public init(
+                    id: Swift.String? = nil,
+                    state: Components.Schemas.WebhookMessageRealtimeSessionStateChangedPayload.previous_realtime_sessionPayload.statePayload? = nil
+                ) {
+                    self.id = id
+                    self.state = state
+                }
+                public enum CodingKeys: String, CodingKey {
+                    case id
+                    case state
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageRealtimeSessionStateChangedPayload/previous_realtime_session`.
+            public var previous_realtime_session: Components.Schemas.WebhookMessageRealtimeSessionStateChangedPayload.previous_realtime_sessionPayload?
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageRealtimeSessionStateChangedPayload/current_realtime_session`.
+            public struct current_realtime_sessionPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/WebhookMessageRealtimeSessionStateChangedPayload/current_realtime_session/id`.
+                public var id: Swift.String?
+                /// - Remark: Generated from `#/components/schemas/WebhookMessageRealtimeSessionStateChangedPayload/current_realtime_session/state`.
+                @frozen public enum statePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                    case not_started = "not_started"
+                    case in_progress = "in_progress"
+                    case ended = "ended"
+                }
+                /// - Remark: Generated from `#/components/schemas/WebhookMessageRealtimeSessionStateChangedPayload/current_realtime_session/state`.
+                public var state: Components.Schemas.WebhookMessageRealtimeSessionStateChangedPayload.current_realtime_sessionPayload.statePayload?
+                /// Creates a new `current_realtime_sessionPayload`.
+                ///
+                /// - Parameters:
+                ///   - id:
+                ///   - state:
+                public init(
+                    id: Swift.String? = nil,
+                    state: Components.Schemas.WebhookMessageRealtimeSessionStateChangedPayload.current_realtime_sessionPayload.statePayload? = nil
+                ) {
+                    self.id = id
+                    self.state = state
+                }
+                public enum CodingKeys: String, CodingKey {
+                    case id
+                    case state
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageRealtimeSessionStateChangedPayload/current_realtime_session`.
+            public var current_realtime_session: Components.Schemas.WebhookMessageRealtimeSessionStateChangedPayload.current_realtime_sessionPayload?
+            /// Creates a new `WebhookMessageRealtimeSessionStateChangedPayload`.
+            ///
+            /// - Parameters:
+            ///   - previous_realtime_session:
+            ///   - current_realtime_session:
+            public init(
+                previous_realtime_session: Components.Schemas.WebhookMessageRealtimeSessionStateChangedPayload.previous_realtime_sessionPayload? = nil,
+                current_realtime_session: Components.Schemas.WebhookMessageRealtimeSessionStateChangedPayload.current_realtime_sessionPayload? = nil
+            ) {
+                self.previous_realtime_session = previous_realtime_session
+                self.current_realtime_session = current_realtime_session
+            }
+            public enum CodingKeys: String, CodingKey {
+                case previous_realtime_session
+                case current_realtime_session
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/WebhookMessageRealtimeSessionStateChanged`.
+        public struct WebhookMessageRealtimeSessionStateChanged: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageRealtimeSessionStateChanged/type`.
+            @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case realtime_session_period_state_changed = "realtime_session.state_changed"
+            }
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageRealtimeSessionStateChanged/type`.
+            public var _type: Components.Schemas.WebhookMessageRealtimeSessionStateChanged._typePayload
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageRealtimeSessionStateChanged/payload`.
+            public var payload: Components.Schemas.WebhookMessageRealtimeSessionStateChangedPayload
+            /// Creates a new `WebhookMessageRealtimeSessionStateChanged`.
+            ///
+            /// - Parameters:
+            ///   - _type:
+            ///   - payload:
+            public init(
+                _type: Components.Schemas.WebhookMessageRealtimeSessionStateChanged._typePayload,
+                payload: Components.Schemas.WebhookMessageRealtimeSessionStateChangedPayload
+            ) {
+                self._type = _type
+                self.payload = payload
+            }
+            public enum CodingKeys: String, CodingKey {
+                case _type = "type"
+                case payload
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/WebhookMessageRealtimeSessionMessageCommittedPayload`.
+        public struct WebhookMessageRealtimeSessionMessageCommittedPayload: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageRealtimeSessionMessageCommittedPayload/message`.
+            public var message: Components.Schemas.ContextMessage
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageRealtimeSessionMessageCommittedPayload/realtime_session_id`.
+            public var realtime_session_id: Swift.String?
+            /// Creates a new `WebhookMessageRealtimeSessionMessageCommittedPayload`.
+            ///
+            /// - Parameters:
+            ///   - message:
+            ///   - realtime_session_id:
+            public init(
+                message: Components.Schemas.ContextMessage,
+                realtime_session_id: Swift.String? = nil
+            ) {
+                self.message = message
+                self.realtime_session_id = realtime_session_id
+            }
+            public enum CodingKeys: String, CodingKey {
+                case message
+                case realtime_session_id
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/WebhookMessageRealtimeSessionMessageCommitted`.
+        public struct WebhookMessageRealtimeSessionMessageCommitted: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageRealtimeSessionMessageCommitted/type`.
+            @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case realtime_session_period_message_committed = "realtime_session.message_committed"
+            }
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageRealtimeSessionMessageCommitted/type`.
+            public var _type: Components.Schemas.WebhookMessageRealtimeSessionMessageCommitted._typePayload
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageRealtimeSessionMessageCommitted/payload`.
+            public var payload: Components.Schemas.WebhookMessageRealtimeSessionMessageCommittedPayload
+            /// Creates a new `WebhookMessageRealtimeSessionMessageCommitted`.
+            ///
+            /// - Parameters:
+            ///   - _type:
+            ///   - payload:
+            public init(
+                _type: Components.Schemas.WebhookMessageRealtimeSessionMessageCommitted._typePayload,
+                payload: Components.Schemas.WebhookMessageRealtimeSessionMessageCommittedPayload
+            ) {
+                self._type = _type
+                self.payload = payload
+            }
+            public enum CodingKeys: String, CodingKey {
+                case _type = "type"
+                case payload
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCallFunction`.
+        public struct WebhookMessageToolCallFunction: Codable, Hashable, Sendable {
+            /// The name of the function to call.
+            ///
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCallFunction/name`.
+            public var name: Swift.String
+            /// The named arguments to call the function with the function was called with
+            ///
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCallFunction/arguments`.
+            public struct argumentsPayload: Codable, Hashable, Sendable {
                 /// A container of undocumented properties.
                 public var additionalProperties: OpenAPIRuntime.OpenAPIObjectContainer
-                /// Creates a new `payloadPayload`.
+                /// Creates a new `argumentsPayload`.
                 ///
                 /// - Parameters:
                 ///   - additionalProperties: A container of undocumented properties.
@@ -1100,285 +5359,283 @@ public enum Components {
                     try encoder.encodeAdditionalProperties(additionalProperties)
                 }
             }
-            /// The event-specific data
+            /// The named arguments to call the function with the function was called with
             ///
-            /// - Remark: Generated from `#/components/schemas/WebhookBase/payload`.
-            public var payload: Components.Schemas.WebhookBase.payloadPayload
-            /// The timestamp of the event. This can be used for security purposes to reject old events and prevent replay attacks
-            ///
-            /// - Remark: Generated from `#/components/schemas/WebhookBase/timestamp`.
-            public var timestamp: Foundation.Date
-            /// Creates a new `WebhookBase`.
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCallFunction/arguments`.
+            public var arguments: Components.Schemas.WebhookMessageToolCallFunction.argumentsPayload
+            /// Creates a new `WebhookMessageToolCallFunction`.
             ///
             /// - Parameters:
-            ///   - _type: The type of the event
-            ///   - payload: The event-specific data
-            ///   - timestamp: The timestamp of the event. This can be used for security purposes to reject old events and prevent replay attacks
+            ///   - name: The name of the function to call.
+            ///   - arguments: The named arguments to call the function with the function was called with
             public init(
-                _type: Swift.String,
-                payload: Components.Schemas.WebhookBase.payloadPayload,
-                timestamp: Foundation.Date
+                name: Swift.String,
+                arguments: Components.Schemas.WebhookMessageToolCallFunction.argumentsPayload
+            ) {
+                self.name = name
+                self.arguments = arguments
+            }
+            public enum CodingKeys: String, CodingKey {
+                case name
+                case arguments
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCall`.
+        public struct WebhookMessageToolCall: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCall/id`.
+            public var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCall/tool_definition_id`.
+            public var tool_definition_id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCall/function`.
+            public var function: Components.Schemas.WebhookMessageToolCallFunction
+            /// Creates a new `WebhookMessageToolCall`.
+            ///
+            /// - Parameters:
+            ///   - id:
+            ///   - tool_definition_id:
+            ///   - function:
+            public init(
+                id: Swift.String,
+                tool_definition_id: Swift.String,
+                function: Components.Schemas.WebhookMessageToolCallFunction
+            ) {
+                self.id = id
+                self.tool_definition_id = tool_definition_id
+                self.function = function
+            }
+            public enum CodingKeys: String, CodingKey {
+                case id
+                case tool_definition_id
+                case function
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCallsStartedPayload`.
+        public struct WebhookMessageToolCallsStartedPayload: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCallsStartedPayload/realtime_session`.
+            public var realtime_session: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCallsStartedPayload/group`.
+            public var group: Swift.String
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCallsStartedPayload/tool_calls`.
+            public var tool_calls: [Components.Schemas.WebhookMessageToolCall]
+            /// Creates a new `WebhookMessageToolCallsStartedPayload`.
+            ///
+            /// - Parameters:
+            ///   - realtime_session:
+            ///   - group:
+            ///   - tool_calls:
+            public init(
+                realtime_session: Swift.String? = nil,
+                group: Swift.String,
+                tool_calls: [Components.Schemas.WebhookMessageToolCall]
+            ) {
+                self.realtime_session = realtime_session
+                self.group = group
+                self.tool_calls = tool_calls
+            }
+            public enum CodingKeys: String, CodingKey {
+                case realtime_session
+                case group
+                case tool_calls
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCallsStarted`.
+        public struct WebhookMessageToolCallsStarted: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCallsStarted/type`.
+            @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case tool_period_calls_started = "tool.calls_started"
+            }
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCallsStarted/type`.
+            public var _type: Components.Schemas.WebhookMessageToolCallsStarted._typePayload
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCallsStarted/payload`.
+            public var payload: Components.Schemas.WebhookMessageToolCallsStartedPayload
+            /// Creates a new `WebhookMessageToolCallsStarted`.
+            ///
+            /// - Parameters:
+            ///   - _type:
+            ///   - payload:
+            public init(
+                _type: Components.Schemas.WebhookMessageToolCallsStarted._typePayload,
+                payload: Components.Schemas.WebhookMessageToolCallsStartedPayload
             ) {
                 self._type = _type
                 self.payload = payload
-                self.timestamp = timestamp
             }
             public enum CodingKeys: String, CodingKey {
                 case _type = "type"
                 case payload
-                case timestamp
             }
         }
-        /// - Remark: Generated from `#/components/schemas/UsageTracked`.
-        public struct UsageTracked: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/UsageTracked/value1`.
-            public var value1: Components.Schemas.WebhookBase
-            /// Called when usage occurs
-            ///
-            /// - Remark: Generated from `#/components/schemas/UsageTracked/value2`.
-            public struct Value2Payload: Codable, Hashable, Sendable {
-                /// - Remark: Generated from `#/components/schemas/UsageTracked/value2/type`.
-                @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
-                    case usage_period_tracked = "usage.tracked"
-                }
-                /// - Remark: Generated from `#/components/schemas/UsageTracked/value2/type`.
-                public var _type: Components.Schemas.UsageTracked.Value2Payload._typePayload
-                /// - Remark: Generated from `#/components/schemas/UsageTracked/value2/payload`.
-                public struct payloadPayload: Codable, Hashable, Sendable {
-                    /// - Remark: Generated from `#/components/schemas/UsageTracked/value2/payload/human_id`.
-                    public var human_id: Swift.String?
-                    /// - Remark: Generated from `#/components/schemas/UsageTracked/value2/payload/type`.
-                    public var _type: Components.Schemas.UsageType
-                    /// - Remark: Generated from `#/components/schemas/UsageTracked/value2/payload/value`.
-                    public var value: Swift.Double
-                    /// Creates a new `payloadPayload`.
-                    ///
-                    /// - Parameters:
-                    ///   - human_id:
-                    ///   - _type:
-                    ///   - value:
-                    public init(
-                        human_id: Swift.String? = nil,
-                        _type: Components.Schemas.UsageType,
-                        value: Swift.Double
-                    ) {
-                        self.human_id = human_id
-                        self._type = _type
-                        self.value = value
-                    }
-                    public enum CodingKeys: String, CodingKey {
-                        case human_id
-                        case _type = "type"
-                        case value
-                    }
-                }
-                /// - Remark: Generated from `#/components/schemas/UsageTracked/value2/payload`.
-                public var payload: Components.Schemas.UsageTracked.Value2Payload.payloadPayload
-                /// Creates a new `Value2Payload`.
-                ///
-                /// - Parameters:
-                ///   - _type:
-                ///   - payload:
-                public init(
-                    _type: Components.Schemas.UsageTracked.Value2Payload._typePayload,
-                    payload: Components.Schemas.UsageTracked.Value2Payload.payloadPayload
-                ) {
-                    self._type = _type
-                    self.payload = payload
-                }
-                public enum CodingKeys: String, CodingKey {
-                    case _type = "type"
-                    case payload
-                }
-            }
-            /// Called when usage occurs
-            ///
-            /// - Remark: Generated from `#/components/schemas/UsageTracked/value2`.
-            public var value2: Components.Schemas.UsageTracked.Value2Payload
-            /// Creates a new `UsageTracked`.
+        /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCallsFinishedPayload`.
+        public struct WebhookMessageToolCallsFinishedPayload: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCallsFinishedPayload/realtime_session`.
+            public var realtime_session: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCallsFinishedPayload/group`.
+            public var group: Swift.String
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCallsFinishedPayload/tool_calls`.
+            public var tool_calls: [Components.Schemas.WebhookMessageToolCall]
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCallsFinishedPayload/tool_call_results`.
+            public var tool_call_results: [Components.Schemas.ToolCallResult]
+            /// Creates a new `WebhookMessageToolCallsFinishedPayload`.
             ///
             /// - Parameters:
-            ///   - value1:
-            ///   - value2: Called when usage occurs
+            ///   - realtime_session:
+            ///   - group:
+            ///   - tool_calls:
+            ///   - tool_call_results:
             public init(
-                value1: Components.Schemas.WebhookBase,
-                value2: Components.Schemas.UsageTracked.Value2Payload
+                realtime_session: Swift.String? = nil,
+                group: Swift.String,
+                tool_calls: [Components.Schemas.WebhookMessageToolCall],
+                tool_call_results: [Components.Schemas.ToolCallResult]
             ) {
-                self.value1 = value1
-                self.value2 = value2
+                self.realtime_session = realtime_session
+                self.group = group
+                self.tool_calls = tool_calls
+                self.tool_call_results = tool_call_results
             }
-            public init(from decoder: any Decoder) throws {
-                value1 = try .init(from: decoder)
-                value2 = try .init(from: decoder)
-            }
-            public func encode(to encoder: any Encoder) throws {
-                try value1.encode(to: encoder)
-                try value2.encode(to: encoder)
+            public enum CodingKeys: String, CodingKey {
+                case realtime_session
+                case group
+                case tool_calls
+                case tool_call_results
             }
         }
-        /// - Remark: Generated from `#/components/schemas/Test`.
-        public struct Test: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/Test/value1`.
-            public var value1: Components.Schemas.WebhookBase
-            /// Called as a test webhook triggered in the Gabber dashboard
-            ///
-            /// - Remark: Generated from `#/components/schemas/Test/value2`.
-            public struct Value2Payload: Codable, Hashable, Sendable {
-                /// - Remark: Generated from `#/components/schemas/Test/value2/type`.
-                @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
-                    case test = "test"
-                }
-                /// - Remark: Generated from `#/components/schemas/Test/value2/type`.
-                public var _type: Components.Schemas.Test.Value2Payload._typePayload
-                /// - Remark: Generated from `#/components/schemas/Test/value2/payload`.
-                public struct payloadPayload: Codable, Hashable, Sendable {
-                    /// - Remark: Generated from `#/components/schemas/Test/value2/payload/msg`.
-                    public var msg: Swift.String
-                    /// Creates a new `payloadPayload`.
-                    ///
-                    /// - Parameters:
-                    ///   - msg:
-                    public init(msg: Swift.String) {
-                        self.msg = msg
-                    }
-                    public enum CodingKeys: String, CodingKey {
-                        case msg
-                    }
-                }
-                /// - Remark: Generated from `#/components/schemas/Test/value2/payload`.
-                public var payload: Components.Schemas.Test.Value2Payload.payloadPayload
-                /// Creates a new `Value2Payload`.
-                ///
-                /// - Parameters:
-                ///   - _type:
-                ///   - payload:
-                public init(
-                    _type: Components.Schemas.Test.Value2Payload._typePayload,
-                    payload: Components.Schemas.Test.Value2Payload.payloadPayload
-                ) {
-                    self._type = _type
-                    self.payload = payload
-                }
-                public enum CodingKeys: String, CodingKey {
-                    case _type = "type"
-                    case payload
-                }
+        /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCallsFinished`.
+        public struct WebhookMessageToolCallsFinished: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCallsFinished/type`.
+            @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case tool_period_calls_finished = "tool.calls_finished"
             }
-            /// Called as a test webhook triggered in the Gabber dashboard
-            ///
-            /// - Remark: Generated from `#/components/schemas/Test/value2`.
-            public var value2: Components.Schemas.Test.Value2Payload
-            /// Creates a new `Test`.
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCallsFinished/type`.
+            public var _type: Components.Schemas.WebhookMessageToolCallsFinished._typePayload
+            /// - Remark: Generated from `#/components/schemas/WebhookMessageToolCallsFinished/payload`.
+            public var payload: Components.Schemas.WebhookMessageToolCallsFinishedPayload
+            /// Creates a new `WebhookMessageToolCallsFinished`.
             ///
             /// - Parameters:
-            ///   - value1:
-            ///   - value2: Called as a test webhook triggered in the Gabber dashboard
+            ///   - _type:
+            ///   - payload:
             public init(
-                value1: Components.Schemas.WebhookBase,
-                value2: Components.Schemas.Test.Value2Payload
+                _type: Components.Schemas.WebhookMessageToolCallsFinished._typePayload,
+                payload: Components.Schemas.WebhookMessageToolCallsFinishedPayload
             ) {
-                self.value1 = value1
-                self.value2 = value2
+                self._type = _type
+                self.payload = payload
             }
-            public init(from decoder: any Decoder) throws {
-                value1 = try .init(from: decoder)
-                value2 = try .init(from: decoder)
-            }
-            public func encode(to encoder: any Encoder) throws {
-                try value1.encode(to: encoder)
-                try value2.encode(to: encoder)
+            public enum CodingKeys: String, CodingKey {
+                case _type = "type"
+                case payload
             }
         }
-        /// - Remark: Generated from `#/components/schemas/SessionStatus`.
-        public struct SessionStatus: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/components/schemas/SessionStatus/value1`.
-            public var value1: Components.Schemas.WebhookBase
-            /// Called when usage occurs
-            ///
-            /// - Remark: Generated from `#/components/schemas/SessionStatus/value2`.
-            public struct Value2Payload: Codable, Hashable, Sendable {
-                /// - Remark: Generated from `#/components/schemas/SessionStatus/value2/type`.
-                @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
-                    case session_period_status = "session.status"
-                }
-                /// - Remark: Generated from `#/components/schemas/SessionStatus/value2/type`.
-                public var _type: Components.Schemas.SessionStatus.Value2Payload._typePayload
-                /// - Remark: Generated from `#/components/schemas/SessionStatus/value2/payload`.
-                public struct payloadPayload: Codable, Hashable, Sendable {
-                    /// - Remark: Generated from `#/components/schemas/SessionStatus/value2/payload/human_id`.
-                    public var human_id: Swift.String?
-                    /// - Remark: Generated from `#/components/schemas/SessionStatus/value2/payload/state`.
-                    public var state: Components.Schemas.SessionState?
-                    /// - Remark: Generated from `#/components/schemas/SessionStatus/value2/payload/session_id`.
-                    public var session_id: Swift.String?
-                    /// Creates a new `payloadPayload`.
-                    ///
-                    /// - Parameters:
-                    ///   - human_id:
-                    ///   - state:
-                    ///   - session_id:
-                    public init(
-                        human_id: Swift.String? = nil,
-                        state: Components.Schemas.SessionState? = nil,
-                        session_id: Swift.String? = nil
-                    ) {
-                        self.human_id = human_id
-                        self.state = state
-                        self.session_id = session_id
-                    }
-                    public enum CodingKeys: String, CodingKey {
-                        case human_id
-                        case state
-                        case session_id
-                    }
-                }
-                /// - Remark: Generated from `#/components/schemas/SessionStatus/value2/payload`.
-                public var payload: Components.Schemas.SessionStatus.Value2Payload.payloadPayload
-                /// Creates a new `Value2Payload`.
-                ///
-                /// - Parameters:
-                ///   - _type:
-                ///   - payload:
-                public init(
-                    _type: Components.Schemas.SessionStatus.Value2Payload._typePayload,
-                    payload: Components.Schemas.SessionStatus.Value2Payload.payloadPayload
-                ) {
-                    self._type = _type
-                    self.payload = payload
-                }
-                public enum CodingKeys: String, CodingKey {
-                    case _type = "type"
-                    case payload
-                }
-            }
-            /// Called when usage occurs
-            ///
-            /// - Remark: Generated from `#/components/schemas/SessionStatus/value2`.
-            public var value2: Components.Schemas.SessionStatus.Value2Payload
-            /// Creates a new `SessionStatus`.
-            ///
-            /// - Parameters:
-            ///   - value1:
-            ///   - value2: Called when usage occurs
-            public init(
-                value1: Components.Schemas.WebhookBase,
-                value2: Components.Schemas.SessionStatus.Value2Payload
-            ) {
-                self.value1 = value1
-                self.value2 = value2
-            }
+        /// - Remark: Generated from `#/components/schemas/WebhookMessage`.
+        @frozen public enum WebhookMessage: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/WebhookMessage/case1`.
+            case WebhookMessageUsageTracked(Components.Schemas.WebhookMessageUsageTracked)
+            /// - Remark: Generated from `#/components/schemas/WebhookMessage/case2`.
+            case WebhookMessageRealtimeSessionStateChanged(Components.Schemas.WebhookMessageRealtimeSessionStateChanged)
+            /// - Remark: Generated from `#/components/schemas/WebhookMessage/case3`.
+            case WebhookMessageRealtimeSessionMessageCommitted(Components.Schemas.WebhookMessageRealtimeSessionMessageCommitted)
+            /// - Remark: Generated from `#/components/schemas/WebhookMessage/case4`.
+            case WebhookMessageToolCallsStarted(Components.Schemas.WebhookMessageToolCallsStarted)
+            /// - Remark: Generated from `#/components/schemas/WebhookMessage/case5`.
+            case WebhookMessageToolCallsFinished(Components.Schemas.WebhookMessageToolCallsFinished)
             public init(from decoder: any Decoder) throws {
-                value1 = try .init(from: decoder)
-                value2 = try .init(from: decoder)
+                var errors: [any Error] = []
+                do {
+                    self = .WebhookMessageUsageTracked(try .init(from: decoder))
+                    return
+                } catch {
+                    errors.append(error)
+                }
+                do {
+                    self = .WebhookMessageRealtimeSessionStateChanged(try .init(from: decoder))
+                    return
+                } catch {
+                    errors.append(error)
+                }
+                do {
+                    self = .WebhookMessageRealtimeSessionMessageCommitted(try .init(from: decoder))
+                    return
+                } catch {
+                    errors.append(error)
+                }
+                do {
+                    self = .WebhookMessageToolCallsStarted(try .init(from: decoder))
+                    return
+                } catch {
+                    errors.append(error)
+                }
+                do {
+                    self = .WebhookMessageToolCallsFinished(try .init(from: decoder))
+                    return
+                } catch {
+                    errors.append(error)
+                }
+                throw Swift.DecodingError.failedToDecodeOneOfSchema(
+                    type: Self.self,
+                    codingPath: decoder.codingPath,
+                    errors: errors
+                )
             }
             public func encode(to encoder: any Encoder) throws {
-                try value1.encode(to: encoder)
-                try value2.encode(to: encoder)
+                switch self {
+                case let .WebhookMessageUsageTracked(value):
+                    try value.encode(to: encoder)
+                case let .WebhookMessageRealtimeSessionStateChanged(value):
+                    try value.encode(to: encoder)
+                case let .WebhookMessageRealtimeSessionMessageCommitted(value):
+                    try value.encode(to: encoder)
+                case let .WebhookMessageToolCallsStarted(value):
+                    try value.encode(to: encoder)
+                case let .WebhookMessageToolCallsFinished(value):
+                    try value.encode(to: encoder)
+                }
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/BadRequest`.
+        public struct BadRequest: Codable, Hashable, Sendable {
+            /// The type of the error.
+            ///
+            /// - Remark: Generated from `#/components/schemas/BadRequest/type`.
+            @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case usage_limit_exceeded = "usage_limit_exceeded"
+                case project_disabled = "project_disabled"
+                case moderation_error = "moderation_error"
+                case invalid_input = "invalid_input"
+            }
+            /// The type of the error.
+            ///
+            /// - Remark: Generated from `#/components/schemas/BadRequest/type`.
+            public var _type: Components.Schemas.BadRequest._typePayload?
+            /// A human-readable message describing the error.
+            ///
+            /// - Remark: Generated from `#/components/schemas/BadRequest/message`.
+            public var message: Swift.String?
+            /// Creates a new `BadRequest`.
+            ///
+            /// - Parameters:
+            ///   - _type: The type of the error.
+            ///   - message: A human-readable message describing the error.
+            public init(
+                _type: Components.Schemas.BadRequest._typePayload? = nil,
+                message: Swift.String? = nil
+            ) {
+                self._type = _type
+                self.message = message
+            }
+            public enum CodingKeys: String, CodingKey {
+                case _type = "type"
+                case message
             }
         }
     }
     /// Types generated from the `#/components/parameters` section of the OpenAPI document.
-    public enum Parameters {}
+    public enum Parameters {
+        /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+        ///
+        /// - Remark: Generated from `#/components/parameters/HumanIdIdentifier`.
+        public typealias HumanIdIdentifier = Swift.String
+    }
     /// Types generated from the `#/components/requestBodies` section of the OpenAPI document.
     public enum RequestBodies {}
     /// Types generated from the `#/components/responses` section of the OpenAPI document.
@@ -1386,86 +5643,13 @@ public enum Components {
         public struct BadRequest: Sendable, Hashable {
             /// - Remark: Generated from `#/components/responses/BadRequest/content`.
             @frozen public enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/components/responses/BadRequest/content/json`.
-                @frozen public enum jsonPayload: Codable, Hashable, Sendable {
-                    /// - Remark: Generated from `#/components/responses/BadRequest/content/json/case1`.
-                    public struct Case1Payload: Codable, Hashable, Sendable {
-                        /// - Remark: Generated from `#/components/responses/BadRequest/content/json/case1/type`.
-                        @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
-                            case usage_limit_exceeded = "usage_limit_exceeded"
-                        }
-                        /// - Remark: Generated from `#/components/responses/BadRequest/content/json/case1/type`.
-                        public var _type: Components.Responses.BadRequest.Body.jsonPayload.Case1Payload._typePayload?
-                        /// Creates a new `Case1Payload`.
-                        ///
-                        /// - Parameters:
-                        ///   - _type:
-                        public init(_type: Components.Responses.BadRequest.Body.jsonPayload.Case1Payload._typePayload? = nil) {
-                            self._type = _type
-                        }
-                        public enum CodingKeys: String, CodingKey {
-                            case _type = "type"
-                        }
-                    }
-                    /// - Remark: Generated from `#/components/responses/BadRequest/content/json/case1`.
-                    case case1(Components.Responses.BadRequest.Body.jsonPayload.Case1Payload)
-                    /// - Remark: Generated from `#/components/responses/BadRequest/content/json/case2`.
-                    public struct Case2Payload: Codable, Hashable, Sendable {
-                        /// - Remark: Generated from `#/components/responses/BadRequest/content/json/case2/type`.
-                        @frozen public enum _typePayload: String, Codable, Hashable, Sendable, CaseIterable {
-                            case project_disabled = "project_disabled"
-                        }
-                        /// - Remark: Generated from `#/components/responses/BadRequest/content/json/case2/type`.
-                        public var _type: Components.Responses.BadRequest.Body.jsonPayload.Case2Payload._typePayload?
-                        /// Creates a new `Case2Payload`.
-                        ///
-                        /// - Parameters:
-                        ///   - _type:
-                        public init(_type: Components.Responses.BadRequest.Body.jsonPayload.Case2Payload._typePayload? = nil) {
-                            self._type = _type
-                        }
-                        public enum CodingKeys: String, CodingKey {
-                            case _type = "type"
-                        }
-                    }
-                    /// - Remark: Generated from `#/components/responses/BadRequest/content/json/case2`.
-                    case case2(Components.Responses.BadRequest.Body.jsonPayload.Case2Payload)
-                    public init(from decoder: any Decoder) throws {
-                        var errors: [any Error] = []
-                        do {
-                            self = .case1(try .init(from: decoder))
-                            return
-                        } catch {
-                            errors.append(error)
-                        }
-                        do {
-                            self = .case2(try .init(from: decoder))
-                            return
-                        } catch {
-                            errors.append(error)
-                        }
-                        throw Swift.DecodingError.failedToDecodeOneOfSchema(
-                            type: Self.self,
-                            codingPath: decoder.codingPath,
-                            errors: errors
-                        )
-                    }
-                    public func encode(to encoder: any Encoder) throws {
-                        switch self {
-                        case let .case1(value):
-                            try value.encode(to: encoder)
-                        case let .case2(value):
-                            try value.encode(to: encoder)
-                        }
-                    }
-                }
                 /// - Remark: Generated from `#/components/responses/BadRequest/content/application\/json`.
-                case json(Components.Responses.BadRequest.Body.jsonPayload)
+                case json(Components.Schemas.BadRequest)
                 /// The associated value of the enum case if `self` is `.json`.
                 ///
                 /// - Throws: An error if `self` is not `.json`.
                 /// - SeeAlso: `.json`.
-                public var json: Components.Responses.BadRequest.Body.jsonPayload {
+                public var json: Components.Schemas.BadRequest {
                     get throws {
                         switch self {
                         case let .json(body):
@@ -1484,6 +5668,51 @@ public enum Components {
                 self.body = body
             }
         }
+        public struct InternalServerError: Sendable, Hashable {
+            /// - Remark: Generated from `#/components/responses/InternalServerError/content`.
+            @frozen public enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/components/responses/InternalServerError/content/json`.
+                public struct jsonPayload: Codable, Hashable, Sendable {
+                    /// Error message.
+                    ///
+                    /// - Remark: Generated from `#/components/responses/InternalServerError/content/json/error`.
+                    public var error: Swift.String?
+                    /// Creates a new `jsonPayload`.
+                    ///
+                    /// - Parameters:
+                    ///   - error: Error message.
+                    public init(error: Swift.String? = nil) {
+                        self.error = error
+                    }
+                    public enum CodingKeys: String, CodingKey {
+                        case error
+                    }
+                }
+                /// - Remark: Generated from `#/components/responses/InternalServerError/content/application\/json`.
+                case json(Components.Responses.InternalServerError.Body.jsonPayload)
+                /// The associated value of the enum case if `self` is `.json`.
+                ///
+                /// - Throws: An error if `self` is not `.json`.
+                /// - SeeAlso: `.json`.
+                public var json: Components.Responses.InternalServerError.Body.jsonPayload {
+                    get throws {
+                        switch self {
+                        case let .json(body):
+                            return body
+                        }
+                    }
+                }
+            }
+            /// Received HTTP response body
+            public var body: Components.Responses.InternalServerError.Body
+            /// Creates a new `InternalServerError`.
+            ///
+            /// - Parameters:
+            ///   - body: Received HTTP response body
+            public init(body: Components.Responses.InternalServerError.Body) {
+                self.body = body
+            }
+        }
     }
     /// Types generated from the `#/components/headers` section of the OpenAPI document.
     public enum Headers {}
@@ -1491,1062 +5720,59 @@ public enum Components {
 
 /// API operations, with input and output types, generated from `#/paths` in the OpenAPI document.
 public enum Operations {
-    /// Create a new session
-    ///
-    /// Creates a new session based on the input request data
-    ///
-    /// - Remark: HTTP `POST /api/v1/session/start`.
-    /// - Remark: Generated from `#/paths//api/v1/session/start/post`.
-    public enum post_sol_api_sol_v1_sol_session_sol_start {
-        public static let id: Swift.String = "post/api/v1/session/start"
-        public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/v1/session/start/POST/header`.
-            public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.post_sol_api_sol_v1_sol_session_sol_start.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.post_sol_api_sol_v1_sol_session_sol_start.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            public var headers: Operations.post_sol_api_sol_v1_sol_session_sol_start.Input.Headers
-            /// - Remark: Generated from `#/paths/api/v1/session/start/POST/requestBody`.
-            @frozen public enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/session/start/POST/requestBody/content/application\/json`.
-                case json(Components.Schemas.SessionStartRequest)
-            }
-            public var body: Operations.post_sol_api_sol_v1_sol_session_sol_start.Input.Body
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - headers:
-            ///   - body:
-            public init(
-                headers: Operations.post_sol_api_sol_v1_sol_session_sol_start.Input.Headers = .init(),
-                body: Operations.post_sol_api_sol_v1_sol_session_sol_start.Input.Body
-            ) {
-                self.headers = headers
-                self.body = body
-            }
-        }
-        @frozen public enum Output: Sendable, Hashable {
-            public struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/session/start/POST/responses/200/content`.
-                @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/v1/session/start/POST/responses/200/content/application\/json`.
-                    case json(Components.Schemas.SessionStartResponse)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.SessionStartResponse {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                public var body: Operations.post_sol_api_sol_v1_sol_session_sol_start.Output.Ok.Body
-                /// Creates a new `Ok`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                public init(body: Operations.post_sol_api_sol_v1_sol_session_sol_start.Output.Ok.Body) {
-                    self.body = body
-                }
-            }
-            /// Session created successfully
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/start/post/responses/200`.
-            ///
-            /// HTTP response code: `200 ok`.
-            case ok(Operations.post_sol_api_sol_v1_sol_session_sol_start.Output.Ok)
-            /// The associated value of the enum case if `self` is `.ok`.
-            ///
-            /// - Throws: An error if `self` is not `.ok`.
-            /// - SeeAlso: `.ok`.
-            public var ok: Operations.post_sol_api_sol_v1_sol_session_sol_start.Output.Ok {
-                get throws {
-                    switch self {
-                    case let .ok(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "ok",
-                            response: self
-                        )
-                    }
-                }
-            }
-            /// Invalid request data
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/start/post/responses/400`.
-            ///
-            /// HTTP response code: `400 badRequest`.
-            case badRequest(Components.Responses.BadRequest)
-            /// The associated value of the enum case if `self` is `.badRequest`.
-            ///
-            /// - Throws: An error if `self` is not `.badRequest`.
-            /// - SeeAlso: `.badRequest`.
-            public var badRequest: Components.Responses.BadRequest {
-                get throws {
-                    switch self {
-                    case let .badRequest(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "badRequest",
-                            response: self
-                        )
-                    }
-                }
-            }
-            public struct InternalServerError: Sendable, Hashable {
-                /// Creates a new `InternalServerError`.
-                public init() {}
-            }
-            /// Internal server error
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/start/post/responses/500`.
-            ///
-            /// HTTP response code: `500 internalServerError`.
-            case internalServerError(Operations.post_sol_api_sol_v1_sol_session_sol_start.Output.InternalServerError)
-            /// Internal server error
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/start/post/responses/500`.
-            ///
-            /// HTTP response code: `500 internalServerError`.
-            public static var internalServerError: Self {
-                .internalServerError(.init())
-            }
-            /// The associated value of the enum case if `self` is `.internalServerError`.
-            ///
-            /// - Throws: An error if `self` is not `.internalServerError`.
-            /// - SeeAlso: `.internalServerError`.
-            public var internalServerError: Operations.post_sol_api_sol_v1_sol_session_sol_start.Output.InternalServerError {
-                get throws {
-                    switch self {
-                    case let .internalServerError(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "internalServerError",
-                            response: self
-                        )
-                    }
-                }
-            }
-            /// Undocumented response.
-            ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
-        }
-        @frozen public enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case other(Swift.String)
-            public init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            public var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                }
-            }
-            public static var allCases: [Self] {
-                [
-                    .json
-                ]
-            }
-        }
-    }
-    /// Get a session by id
-    ///
-    /// - Remark: HTTP `GET /api/v1/session/{session_id}`.
-    /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/get`.
-    public enum get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_ {
-        public static let id: Swift.String = "get/api/v1/session/{session_id}"
-        public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/GET/path`.
-            public struct Path: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/GET/path/session_id`.
-                public var session_id: Swift.String
-                /// Creates a new `Path`.
-                ///
-                /// - Parameters:
-                ///   - session_id:
-                public init(session_id: Swift.String) {
-                    self.session_id = session_id
-                }
-            }
-            public var path: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Input.Path
-            /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/GET/header`.
-            public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            public var headers: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Input.Headers
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - path:
-            ///   - headers:
-            public init(
-                path: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Input.Path,
-                headers: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Input.Headers = .init()
-            ) {
-                self.path = path
-                self.headers = headers
-            }
-        }
-        @frozen public enum Output: Sendable, Hashable {
-            public struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/GET/responses/200/content`.
-                @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.Session)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.Session {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                public var body: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Output.Ok.Body
-                /// Creates a new `Ok`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                public init(body: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Output.Ok.Body) {
-                    self.body = body
-                }
-            }
-            /// Session created successfully
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/get/responses/200`.
-            ///
-            /// HTTP response code: `200 ok`.
-            case ok(Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Output.Ok)
-            /// The associated value of the enum case if `self` is `.ok`.
-            ///
-            /// - Throws: An error if `self` is not `.ok`.
-            /// - SeeAlso: `.ok`.
-            public var ok: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Output.Ok {
-                get throws {
-                    switch self {
-                    case let .ok(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "ok",
-                            response: self
-                        )
-                    }
-                }
-            }
-            /// Invalid request data
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/get/responses/400`.
-            ///
-            /// HTTP response code: `400 badRequest`.
-            case badRequest(Components.Responses.BadRequest)
-            /// The associated value of the enum case if `self` is `.badRequest`.
-            ///
-            /// - Throws: An error if `self` is not `.badRequest`.
-            /// - SeeAlso: `.badRequest`.
-            public var badRequest: Components.Responses.BadRequest {
-                get throws {
-                    switch self {
-                    case let .badRequest(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "badRequest",
-                            response: self
-                        )
-                    }
-                }
-            }
-            public struct InternalServerError: Sendable, Hashable {
-                /// Creates a new `InternalServerError`.
-                public init() {}
-            }
-            /// Internal server error
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/get/responses/500`.
-            ///
-            /// HTTP response code: `500 internalServerError`.
-            case internalServerError(Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Output.InternalServerError)
-            /// Internal server error
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/get/responses/500`.
-            ///
-            /// HTTP response code: `500 internalServerError`.
-            public static var internalServerError: Self {
-                .internalServerError(.init())
-            }
-            /// The associated value of the enum case if `self` is `.internalServerError`.
-            ///
-            /// - Throws: An error if `self` is not `.internalServerError`.
-            /// - SeeAlso: `.internalServerError`.
-            public var internalServerError: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Output.InternalServerError {
-                get throws {
-                    switch self {
-                    case let .internalServerError(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "internalServerError",
-                            response: self
-                        )
-                    }
-                }
-            }
-            /// Undocumented response.
-            ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
-        }
-        @frozen public enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case other(Swift.String)
-            public init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            public var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                }
-            }
-            public static var allCases: [Self] {
-                [
-                    .json
-                ]
-            }
-        }
-    }
-    /// Update a session by id
-    ///
-    /// - Remark: HTTP `PUT /api/v1/session/{session_id}`.
-    /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/put`.
-    public enum put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_ {
-        public static let id: Swift.String = "put/api/v1/session/{session_id}"
-        public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/PUT/path`.
-            public struct Path: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/PUT/path/session_id`.
-                public var session_id: Swift.String
-                /// Creates a new `Path`.
-                ///
-                /// - Parameters:
-                ///   - session_id:
-                public init(session_id: Swift.String) {
-                    self.session_id = session_id
-                }
-            }
-            public var path: Operations.put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Input.Path
-            /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/PUT/header`.
-            public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            public var headers: Operations.put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Input.Headers
-            /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/PUT/requestBody`.
-            @frozen public enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/PUT/requestBody/content/application\/json`.
-                case json(Components.Schemas.UpdateSessionRequest)
-            }
-            public var body: Operations.put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Input.Body
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - path:
-            ///   - headers:
-            ///   - body:
-            public init(
-                path: Operations.put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Input.Path,
-                headers: Operations.put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Input.Headers = .init(),
-                body: Operations.put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Input.Body
-            ) {
-                self.path = path
-                self.headers = headers
-                self.body = body
-            }
-        }
-        @frozen public enum Output: Sendable, Hashable {
-            public struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/PUT/responses/200/content`.
-                @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/PUT/responses/200/content/json`.
-                    public struct jsonPayload: Codable, Hashable, Sendable {
-                        /// Creates a new `jsonPayload`.
-                        public init() {}
-                        public init(from decoder: any Decoder) throws {
-                            try decoder.ensureNoAdditionalProperties(knownKeys: [])
-                        }
-                    }
-                    /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/PUT/responses/200/content/application\/json`.
-                    case json(Operations.put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Output.Ok.Body.jsonPayload)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    public var json: Operations.put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Output.Ok.Body.jsonPayload {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                public var body: Operations.put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Output.Ok.Body
-                /// Creates a new `Ok`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                public init(body: Operations.put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Output.Ok.Body) {
-                    self.body = body
-                }
-            }
-            /// Session updated successfully
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/put/responses/200`.
-            ///
-            /// HTTP response code: `200 ok`.
-            case ok(Operations.put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Output.Ok)
-            /// The associated value of the enum case if `self` is `.ok`.
-            ///
-            /// - Throws: An error if `self` is not `.ok`.
-            /// - SeeAlso: `.ok`.
-            public var ok: Operations.put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Output.Ok {
-                get throws {
-                    switch self {
-                    case let .ok(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "ok",
-                            response: self
-                        )
-                    }
-                }
-            }
-            /// Invalid request data
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/put/responses/400`.
-            ///
-            /// HTTP response code: `400 badRequest`.
-            case badRequest(Components.Responses.BadRequest)
-            /// The associated value of the enum case if `self` is `.badRequest`.
-            ///
-            /// - Throws: An error if `self` is not `.badRequest`.
-            /// - SeeAlso: `.badRequest`.
-            public var badRequest: Components.Responses.BadRequest {
-                get throws {
-                    switch self {
-                    case let .badRequest(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "badRequest",
-                            response: self
-                        )
-                    }
-                }
-            }
-            public struct InternalServerError: Sendable, Hashable {
-                /// Creates a new `InternalServerError`.
-                public init() {}
-            }
-            /// Internal server error
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/put/responses/500`.
-            ///
-            /// HTTP response code: `500 internalServerError`.
-            case internalServerError(Operations.put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Output.InternalServerError)
-            /// Internal server error
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/put/responses/500`.
-            ///
-            /// HTTP response code: `500 internalServerError`.
-            public static var internalServerError: Self {
-                .internalServerError(.init())
-            }
-            /// The associated value of the enum case if `self` is `.internalServerError`.
-            ///
-            /// - Throws: An error if `self` is not `.internalServerError`.
-            /// - SeeAlso: `.internalServerError`.
-            public var internalServerError: Operations.put_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub_.Output.InternalServerError {
-                get throws {
-                    switch self {
-                    case let .internalServerError(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "internalServerError",
-                            response: self
-                        )
-                    }
-                }
-            }
-            /// Undocumented response.
-            ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
-        }
-        @frozen public enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case other(Swift.String)
-            public init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            public var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                }
-            }
-            public static var allCases: [Self] {
-                [
-                    .json
-                ]
-            }
-        }
-    }
-    /// Get session messages
-    ///
-    /// - Remark: HTTP `GET /api/v1/session/{session_id}/messages`.
-    /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/messages/get`.
-    public enum get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_messages {
-        public static let id: Swift.String = "get/api/v1/session/{session_id}/messages"
-        public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/messages/GET/path`.
-            public struct Path: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/messages/GET/path/session_id`.
-                public var session_id: Swift.String
-                /// Creates a new `Path`.
-                ///
-                /// - Parameters:
-                ///   - session_id:
-                public init(session_id: Swift.String) {
-                    self.session_id = session_id
-                }
-            }
-            public var path: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_messages.Input.Path
-            /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/messages/GET/header`.
-            public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_messages.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_messages.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            public var headers: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_messages.Input.Headers
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - path:
-            ///   - headers:
-            public init(
-                path: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_messages.Input.Path,
-                headers: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_messages.Input.Headers = .init()
-            ) {
-                self.path = path
-                self.headers = headers
-            }
-        }
-        @frozen public enum Output: Sendable, Hashable {
-            public struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/messages/GET/responses/200/content`.
-                @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/messages/GET/responses/200/content/json`.
-                    public struct jsonPayload: Codable, Hashable, Sendable {
-                        /// The token for the next page of results, or null if there are no more pages.
-                        ///
-                        /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/messages/GET/responses/200/content/json/next_page`.
-                        public var next_page: Swift.String?
-                        /// The total number of items available.
-                        ///
-                        /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/messages/GET/responses/200/content/json/total_count`.
-                        public var total_count: Swift.Double
-                        /// The array of session timeline items.
-                        ///
-                        /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/messages/GET/responses/200/content/json/values`.
-                        public var values: [Components.Schemas.SessionMessage]
-                        /// Creates a new `jsonPayload`.
-                        ///
-                        /// - Parameters:
-                        ///   - next_page: The token for the next page of results, or null if there are no more pages.
-                        ///   - total_count: The total number of items available.
-                        ///   - values: The array of session timeline items.
-                        public init(
-                            next_page: Swift.String? = nil,
-                            total_count: Swift.Double,
-                            values: [Components.Schemas.SessionMessage]
-                        ) {
-                            self.next_page = next_page
-                            self.total_count = total_count
-                            self.values = values
-                        }
-                        public enum CodingKeys: String, CodingKey {
-                            case next_page
-                            case total_count
-                            case values
-                        }
-                    }
-                    /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/messages/GET/responses/200/content/application\/json`.
-                    case json(Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_messages.Output.Ok.Body.jsonPayload)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    public var json: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_messages.Output.Ok.Body.jsonPayload {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                public var body: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_messages.Output.Ok.Body
-                /// Creates a new `Ok`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                public init(body: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_messages.Output.Ok.Body) {
-                    self.body = body
-                }
-            }
-            /// List of session messages
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/messages/get/responses/200`.
-            ///
-            /// HTTP response code: `200 ok`.
-            case ok(Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_messages.Output.Ok)
-            /// The associated value of the enum case if `self` is `.ok`.
-            ///
-            /// - Throws: An error if `self` is not `.ok`.
-            /// - SeeAlso: `.ok`.
-            public var ok: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_messages.Output.Ok {
-                get throws {
-                    switch self {
-                    case let .ok(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "ok",
-                            response: self
-                        )
-                    }
-                }
-            }
-            /// Invalid request data
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/messages/get/responses/400`.
-            ///
-            /// HTTP response code: `400 badRequest`.
-            case badRequest(Components.Responses.BadRequest)
-            /// The associated value of the enum case if `self` is `.badRequest`.
-            ///
-            /// - Throws: An error if `self` is not `.badRequest`.
-            /// - SeeAlso: `.badRequest`.
-            public var badRequest: Components.Responses.BadRequest {
-                get throws {
-                    switch self {
-                    case let .badRequest(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "badRequest",
-                            response: self
-                        )
-                    }
-                }
-            }
-            public struct InternalServerError: Sendable, Hashable {
-                /// Creates a new `InternalServerError`.
-                public init() {}
-            }
-            /// Internal server error
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/messages/get/responses/500`.
-            ///
-            /// HTTP response code: `500 internalServerError`.
-            case internalServerError(Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_messages.Output.InternalServerError)
-            /// Internal server error
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/messages/get/responses/500`.
-            ///
-            /// HTTP response code: `500 internalServerError`.
-            public static var internalServerError: Self {
-                .internalServerError(.init())
-            }
-            /// The associated value of the enum case if `self` is `.internalServerError`.
-            ///
-            /// - Throws: An error if `self` is not `.internalServerError`.
-            /// - SeeAlso: `.internalServerError`.
-            public var internalServerError: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_messages.Output.InternalServerError {
-                get throws {
-                    switch self {
-                    case let .internalServerError(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "internalServerError",
-                            response: self
-                        )
-                    }
-                }
-            }
-            /// Undocumented response.
-            ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
-        }
-        @frozen public enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case other(Swift.String)
-            public init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            public var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                }
-            }
-            public static var allCases: [Self] {
-                [
-                    .json
-                ]
-            }
-        }
-    }
-    /// Get a session timeline
-    ///
-    /// - Remark: HTTP `GET /api/v1/session/{session_id}/timeline`.
-    /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/timeline/get`.
-    public enum get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_timeline {
-        public static let id: Swift.String = "get/api/v1/session/{session_id}/timeline"
-        public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/timeline/GET/path`.
-            public struct Path: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/timeline/GET/path/session_id`.
-                public var session_id: Swift.String
-                /// Creates a new `Path`.
-                ///
-                /// - Parameters:
-                ///   - session_id:
-                public init(session_id: Swift.String) {
-                    self.session_id = session_id
-                }
-            }
-            public var path: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_timeline.Input.Path
-            /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/timeline/GET/header`.
-            public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_timeline.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_timeline.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            public var headers: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_timeline.Input.Headers
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - path:
-            ///   - headers:
-            public init(
-                path: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_timeline.Input.Path,
-                headers: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_timeline.Input.Headers = .init()
-            ) {
-                self.path = path
-                self.headers = headers
-            }
-        }
-        @frozen public enum Output: Sendable, Hashable {
-            public struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/timeline/GET/responses/200/content`.
-                @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/timeline/GET/responses/200/content/json`.
-                    public struct jsonPayload: Codable, Hashable, Sendable {
-                        /// The token for the next page of results, or null if there are no more pages.
-                        ///
-                        /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/timeline/GET/responses/200/content/json/next_page`.
-                        public var next_page: Swift.String?
-                        /// The total number of items available.
-                        ///
-                        /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/timeline/GET/responses/200/content/json/total_count`.
-                        public var total_count: Swift.Double?
-                        /// The array of session timeline items.
-                        ///
-                        /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/timeline/GET/responses/200/content/json/values`.
-                        public var values: [Components.Schemas.SessionTimelineItem]?
-                        /// Creates a new `jsonPayload`.
-                        ///
-                        /// - Parameters:
-                        ///   - next_page: The token for the next page of results, or null if there are no more pages.
-                        ///   - total_count: The total number of items available.
-                        ///   - values: The array of session timeline items.
-                        public init(
-                            next_page: Swift.String? = nil,
-                            total_count: Swift.Double? = nil,
-                            values: [Components.Schemas.SessionTimelineItem]? = nil
-                        ) {
-                            self.next_page = next_page
-                            self.total_count = total_count
-                            self.values = values
-                        }
-                        public enum CodingKeys: String, CodingKey {
-                            case next_page
-                            case total_count
-                            case values
-                        }
-                    }
-                    /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/timeline/GET/responses/200/content/application\/json`.
-                    case json(Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_timeline.Output.Ok.Body.jsonPayload)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    public var json: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_timeline.Output.Ok.Body.jsonPayload {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                public var body: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_timeline.Output.Ok.Body
-                /// Creates a new `Ok`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                public init(body: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_timeline.Output.Ok.Body) {
-                    self.body = body
-                }
-            }
-            /// Session created successfully
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/timeline/get/responses/200`.
-            ///
-            /// HTTP response code: `200 ok`.
-            case ok(Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_timeline.Output.Ok)
-            /// The associated value of the enum case if `self` is `.ok`.
-            ///
-            /// - Throws: An error if `self` is not `.ok`.
-            /// - SeeAlso: `.ok`.
-            public var ok: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_timeline.Output.Ok {
-                get throws {
-                    switch self {
-                    case let .ok(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "ok",
-                            response: self
-                        )
-                    }
-                }
-            }
-            /// Invalid request data
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/timeline/get/responses/400`.
-            ///
-            /// HTTP response code: `400 badRequest`.
-            case badRequest(Components.Responses.BadRequest)
-            /// The associated value of the enum case if `self` is `.badRequest`.
-            ///
-            /// - Throws: An error if `self` is not `.badRequest`.
-            /// - SeeAlso: `.badRequest`.
-            public var badRequest: Components.Responses.BadRequest {
-                get throws {
-                    switch self {
-                    case let .badRequest(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "badRequest",
-                            response: self
-                        )
-                    }
-                }
-            }
-            public struct InternalServerError: Sendable, Hashable {
-                /// Creates a new `InternalServerError`.
-                public init() {}
-            }
-            /// Internal server error
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/timeline/get/responses/500`.
-            ///
-            /// HTTP response code: `500 internalServerError`.
-            case internalServerError(Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_timeline.Output.InternalServerError)
-            /// Internal server error
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/timeline/get/responses/500`.
-            ///
-            /// HTTP response code: `500 internalServerError`.
-            public static var internalServerError: Self {
-                .internalServerError(.init())
-            }
-            /// The associated value of the enum case if `self` is `.internalServerError`.
-            ///
-            /// - Throws: An error if `self` is not `.internalServerError`.
-            /// - SeeAlso: `.internalServerError`.
-            public var internalServerError: Operations.get_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_timeline.Output.InternalServerError {
-                get throws {
-                    switch self {
-                    case let .internalServerError(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "internalServerError",
-                            response: self
-                        )
-                    }
-                }
-            }
-            /// Undocumented response.
-            ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
-        }
-        @frozen public enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case other(Swift.String)
-            public init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            public var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                }
-            }
-            public static var allCases: [Self] {
-                [
-                    .json
-                ]
-            }
-        }
-    }
     /// Get a list of personas
     ///
-    /// - Remark: HTTP `GET /api/v1/persona/list`.
-    /// - Remark: Generated from `#/paths//api/v1/persona/list/get`.
-    public enum get_sol_api_sol_v1_sol_persona_sol_list {
-        public static let id: Swift.String = "get/api/v1/persona/list"
+    /// - Remark: HTTP `GET /v1/persona/list`.
+    /// - Remark: Generated from `#/paths//v1/persona/list/get(listPersonas)`.
+    public enum listPersonas {
+        public static let id: Swift.String = "listPersonas"
         public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/v1/persona/list/GET/header`.
+            /// - Remark: Generated from `#/paths/v1/persona/list/GET/header`.
             public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_sol_api_sol_v1_sol_persona_sol_list.AcceptableContentType>]
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/persona/list/GET/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.listPersonas.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
                 ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_sol_api_sol_v1_sol_persona_sol_list.AcceptableContentType>] = .defaultValues()) {
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.listPersonas.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
                     self.accept = accept
                 }
             }
-            public var headers: Operations.get_sol_api_sol_v1_sol_persona_sol_list.Input.Headers
+            public var headers: Operations.listPersonas.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - headers:
-            public init(headers: Operations.get_sol_api_sol_v1_sol_persona_sol_list.Input.Headers = .init()) {
+            public init(headers: Operations.listPersonas.Input.Headers = .init()) {
                 self.headers = headers
             }
         }
         @frozen public enum Output: Sendable, Hashable {
             public struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/persona/list/GET/responses/200/content`.
+                /// - Remark: Generated from `#/paths/v1/persona/list/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/v1/persona/list/GET/responses/200/content/json`.
+                    /// - Remark: Generated from `#/paths/v1/persona/list/GET/responses/200/content/json`.
                     public struct jsonPayload: Codable, Hashable, Sendable {
                         /// The token for the next page of results, or null if there are no more pages.
                         ///
-                        /// - Remark: Generated from `#/paths/api/v1/persona/list/GET/responses/200/content/json/next_page`.
+                        /// - Remark: Generated from `#/paths/v1/persona/list/GET/responses/200/content/json/next_page`.
                         public var next_page: Swift.String?
                         /// The total number of items available.
                         ///
-                        /// - Remark: Generated from `#/paths/api/v1/persona/list/GET/responses/200/content/json/total_count`.
-                        public var total_count: Swift.Double
+                        /// - Remark: Generated from `#/paths/v1/persona/list/GET/responses/200/content/json/total_count`.
+                        public var total_count: Swift.Int
                         /// The array of personas.
                         ///
-                        /// - Remark: Generated from `#/paths/api/v1/persona/list/GET/responses/200/content/json/values`.
+                        /// - Remark: Generated from `#/paths/v1/persona/list/GET/responses/200/content/json/values`.
                         public var values: [Components.Schemas.Persona]
                         /// Creates a new `jsonPayload`.
                         ///
@@ -2556,7 +5782,7 @@ public enum Operations {
                         ///   - values: The array of personas.
                         public init(
                             next_page: Swift.String? = nil,
-                            total_count: Swift.Double,
+                            total_count: Swift.Int,
                             values: [Components.Schemas.Persona]
                         ) {
                             self.next_page = next_page
@@ -2569,13 +5795,13 @@ public enum Operations {
                             case values
                         }
                     }
-                    /// - Remark: Generated from `#/paths/api/v1/persona/list/GET/responses/200/content/application\/json`.
-                    case json(Operations.get_sol_api_sol_v1_sol_persona_sol_list.Output.Ok.Body.jsonPayload)
+                    /// - Remark: Generated from `#/paths/v1/persona/list/GET/responses/200/content/application\/json`.
+                    case json(Operations.listPersonas.Output.Ok.Body.jsonPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Operations.get_sol_api_sol_v1_sol_persona_sol_list.Output.Ok.Body.jsonPayload {
+                    public var json: Operations.listPersonas.Output.Ok.Body.jsonPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -2585,26 +5811,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.get_sol_api_sol_v1_sol_persona_sol_list.Output.Ok.Body
+                public var body: Operations.listPersonas.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.get_sol_api_sol_v1_sol_persona_sol_list.Output.Ok.Body) {
+                public init(body: Operations.listPersonas.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// List of personas
             ///
-            /// - Remark: Generated from `#/paths//api/v1/persona/list/get/responses/200`.
+            /// - Remark: Generated from `#/paths//v1/persona/list/get(listPersonas)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.get_sol_api_sol_v1_sol_persona_sol_list.Output.Ok)
+            case ok(Operations.listPersonas.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.get_sol_api_sol_v1_sol_persona_sol_list.Output.Ok {
+            public var ok: Operations.listPersonas.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -2617,9 +5843,9 @@ public enum Operations {
                     }
                 }
             }
-            /// Invalid request data
+            /// Bad request
             ///
-            /// - Remark: Generated from `#/paths//api/v1/persona/list/get/responses/400`.
+            /// - Remark: Generated from `#/paths//v1/persona/list/get(listPersonas)/responses/400`.
             ///
             /// HTTP response code: `400 badRequest`.
             case badRequest(Components.Responses.BadRequest)
@@ -2646,13 +5872,13 @@ public enum Operations {
             }
             /// Internal server error
             ///
-            /// - Remark: Generated from `#/paths//api/v1/persona/list/get/responses/500`.
+            /// - Remark: Generated from `#/paths//v1/persona/list/get(listPersonas)/responses/500`.
             ///
             /// HTTP response code: `500 internalServerError`.
-            case internalServerError(Operations.get_sol_api_sol_v1_sol_persona_sol_list.Output.InternalServerError)
+            case internalServerError(Operations.listPersonas.Output.InternalServerError)
             /// Internal server error
             ///
-            /// - Remark: Generated from `#/paths//api/v1/persona/list/get/responses/500`.
+            /// - Remark: Generated from `#/paths//v1/persona/list/get(listPersonas)/responses/500`.
             ///
             /// HTTP response code: `500 internalServerError`.
             public static var internalServerError: Self {
@@ -2662,7 +5888,7 @@ public enum Operations {
             ///
             /// - Throws: An error if `self` is not `.internalServerError`.
             /// - SeeAlso: `.internalServerError`.
-            public var internalServerError: Operations.get_sol_api_sol_v1_sol_persona_sol_list.Output.InternalServerError {
+            public var internalServerError: Operations.listPersonas.Output.InternalServerError {
                 get throws {
                     switch self {
                     case let .internalServerError(response):
@@ -2706,855 +5932,50 @@ public enum Operations {
             }
         }
     }
-    /// Get a list of scenarios
-    ///
-    /// - Remark: HTTP `GET /api/v1/scenario/list`.
-    /// - Remark: Generated from `#/paths//api/v1/scenario/list/get`.
-    public enum get_sol_api_sol_v1_sol_scenario_sol_list {
-        public static let id: Swift.String = "get/api/v1/scenario/list"
-        public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/v1/scenario/list/GET/header`.
-            public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_sol_api_sol_v1_sol_scenario_sol_list.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_sol_api_sol_v1_sol_scenario_sol_list.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            public var headers: Operations.get_sol_api_sol_v1_sol_scenario_sol_list.Input.Headers
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - headers:
-            public init(headers: Operations.get_sol_api_sol_v1_sol_scenario_sol_list.Input.Headers = .init()) {
-                self.headers = headers
-            }
-        }
-        @frozen public enum Output: Sendable, Hashable {
-            public struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/scenario/list/GET/responses/200/content`.
-                @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/v1/scenario/list/GET/responses/200/content/json`.
-                    public struct jsonPayload: Codable, Hashable, Sendable {
-                        /// The token for the next page of results, or null if there are no more pages.
-                        ///
-                        /// - Remark: Generated from `#/paths/api/v1/scenario/list/GET/responses/200/content/json/next_page`.
-                        public var next_page: Swift.String?
-                        /// The total number of items available.
-                        ///
-                        /// - Remark: Generated from `#/paths/api/v1/scenario/list/GET/responses/200/content/json/total_count`.
-                        public var total_count: Swift.Double
-                        /// The array of scenarios.
-                        ///
-                        /// - Remark: Generated from `#/paths/api/v1/scenario/list/GET/responses/200/content/json/values`.
-                        public var values: [Components.Schemas.Scenario]
-                        /// Creates a new `jsonPayload`.
-                        ///
-                        /// - Parameters:
-                        ///   - next_page: The token for the next page of results, or null if there are no more pages.
-                        ///   - total_count: The total number of items available.
-                        ///   - values: The array of scenarios.
-                        public init(
-                            next_page: Swift.String? = nil,
-                            total_count: Swift.Double,
-                            values: [Components.Schemas.Scenario]
-                        ) {
-                            self.next_page = next_page
-                            self.total_count = total_count
-                            self.values = values
-                        }
-                        public enum CodingKeys: String, CodingKey {
-                            case next_page
-                            case total_count
-                            case values
-                        }
-                    }
-                    /// - Remark: Generated from `#/paths/api/v1/scenario/list/GET/responses/200/content/application\/json`.
-                    case json(Operations.get_sol_api_sol_v1_sol_scenario_sol_list.Output.Ok.Body.jsonPayload)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    public var json: Operations.get_sol_api_sol_v1_sol_scenario_sol_list.Output.Ok.Body.jsonPayload {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                public var body: Operations.get_sol_api_sol_v1_sol_scenario_sol_list.Output.Ok.Body
-                /// Creates a new `Ok`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                public init(body: Operations.get_sol_api_sol_v1_sol_scenario_sol_list.Output.Ok.Body) {
-                    self.body = body
-                }
-            }
-            /// List of scenarios
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/scenario/list/get/responses/200`.
-            ///
-            /// HTTP response code: `200 ok`.
-            case ok(Operations.get_sol_api_sol_v1_sol_scenario_sol_list.Output.Ok)
-            /// The associated value of the enum case if `self` is `.ok`.
-            ///
-            /// - Throws: An error if `self` is not `.ok`.
-            /// - SeeAlso: `.ok`.
-            public var ok: Operations.get_sol_api_sol_v1_sol_scenario_sol_list.Output.Ok {
-                get throws {
-                    switch self {
-                    case let .ok(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "ok",
-                            response: self
-                        )
-                    }
-                }
-            }
-            /// Invalid request data
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/scenario/list/get/responses/400`.
-            ///
-            /// HTTP response code: `400 badRequest`.
-            case badRequest(Components.Responses.BadRequest)
-            /// The associated value of the enum case if `self` is `.badRequest`.
-            ///
-            /// - Throws: An error if `self` is not `.badRequest`.
-            /// - SeeAlso: `.badRequest`.
-            public var badRequest: Components.Responses.BadRequest {
-                get throws {
-                    switch self {
-                    case let .badRequest(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "badRequest",
-                            response: self
-                        )
-                    }
-                }
-            }
-            public struct InternalServerError: Sendable, Hashable {
-                /// Creates a new `InternalServerError`.
-                public init() {}
-            }
-            /// Internal server error
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/scenario/list/get/responses/500`.
-            ///
-            /// HTTP response code: `500 internalServerError`.
-            case internalServerError(Operations.get_sol_api_sol_v1_sol_scenario_sol_list.Output.InternalServerError)
-            /// Internal server error
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/scenario/list/get/responses/500`.
-            ///
-            /// HTTP response code: `500 internalServerError`.
-            public static var internalServerError: Self {
-                .internalServerError(.init())
-            }
-            /// The associated value of the enum case if `self` is `.internalServerError`.
-            ///
-            /// - Throws: An error if `self` is not `.internalServerError`.
-            /// - SeeAlso: `.internalServerError`.
-            public var internalServerError: Operations.get_sol_api_sol_v1_sol_scenario_sol_list.Output.InternalServerError {
-                get throws {
-                    switch self {
-                    case let .internalServerError(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "internalServerError",
-                            response: self
-                        )
-                    }
-                }
-            }
-            /// Undocumented response.
-            ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
-        }
-        @frozen public enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case other(Swift.String)
-            public init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            public var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                }
-            }
-            public static var allCases: [Self] {
-                [
-                    .json
-                ]
-            }
-        }
-    }
-    /// Get a list of voices
-    ///
-    /// - Remark: HTTP `GET /api/v1/voice/list`.
-    /// - Remark: Generated from `#/paths//api/v1/voice/list/get`.
-    public enum get_sol_api_sol_v1_sol_voice_sol_list {
-        public static let id: Swift.String = "get/api/v1/voice/list"
-        public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/v1/voice/list/GET/header`.
-            public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_sol_api_sol_v1_sol_voice_sol_list.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_sol_api_sol_v1_sol_voice_sol_list.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            public var headers: Operations.get_sol_api_sol_v1_sol_voice_sol_list.Input.Headers
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - headers:
-            public init(headers: Operations.get_sol_api_sol_v1_sol_voice_sol_list.Input.Headers = .init()) {
-                self.headers = headers
-            }
-        }
-        @frozen public enum Output: Sendable, Hashable {
-            public struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/voice/list/GET/responses/200/content`.
-                @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/v1/voice/list/GET/responses/200/content/json`.
-                    public struct jsonPayload: Codable, Hashable, Sendable {
-                        /// The token for the next page of results, or null if there are no more pages.
-                        ///
-                        /// - Remark: Generated from `#/paths/api/v1/voice/list/GET/responses/200/content/json/next_page`.
-                        public var next_page: Swift.String?
-                        /// The total number of items available.
-                        ///
-                        /// - Remark: Generated from `#/paths/api/v1/voice/list/GET/responses/200/content/json/total_count`.
-                        public var total_count: Swift.Double
-                        /// The array of voices.
-                        ///
-                        /// - Remark: Generated from `#/paths/api/v1/voice/list/GET/responses/200/content/json/values`.
-                        public var values: [Components.Schemas.Voice]
-                        /// Creates a new `jsonPayload`.
-                        ///
-                        /// - Parameters:
-                        ///   - next_page: The token for the next page of results, or null if there are no more pages.
-                        ///   - total_count: The total number of items available.
-                        ///   - values: The array of voices.
-                        public init(
-                            next_page: Swift.String? = nil,
-                            total_count: Swift.Double,
-                            values: [Components.Schemas.Voice]
-                        ) {
-                            self.next_page = next_page
-                            self.total_count = total_count
-                            self.values = values
-                        }
-                        public enum CodingKeys: String, CodingKey {
-                            case next_page
-                            case total_count
-                            case values
-                        }
-                    }
-                    /// - Remark: Generated from `#/paths/api/v1/voice/list/GET/responses/200/content/application\/json`.
-                    case json(Operations.get_sol_api_sol_v1_sol_voice_sol_list.Output.Ok.Body.jsonPayload)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    public var json: Operations.get_sol_api_sol_v1_sol_voice_sol_list.Output.Ok.Body.jsonPayload {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                public var body: Operations.get_sol_api_sol_v1_sol_voice_sol_list.Output.Ok.Body
-                /// Creates a new `Ok`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                public init(body: Operations.get_sol_api_sol_v1_sol_voice_sol_list.Output.Ok.Body) {
-                    self.body = body
-                }
-            }
-            /// List of voices
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/voice/list/get/responses/200`.
-            ///
-            /// HTTP response code: `200 ok`.
-            case ok(Operations.get_sol_api_sol_v1_sol_voice_sol_list.Output.Ok)
-            /// The associated value of the enum case if `self` is `.ok`.
-            ///
-            /// - Throws: An error if `self` is not `.ok`.
-            /// - SeeAlso: `.ok`.
-            public var ok: Operations.get_sol_api_sol_v1_sol_voice_sol_list.Output.Ok {
-                get throws {
-                    switch self {
-                    case let .ok(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "ok",
-                            response: self
-                        )
-                    }
-                }
-            }
-            /// Invalid request data
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/voice/list/get/responses/400`.
-            ///
-            /// HTTP response code: `400 badRequest`.
-            case badRequest(Components.Responses.BadRequest)
-            /// The associated value of the enum case if `self` is `.badRequest`.
-            ///
-            /// - Throws: An error if `self` is not `.badRequest`.
-            /// - SeeAlso: `.badRequest`.
-            public var badRequest: Components.Responses.BadRequest {
-                get throws {
-                    switch self {
-                    case let .badRequest(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "badRequest",
-                            response: self
-                        )
-                    }
-                }
-            }
-            public struct InternalServerError: Sendable, Hashable {
-                /// Creates a new `InternalServerError`.
-                public init() {}
-            }
-            /// Internal server error
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/voice/list/get/responses/500`.
-            ///
-            /// HTTP response code: `500 internalServerError`.
-            case internalServerError(Operations.get_sol_api_sol_v1_sol_voice_sol_list.Output.InternalServerError)
-            /// Internal server error
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/voice/list/get/responses/500`.
-            ///
-            /// HTTP response code: `500 internalServerError`.
-            public static var internalServerError: Self {
-                .internalServerError(.init())
-            }
-            /// The associated value of the enum case if `self` is `.internalServerError`.
-            ///
-            /// - Throws: An error if `self` is not `.internalServerError`.
-            /// - SeeAlso: `.internalServerError`.
-            public var internalServerError: Operations.get_sol_api_sol_v1_sol_voice_sol_list.Output.InternalServerError {
-                get throws {
-                    switch self {
-                    case let .internalServerError(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "internalServerError",
-                            response: self
-                        )
-                    }
-                }
-            }
-            /// Undocumented response.
-            ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
-        }
-        @frozen public enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case other(Swift.String)
-            public init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            public var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                }
-            }
-            public static var allCases: [Self] {
-                [
-                    .json
-                ]
-            }
-        }
-    }
-    /// Preview a voice
-    ///
-    /// Previews a voice based on the input text
-    ///
-    /// - Remark: HTTP `POST /api/v1/voice/preview`.
-    /// - Remark: Generated from `#/paths//api/v1/voice/preview/post`.
-    public enum post_sol_api_sol_v1_sol_voice_sol_preview {
-        public static let id: Swift.String = "post/api/v1/voice/preview"
-        public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/v1/voice/preview/POST/header`.
-            public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.post_sol_api_sol_v1_sol_voice_sol_preview.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.post_sol_api_sol_v1_sol_voice_sol_preview.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            public var headers: Operations.post_sol_api_sol_v1_sol_voice_sol_preview.Input.Headers
-            /// - Remark: Generated from `#/paths/api/v1/voice/preview/POST/requestBody`.
-            @frozen public enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/voice/preview/POST/requestBody/content/application\/json`.
-                case json(Components.Schemas.VoicePreviewRequest)
-            }
-            public var body: Operations.post_sol_api_sol_v1_sol_voice_sol_preview.Input.Body
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - headers:
-            ///   - body:
-            public init(
-                headers: Operations.post_sol_api_sol_v1_sol_voice_sol_preview.Input.Headers = .init(),
-                body: Operations.post_sol_api_sol_v1_sol_voice_sol_preview.Input.Body
-            ) {
-                self.headers = headers
-                self.body = body
-            }
-        }
-        @frozen public enum Output: Sendable, Hashable {
-            public struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/voice/preview/POST/responses/200/content`.
-                @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/v1/voice/preview/POST/responses/200/content/audio\/mpeg`.
-                    case audio_mpeg(OpenAPIRuntime.HTTPBody)
-                    /// The associated value of the enum case if `self` is `.audio_mpeg`.
-                    ///
-                    /// - Throws: An error if `self` is not `.audio_mpeg`.
-                    /// - SeeAlso: `.audio_mpeg`.
-                    public var audio_mpeg: OpenAPIRuntime.HTTPBody {
-                        get throws {
-                            switch self {
-                            case let .audio_mpeg(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                public var body: Operations.post_sol_api_sol_v1_sol_voice_sol_preview.Output.Ok.Body
-                /// Creates a new `Ok`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                public init(body: Operations.post_sol_api_sol_v1_sol_voice_sol_preview.Output.Ok.Body) {
-                    self.body = body
-                }
-            }
-            /// Returns MP3 data
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/voice/preview/post/responses/200`.
-            ///
-            /// HTTP response code: `200 ok`.
-            case ok(Operations.post_sol_api_sol_v1_sol_voice_sol_preview.Output.Ok)
-            /// The associated value of the enum case if `self` is `.ok`.
-            ///
-            /// - Throws: An error if `self` is not `.ok`.
-            /// - SeeAlso: `.ok`.
-            public var ok: Operations.post_sol_api_sol_v1_sol_voice_sol_preview.Output.Ok {
-                get throws {
-                    switch self {
-                    case let .ok(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "ok",
-                            response: self
-                        )
-                    }
-                }
-            }
-            /// Invalid request data
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/voice/preview/post/responses/400`.
-            ///
-            /// HTTP response code: `400 badRequest`.
-            case badRequest(Components.Responses.BadRequest)
-            /// The associated value of the enum case if `self` is `.badRequest`.
-            ///
-            /// - Throws: An error if `self` is not `.badRequest`.
-            /// - SeeAlso: `.badRequest`.
-            public var badRequest: Components.Responses.BadRequest {
-                get throws {
-                    switch self {
-                    case let .badRequest(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "badRequest",
-                            response: self
-                        )
-                    }
-                }
-            }
-            public struct InternalServerError: Sendable, Hashable {
-                /// Creates a new `InternalServerError`.
-                public init() {}
-            }
-            /// Internal server error
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/voice/preview/post/responses/500`.
-            ///
-            /// HTTP response code: `500 internalServerError`.
-            case internalServerError(Operations.post_sol_api_sol_v1_sol_voice_sol_preview.Output.InternalServerError)
-            /// Internal server error
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/voice/preview/post/responses/500`.
-            ///
-            /// HTTP response code: `500 internalServerError`.
-            public static var internalServerError: Self {
-                .internalServerError(.init())
-            }
-            /// The associated value of the enum case if `self` is `.internalServerError`.
-            ///
-            /// - Throws: An error if `self` is not `.internalServerError`.
-            /// - SeeAlso: `.internalServerError`.
-            public var internalServerError: Operations.post_sol_api_sol_v1_sol_voice_sol_preview.Output.InternalServerError {
-                get throws {
-                    switch self {
-                    case let .internalServerError(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "internalServerError",
-                            response: self
-                        )
-                    }
-                }
-            }
-            /// Undocumented response.
-            ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
-        }
-        @frozen public enum AcceptableContentType: AcceptableProtocol {
-            case audio_mpeg
-            case json
-            case other(Swift.String)
-            public init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "audio/mpeg":
-                    self = .audio_mpeg
-                case "application/json":
-                    self = .json
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            public var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .audio_mpeg:
-                    return "audio/mpeg"
-                case .json:
-                    return "application/json"
-                }
-            }
-            public static var allCases: [Self] {
-                [
-                    .audio_mpeg,
-                    .json
-                ]
-            }
-        }
-    }
-    /// End a session
-    ///
-    /// - Remark: HTTP `POST /api/v1/session/{session_id}/end`.
-    /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/end/post`.
-    public enum post_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_end {
-        public static let id: Swift.String = "post/api/v1/session/{session_id}/end"
-        public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/end/POST/path`.
-            public struct Path: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/end/POST/path/session_id`.
-                public var session_id: Swift.String
-                /// Creates a new `Path`.
-                ///
-                /// - Parameters:
-                ///   - session_id:
-                public init(session_id: Swift.String) {
-                    self.session_id = session_id
-                }
-            }
-            public var path: Operations.post_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_end.Input.Path
-            /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/end/POST/header`.
-            public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.post_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_end.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.post_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_end.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            public var headers: Operations.post_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_end.Input.Headers
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - path:
-            ///   - headers:
-            public init(
-                path: Operations.post_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_end.Input.Path,
-                headers: Operations.post_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_end.Input.Headers = .init()
-            ) {
-                self.path = path
-                self.headers = headers
-            }
-        }
-        @frozen public enum Output: Sendable, Hashable {
-            public struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/end/POST/responses/200/content`.
-                @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/v1/session/{session_id}/end/POST/responses/200/content/application\/json`.
-                    case json(Components.Schemas.Session)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    public var json: Components.Schemas.Session {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                public var body: Operations.post_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_end.Output.Ok.Body
-                /// Creates a new `Ok`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                public init(body: Operations.post_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_end.Output.Ok.Body) {
-                    self.body = body
-                }
-            }
-            /// Session created successfully
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/end/post/responses/200`.
-            ///
-            /// HTTP response code: `200 ok`.
-            case ok(Operations.post_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_end.Output.Ok)
-            /// The associated value of the enum case if `self` is `.ok`.
-            ///
-            /// - Throws: An error if `self` is not `.ok`.
-            /// - SeeAlso: `.ok`.
-            public var ok: Operations.post_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_end.Output.Ok {
-                get throws {
-                    switch self {
-                    case let .ok(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "ok",
-                            response: self
-                        )
-                    }
-                }
-            }
-            /// Invalid request data
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/end/post/responses/400`.
-            ///
-            /// HTTP response code: `400 badRequest`.
-            case badRequest(Components.Responses.BadRequest)
-            /// The associated value of the enum case if `self` is `.badRequest`.
-            ///
-            /// - Throws: An error if `self` is not `.badRequest`.
-            /// - SeeAlso: `.badRequest`.
-            public var badRequest: Components.Responses.BadRequest {
-                get throws {
-                    switch self {
-                    case let .badRequest(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "badRequest",
-                            response: self
-                        )
-                    }
-                }
-            }
-            public struct TooManyRequests: Sendable, Hashable {
-                /// Creates a new `TooManyRequests`.
-                public init() {}
-            }
-            /// Usage limit exceeded
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/end/post/responses/429`.
-            ///
-            /// HTTP response code: `429 tooManyRequests`.
-            case tooManyRequests(Operations.post_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_end.Output.TooManyRequests)
-            /// Usage limit exceeded
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/end/post/responses/429`.
-            ///
-            /// HTTP response code: `429 tooManyRequests`.
-            public static var tooManyRequests: Self {
-                .tooManyRequests(.init())
-            }
-            /// The associated value of the enum case if `self` is `.tooManyRequests`.
-            ///
-            /// - Throws: An error if `self` is not `.tooManyRequests`.
-            /// - SeeAlso: `.tooManyRequests`.
-            public var tooManyRequests: Operations.post_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_end.Output.TooManyRequests {
-                get throws {
-                    switch self {
-                    case let .tooManyRequests(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "tooManyRequests",
-                            response: self
-                        )
-                    }
-                }
-            }
-            public struct InternalServerError: Sendable, Hashable {
-                /// Creates a new `InternalServerError`.
-                public init() {}
-            }
-            /// Internal server error
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/end/post/responses/500`.
-            ///
-            /// HTTP response code: `500 internalServerError`.
-            case internalServerError(Operations.post_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_end.Output.InternalServerError)
-            /// Internal server error
-            ///
-            /// - Remark: Generated from `#/paths//api/v1/session/{session_id}/end/post/responses/500`.
-            ///
-            /// HTTP response code: `500 internalServerError`.
-            public static var internalServerError: Self {
-                .internalServerError(.init())
-            }
-            /// The associated value of the enum case if `self` is `.internalServerError`.
-            ///
-            /// - Throws: An error if `self` is not `.internalServerError`.
-            /// - SeeAlso: `.internalServerError`.
-            public var internalServerError: Operations.post_sol_api_sol_v1_sol_session_sol__lcub_session_id_rcub__sol_end.Output.InternalServerError {
-                get throws {
-                    switch self {
-                    case let .internalServerError(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "internalServerError",
-                            response: self
-                        )
-                    }
-                }
-            }
-            /// Undocumented response.
-            ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
-        }
-        @frozen public enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case other(Swift.String)
-            public init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            public var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                }
-            }
-            public static var allCases: [Self] {
-                [
-                    .json
-                ]
-            }
-        }
-    }
-    /// Request new human token
+    /// Create a new usage token
     ///
     /// Requests a token for a human
     ///
-    /// - Remark: HTTP `POST /api/v1/usage/token`.
-    /// - Remark: Generated from `#/paths//api/v1/usage/token/post`.
-    public enum post_sol_api_sol_v1_sol_usage_sol_token {
-        public static let id: Swift.String = "post/api/v1/usage/token"
+    /// - Remark: HTTP `POST /v1/usage/token`.
+    /// - Remark: Generated from `#/paths//v1/usage/token/post(createUsageToken)`.
+    public enum createUsageToken {
+        public static let id: Swift.String = "createUsageToken"
         public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/v1/usage/token/POST/header`.
+            /// - Remark: Generated from `#/paths/v1/usage/token/POST/header`.
             public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.post_sol_api_sol_v1_sol_usage_sol_token.AcceptableContentType>]
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/usage/token/POST/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.createUsageToken.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
                 ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.post_sol_api_sol_v1_sol_usage_sol_token.AcceptableContentType>] = .defaultValues()) {
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.createUsageToken.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
                     self.accept = accept
                 }
             }
-            public var headers: Operations.post_sol_api_sol_v1_sol_usage_sol_token.Input.Headers
-            /// - Remark: Generated from `#/paths/api/v1/usage/token/POST/requestBody`.
+            public var headers: Operations.createUsageToken.Input.Headers
+            /// - Remark: Generated from `#/paths/v1/usage/token/POST/requestBody`.
             @frozen public enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/usage/token/POST/requestBody/content/application\/json`.
-                case json(Components.Schemas.TokenRequest)
+                /// - Remark: Generated from `#/paths/v1/usage/token/POST/requestBody/content/application\/json`.
+                case json(Components.Schemas.UsageTokenRequest)
             }
-            public var body: Operations.post_sol_api_sol_v1_sol_usage_sol_token.Input.Body
+            public var body: Operations.createUsageToken.Input.Body
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - headers:
             ///   - body:
             public init(
-                headers: Operations.post_sol_api_sol_v1_sol_usage_sol_token.Input.Headers = .init(),
-                body: Operations.post_sol_api_sol_v1_sol_usage_sol_token.Input.Body
+                headers: Operations.createUsageToken.Input.Headers = .init(),
+                body: Operations.createUsageToken.Input.Body
             ) {
                 self.headers = headers
                 self.body = body
@@ -3562,11 +5983,11 @@ public enum Operations {
         }
         @frozen public enum Output: Sendable, Hashable {
             public struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/usage/token/POST/responses/200/content`.
+                /// - Remark: Generated from `#/paths/v1/usage/token/POST/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/v1/usage/token/POST/responses/200/content/json`.
+                    /// - Remark: Generated from `#/paths/v1/usage/token/POST/responses/200/content/json`.
                     public struct jsonPayload: Codable, Hashable, Sendable {
-                        /// - Remark: Generated from `#/paths/api/v1/usage/token/POST/responses/200/content/json/token`.
+                        /// - Remark: Generated from `#/paths/v1/usage/token/POST/responses/200/content/json/token`.
                         public var token: Swift.String
                         /// Creates a new `jsonPayload`.
                         ///
@@ -3579,13 +6000,13 @@ public enum Operations {
                             case token
                         }
                     }
-                    /// - Remark: Generated from `#/paths/api/v1/usage/token/POST/responses/200/content/application\/json`.
-                    case json(Operations.post_sol_api_sol_v1_sol_usage_sol_token.Output.Ok.Body.jsonPayload)
+                    /// - Remark: Generated from `#/paths/v1/usage/token/POST/responses/200/content/application\/json`.
+                    case json(Operations.createUsageToken.Output.Ok.Body.jsonPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Operations.post_sol_api_sol_v1_sol_usage_sol_token.Output.Ok.Body.jsonPayload {
+                    public var json: Operations.createUsageToken.Output.Ok.Body.jsonPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -3595,26 +6016,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.post_sol_api_sol_v1_sol_usage_sol_token.Output.Ok.Body
+                public var body: Operations.createUsageToken.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.post_sol_api_sol_v1_sol_usage_sol_token.Output.Ok.Body) {
+                public init(body: Operations.createUsageToken.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// Token created successfully
             ///
-            /// - Remark: Generated from `#/paths//api/v1/usage/token/post/responses/200`.
+            /// - Remark: Generated from `#/paths//v1/usage/token/post(createUsageToken)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.post_sol_api_sol_v1_sol_usage_sol_token.Output.Ok)
+            case ok(Operations.createUsageToken.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.post_sol_api_sol_v1_sol_usage_sol_token.Output.Ok {
+            public var ok: Operations.createUsageToken.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -3627,9 +6048,9 @@ public enum Operations {
                     }
                 }
             }
-            /// Invalid request data
+            /// Bad request
             ///
-            /// - Remark: Generated from `#/paths//api/v1/usage/token/post/responses/400`.
+            /// - Remark: Generated from `#/paths//v1/usage/token/post(createUsageToken)/responses/400`.
             ///
             /// HTTP response code: `400 badRequest`.
             case badRequest(Components.Responses.BadRequest)
@@ -3656,13 +6077,13 @@ public enum Operations {
             }
             /// Usage limit exceeded
             ///
-            /// - Remark: Generated from `#/paths//api/v1/usage/token/post/responses/429`.
+            /// - Remark: Generated from `#/paths//v1/usage/token/post(createUsageToken)/responses/429`.
             ///
             /// HTTP response code: `429 tooManyRequests`.
-            case tooManyRequests(Operations.post_sol_api_sol_v1_sol_usage_sol_token.Output.TooManyRequests)
+            case tooManyRequests(Operations.createUsageToken.Output.TooManyRequests)
             /// Usage limit exceeded
             ///
-            /// - Remark: Generated from `#/paths//api/v1/usage/token/post/responses/429`.
+            /// - Remark: Generated from `#/paths//v1/usage/token/post(createUsageToken)/responses/429`.
             ///
             /// HTTP response code: `429 tooManyRequests`.
             public static var tooManyRequests: Self {
@@ -3672,7 +6093,7 @@ public enum Operations {
             ///
             /// - Throws: An error if `self` is not `.tooManyRequests`.
             /// - SeeAlso: `.tooManyRequests`.
-            public var tooManyRequests: Operations.post_sol_api_sol_v1_sol_usage_sol_token.Output.TooManyRequests {
+            public var tooManyRequests: Operations.createUsageToken.Output.TooManyRequests {
                 get throws {
                     switch self {
                     case let .tooManyRequests(response):
@@ -3691,13 +6112,13 @@ public enum Operations {
             }
             /// Internal server error
             ///
-            /// - Remark: Generated from `#/paths//api/v1/usage/token/post/responses/500`.
+            /// - Remark: Generated from `#/paths//v1/usage/token/post(createUsageToken)/responses/500`.
             ///
             /// HTTP response code: `500 internalServerError`.
-            case internalServerError(Operations.post_sol_api_sol_v1_sol_usage_sol_token.Output.InternalServerError)
+            case internalServerError(Operations.createUsageToken.Output.InternalServerError)
             /// Internal server error
             ///
-            /// - Remark: Generated from `#/paths//api/v1/usage/token/post/responses/500`.
+            /// - Remark: Generated from `#/paths//v1/usage/token/post(createUsageToken)/responses/500`.
             ///
             /// HTTP response code: `500 internalServerError`.
             public static var internalServerError: Self {
@@ -3707,7 +6128,7 @@ public enum Operations {
             ///
             /// - Throws: An error if `self` is not `.internalServerError`.
             /// - SeeAlso: `.internalServerError`.
-            public var internalServerError: Operations.post_sol_api_sol_v1_sol_usage_sol_token.Output.InternalServerError {
+            public var internalServerError: Operations.createUsageToken.Output.InternalServerError {
                 get throws {
                     switch self {
                     case let .internalServerError(response):
@@ -3751,41 +6172,41 @@ public enum Operations {
             }
         }
     }
-    /// Update human usage limits
+    /// Update limits on a usage token
     ///
     /// Updates the usage limits of a human
     ///
-    /// - Remark: HTTP `PUT /api/v1/usage/token`.
-    /// - Remark: Generated from `#/paths//api/v1/usage/token/put`.
-    public enum put_sol_api_sol_v1_sol_usage_sol_token {
-        public static let id: Swift.String = "put/api/v1/usage/token"
+    /// - Remark: HTTP `PUT /v1/usage/token`.
+    /// - Remark: Generated from `#/paths//v1/usage/token/put(updateUsageToken)`.
+    public enum updateUsageToken {
+        public static let id: Swift.String = "updateUsageToken"
         public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/v1/usage/token/PUT/header`.
+            /// - Remark: Generated from `#/paths/v1/usage/token/PUT/header`.
             public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.put_sol_api_sol_v1_sol_usage_sol_token.AcceptableContentType>]
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.updateUsageToken.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.put_sol_api_sol_v1_sol_usage_sol_token.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.updateUsageToken.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            public var headers: Operations.put_sol_api_sol_v1_sol_usage_sol_token.Input.Headers
-            /// - Remark: Generated from `#/paths/api/v1/usage/token/PUT/requestBody`.
+            public var headers: Operations.updateUsageToken.Input.Headers
+            /// - Remark: Generated from `#/paths/v1/usage/token/PUT/requestBody`.
             @frozen public enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/usage/token/PUT/requestBody/content/application\/json`.
+                /// - Remark: Generated from `#/paths/v1/usage/token/PUT/requestBody/content/application\/json`.
                 case json(Components.Schemas.UpdateUsageLimitsRequest)
             }
-            public var body: Operations.put_sol_api_sol_v1_sol_usage_sol_token.Input.Body
+            public var body: Operations.updateUsageToken.Input.Body
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - headers:
             ///   - body:
             public init(
-                headers: Operations.put_sol_api_sol_v1_sol_usage_sol_token.Input.Headers = .init(),
-                body: Operations.put_sol_api_sol_v1_sol_usage_sol_token.Input.Body
+                headers: Operations.updateUsageToken.Input.Headers = .init(),
+                body: Operations.updateUsageToken.Input.Body
             ) {
                 self.headers = headers
                 self.body = body
@@ -3793,9 +6214,9 @@ public enum Operations {
         }
         @frozen public enum Output: Sendable, Hashable {
             public struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/usage/token/PUT/responses/200/content`.
+                /// - Remark: Generated from `#/paths/v1/usage/token/PUT/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/v1/usage/token/PUT/responses/200/content/json`.
+                    /// - Remark: Generated from `#/paths/v1/usage/token/PUT/responses/200/content/json`.
                     public struct jsonPayload: Codable, Hashable, Sendable {
                         /// Creates a new `jsonPayload`.
                         public init() {}
@@ -3803,13 +6224,13 @@ public enum Operations {
                             try decoder.ensureNoAdditionalProperties(knownKeys: [])
                         }
                     }
-                    /// - Remark: Generated from `#/paths/api/v1/usage/token/PUT/responses/200/content/application\/json`.
-                    case json(Operations.put_sol_api_sol_v1_sol_usage_sol_token.Output.Ok.Body.jsonPayload)
+                    /// - Remark: Generated from `#/paths/v1/usage/token/PUT/responses/200/content/application\/json`.
+                    case json(Operations.updateUsageToken.Output.Ok.Body.jsonPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Operations.put_sol_api_sol_v1_sol_usage_sol_token.Output.Ok.Body.jsonPayload {
+                    public var json: Operations.updateUsageToken.Output.Ok.Body.jsonPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -3819,26 +6240,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.put_sol_api_sol_v1_sol_usage_sol_token.Output.Ok.Body
+                public var body: Operations.updateUsageToken.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.put_sol_api_sol_v1_sol_usage_sol_token.Output.Ok.Body) {
+                public init(body: Operations.updateUsageToken.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// Usage limits updated successfully
             ///
-            /// - Remark: Generated from `#/paths//api/v1/usage/token/put/responses/200`.
+            /// - Remark: Generated from `#/paths//v1/usage/token/put(updateUsageToken)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.put_sol_api_sol_v1_sol_usage_sol_token.Output.Ok)
+            case ok(Operations.updateUsageToken.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.put_sol_api_sol_v1_sol_usage_sol_token.Output.Ok {
+            public var ok: Operations.updateUsageToken.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -3851,9 +6272,9 @@ public enum Operations {
                     }
                 }
             }
-            /// Invalid request data
+            /// Bad request
             ///
-            /// - Remark: Generated from `#/paths//api/v1/usage/token/put/responses/400`.
+            /// - Remark: Generated from `#/paths//v1/usage/token/put(updateUsageToken)/responses/400`.
             ///
             /// HTTP response code: `400 badRequest`.
             case badRequest(Components.Responses.BadRequest)
@@ -3880,13 +6301,13 @@ public enum Operations {
             }
             /// Usage limit exceeded
             ///
-            /// - Remark: Generated from `#/paths//api/v1/usage/token/put/responses/429`.
+            /// - Remark: Generated from `#/paths//v1/usage/token/put(updateUsageToken)/responses/429`.
             ///
             /// HTTP response code: `429 tooManyRequests`.
-            case tooManyRequests(Operations.put_sol_api_sol_v1_sol_usage_sol_token.Output.TooManyRequests)
+            case tooManyRequests(Operations.updateUsageToken.Output.TooManyRequests)
             /// Usage limit exceeded
             ///
-            /// - Remark: Generated from `#/paths//api/v1/usage/token/put/responses/429`.
+            /// - Remark: Generated from `#/paths//v1/usage/token/put(updateUsageToken)/responses/429`.
             ///
             /// HTTP response code: `429 tooManyRequests`.
             public static var tooManyRequests: Self {
@@ -3896,7 +6317,7 @@ public enum Operations {
             ///
             /// - Throws: An error if `self` is not `.tooManyRequests`.
             /// - SeeAlso: `.tooManyRequests`.
-            public var tooManyRequests: Operations.put_sol_api_sol_v1_sol_usage_sol_token.Output.TooManyRequests {
+            public var tooManyRequests: Operations.updateUsageToken.Output.TooManyRequests {
                 get throws {
                     switch self {
                     case let .tooManyRequests(response):
@@ -3915,13 +6336,13 @@ public enum Operations {
             }
             /// Internal server error
             ///
-            /// - Remark: Generated from `#/paths//api/v1/usage/token/put/responses/500`.
+            /// - Remark: Generated from `#/paths//v1/usage/token/put(updateUsageToken)/responses/500`.
             ///
             /// HTTP response code: `500 internalServerError`.
-            case internalServerError(Operations.put_sol_api_sol_v1_sol_usage_sol_token.Output.InternalServerError)
+            case internalServerError(Operations.updateUsageToken.Output.InternalServerError)
             /// Internal server error
             ///
-            /// - Remark: Generated from `#/paths//api/v1/usage/token/put/responses/500`.
+            /// - Remark: Generated from `#/paths//v1/usage/token/put(updateUsageToken)/responses/500`.
             ///
             /// HTTP response code: `500 internalServerError`.
             public static var internalServerError: Self {
@@ -3931,7 +6352,7 @@ public enum Operations {
             ///
             /// - Throws: An error if `self` is not `.internalServerError`.
             /// - SeeAlso: `.internalServerError`.
-            public var internalServerError: Operations.put_sol_api_sol_v1_sol_usage_sol_token.Output.InternalServerError {
+            public var internalServerError: Operations.updateUsageToken.Output.InternalServerError {
                 get throws {
                     switch self {
                     case let .internalServerError(response):
@@ -3979,36 +6400,45 @@ public enum Operations {
     ///
     /// Gets the usage limits of a token
     ///
-    /// - Remark: HTTP `GET /api/v1/usage/limits`.
-    /// - Remark: Generated from `#/paths//api/v1/usage/limits/get`.
-    public enum get_sol_api_sol_v1_sol_usage_sol_limits {
-        public static let id: Swift.String = "get/api/v1/usage/limits"
+    /// - Remark: HTTP `GET /v1/usage/limits`.
+    /// - Remark: Generated from `#/paths//v1/usage/limits/get(getUsageLimits)`.
+    public enum getUsageLimits {
+        public static let id: Swift.String = "getUsageLimits"
         public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/v1/usage/limits/GET/header`.
+            /// - Remark: Generated from `#/paths/v1/usage/limits/GET/header`.
             public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_sol_api_sol_v1_sol_usage_sol_limits.AcceptableContentType>]
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/usage/limits/GET/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getUsageLimits.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
                 ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_sol_api_sol_v1_sol_usage_sol_limits.AcceptableContentType>] = .defaultValues()) {
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getUsageLimits.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
                     self.accept = accept
                 }
             }
-            public var headers: Operations.get_sol_api_sol_v1_sol_usage_sol_limits.Input.Headers
+            public var headers: Operations.getUsageLimits.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - headers:
-            public init(headers: Operations.get_sol_api_sol_v1_sol_usage_sol_limits.Input.Headers = .init()) {
+            public init(headers: Operations.getUsageLimits.Input.Headers = .init()) {
                 self.headers = headers
             }
         }
         @frozen public enum Output: Sendable, Hashable {
             public struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/usage/limits/GET/responses/200/content`.
+                /// - Remark: Generated from `#/paths/v1/usage/limits/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/v1/usage/limits/GET/responses/200/content/application\/json`.
+                    /// - Remark: Generated from `#/paths/v1/usage/limits/GET/responses/200/content/application\/json`.
                     case json(Components.Schemas.UsageLimits)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
@@ -4024,26 +6454,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.get_sol_api_sol_v1_sol_usage_sol_limits.Output.Ok.Body
+                public var body: Operations.getUsageLimits.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.get_sol_api_sol_v1_sol_usage_sol_limits.Output.Ok.Body) {
+                public init(body: Operations.getUsageLimits.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// Token created successfully
             ///
-            /// - Remark: Generated from `#/paths//api/v1/usage/limits/get/responses/200`.
+            /// - Remark: Generated from `#/paths//v1/usage/limits/get(getUsageLimits)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.get_sol_api_sol_v1_sol_usage_sol_limits.Output.Ok)
+            case ok(Operations.getUsageLimits.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.get_sol_api_sol_v1_sol_usage_sol_limits.Output.Ok {
+            public var ok: Operations.getUsageLimits.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -4056,9 +6486,9 @@ public enum Operations {
                     }
                 }
             }
-            /// Invalid request data
+            /// Bad request
             ///
-            /// - Remark: Generated from `#/paths//api/v1/usage/limits/get/responses/400`.
+            /// - Remark: Generated from `#/paths//v1/usage/limits/get(getUsageLimits)/responses/400`.
             ///
             /// HTTP response code: `400 badRequest`.
             case badRequest(Components.Responses.BadRequest)
@@ -4085,13 +6515,13 @@ public enum Operations {
             }
             /// Usage limit exceeded
             ///
-            /// - Remark: Generated from `#/paths//api/v1/usage/limits/get/responses/429`.
+            /// - Remark: Generated from `#/paths//v1/usage/limits/get(getUsageLimits)/responses/429`.
             ///
             /// HTTP response code: `429 tooManyRequests`.
-            case tooManyRequests(Operations.get_sol_api_sol_v1_sol_usage_sol_limits.Output.TooManyRequests)
+            case tooManyRequests(Operations.getUsageLimits.Output.TooManyRequests)
             /// Usage limit exceeded
             ///
-            /// - Remark: Generated from `#/paths//api/v1/usage/limits/get/responses/429`.
+            /// - Remark: Generated from `#/paths//v1/usage/limits/get(getUsageLimits)/responses/429`.
             ///
             /// HTTP response code: `429 tooManyRequests`.
             public static var tooManyRequests: Self {
@@ -4101,7 +6531,7 @@ public enum Operations {
             ///
             /// - Throws: An error if `self` is not `.tooManyRequests`.
             /// - SeeAlso: `.tooManyRequests`.
-            public var tooManyRequests: Operations.get_sol_api_sol_v1_sol_usage_sol_limits.Output.TooManyRequests {
+            public var tooManyRequests: Operations.getUsageLimits.Output.TooManyRequests {
                 get throws {
                     switch self {
                     case let .tooManyRequests(response):
@@ -4120,13 +6550,13 @@ public enum Operations {
             }
             /// Internal server error
             ///
-            /// - Remark: Generated from `#/paths//api/v1/usage/limits/get/responses/500`.
+            /// - Remark: Generated from `#/paths//v1/usage/limits/get(getUsageLimits)/responses/500`.
             ///
             /// HTTP response code: `500 internalServerError`.
-            case internalServerError(Operations.get_sol_api_sol_v1_sol_usage_sol_limits.Output.InternalServerError)
+            case internalServerError(Operations.getUsageLimits.Output.InternalServerError)
             /// Internal server error
             ///
-            /// - Remark: Generated from `#/paths//api/v1/usage/limits/get/responses/500`.
+            /// - Remark: Generated from `#/paths//v1/usage/limits/get(getUsageLimits)/responses/500`.
             ///
             /// HTTP response code: `500 internalServerError`.
             public static var internalServerError: Self {
@@ -4136,7 +6566,7 @@ public enum Operations {
             ///
             /// - Throws: An error if `self` is not `.internalServerError`.
             /// - SeeAlso: `.internalServerError`.
-            public var internalServerError: Operations.get_sol_api_sol_v1_sol_usage_sol_limits.Output.InternalServerError {
+            public var internalServerError: Operations.getUsageLimits.Output.InternalServerError {
                 get throws {
                     switch self {
                     case let .internalServerError(response):
@@ -4184,28 +6614,37 @@ public enum Operations {
     ///
     /// Creates a new cloned voice based on the input audio file
     ///
-    /// - Remark: HTTP `POST /api/v1/voice/clone`.
-    /// - Remark: Generated from `#/paths//api/v1/voice/clone/post`.
-    public enum post_sol_api_sol_v1_sol_voice_sol_clone {
-        public static let id: Swift.String = "post/api/v1/voice/clone"
+    /// - Remark: HTTP `POST /v1/voice/clone`.
+    /// - Remark: Generated from `#/paths//v1/voice/clone/post(cloneVoice)`.
+    public enum cloneVoice {
+        public static let id: Swift.String = "cloneVoice"
         public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/v1/voice/clone/POST/header`.
+            /// - Remark: Generated from `#/paths/v1/voice/clone/POST/header`.
             public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.post_sol_api_sol_v1_sol_voice_sol_clone.AcceptableContentType>]
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/voice/clone/POST/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.cloneVoice.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
                 ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.post_sol_api_sol_v1_sol_voice_sol_clone.AcceptableContentType>] = .defaultValues()) {
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.cloneVoice.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
                     self.accept = accept
                 }
             }
-            public var headers: Operations.post_sol_api_sol_v1_sol_voice_sol_clone.Input.Headers
-            /// - Remark: Generated from `#/paths/api/v1/voice/clone/POST/requestBody`.
+            public var headers: Operations.cloneVoice.Input.Headers
+            /// - Remark: Generated from `#/paths/v1/voice/clone/POST/requestBody`.
             @frozen public enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/voice/clone/POST/requestBody/multipartForm`.
+                /// - Remark: Generated from `#/paths/v1/voice/clone/POST/requestBody/multipartForm`.
                 @frozen public enum multipartFormPayload: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/v1/voice/clone/POST/requestBody/multipartForm/name`.
+                    /// - Remark: Generated from `#/paths/v1/voice/clone/POST/requestBody/multipartForm/name`.
                     public struct namePayload: Sendable, Hashable {
                         public var body: OpenAPIRuntime.HTTPBody
                         /// Creates a new `namePayload`.
@@ -4216,8 +6655,8 @@ public enum Operations {
                             self.body = body
                         }
                     }
-                    case name(OpenAPIRuntime.MultipartPart<Operations.post_sol_api_sol_v1_sol_voice_sol_clone.Input.Body.multipartFormPayload.namePayload>)
-                    /// - Remark: Generated from `#/paths/api/v1/voice/clone/POST/requestBody/multipartForm/language`.
+                    case name(OpenAPIRuntime.MultipartPart<Operations.cloneVoice.Input.Body.multipartFormPayload.namePayload>)
+                    /// - Remark: Generated from `#/paths/v1/voice/clone/POST/requestBody/multipartForm/language`.
                     public struct languagePayload: Sendable, Hashable {
                         public var body: OpenAPIRuntime.HTTPBody
                         /// Creates a new `languagePayload`.
@@ -4228,8 +6667,8 @@ public enum Operations {
                             self.body = body
                         }
                     }
-                    case language(OpenAPIRuntime.MultipartPart<Operations.post_sol_api_sol_v1_sol_voice_sol_clone.Input.Body.multipartFormPayload.languagePayload>)
-                    /// - Remark: Generated from `#/paths/api/v1/voice/clone/POST/requestBody/multipartForm/file`.
+                    case language(OpenAPIRuntime.MultipartPart<Operations.cloneVoice.Input.Body.multipartFormPayload.languagePayload>)
+                    /// - Remark: Generated from `#/paths/v1/voice/clone/POST/requestBody/multipartForm/file`.
                     public struct filePayload: Sendable, Hashable {
                         public var body: OpenAPIRuntime.HTTPBody
                         /// Creates a new `filePayload`.
@@ -4240,21 +6679,21 @@ public enum Operations {
                             self.body = body
                         }
                     }
-                    case file(OpenAPIRuntime.MultipartPart<Operations.post_sol_api_sol_v1_sol_voice_sol_clone.Input.Body.multipartFormPayload.filePayload>)
+                    case file(OpenAPIRuntime.MultipartPart<Operations.cloneVoice.Input.Body.multipartFormPayload.filePayload>)
                     case undocumented(OpenAPIRuntime.MultipartRawPart)
                 }
-                /// - Remark: Generated from `#/paths/api/v1/voice/clone/POST/requestBody/content/multipart\/form-data`.
-                case multipartForm(OpenAPIRuntime.MultipartBody<Operations.post_sol_api_sol_v1_sol_voice_sol_clone.Input.Body.multipartFormPayload>)
+                /// - Remark: Generated from `#/paths/v1/voice/clone/POST/requestBody/content/multipart\/form-data`.
+                case multipartForm(OpenAPIRuntime.MultipartBody<Operations.cloneVoice.Input.Body.multipartFormPayload>)
             }
-            public var body: Operations.post_sol_api_sol_v1_sol_voice_sol_clone.Input.Body
+            public var body: Operations.cloneVoice.Input.Body
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - headers:
             ///   - body:
             public init(
-                headers: Operations.post_sol_api_sol_v1_sol_voice_sol_clone.Input.Headers = .init(),
-                body: Operations.post_sol_api_sol_v1_sol_voice_sol_clone.Input.Body
+                headers: Operations.cloneVoice.Input.Headers = .init(),
+                body: Operations.cloneVoice.Input.Body
             ) {
                 self.headers = headers
                 self.body = body
@@ -4262,56 +6701,15 @@ public enum Operations {
         }
         @frozen public enum Output: Sendable, Hashable {
             public struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/voice/clone/POST/responses/200/content`.
+                /// - Remark: Generated from `#/paths/v1/voice/clone/POST/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/v1/voice/clone/POST/responses/200/content/json`.
-                    public struct jsonPayload: Codable, Hashable, Sendable {
-                        /// - Remark: Generated from `#/paths/api/v1/voice/clone/POST/responses/200/content/json/message`.
-                        public var message: Swift.String
-                        /// Name of the cloned voice
-                        ///
-                        /// - Remark: Generated from `#/paths/api/v1/voice/clone/POST/responses/200/content/json/name`.
-                        public var name: Swift.String
-                        /// Language of the cloned voice
-                        ///
-                        /// - Remark: Generated from `#/paths/api/v1/voice/clone/POST/responses/200/content/json/language`.
-                        public var language: Swift.String
-                        /// Unique identifier of the cloned voice
-                        ///
-                        /// - Remark: Generated from `#/paths/api/v1/voice/clone/POST/responses/200/content/json/id`.
-                        public var id: Swift.String
-                        /// Creates a new `jsonPayload`.
-                        ///
-                        /// - Parameters:
-                        ///   - message:
-                        ///   - name: Name of the cloned voice
-                        ///   - language: Language of the cloned voice
-                        ///   - id: Unique identifier of the cloned voice
-                        public init(
-                            message: Swift.String,
-                            name: Swift.String,
-                            language: Swift.String,
-                            id: Swift.String
-                        ) {
-                            self.message = message
-                            self.name = name
-                            self.language = language
-                            self.id = id
-                        }
-                        public enum CodingKeys: String, CodingKey {
-                            case message
-                            case name
-                            case language
-                            case id
-                        }
-                    }
-                    /// - Remark: Generated from `#/paths/api/v1/voice/clone/POST/responses/200/content/application\/json`.
-                    case json(Operations.post_sol_api_sol_v1_sol_voice_sol_clone.Output.Ok.Body.jsonPayload)
+                    /// - Remark: Generated from `#/paths/v1/voice/clone/POST/responses/200/content/application\/json`.
+                    case json(Components.Schemas.Voice)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Operations.post_sol_api_sol_v1_sol_voice_sol_clone.Output.Ok.Body.jsonPayload {
+                    public var json: Components.Schemas.Voice {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -4321,26 +6719,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.post_sol_api_sol_v1_sol_voice_sol_clone.Output.Ok.Body
+                public var body: Operations.cloneVoice.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.post_sol_api_sol_v1_sol_voice_sol_clone.Output.Ok.Body) {
+                public init(body: Operations.cloneVoice.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// Voice cloned successfully
             ///
-            /// - Remark: Generated from `#/paths//api/v1/voice/clone/post/responses/200`.
+            /// - Remark: Generated from `#/paths//v1/voice/clone/post(cloneVoice)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.post_sol_api_sol_v1_sol_voice_sol_clone.Output.Ok)
+            case ok(Operations.cloneVoice.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.post_sol_api_sol_v1_sol_voice_sol_clone.Output.Ok {
+            public var ok: Operations.cloneVoice.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -4353,9 +6751,9 @@ public enum Operations {
                     }
                 }
             }
-            /// Invalid request data
+            /// Bad request
             ///
-            /// - Remark: Generated from `#/paths//api/v1/voice/clone/post/responses/400`.
+            /// - Remark: Generated from `#/paths//v1/voice/clone/post(cloneVoice)/responses/400`.
             ///
             /// HTTP response code: `400 badRequest`.
             case badRequest(Components.Responses.BadRequest)
@@ -4382,13 +6780,13 @@ public enum Operations {
             }
             /// Internal server error
             ///
-            /// - Remark: Generated from `#/paths//api/v1/voice/clone/post/responses/500`.
+            /// - Remark: Generated from `#/paths//v1/voice/clone/post(cloneVoice)/responses/500`.
             ///
             /// HTTP response code: `500 internalServerError`.
-            case internalServerError(Operations.post_sol_api_sol_v1_sol_voice_sol_clone.Output.InternalServerError)
+            case internalServerError(Operations.cloneVoice.Output.InternalServerError)
             /// Internal server error
             ///
-            /// - Remark: Generated from `#/paths//api/v1/voice/clone/post/responses/500`.
+            /// - Remark: Generated from `#/paths//v1/voice/clone/post(cloneVoice)/responses/500`.
             ///
             /// HTTP response code: `500 internalServerError`.
             public static var internalServerError: Self {
@@ -4398,7 +6796,7 @@ public enum Operations {
             ///
             /// - Throws: An error if `self` is not `.internalServerError`.
             /// - SeeAlso: `.internalServerError`.
-            public var internalServerError: Operations.post_sol_api_sol_v1_sol_voice_sol_clone.Output.InternalServerError {
+            public var internalServerError: Operations.cloneVoice.Output.InternalServerError {
                 get throws {
                     switch self {
                     case let .internalServerError(response):
@@ -4446,62 +6844,79 @@ public enum Operations {
     ///
     /// Generates speech from input text and specified voice
     ///
-    /// - Remark: HTTP `POST /api/v1/voice/generate`.
-    /// - Remark: Generated from `#/paths//api/v1/voice/generate/post`.
-    public enum post_sol_api_sol_v1_sol_voice_sol_generate {
-        public static let id: Swift.String = "post/api/v1/voice/generate"
+    /// - Remark: HTTP `POST /v1/voice/generate`.
+    /// - Remark: Generated from `#/paths//v1/voice/generate/post(generateVoice)`.
+    public enum generateVoice {
+        public static let id: Swift.String = "generateVoice"
         public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/v1/voice/generate/POST/header`.
+            /// - Remark: Generated from `#/paths/v1/voice/generate/POST/header`.
             public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.post_sol_api_sol_v1_sol_voice_sol_generate.AcceptableContentType>]
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/voice/generate/POST/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.generateVoice.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
                 ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.post_sol_api_sol_v1_sol_voice_sol_generate.AcceptableContentType>] = .defaultValues()) {
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.generateVoice.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
                     self.accept = accept
                 }
             }
-            public var headers: Operations.post_sol_api_sol_v1_sol_voice_sol_generate.Input.Headers
-            /// - Remark: Generated from `#/paths/api/v1/voice/generate/POST/requestBody`.
+            public var headers: Operations.generateVoice.Input.Headers
+            /// - Remark: Generated from `#/paths/v1/voice/generate/POST/requestBody`.
             @frozen public enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/voice/generate/POST/requestBody/json`.
+                /// - Remark: Generated from `#/paths/v1/voice/generate/POST/requestBody/json`.
                 public struct jsonPayload: Codable, Hashable, Sendable {
                     /// Text to synthesize into voice
                     ///
-                    /// - Remark: Generated from `#/paths/api/v1/voice/generate/POST/requestBody/json/text`.
+                    /// - Remark: Generated from `#/paths/v1/voice/generate/POST/requestBody/json/text`.
                     public var text: Swift.String
-                    /// - Remark: Generated from `#/paths/api/v1/voice/generate/POST/requestBody/json/voice_id`.
+                    /// - Remark: Generated from `#/paths/v1/voice/generate/POST/requestBody/json/voice_id`.
                     public var voice_id: Swift.String
+                    /// Whether to moderate the text.
+                    ///
+                    /// - Remark: Generated from `#/paths/v1/voice/generate/POST/requestBody/json/moderation`.
+                    public var moderation: Swift.Bool?
                     /// Creates a new `jsonPayload`.
                     ///
                     /// - Parameters:
                     ///   - text: Text to synthesize into voice
                     ///   - voice_id:
+                    ///   - moderation: Whether to moderate the text.
                     public init(
                         text: Swift.String,
-                        voice_id: Swift.String
+                        voice_id: Swift.String,
+                        moderation: Swift.Bool? = nil
                     ) {
                         self.text = text
                         self.voice_id = voice_id
+                        self.moderation = moderation
                     }
                     public enum CodingKeys: String, CodingKey {
                         case text
                         case voice_id
+                        case moderation
                     }
                 }
-                /// - Remark: Generated from `#/paths/api/v1/voice/generate/POST/requestBody/content/application\/json`.
-                case json(Operations.post_sol_api_sol_v1_sol_voice_sol_generate.Input.Body.jsonPayload)
+                /// - Remark: Generated from `#/paths/v1/voice/generate/POST/requestBody/content/application\/json`.
+                case json(Operations.generateVoice.Input.Body.jsonPayload)
             }
-            public var body: Operations.post_sol_api_sol_v1_sol_voice_sol_generate.Input.Body
+            public var body: Operations.generateVoice.Input.Body
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - headers:
             ///   - body:
             public init(
-                headers: Operations.post_sol_api_sol_v1_sol_voice_sol_generate.Input.Headers = .init(),
-                body: Operations.post_sol_api_sol_v1_sol_voice_sol_generate.Input.Body
+                headers: Operations.generateVoice.Input.Headers = .init(),
+                body: Operations.generateVoice.Input.Body
             ) {
                 self.headers = headers
                 self.body = body
@@ -4509,9 +6924,9 @@ public enum Operations {
         }
         @frozen public enum Output: Sendable, Hashable {
             public struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/voice/generate/POST/responses/200/content`.
+                /// - Remark: Generated from `#/paths/v1/voice/generate/POST/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/v1/voice/generate/POST/responses/200/content/audio\/mpeg`.
+                    /// - Remark: Generated from `#/paths/v1/voice/generate/POST/responses/200/content/audio\/mpeg`.
                     case audio_mpeg(OpenAPIRuntime.HTTPBody)
                     /// The associated value of the enum case if `self` is `.audio_mpeg`.
                     ///
@@ -4522,31 +6937,55 @@ public enum Operations {
                             switch self {
                             case let .audio_mpeg(body):
                                 return body
+                            default:
+                                try throwUnexpectedResponseBody(
+                                    expectedContent: "audio/mpeg",
+                                    body: self
+                                )
+                            }
+                        }
+                    }
+                    /// - Remark: Generated from `#/paths/v1/voice/generate/POST/responses/200/content/audio\/wav`.
+                    case audio_wav(OpenAPIRuntime.HTTPBody)
+                    /// The associated value of the enum case if `self` is `.audio_wav`.
+                    ///
+                    /// - Throws: An error if `self` is not `.audio_wav`.
+                    /// - SeeAlso: `.audio_wav`.
+                    public var audio_wav: OpenAPIRuntime.HTTPBody {
+                        get throws {
+                            switch self {
+                            case let .audio_wav(body):
+                                return body
+                            default:
+                                try throwUnexpectedResponseBody(
+                                    expectedContent: "audio/wav",
+                                    body: self
+                                )
                             }
                         }
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.post_sol_api_sol_v1_sol_voice_sol_generate.Output.Ok.Body
+                public var body: Operations.generateVoice.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.post_sol_api_sol_v1_sol_voice_sol_generate.Output.Ok.Body) {
+                public init(body: Operations.generateVoice.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// Returns MP3 data
             ///
-            /// - Remark: Generated from `#/paths//api/v1/voice/generate/post/responses/200`.
+            /// - Remark: Generated from `#/paths//v1/voice/generate/post(generateVoice)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.post_sol_api_sol_v1_sol_voice_sol_generate.Output.Ok)
+            case ok(Operations.generateVoice.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.post_sol_api_sol_v1_sol_voice_sol_generate.Output.Ok {
+            public var ok: Operations.generateVoice.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -4559,9 +6998,9 @@ public enum Operations {
                     }
                 }
             }
-            /// Invalid request data
+            /// Bad request
             ///
-            /// - Remark: Generated from `#/paths//api/v1/voice/generate/post/responses/400`.
+            /// - Remark: Generated from `#/paths//v1/voice/generate/post(generateVoice)/responses/400`.
             ///
             /// HTTP response code: `400 badRequest`.
             case badRequest(Components.Responses.BadRequest)
@@ -4588,13 +7027,13 @@ public enum Operations {
             }
             /// Internal server error
             ///
-            /// - Remark: Generated from `#/paths//api/v1/voice/generate/post/responses/500`.
+            /// - Remark: Generated from `#/paths//v1/voice/generate/post(generateVoice)/responses/500`.
             ///
             /// HTTP response code: `500 internalServerError`.
-            case internalServerError(Operations.post_sol_api_sol_v1_sol_voice_sol_generate.Output.InternalServerError)
+            case internalServerError(Operations.generateVoice.Output.InternalServerError)
             /// Internal server error
             ///
-            /// - Remark: Generated from `#/paths//api/v1/voice/generate/post/responses/500`.
+            /// - Remark: Generated from `#/paths//v1/voice/generate/post(generateVoice)/responses/500`.
             ///
             /// HTTP response code: `500 internalServerError`.
             public static var internalServerError: Self {
@@ -4604,7 +7043,7 @@ public enum Operations {
             ///
             /// - Throws: An error if `self` is not `.internalServerError`.
             /// - SeeAlso: `.internalServerError`.
-            public var internalServerError: Operations.post_sol_api_sol_v1_sol_voice_sol_generate.Output.InternalServerError {
+            public var internalServerError: Operations.generateVoice.Output.InternalServerError {
                 get throws {
                     switch self {
                     case let .internalServerError(response):
@@ -4624,12 +7063,15 @@ public enum Operations {
         }
         @frozen public enum AcceptableContentType: AcceptableProtocol {
             case audio_mpeg
+            case audio_wav
             case json
             case other(Swift.String)
             public init?(rawValue: Swift.String) {
                 switch rawValue.lowercased() {
                 case "audio/mpeg":
                     self = .audio_mpeg
+                case "audio/wav":
+                    self = .audio_wav
                 case "application/json":
                     self = .json
                 default:
@@ -4642,6 +7084,8 @@ public enum Operations {
                     return string
                 case .audio_mpeg:
                     return "audio/mpeg"
+                case .audio_wav:
+                    return "audio/wav"
                 case .json:
                     return "application/json"
                 }
@@ -4649,21 +7093,22 @@ public enum Operations {
             public static var allCases: [Self] {
                 [
                     .audio_mpeg,
+                    .audio_wav,
                     .json
                 ]
             }
         }
     }
-    /// Delete a voice
+    /// Get a voice
     ///
-    /// - Remark: HTTP `DELETE /api/v1/voice/{voice_id}`.
-    /// - Remark: Generated from `#/paths//api/v1/voice/{voice_id}/delete`.
-    public enum delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_ {
-        public static let id: Swift.String = "delete/api/v1/voice/{voice_id}"
+    /// - Remark: HTTP `GET /v1/voice/{voice_id}`.
+    /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/get(getVoice)`.
+    public enum getVoice {
+        public static let id: Swift.String = "getVoice"
         public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/v1/voice/{voice_id}/DELETE/path`.
+            /// - Remark: Generated from `#/paths/v1/voice/{voice_id}/GET/path`.
             public struct Path: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/voice/{voice_id}/DELETE/path/voice_id`.
+                /// - Remark: Generated from `#/paths/v1/voice/{voice_id}/GET/path/voice_id`.
                 public var voice_id: Swift.String
                 /// Creates a new `Path`.
                 ///
@@ -4673,27 +7118,27 @@ public enum Operations {
                     self.voice_id = voice_id
                 }
             }
-            public var path: Operations.delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_.Input.Path
-            /// - Remark: Generated from `#/paths/api/v1/voice/{voice_id}/DELETE/header`.
+            public var path: Operations.getVoice.Input.Path
+            /// - Remark: Generated from `#/paths/v1/voice/{voice_id}/GET/header`.
             public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_.AcceptableContentType>]
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getVoice.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getVoice.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            public var headers: Operations.delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_.Input.Headers
+            public var headers: Operations.getVoice.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - path:
             ///   - headers:
             public init(
-                path: Operations.delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_.Input.Path,
-                headers: Operations.delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_.Input.Headers = .init()
+                path: Operations.getVoice.Input.Path,
+                headers: Operations.getVoice.Input.Headers = .init()
             ) {
                 self.path = path
                 self.headers = headers
@@ -4701,30 +7146,15 @@ public enum Operations {
         }
         @frozen public enum Output: Sendable, Hashable {
             public struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/voice/{voice_id}/DELETE/responses/200/content`.
+                /// - Remark: Generated from `#/paths/v1/voice/{voice_id}/GET/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/v1/voice/{voice_id}/DELETE/responses/200/content/json`.
-                    public struct jsonPayload: Codable, Hashable, Sendable {
-                        /// - Remark: Generated from `#/paths/api/v1/voice/{voice_id}/DELETE/responses/200/content/json/message`.
-                        public var message: Swift.String?
-                        /// Creates a new `jsonPayload`.
-                        ///
-                        /// - Parameters:
-                        ///   - message:
-                        public init(message: Swift.String? = nil) {
-                            self.message = message
-                        }
-                        public enum CodingKeys: String, CodingKey {
-                            case message
-                        }
-                    }
-                    /// - Remark: Generated from `#/paths/api/v1/voice/{voice_id}/DELETE/responses/200/content/application\/json`.
-                    case json(Operations.delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_.Output.Ok.Body.jsonPayload)
+                    /// - Remark: Generated from `#/paths/v1/voice/{voice_id}/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.Voice)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Operations.delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_.Output.Ok.Body.jsonPayload {
+                    public var json: Components.Schemas.Voice {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -4734,26 +7164,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_.Output.Ok.Body
+                public var body: Operations.getVoice.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_.Output.Ok.Body) {
+                public init(body: Operations.getVoice.Output.Ok.Body) {
                     self.body = body
                 }
             }
-            /// Voice deleted successfully
+            /// Voice fetched successfully
             ///
-            /// - Remark: Generated from `#/paths//api/v1/voice/{voice_id}/delete/responses/200`.
+            /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/get(getVoice)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_.Output.Ok)
+            case ok(Operations.getVoice.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_.Output.Ok {
+            public var ok: Operations.getVoice.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -4766,9 +7196,206 @@ public enum Operations {
                     }
                 }
             }
-            /// Invalid request data
+            /// Bad request
             ///
-            /// - Remark: Generated from `#/paths//api/v1/voice/{voice_id}/delete/responses/400`.
+            /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/get(getVoice)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            public struct InternalServerError: Sendable, Hashable {
+                /// Creates a new `InternalServerError`.
+                public init() {}
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/get(getVoice)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Operations.getVoice.Output.InternalServerError)
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/get(getVoice)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            public static var internalServerError: Self {
+                .internalServerError(.init())
+            }
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Operations.getVoice.Output.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Update a voice
+    ///
+    /// Updates a voice based on the input request data
+    ///
+    /// - Remark: HTTP `PUT /v1/voice/{voice_id}`.
+    /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/put(updateVoice)`.
+    public enum updateVoice {
+        public static let id: Swift.String = "updateVoice"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/voice/{voice_id}/PUT/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/voice/{voice_id}/PUT/path/voice_id`.
+                public var voice_id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - voice_id:
+                public init(voice_id: Swift.String) {
+                    self.voice_id = voice_id
+                }
+            }
+            public var path: Operations.updateVoice.Input.Path
+            /// - Remark: Generated from `#/paths/v1/voice/{voice_id}/PUT/header`.
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.updateVoice.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.updateVoice.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.updateVoice.Input.Headers
+            /// - Remark: Generated from `#/paths/v1/voice/{voice_id}/PUT/requestBody`.
+            @frozen public enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/voice/{voice_id}/PUT/requestBody/content/application\/json`.
+                case json(Components.Schemas.UpdateVoiceRequest)
+            }
+            public var body: Operations.updateVoice.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            ///   - body:
+            public init(
+                path: Operations.updateVoice.Input.Path,
+                headers: Operations.updateVoice.Input.Headers = .init(),
+                body: Operations.updateVoice.Input.Body
+            ) {
+                self.path = path
+                self.headers = headers
+                self.body = body
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/voice/{voice_id}/PUT/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/voice/{voice_id}/PUT/responses/200/content/application\/json`.
+                    case json(Components.Schemas.Voice)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.Voice {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.updateVoice.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.updateVoice.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Voice updated successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/put(updateVoice)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.updateVoice.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.updateVoice.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/put(updateVoice)/responses/400`.
             ///
             /// HTTP response code: `400 badRequest`.
             case badRequest(Components.Responses.BadRequest)
@@ -4795,13 +7422,13 @@ public enum Operations {
             }
             /// Voice not found
             ///
-            /// - Remark: Generated from `#/paths//api/v1/voice/{voice_id}/delete/responses/404`.
+            /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/put(updateVoice)/responses/404`.
             ///
             /// HTTP response code: `404 notFound`.
-            case notFound(Operations.delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_.Output.NotFound)
+            case notFound(Operations.updateVoice.Output.NotFound)
             /// Voice not found
             ///
-            /// - Remark: Generated from `#/paths//api/v1/voice/{voice_id}/delete/responses/404`.
+            /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/put(updateVoice)/responses/404`.
             ///
             /// HTTP response code: `404 notFound`.
             public static var notFound: Self {
@@ -4811,7 +7438,7 @@ public enum Operations {
             ///
             /// - Throws: An error if `self` is not `.notFound`.
             /// - SeeAlso: `.notFound`.
-            public var notFound: Operations.delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_.Output.NotFound {
+            public var notFound: Operations.updateVoice.Output.NotFound {
                 get throws {
                     switch self {
                     case let .notFound(response):
@@ -4830,13 +7457,13 @@ public enum Operations {
             }
             /// Internal server error
             ///
-            /// - Remark: Generated from `#/paths//api/v1/voice/{voice_id}/delete/responses/500`.
+            /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/put(updateVoice)/responses/500`.
             ///
             /// HTTP response code: `500 internalServerError`.
-            case internalServerError(Operations.delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_.Output.InternalServerError)
+            case internalServerError(Operations.updateVoice.Output.InternalServerError)
             /// Internal server error
             ///
-            /// - Remark: Generated from `#/paths//api/v1/voice/{voice_id}/delete/responses/500`.
+            /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/put(updateVoice)/responses/500`.
             ///
             /// HTTP response code: `500 internalServerError`.
             public static var internalServerError: Self {
@@ -4846,7 +7473,2073 @@ public enum Operations {
             ///
             /// - Throws: An error if `self` is not `.internalServerError`.
             /// - SeeAlso: `.internalServerError`.
-            public var internalServerError: Operations.delete_sol_api_sol_v1_sol_voice_sol__lcub_voice_id_rcub_.Output.InternalServerError {
+            public var internalServerError: Operations.updateVoice.Output.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Delete a voice
+    ///
+    /// - Remark: HTTP `DELETE /v1/voice/{voice_id}`.
+    /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/delete(deleteVoice)`.
+    public enum deleteVoice {
+        public static let id: Swift.String = "deleteVoice"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/voice/{voice_id}/DELETE/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/voice/{voice_id}/DELETE/path/voice_id`.
+                public var voice_id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - voice_id:
+                public init(voice_id: Swift.String) {
+                    self.voice_id = voice_id
+                }
+            }
+            public var path: Operations.deleteVoice.Input.Path
+            /// - Remark: Generated from `#/paths/v1/voice/{voice_id}/DELETE/header`.
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.deleteVoice.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.deleteVoice.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.deleteVoice.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.deleteVoice.Input.Path,
+                headers: Operations.deleteVoice.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/voice/{voice_id}/DELETE/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/voice/{voice_id}/DELETE/responses/200/content/json`.
+                    public struct jsonPayload: Codable, Hashable, Sendable {
+                        /// - Remark: Generated from `#/paths/v1/voice/{voice_id}/DELETE/responses/200/content/json/message`.
+                        public var message: Swift.String?
+                        /// Creates a new `jsonPayload`.
+                        ///
+                        /// - Parameters:
+                        ///   - message:
+                        public init(message: Swift.String? = nil) {
+                            self.message = message
+                        }
+                        public enum CodingKeys: String, CodingKey {
+                            case message
+                        }
+                    }
+                    /// - Remark: Generated from `#/paths/v1/voice/{voice_id}/DELETE/responses/200/content/application\/json`.
+                    case json(Operations.deleteVoice.Output.Ok.Body.jsonPayload)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Operations.deleteVoice.Output.Ok.Body.jsonPayload {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.deleteVoice.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.deleteVoice.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Voice deleted successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/delete(deleteVoice)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.deleteVoice.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.deleteVoice.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/delete(deleteVoice)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            public struct NotFound: Sendable, Hashable {
+                /// Creates a new `NotFound`.
+                public init() {}
+            }
+            /// Voice not found
+            ///
+            /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/delete(deleteVoice)/responses/404`.
+            ///
+            /// HTTP response code: `404 notFound`.
+            case notFound(Operations.deleteVoice.Output.NotFound)
+            /// Voice not found
+            ///
+            /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/delete(deleteVoice)/responses/404`.
+            ///
+            /// HTTP response code: `404 notFound`.
+            public static var notFound: Self {
+                .notFound(.init())
+            }
+            /// The associated value of the enum case if `self` is `.notFound`.
+            ///
+            /// - Throws: An error if `self` is not `.notFound`.
+            /// - SeeAlso: `.notFound`.
+            public var notFound: Operations.deleteVoice.Output.NotFound {
+                get throws {
+                    switch self {
+                    case let .notFound(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "notFound",
+                            response: self
+                        )
+                    }
+                }
+            }
+            public struct InternalServerError: Sendable, Hashable {
+                /// Creates a new `InternalServerError`.
+                public init() {}
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/delete(deleteVoice)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Operations.deleteVoice.Output.InternalServerError)
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/voice/{voice_id}/delete(deleteVoice)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            public static var internalServerError: Self {
+                .internalServerError(.init())
+            }
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Operations.deleteVoice.Output.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Get a list of voices
+    ///
+    /// - Remark: HTTP `GET /v1/voice/list`.
+    /// - Remark: Generated from `#/paths//v1/voice/list/get(listVoices)`.
+    public enum listVoices {
+        public static let id: Swift.String = "listVoices"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/voice/list/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/voice/list/GET/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.listVoices.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.listVoices.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.listVoices.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            public init(headers: Operations.listVoices.Input.Headers = .init()) {
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/voice/list/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/voice/list/GET/responses/200/content/json`.
+                    public struct jsonPayload: Codable, Hashable, Sendable {
+                        /// The token for the next page of results, or null if there are no more pages.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/voice/list/GET/responses/200/content/json/next_page`.
+                        public var next_page: Swift.String?
+                        /// The total number of items available.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/voice/list/GET/responses/200/content/json/total_count`.
+                        public var total_count: Swift.Int
+                        /// The array of voices.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/voice/list/GET/responses/200/content/json/values`.
+                        public var values: [Components.Schemas.Voice]
+                        /// Creates a new `jsonPayload`.
+                        ///
+                        /// - Parameters:
+                        ///   - next_page: The token for the next page of results, or null if there are no more pages.
+                        ///   - total_count: The total number of items available.
+                        ///   - values: The array of voices.
+                        public init(
+                            next_page: Swift.String? = nil,
+                            total_count: Swift.Int,
+                            values: [Components.Schemas.Voice]
+                        ) {
+                            self.next_page = next_page
+                            self.total_count = total_count
+                            self.values = values
+                        }
+                        public enum CodingKeys: String, CodingKey {
+                            case next_page
+                            case total_count
+                            case values
+                        }
+                    }
+                    /// - Remark: Generated from `#/paths/v1/voice/list/GET/responses/200/content/application\/json`.
+                    case json(Operations.listVoices.Output.Ok.Body.jsonPayload)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Operations.listVoices.Output.Ok.Body.jsonPayload {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.listVoices.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.listVoices.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// List of voices
+            ///
+            /// - Remark: Generated from `#/paths//v1/voice/list/get(listVoices)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.listVoices.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.listVoices.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/voice/list/get(listVoices)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            public struct InternalServerError: Sendable, Hashable {
+                /// Creates a new `InternalServerError`.
+                public init() {}
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/voice/list/get(listVoices)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Operations.listVoices.Output.InternalServerError)
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/voice/list/get(listVoices)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            public static var internalServerError: Self {
+                .internalServerError(.init())
+            }
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Operations.listVoices.Output.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Get a single credit object
+    ///
+    /// - Remark: HTTP `GET /v1/credit/{credit}`.
+    /// - Remark: Generated from `#/paths//v1/credit/{credit}/get(getCredit)`.
+    public enum getCredit {
+        public static let id: Swift.String = "getCredit"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/credit/{credit}/GET/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/credit/{credit}/GET/path/credit`.
+                public var credit: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - credit:
+                public init(credit: Swift.String) {
+                    self.credit = credit
+                }
+            }
+            public var path: Operations.getCredit.Input.Path
+            /// - Remark: Generated from `#/paths/v1/credit/{credit}/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/credit/{credit}/GET/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getCredit.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getCredit.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.getCredit.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.getCredit.Input.Path,
+                headers: Operations.getCredit.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/credit/{credit}/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/credit/{credit}/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.Credit)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.Credit {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.getCredit.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.getCredit.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Credit fetched successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/credit/{credit}/get(getCredit)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.getCredit.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.getCredit.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/credit/{credit}/get(getCredit)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            public struct InternalServerError: Sendable, Hashable {
+                /// Creates a new `InternalServerError`.
+                public init() {}
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/credit/{credit}/get(getCredit)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Operations.getCredit.Output.InternalServerError)
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/credit/{credit}/get(getCredit)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            public static var internalServerError: Self {
+                .internalServerError(.init())
+            }
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Operations.getCredit.Output.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Create a new credit type
+    ///
+    /// Creates a new credit based on the input request data.
+    ///
+    ///
+    /// - Remark: HTTP `POST /v1/credit`.
+    /// - Remark: Generated from `#/paths//v1/credit/post(createCredit)`.
+    public enum createCredit {
+        public static let id: Swift.String = "createCredit"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/credit/POST/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/credit/POST/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.createCredit.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.createCredit.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.createCredit.Input.Headers
+            /// - Remark: Generated from `#/paths/v1/credit/POST/requestBody`.
+            @frozen public enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/credit/POST/requestBody/content/application\/json`.
+                case json(Components.Schemas.CreateCreditRequest)
+            }
+            public var body: Operations.createCredit.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            ///   - body:
+            public init(
+                headers: Operations.createCredit.Input.Headers = .init(),
+                body: Operations.createCredit.Input.Body
+            ) {
+                self.headers = headers
+                self.body = body
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/credit/POST/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/credit/POST/responses/200/content/application\/json`.
+                    case json(Components.Schemas.Credit)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.Credit {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.createCredit.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.createCredit.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Credit created successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/credit/post(createCredit)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.createCredit.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.createCredit.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/credit/post(createCredit)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            public struct InternalServerError: Sendable, Hashable {
+                /// Creates a new `InternalServerError`.
+                public init() {}
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/credit/post(createCredit)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Operations.createCredit.Output.InternalServerError)
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/credit/post(createCredit)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            public static var internalServerError: Self {
+                .internalServerError(.init())
+            }
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Operations.createCredit.Output.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Get a list of credits
+    ///
+    /// - Remark: HTTP `GET /v1/credit/list`.
+    /// - Remark: Generated from `#/paths//v1/credit/list/get(listCredits)`.
+    public enum listCredits {
+        public static let id: Swift.String = "listCredits"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/credit/list/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/credit/list/GET/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.listCredits.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.listCredits.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.listCredits.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            public init(headers: Operations.listCredits.Input.Headers = .init()) {
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/credit/list/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/credit/list/GET/responses/200/content/json`.
+                    public struct jsonPayload: Codable, Hashable, Sendable {
+                        /// The token for the next page of results, or null if there are no more pages.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/credit/list/GET/responses/200/content/json/next_page`.
+                        public var next_page: Swift.String?
+                        /// The total number of items available.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/credit/list/GET/responses/200/content/json/total_count`.
+                        public var total_count: Swift.Int
+                        /// The array of credits.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/credit/list/GET/responses/200/content/json/values`.
+                        public var values: [Components.Schemas.Credit]
+                        /// Creates a new `jsonPayload`.
+                        ///
+                        /// - Parameters:
+                        ///   - next_page: The token for the next page of results, or null if there are no more pages.
+                        ///   - total_count: The total number of items available.
+                        ///   - values: The array of credits.
+                        public init(
+                            next_page: Swift.String? = nil,
+                            total_count: Swift.Int,
+                            values: [Components.Schemas.Credit]
+                        ) {
+                            self.next_page = next_page
+                            self.total_count = total_count
+                            self.values = values
+                        }
+                        public enum CodingKeys: String, CodingKey {
+                            case next_page
+                            case total_count
+                            case values
+                        }
+                    }
+                    /// - Remark: Generated from `#/paths/v1/credit/list/GET/responses/200/content/application\/json`.
+                    case json(Operations.listCredits.Output.Ok.Body.jsonPayload)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Operations.listCredits.Output.Ok.Body.jsonPayload {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.listCredits.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.listCredits.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// List of credits
+            ///
+            /// - Remark: Generated from `#/paths//v1/credit/list/get(listCredits)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.listCredits.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.listCredits.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/credit/list/get(listCredits)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            public struct InternalServerError: Sendable, Hashable {
+                /// Creates a new `InternalServerError`.
+                public init() {}
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/credit/list/get(listCredits)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Operations.listCredits.Output.InternalServerError)
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/credit/list/get(listCredits)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            public static var internalServerError: Self {
+                .internalServerError(.init())
+            }
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Operations.listCredits.Output.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Create a new credit ledger entry
+    ///
+    /// Creates a new credit ledger entry for human. Requires a human id.
+    ///
+    /// - Remark: HTTP `POST /v1/credit/{credit}/ledger`.
+    /// - Remark: Generated from `#/paths//v1/credit/{credit}/ledger/post(createCreditLedgerEntry)`.
+    public enum createCreditLedgerEntry {
+        public static let id: Swift.String = "createCreditLedgerEntry"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/credit/{credit}/ledger/POST/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/credit/{credit}/ledger/POST/path/credit`.
+                public var credit: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - credit:
+                public init(credit: Swift.String) {
+                    self.credit = credit
+                }
+            }
+            public var path: Operations.createCreditLedgerEntry.Input.Path
+            /// - Remark: Generated from `#/paths/v1/credit/{credit}/ledger/POST/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/credit/{credit}/ledger/POST/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.createCreditLedgerEntry.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.createCreditLedgerEntry.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.createCreditLedgerEntry.Input.Headers
+            /// - Remark: Generated from `#/paths/v1/credit/{credit}/ledger/POST/requestBody`.
+            @frozen public enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/credit/{credit}/ledger/POST/requestBody/content/application\/json`.
+                case json(Components.Schemas.CreateCreditLedgerEntryRequest)
+            }
+            public var body: Operations.createCreditLedgerEntry.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            ///   - body:
+            public init(
+                path: Operations.createCreditLedgerEntry.Input.Path,
+                headers: Operations.createCreditLedgerEntry.Input.Headers = .init(),
+                body: Operations.createCreditLedgerEntry.Input.Body
+            ) {
+                self.path = path
+                self.headers = headers
+                self.body = body
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/credit/{credit}/ledger/POST/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/credit/{credit}/ledger/POST/responses/200/content/application\/json`.
+                    case json(Components.Schemas.CreditLedgerEntry)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.CreditLedgerEntry {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.createCreditLedgerEntry.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.createCreditLedgerEntry.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Credit ledger entry created successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/credit/{credit}/ledger/post(createCreditLedgerEntry)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.createCreditLedgerEntry.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.createCreditLedgerEntry.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/credit/{credit}/ledger/post(createCreditLedgerEntry)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            public struct InternalServerError: Sendable, Hashable {
+                /// Creates a new `InternalServerError`.
+                public init() {}
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/credit/{credit}/ledger/post(createCreditLedgerEntry)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Operations.createCreditLedgerEntry.Output.InternalServerError)
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/credit/{credit}/ledger/post(createCreditLedgerEntry)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            public static var internalServerError: Self {
+                .internalServerError(.init())
+            }
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Operations.createCreditLedgerEntry.Output.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Get the latest credit ledger entry for a human. Requires a human id.
+    ///
+    /// - Remark: HTTP `GET /v1/credit/{credit}/ledger/latest`.
+    /// - Remark: Generated from `#/paths//v1/credit/{credit}/ledger/latest/get(getLatestCreditLedgerEntry)`.
+    public enum getLatestCreditLedgerEntry {
+        public static let id: Swift.String = "getLatestCreditLedgerEntry"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/credit/{credit}/ledger/latest/GET/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/credit/{credit}/ledger/latest/GET/path/credit`.
+                public var credit: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - credit:
+                public init(credit: Swift.String) {
+                    self.credit = credit
+                }
+            }
+            public var path: Operations.getLatestCreditLedgerEntry.Input.Path
+            /// - Remark: Generated from `#/paths/v1/credit/{credit}/ledger/latest/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/credit/{credit}/ledger/latest/GET/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getLatestCreditLedgerEntry.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getLatestCreditLedgerEntry.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.getLatestCreditLedgerEntry.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.getLatestCreditLedgerEntry.Input.Path,
+                headers: Operations.getLatestCreditLedgerEntry.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/credit/{credit}/ledger/latest/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/credit/{credit}/ledger/latest/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.CreditLedgerEntry)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.CreditLedgerEntry {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.getLatestCreditLedgerEntry.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.getLatestCreditLedgerEntry.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Credit balance fetched successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/credit/{credit}/ledger/latest/get(getLatestCreditLedgerEntry)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.getLatestCreditLedgerEntry.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.getLatestCreditLedgerEntry.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/credit/{credit}/ledger/latest/get(getLatestCreditLedgerEntry)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            public struct InternalServerError: Sendable, Hashable {
+                /// Creates a new `InternalServerError`.
+                public init() {}
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/credit/{credit}/ledger/latest/get(getLatestCreditLedgerEntry)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Operations.getLatestCreditLedgerEntry.Output.InternalServerError)
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/credit/{credit}/ledger/latest/get(getLatestCreditLedgerEntry)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            public static var internalServerError: Self {
+                .internalServerError(.init())
+            }
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Operations.getLatestCreditLedgerEntry.Output.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Chat Completions (+ Voice)
+    ///
+    /// Given messages, generates LLM output text and optionally speech
+    ///
+    /// - Remark: HTTP `POST /v1/chat/completions`.
+    /// - Remark: Generated from `#/paths//v1/chat/completions/post(chatCompletions)`.
+    public enum chatCompletions {
+        public static let id: Swift.String = "chatCompletions"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/chat/completions/POST/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/chat/completions/POST/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.chatCompletions.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.chatCompletions.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.chatCompletions.Input.Headers
+            /// - Remark: Generated from `#/paths/v1/chat/completions/POST/requestBody`.
+            @frozen public enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/chat/completions/POST/requestBody/content/application\/json`.
+                case json(Components.Schemas.ChatCompletionRequest)
+            }
+            public var body: Operations.chatCompletions.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            ///   - body:
+            public init(
+                headers: Operations.chatCompletions.Input.Headers = .init(),
+                body: Operations.chatCompletions.Input.Body
+            ) {
+                self.headers = headers
+                self.body = body
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/chat/completions/POST/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/chat/completions/POST/responses/200/content/application\/json`.
+                    case json(Components.Schemas.ChatCompletionResponse)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.ChatCompletionResponse {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            default:
+                                try throwUnexpectedResponseBody(
+                                    expectedContent: "application/json",
+                                    body: self
+                                )
+                            }
+                        }
+                    }
+                    /// - Remark: Generated from `#/paths/v1/chat/completions/POST/responses/200/content/text\/event-stream`.
+                    case text_event_hyphen_stream(OpenAPIRuntime.HTTPBody)
+                    /// The associated value of the enum case if `self` is `.text_event_hyphen_stream`.
+                    ///
+                    /// - Throws: An error if `self` is not `.text_event_hyphen_stream`.
+                    /// - SeeAlso: `.text_event_hyphen_stream`.
+                    public var text_event_hyphen_stream: OpenAPIRuntime.HTTPBody {
+                        get throws {
+                            switch self {
+                            case let .text_event_hyphen_stream(body):
+                                return body
+                            default:
+                                try throwUnexpectedResponseBody(
+                                    expectedContent: "text/event-stream",
+                                    body: self
+                                )
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.chatCompletions.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.chatCompletions.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Response including text and audio
+            ///
+            /// - Remark: Generated from `#/paths//v1/chat/completions/post(chatCompletions)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.chatCompletions.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.chatCompletions.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/chat/completions/post(chatCompletions)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            public struct InternalServerError: Sendable, Hashable {
+                /// Creates a new `InternalServerError`.
+                public init() {}
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/chat/completions/post(chatCompletions)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Operations.chatCompletions.Output.InternalServerError)
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/chat/completions/post(chatCompletions)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            public static var internalServerError: Self {
+                .internalServerError(.init())
+            }
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Operations.chatCompletions.Output.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case text_event_hyphen_stream
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                case "text/event-stream":
+                    self = .text_event_hyphen_stream
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                case .text_event_hyphen_stream:
+                    return "text/event-stream"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json,
+                    .text_event_hyphen_stream
+                ]
+            }
+        }
+    }
+    /// Get a persona
+    ///
+    /// - Remark: HTTP `GET /v1/persona/{persona_id}`.
+    /// - Remark: Generated from `#/paths//v1/persona/{persona_id}/get(getPersona)`.
+    public enum getPersona {
+        public static let id: Swift.String = "getPersona"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/persona/{persona_id}/GET/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/persona/{persona_id}/GET/path/persona_id`.
+                public var persona_id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - persona_id:
+                public init(persona_id: Swift.String) {
+                    self.persona_id = persona_id
+                }
+            }
+            public var path: Operations.getPersona.Input.Path
+            /// - Remark: Generated from `#/paths/v1/persona/{persona_id}/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/persona/{persona_id}/GET/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getPersona.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getPersona.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.getPersona.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.getPersona.Input.Path,
+                headers: Operations.getPersona.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/persona/{persona_id}/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/persona/{persona_id}/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.Persona)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.Persona {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.getPersona.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.getPersona.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Persona fetched successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/persona/{persona_id}/get(getPersona)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.getPersona.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.getPersona.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/persona/{persona_id}/get(getPersona)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            public struct InternalServerError: Sendable, Hashable {
+                /// Creates a new `InternalServerError`.
+                public init() {}
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/persona/{persona_id}/get(getPersona)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Operations.getPersona.Output.InternalServerError)
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/persona/{persona_id}/get(getPersona)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            public static var internalServerError: Self {
+                .internalServerError(.init())
+            }
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Operations.getPersona.Output.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Update a persona
+    ///
+    /// - Remark: HTTP `PUT /v1/persona/{persona_id}`.
+    /// - Remark: Generated from `#/paths//v1/persona/{persona_id}/put(updatePersona)`.
+    public enum updatePersona {
+        public static let id: Swift.String = "updatePersona"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/persona/{persona_id}/PUT/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/persona/{persona_id}/PUT/path/persona_id`.
+                public var persona_id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - persona_id:
+                public init(persona_id: Swift.String) {
+                    self.persona_id = persona_id
+                }
+            }
+            public var path: Operations.updatePersona.Input.Path
+            /// - Remark: Generated from `#/paths/v1/persona/{persona_id}/PUT/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/persona/{persona_id}/PUT/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.updatePersona.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.updatePersona.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.updatePersona.Input.Headers
+            /// - Remark: Generated from `#/paths/v1/persona/{persona_id}/PUT/requestBody`.
+            @frozen public enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/persona/{persona_id}/PUT/requestBody/content/application\/json`.
+                case json(Components.Schemas.UpdatePersonaRequest)
+            }
+            public var body: Operations.updatePersona.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            ///   - body:
+            public init(
+                path: Operations.updatePersona.Input.Path,
+                headers: Operations.updatePersona.Input.Headers = .init(),
+                body: Operations.updatePersona.Input.Body
+            ) {
+                self.path = path
+                self.headers = headers
+                self.body = body
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/persona/{persona_id}/PUT/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/persona/{persona_id}/PUT/responses/200/content/application\/json`.
+                    case json(Components.Schemas.Persona)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.Persona {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.updatePersona.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.updatePersona.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Persona updated successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/persona/{persona_id}/put(updatePersona)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.updatePersona.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.updatePersona.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/persona/{persona_id}/put(updatePersona)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            public struct InternalServerError: Sendable, Hashable {
+                /// Creates a new `InternalServerError`.
+                public init() {}
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/persona/{persona_id}/put(updatePersona)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Operations.updatePersona.Output.InternalServerError)
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/persona/{persona_id}/put(updatePersona)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            public static var internalServerError: Self {
+                .internalServerError(.init())
+            }
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Operations.updatePersona.Output.InternalServerError {
                 get throws {
                     switch self {
                     case let .internalServerError(response):
@@ -4892,14 +9585,14 @@ public enum Operations {
     }
     /// Delete a persona
     ///
-    /// - Remark: HTTP `DELETE /api/v1/persona/{persona_id}`.
-    /// - Remark: Generated from `#/paths//api/v1/persona/{persona_id}/delete`.
-    public enum delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_ {
-        public static let id: Swift.String = "delete/api/v1/persona/{persona_id}"
+    /// - Remark: HTTP `DELETE /v1/persona/{persona_id}`.
+    /// - Remark: Generated from `#/paths//v1/persona/{persona_id}/delete(deletePersona)`.
+    public enum deletePersona {
+        public static let id: Swift.String = "deletePersona"
         public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/v1/persona/{persona_id}/DELETE/path`.
+            /// - Remark: Generated from `#/paths/v1/persona/{persona_id}/DELETE/path`.
             public struct Path: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/persona/{persona_id}/DELETE/path/persona_id`.
+                /// - Remark: Generated from `#/paths/v1/persona/{persona_id}/DELETE/path/persona_id`.
                 public var persona_id: Swift.String
                 /// Creates a new `Path`.
                 ///
@@ -4909,27 +9602,36 @@ public enum Operations {
                     self.persona_id = persona_id
                 }
             }
-            public var path: Operations.delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_.Input.Path
-            /// - Remark: Generated from `#/paths/api/v1/persona/{persona_id}/DELETE/header`.
+            public var path: Operations.deletePersona.Input.Path
+            /// - Remark: Generated from `#/paths/v1/persona/{persona_id}/DELETE/header`.
             public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_.AcceptableContentType>]
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/persona/{persona_id}/DELETE/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.deletePersona.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
                 ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_.AcceptableContentType>] = .defaultValues()) {
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.deletePersona.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
                     self.accept = accept
                 }
             }
-            public var headers: Operations.delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_.Input.Headers
+            public var headers: Operations.deletePersona.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - path:
             ///   - headers:
             public init(
-                path: Operations.delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_.Input.Path,
-                headers: Operations.delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_.Input.Headers = .init()
+                path: Operations.deletePersona.Input.Path,
+                headers: Operations.deletePersona.Input.Headers = .init()
             ) {
                 self.path = path
                 self.headers = headers
@@ -4937,11 +9639,11 @@ public enum Operations {
         }
         @frozen public enum Output: Sendable, Hashable {
             public struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/persona/{persona_id}/DELETE/responses/200/content`.
+                /// - Remark: Generated from `#/paths/v1/persona/{persona_id}/DELETE/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/v1/persona/{persona_id}/DELETE/responses/200/content/json`.
+                    /// - Remark: Generated from `#/paths/v1/persona/{persona_id}/DELETE/responses/200/content/json`.
                     public struct jsonPayload: Codable, Hashable, Sendable {
-                        /// - Remark: Generated from `#/paths/api/v1/persona/{persona_id}/DELETE/responses/200/content/json/message`.
+                        /// - Remark: Generated from `#/paths/v1/persona/{persona_id}/DELETE/responses/200/content/json/message`.
                         public var message: Swift.String?
                         /// Creates a new `jsonPayload`.
                         ///
@@ -4954,13 +9656,13 @@ public enum Operations {
                             case message
                         }
                     }
-                    /// - Remark: Generated from `#/paths/api/v1/persona/{persona_id}/DELETE/responses/200/content/application\/json`.
-                    case json(Operations.delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_.Output.Ok.Body.jsonPayload)
+                    /// - Remark: Generated from `#/paths/v1/persona/{persona_id}/DELETE/responses/200/content/application\/json`.
+                    case json(Operations.deletePersona.Output.Ok.Body.jsonPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Operations.delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_.Output.Ok.Body.jsonPayload {
+                    public var json: Operations.deletePersona.Output.Ok.Body.jsonPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -4970,26 +9672,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_.Output.Ok.Body
+                public var body: Operations.deletePersona.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_.Output.Ok.Body) {
+                public init(body: Operations.deletePersona.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// Persona deleted successfully
             ///
-            /// - Remark: Generated from `#/paths//api/v1/persona/{persona_id}/delete/responses/200`.
+            /// - Remark: Generated from `#/paths//v1/persona/{persona_id}/delete(deletePersona)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_.Output.Ok)
+            case ok(Operations.deletePersona.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_.Output.Ok {
+            public var ok: Operations.deletePersona.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -5002,9 +9704,9 @@ public enum Operations {
                     }
                 }
             }
-            /// Invalid request data
+            /// Bad request
             ///
-            /// - Remark: Generated from `#/paths//api/v1/persona/{persona_id}/delete/responses/400`.
+            /// - Remark: Generated from `#/paths//v1/persona/{persona_id}/delete(deletePersona)/responses/400`.
             ///
             /// HTTP response code: `400 badRequest`.
             case badRequest(Components.Responses.BadRequest)
@@ -5025,36 +9727,177 @@ public enum Operations {
                     }
                 }
             }
-            public struct NotFound: Sendable, Hashable {
-                /// Creates a new `NotFound`.
-                public init() {}
-            }
-            /// Persona not found
+            /// Internal server error
             ///
-            /// - Remark: Generated from `#/paths//api/v1/persona/{persona_id}/delete/responses/404`.
+            /// - Remark: Generated from `#/paths//v1/persona/{persona_id}/delete(deletePersona)/responses/500`.
             ///
-            /// HTTP response code: `404 notFound`.
-            case notFound(Operations.delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_.Output.NotFound)
-            /// Persona not found
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Components.Responses.InternalServerError)
+            /// The associated value of the enum case if `self` is `.internalServerError`.
             ///
-            /// - Remark: Generated from `#/paths//api/v1/persona/{persona_id}/delete/responses/404`.
-            ///
-            /// HTTP response code: `404 notFound`.
-            public static var notFound: Self {
-                .notFound(.init())
-            }
-            /// The associated value of the enum case if `self` is `.notFound`.
-            ///
-            /// - Throws: An error if `self` is not `.notFound`.
-            /// - SeeAlso: `.notFound`.
-            public var notFound: Operations.delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_.Output.NotFound {
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Components.Responses.InternalServerError {
                 get throws {
                     switch self {
-                    case let .notFound(response):
+                    case let .internalServerError(response):
                         return response
                     default:
                         try throwUnexpectedResponseStatus(
-                            expectedStatus: "notFound",
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Create a persona
+    ///
+    /// - Remark: HTTP `POST /v1/persona`.
+    /// - Remark: Generated from `#/paths//v1/persona/post(createPersona)`.
+    public enum createPersona {
+        public static let id: Swift.String = "createPersona"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/persona/POST/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/persona/POST/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.createPersona.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.createPersona.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.createPersona.Input.Headers
+            /// - Remark: Generated from `#/paths/v1/persona/POST/requestBody`.
+            @frozen public enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/persona/POST/requestBody/content/application\/json`.
+                case json(Components.Schemas.CreatePersonaRequest)
+            }
+            public var body: Operations.createPersona.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            ///   - body:
+            public init(
+                headers: Operations.createPersona.Input.Headers = .init(),
+                body: Operations.createPersona.Input.Body
+            ) {
+                self.headers = headers
+                self.body = body
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/persona/POST/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/persona/POST/responses/200/content/application\/json`.
+                    case json(Components.Schemas.Persona)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.Persona {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.createPersona.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.createPersona.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Persona created successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/persona/post(createPersona)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.createPersona.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.createPersona.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/persona/post(createPersona)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
                             response: self
                         )
                     }
@@ -5066,13 +9909,13 @@ public enum Operations {
             }
             /// Internal server error
             ///
-            /// - Remark: Generated from `#/paths//api/v1/persona/{persona_id}/delete/responses/500`.
+            /// - Remark: Generated from `#/paths//v1/persona/post(createPersona)/responses/500`.
             ///
             /// HTTP response code: `500 internalServerError`.
-            case internalServerError(Operations.delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_.Output.InternalServerError)
+            case internalServerError(Operations.createPersona.Output.InternalServerError)
             /// Internal server error
             ///
-            /// - Remark: Generated from `#/paths//api/v1/persona/{persona_id}/delete/responses/500`.
+            /// - Remark: Generated from `#/paths//v1/persona/post(createPersona)/responses/500`.
             ///
             /// HTTP response code: `500 internalServerError`.
             public static var internalServerError: Self {
@@ -5082,7 +9925,406 @@ public enum Operations {
             ///
             /// - Throws: An error if `self` is not `.internalServerError`.
             /// - SeeAlso: `.internalServerError`.
-            public var internalServerError: Operations.delete_sol_api_sol_v1_sol_persona_sol__lcub_persona_id_rcub_.Output.InternalServerError {
+            public var internalServerError: Operations.createPersona.Output.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Get a scenario
+    ///
+    /// - Remark: HTTP `GET /v1/scenario/{scenario_id}`.
+    /// - Remark: Generated from `#/paths//v1/scenario/{scenario_id}/get(getScenario)`.
+    public enum getScenario {
+        public static let id: Swift.String = "getScenario"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/scenario/{scenario_id}/GET/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/scenario/{scenario_id}/GET/path/scenario_id`.
+                public var scenario_id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - scenario_id:
+                public init(scenario_id: Swift.String) {
+                    self.scenario_id = scenario_id
+                }
+            }
+            public var path: Operations.getScenario.Input.Path
+            /// - Remark: Generated from `#/paths/v1/scenario/{scenario_id}/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/scenario/{scenario_id}/GET/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getScenario.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getScenario.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.getScenario.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.getScenario.Input.Path,
+                headers: Operations.getScenario.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/scenario/{scenario_id}/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/scenario/{scenario_id}/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.Scenario)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.Scenario {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.getScenario.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.getScenario.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Scenario fetched successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/scenario/{scenario_id}/get(getScenario)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.getScenario.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.getScenario.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/scenario/{scenario_id}/get(getScenario)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            public struct InternalServerError: Sendable, Hashable {
+                /// Creates a new `InternalServerError`.
+                public init() {}
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/scenario/{scenario_id}/get(getScenario)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Operations.getScenario.Output.InternalServerError)
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/scenario/{scenario_id}/get(getScenario)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            public static var internalServerError: Self {
+                .internalServerError(.init())
+            }
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Operations.getScenario.Output.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Update a scenario
+    ///
+    /// - Remark: HTTP `PUT /v1/scenario/{scenario_id}`.
+    /// - Remark: Generated from `#/paths//v1/scenario/{scenario_id}/put(updateScenario)`.
+    public enum updateScenario {
+        public static let id: Swift.String = "updateScenario"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/scenario/{scenario_id}/PUT/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/scenario/{scenario_id}/PUT/path/scenario_id`.
+                public var scenario_id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - scenario_id:
+                public init(scenario_id: Swift.String) {
+                    self.scenario_id = scenario_id
+                }
+            }
+            public var path: Operations.updateScenario.Input.Path
+            /// - Remark: Generated from `#/paths/v1/scenario/{scenario_id}/PUT/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/scenario/{scenario_id}/PUT/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.updateScenario.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.updateScenario.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.updateScenario.Input.Headers
+            /// - Remark: Generated from `#/paths/v1/scenario/{scenario_id}/PUT/requestBody`.
+            @frozen public enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/scenario/{scenario_id}/PUT/requestBody/content/application\/json`.
+                case json(Components.Schemas.UpdateScenarioRequest)
+            }
+            public var body: Operations.updateScenario.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            ///   - body:
+            public init(
+                path: Operations.updateScenario.Input.Path,
+                headers: Operations.updateScenario.Input.Headers = .init(),
+                body: Operations.updateScenario.Input.Body
+            ) {
+                self.path = path
+                self.headers = headers
+                self.body = body
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/scenario/{scenario_id}/PUT/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/scenario/{scenario_id}/PUT/responses/200/content/application\/json`.
+                    case json(Components.Schemas.Scenario)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.Scenario {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.updateScenario.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.updateScenario.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Scenario updated successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/scenario/{scenario_id}/put(updateScenario)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.updateScenario.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.updateScenario.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/scenario/{scenario_id}/put(updateScenario)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            public struct InternalServerError: Sendable, Hashable {
+                /// Creates a new `InternalServerError`.
+                public init() {}
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/scenario/{scenario_id}/put(updateScenario)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Operations.updateScenario.Output.InternalServerError)
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/scenario/{scenario_id}/put(updateScenario)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            public static var internalServerError: Self {
+                .internalServerError(.init())
+            }
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Operations.updateScenario.Output.InternalServerError {
                 get throws {
                     switch self {
                     case let .internalServerError(response):
@@ -5128,14 +10370,14 @@ public enum Operations {
     }
     /// Delete a scenario
     ///
-    /// - Remark: HTTP `DELETE /api/v1/scenario/{scenario_id}`.
-    /// - Remark: Generated from `#/paths//api/v1/scenario/{scenario_id}/delete`.
-    public enum delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_ {
-        public static let id: Swift.String = "delete/api/v1/scenario/{scenario_id}"
+    /// - Remark: HTTP `DELETE /v1/scenario/{scenario_id}`.
+    /// - Remark: Generated from `#/paths//v1/scenario/{scenario_id}/delete(deleteScenario)`.
+    public enum deleteScenario {
+        public static let id: Swift.String = "deleteScenario"
         public struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/v1/scenario/{scenario_id}/DELETE/path`.
+            /// - Remark: Generated from `#/paths/v1/scenario/{scenario_id}/DELETE/path`.
             public struct Path: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/scenario/{scenario_id}/DELETE/path/scenario_id`.
+                /// - Remark: Generated from `#/paths/v1/scenario/{scenario_id}/DELETE/path/scenario_id`.
                 public var scenario_id: Swift.String
                 /// Creates a new `Path`.
                 ///
@@ -5145,27 +10387,36 @@ public enum Operations {
                     self.scenario_id = scenario_id
                 }
             }
-            public var path: Operations.delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_.Input.Path
-            /// - Remark: Generated from `#/paths/api/v1/scenario/{scenario_id}/DELETE/header`.
+            public var path: Operations.deleteScenario.Input.Path
+            /// - Remark: Generated from `#/paths/v1/scenario/{scenario_id}/DELETE/header`.
             public struct Headers: Sendable, Hashable {
-                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_.AcceptableContentType>]
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/scenario/{scenario_id}/DELETE/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.deleteScenario.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
                 ///   - accept:
-                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_.AcceptableContentType>] = .defaultValues()) {
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.deleteScenario.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
                     self.accept = accept
                 }
             }
-            public var headers: Operations.delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_.Input.Headers
+            public var headers: Operations.deleteScenario.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - path:
             ///   - headers:
             public init(
-                path: Operations.delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_.Input.Path,
-                headers: Operations.delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_.Input.Headers = .init()
+                path: Operations.deleteScenario.Input.Path,
+                headers: Operations.deleteScenario.Input.Headers = .init()
             ) {
                 self.path = path
                 self.headers = headers
@@ -5173,11 +10424,11 @@ public enum Operations {
         }
         @frozen public enum Output: Sendable, Hashable {
             public struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/v1/scenario/{scenario_id}/DELETE/responses/200/content`.
+                /// - Remark: Generated from `#/paths/v1/scenario/{scenario_id}/DELETE/responses/200/content`.
                 @frozen public enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/v1/scenario/{scenario_id}/DELETE/responses/200/content/json`.
+                    /// - Remark: Generated from `#/paths/v1/scenario/{scenario_id}/DELETE/responses/200/content/json`.
                     public struct jsonPayload: Codable, Hashable, Sendable {
-                        /// - Remark: Generated from `#/paths/api/v1/scenario/{scenario_id}/DELETE/responses/200/content/json/message`.
+                        /// - Remark: Generated from `#/paths/v1/scenario/{scenario_id}/DELETE/responses/200/content/json/message`.
                         public var message: Swift.String?
                         /// Creates a new `jsonPayload`.
                         ///
@@ -5190,13 +10441,13 @@ public enum Operations {
                             case message
                         }
                     }
-                    /// - Remark: Generated from `#/paths/api/v1/scenario/{scenario_id}/DELETE/responses/200/content/application\/json`.
-                    case json(Operations.delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_.Output.Ok.Body.jsonPayload)
+                    /// - Remark: Generated from `#/paths/v1/scenario/{scenario_id}/DELETE/responses/200/content/application\/json`.
+                    case json(Operations.deleteScenario.Output.Ok.Body.jsonPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    public var json: Operations.delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_.Output.Ok.Body.jsonPayload {
+                    public var json: Operations.deleteScenario.Output.Ok.Body.jsonPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -5206,26 +10457,26 @@ public enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                public var body: Operations.delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_.Output.Ok.Body
+                public var body: Operations.deleteScenario.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                public init(body: Operations.delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_.Output.Ok.Body) {
+                public init(body: Operations.deleteScenario.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// Scenario deleted successfully
             ///
-            /// - Remark: Generated from `#/paths//api/v1/scenario/{scenario_id}/delete/responses/200`.
+            /// - Remark: Generated from `#/paths//v1/scenario/{scenario_id}/delete(deleteScenario)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_.Output.Ok)
+            case ok(Operations.deleteScenario.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            public var ok: Operations.delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_.Output.Ok {
+            public var ok: Operations.deleteScenario.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -5238,9 +10489,9 @@ public enum Operations {
                     }
                 }
             }
-            /// Invalid request data
+            /// Bad request
             ///
-            /// - Remark: Generated from `#/paths//api/v1/scenario/{scenario_id}/delete/responses/400`.
+            /// - Remark: Generated from `#/paths//v1/scenario/{scenario_id}/delete(deleteScenario)/responses/400`.
             ///
             /// HTTP response code: `400 badRequest`.
             case badRequest(Components.Responses.BadRequest)
@@ -5267,13 +10518,13 @@ public enum Operations {
             }
             /// Scenario not found
             ///
-            /// - Remark: Generated from `#/paths//api/v1/scenario/{scenario_id}/delete/responses/404`.
+            /// - Remark: Generated from `#/paths//v1/scenario/{scenario_id}/delete(deleteScenario)/responses/404`.
             ///
             /// HTTP response code: `404 notFound`.
-            case notFound(Operations.delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_.Output.NotFound)
+            case notFound(Operations.deleteScenario.Output.NotFound)
             /// Scenario not found
             ///
-            /// - Remark: Generated from `#/paths//api/v1/scenario/{scenario_id}/delete/responses/404`.
+            /// - Remark: Generated from `#/paths//v1/scenario/{scenario_id}/delete(deleteScenario)/responses/404`.
             ///
             /// HTTP response code: `404 notFound`.
             public static var notFound: Self {
@@ -5283,7 +10534,7 @@ public enum Operations {
             ///
             /// - Throws: An error if `self` is not `.notFound`.
             /// - SeeAlso: `.notFound`.
-            public var notFound: Operations.delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_.Output.NotFound {
+            public var notFound: Operations.deleteScenario.Output.NotFound {
                 get throws {
                     switch self {
                     case let .notFound(response):
@@ -5302,13 +10553,13 @@ public enum Operations {
             }
             /// Internal server error
             ///
-            /// - Remark: Generated from `#/paths//api/v1/scenario/{scenario_id}/delete/responses/500`.
+            /// - Remark: Generated from `#/paths//v1/scenario/{scenario_id}/delete(deleteScenario)/responses/500`.
             ///
             /// HTTP response code: `500 internalServerError`.
-            case internalServerError(Operations.delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_.Output.InternalServerError)
+            case internalServerError(Operations.deleteScenario.Output.InternalServerError)
             /// Internal server error
             ///
-            /// - Remark: Generated from `#/paths//api/v1/scenario/{scenario_id}/delete/responses/500`.
+            /// - Remark: Generated from `#/paths//v1/scenario/{scenario_id}/delete(deleteScenario)/responses/500`.
             ///
             /// HTTP response code: `500 internalServerError`.
             public static var internalServerError: Self {
@@ -5318,7 +10569,4711 @@ public enum Operations {
             ///
             /// - Throws: An error if `self` is not `.internalServerError`.
             /// - SeeAlso: `.internalServerError`.
-            public var internalServerError: Operations.delete_sol_api_sol_v1_sol_scenario_sol__lcub_scenario_id_rcub_.Output.InternalServerError {
+            public var internalServerError: Operations.deleteScenario.Output.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Get a list of scenarios
+    ///
+    /// - Remark: HTTP `GET /v1/scenario/list`.
+    /// - Remark: Generated from `#/paths//v1/scenario/list/get(listScenarios)`.
+    public enum listScenarios {
+        public static let id: Swift.String = "listScenarios"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/scenario/list/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/scenario/list/GET/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.listScenarios.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.listScenarios.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.listScenarios.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            public init(headers: Operations.listScenarios.Input.Headers = .init()) {
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/scenario/list/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/scenario/list/GET/responses/200/content/json`.
+                    public struct jsonPayload: Codable, Hashable, Sendable {
+                        /// The token for the next page of results, or null if there are no more pages.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/scenario/list/GET/responses/200/content/json/next_page`.
+                        public var next_page: Swift.String?
+                        /// The total number of items available.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/scenario/list/GET/responses/200/content/json/total_count`.
+                        public var total_count: Swift.Int
+                        /// The array of scenarios.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/scenario/list/GET/responses/200/content/json/values`.
+                        public var values: [Components.Schemas.Scenario]
+                        /// Creates a new `jsonPayload`.
+                        ///
+                        /// - Parameters:
+                        ///   - next_page: The token for the next page of results, or null if there are no more pages.
+                        ///   - total_count: The total number of items available.
+                        ///   - values: The array of scenarios.
+                        public init(
+                            next_page: Swift.String? = nil,
+                            total_count: Swift.Int,
+                            values: [Components.Schemas.Scenario]
+                        ) {
+                            self.next_page = next_page
+                            self.total_count = total_count
+                            self.values = values
+                        }
+                        public enum CodingKeys: String, CodingKey {
+                            case next_page
+                            case total_count
+                            case values
+                        }
+                    }
+                    /// - Remark: Generated from `#/paths/v1/scenario/list/GET/responses/200/content/application\/json`.
+                    case json(Operations.listScenarios.Output.Ok.Body.jsonPayload)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Operations.listScenarios.Output.Ok.Body.jsonPayload {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.listScenarios.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.listScenarios.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// List of scenarios
+            ///
+            /// - Remark: Generated from `#/paths//v1/scenario/list/get(listScenarios)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.listScenarios.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.listScenarios.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/scenario/list/get(listScenarios)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            public struct InternalServerError: Sendable, Hashable {
+                /// Creates a new `InternalServerError`.
+                public init() {}
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/scenario/list/get(listScenarios)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Operations.listScenarios.Output.InternalServerError)
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/scenario/list/get(listScenarios)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            public static var internalServerError: Self {
+                .internalServerError(.init())
+            }
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Operations.listScenarios.Output.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Create a scenario
+    ///
+    /// - Remark: HTTP `POST /v1/scenario`.
+    /// - Remark: Generated from `#/paths//v1/scenario/post(CreateScenario)`.
+    public enum CreateScenario {
+        public static let id: Swift.String = "CreateScenario"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/scenario/POST/header`.
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.CreateScenario.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.CreateScenario.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.CreateScenario.Input.Headers
+            /// - Remark: Generated from `#/paths/v1/scenario/POST/requestBody`.
+            @frozen public enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/scenario/POST/requestBody/content/application\/json`.
+                case json(Components.Schemas.CreateScenarioRequest)
+            }
+            public var body: Operations.CreateScenario.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            ///   - body:
+            public init(
+                headers: Operations.CreateScenario.Input.Headers = .init(),
+                body: Operations.CreateScenario.Input.Body
+            ) {
+                self.headers = headers
+                self.body = body
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/scenario/POST/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/scenario/POST/responses/200/content/application\/json`.
+                    case json(Components.Schemas.Scenario)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.Scenario {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.CreateScenario.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.CreateScenario.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Scenario deleted successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/scenario/post(CreateScenario)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.CreateScenario.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.CreateScenario.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/scenario/post(CreateScenario)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            public struct InternalServerError: Sendable, Hashable {
+                /// Creates a new `InternalServerError`.
+                public init() {}
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/scenario/post(CreateScenario)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Operations.CreateScenario.Output.InternalServerError)
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/scenario/post(CreateScenario)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            public static var internalServerError: Self {
+                .internalServerError(.init())
+            }
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Operations.CreateScenario.Output.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Get a list of llms
+    ///
+    /// - Remark: HTTP `GET /v1/llm/list`.
+    /// - Remark: Generated from `#/paths//v1/llm/list/get(listLLMs)`.
+    public enum listLLMs {
+        public static let id: Swift.String = "listLLMs"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/llm/list/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/llm/list/GET/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.listLLMs.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.listLLMs.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.listLLMs.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            public init(headers: Operations.listLLMs.Input.Headers = .init()) {
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/llm/list/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/llm/list/GET/responses/200/content/json`.
+                    public struct jsonPayload: Codable, Hashable, Sendable {
+                        /// The token for the next page of results, or null if there are no more pages.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/llm/list/GET/responses/200/content/json/next_page`.
+                        public var next_page: Swift.String?
+                        /// The total number of items available.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/llm/list/GET/responses/200/content/json/total_count`.
+                        public var total_count: Swift.Int
+                        /// The array of voices.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/llm/list/GET/responses/200/content/json/values`.
+                        public var values: [Components.Schemas.LLM]
+                        /// Creates a new `jsonPayload`.
+                        ///
+                        /// - Parameters:
+                        ///   - next_page: The token for the next page of results, or null if there are no more pages.
+                        ///   - total_count: The total number of items available.
+                        ///   - values: The array of voices.
+                        public init(
+                            next_page: Swift.String? = nil,
+                            total_count: Swift.Int,
+                            values: [Components.Schemas.LLM]
+                        ) {
+                            self.next_page = next_page
+                            self.total_count = total_count
+                            self.values = values
+                        }
+                        public enum CodingKeys: String, CodingKey {
+                            case next_page
+                            case total_count
+                            case values
+                        }
+                    }
+                    /// - Remark: Generated from `#/paths/v1/llm/list/GET/responses/200/content/application\/json`.
+                    case json(Operations.listLLMs.Output.Ok.Body.jsonPayload)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Operations.listLLMs.Output.Ok.Body.jsonPayload {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.listLLMs.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.listLLMs.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// List of llms
+            ///
+            /// - Remark: Generated from `#/paths//v1/llm/list/get(listLLMs)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.listLLMs.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.listLLMs.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/llm/list/get(listLLMs)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            public struct InternalServerError: Sendable, Hashable {
+                /// Creates a new `InternalServerError`.
+                public init() {}
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/llm/list/get(listLLMs)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Operations.listLLMs.Output.InternalServerError)
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/llm/list/get(listLLMs)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            public static var internalServerError: Self {
+                .internalServerError(.init())
+            }
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Operations.listLLMs.Output.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Get a list of llms
+    ///
+    /// - Remark: HTTP `GET /v1/llm/{llm}`.
+    /// - Remark: Generated from `#/paths//v1/llm/{llm}/get(getLLM)`.
+    public enum getLLM {
+        public static let id: Swift.String = "getLLM"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/llm/{llm}/GET/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/llm/{llm}/GET/path/llm`.
+                public var llm: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - llm:
+                public init(llm: Swift.String) {
+                    self.llm = llm
+                }
+            }
+            public var path: Operations.getLLM.Input.Path
+            /// - Remark: Generated from `#/paths/v1/llm/{llm}/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/llm/{llm}/GET/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getLLM.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getLLM.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.getLLM.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.getLLM.Input.Path,
+                headers: Operations.getLLM.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/llm/{llm}/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/llm/{llm}/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.LLM)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.LLM {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.getLLM.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.getLLM.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// LLM fetched successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/llm/{llm}/get(getLLM)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.getLLM.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.getLLM.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/llm/{llm}/get(getLLM)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            public struct InternalServerError: Sendable, Hashable {
+                /// Creates a new `InternalServerError`.
+                public init() {}
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/llm/{llm}/get(getLLM)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Operations.getLLM.Output.InternalServerError)
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/llm/{llm}/get(getLLM)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            public static var internalServerError: Self {
+                .internalServerError(.init())
+            }
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Operations.getLLM.Output.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Create a new Context.
+    ///
+    /// Create a new Context with the given configuration.
+    ///
+    ///
+    /// - Remark: HTTP `POST /v1/llm/context`.
+    /// - Remark: Generated from `#/paths//v1/llm/context/post(createContext)`.
+    public enum createContext {
+        public static let id: Swift.String = "createContext"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/llm/context/POST/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/llm/context/POST/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.createContext.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.createContext.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.createContext.Input.Headers
+            /// - Remark: Generated from `#/paths/v1/llm/context/POST/requestBody`.
+            @frozen public enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/llm/context/POST/requestBody/content/application\/json`.
+                case json(Components.Schemas.ContextCreateRequest)
+            }
+            public var body: Operations.createContext.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            ///   - body:
+            public init(
+                headers: Operations.createContext.Input.Headers = .init(),
+                body: Operations.createContext.Input.Body
+            ) {
+                self.headers = headers
+                self.body = body
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/llm/context/POST/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/llm/context/POST/responses/200/content/application\/json`.
+                    case json(Components.Schemas.Context)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.Context {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.createContext.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.createContext.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Context created successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/llm/context/post(createContext)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.createContext.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.createContext.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/llm/context/post(createContext)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/llm/context/post(createContext)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Components.Responses.InternalServerError)
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Components.Responses.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Retrieve a Context.
+    ///
+    /// Retrieve the Context with the given identifier.
+    ///
+    ///
+    /// - Remark: HTTP `GET /v1/llm/context/{context}`.
+    /// - Remark: Generated from `#/paths//v1/llm/context/{context}/get(getContext)`.
+    public enum getContext {
+        public static let id: Swift.String = "getContext"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/llm/context/{context}/GET/path`.
+            public struct Path: Sendable, Hashable {
+                /// The unique identifier of the Context.
+                ///
+                /// - Remark: Generated from `#/paths/v1/llm/context/{context}/GET/path/context`.
+                public var context: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - context: The unique identifier of the Context.
+                public init(context: Swift.String) {
+                    self.context = context
+                }
+            }
+            public var path: Operations.getContext.Input.Path
+            /// - Remark: Generated from `#/paths/v1/llm/context/{context}/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/llm/context/{context}/GET/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getContext.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getContext.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.getContext.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.getContext.Input.Path,
+                headers: Operations.getContext.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/llm/context/{context}/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/llm/context/{context}/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.Context)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.Context {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.getContext.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.getContext.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Context fetched successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/llm/context/{context}/get(getContext)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.getContext.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.getContext.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/llm/context/{context}/get(getContext)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/llm/context/{context}/get(getContext)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Components.Responses.InternalServerError)
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Components.Responses.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// List ContextMessages.
+    ///
+    /// List all ContextMessages associated with the given Context.
+    ///
+    ///
+    /// - Remark: HTTP `GET /v1/llm/context/{context}/message/list`.
+    /// - Remark: Generated from `#/paths//v1/llm/context/{context}/message/list/get(listContextMessages)`.
+    public enum listContextMessages {
+        public static let id: Swift.String = "listContextMessages"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/list/GET/path`.
+            public struct Path: Sendable, Hashable {
+                /// The unique identifier of the Context.
+                ///
+                /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/list/GET/path/context`.
+                public var context: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - context: The unique identifier of the Context.
+                public init(context: Swift.String) {
+                    self.context = context
+                }
+            }
+            public var path: Operations.listContextMessages.Input.Path
+            /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/list/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/list/GET/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.listContextMessages.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.listContextMessages.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.listContextMessages.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.listContextMessages.Input.Path,
+                headers: Operations.listContextMessages.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/list/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/list/GET/responses/200/content/json`.
+                    public struct jsonPayload: Codable, Hashable, Sendable {
+                        /// The URL to the next page of items.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/list/GET/responses/200/content/json/next_page`.
+                        public var next_page: Swift.String?
+                        /// The total number of items.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/list/GET/responses/200/content/json/total_count`.
+                        public var total_count: Swift.Int
+                        /// The list of items.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/list/GET/responses/200/content/json/values`.
+                        public var values: [Components.Schemas.ContextMessage]
+                        /// Creates a new `jsonPayload`.
+                        ///
+                        /// - Parameters:
+                        ///   - next_page: The URL to the next page of items.
+                        ///   - total_count: The total number of items.
+                        ///   - values: The list of items.
+                        public init(
+                            next_page: Swift.String? = nil,
+                            total_count: Swift.Int,
+                            values: [Components.Schemas.ContextMessage]
+                        ) {
+                            self.next_page = next_page
+                            self.total_count = total_count
+                            self.values = values
+                        }
+                        public enum CodingKeys: String, CodingKey {
+                            case next_page
+                            case total_count
+                            case values
+                        }
+                    }
+                    /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/list/GET/responses/200/content/application\/json`.
+                    case json(Operations.listContextMessages.Output.Ok.Body.jsonPayload)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Operations.listContextMessages.Output.Ok.Body.jsonPayload {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.listContextMessages.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.listContextMessages.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// ContextMessages fetched successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/llm/context/{context}/message/list/get(listContextMessages)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.listContextMessages.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.listContextMessages.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/llm/context/{context}/message/list/get(listContextMessages)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/llm/context/{context}/message/list/get(listContextMessages)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Components.Responses.InternalServerError)
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Components.Responses.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Create a new ContextMessage.
+    ///
+    /// Create a new ContextMessage with the given configuration.
+    ///
+    ///
+    /// - Remark: HTTP `POST /v1/llm/context/{context}/message`.
+    /// - Remark: Generated from `#/paths//v1/llm/context/{context}/message/post(createContextMessage)`.
+    public enum createContextMessage {
+        public static let id: Swift.String = "createContextMessage"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/POST/path`.
+            public struct Path: Sendable, Hashable {
+                /// The unique identifier of the Context.
+                ///
+                /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/POST/path/context`.
+                public var context: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - context: The unique identifier of the Context.
+                public init(context: Swift.String) {
+                    self.context = context
+                }
+            }
+            public var path: Operations.createContextMessage.Input.Path
+            /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/POST/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/POST/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.createContextMessage.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.createContextMessage.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.createContextMessage.Input.Headers
+            /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/POST/requestBody`.
+            @frozen public enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/POST/requestBody/content/application\/json`.
+                case json(Components.Schemas.ContextMessageCreateParams)
+            }
+            public var body: Operations.createContextMessage.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            ///   - body:
+            public init(
+                path: Operations.createContextMessage.Input.Path,
+                headers: Operations.createContextMessage.Input.Headers = .init(),
+                body: Operations.createContextMessage.Input.Body
+            ) {
+                self.path = path
+                self.headers = headers
+                self.body = body
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/POST/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/POST/responses/200/content/application\/json`.
+                    case json(Components.Schemas.ContextMessage)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.ContextMessage {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.createContextMessage.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.createContextMessage.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// ContextMessage created successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/llm/context/{context}/message/post(createContextMessage)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.createContextMessage.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.createContextMessage.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/llm/context/{context}/message/post(createContextMessage)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/llm/context/{context}/message/post(createContextMessage)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Components.Responses.InternalServerError)
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Components.Responses.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Retrieve a ContextMessage.
+    ///
+    /// Retrieve the ContextMessage with the given identifier.
+    ///
+    ///
+    /// - Remark: HTTP `GET /v1/llm/context/{context}/message/{message}`.
+    /// - Remark: Generated from `#/paths//v1/llm/context/{context}/message/{message}/get(getContextMessage)`.
+    public enum getContextMessage {
+        public static let id: Swift.String = "getContextMessage"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/{message}/GET/path`.
+            public struct Path: Sendable, Hashable {
+                /// The unique identifier of the Context.
+                ///
+                /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/{message}/GET/path/context`.
+                public var context: Swift.String
+                /// The unique identifier of the ContextMessage.
+                ///
+                /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/{message}/GET/path/message`.
+                public var message: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - context: The unique identifier of the Context.
+                ///   - message: The unique identifier of the ContextMessage.
+                public init(
+                    context: Swift.String,
+                    message: Swift.String
+                ) {
+                    self.context = context
+                    self.message = message
+                }
+            }
+            public var path: Operations.getContextMessage.Input.Path
+            /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/{message}/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/{message}/GET/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getContextMessage.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getContextMessage.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.getContextMessage.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.getContextMessage.Input.Path,
+                headers: Operations.getContextMessage.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/{message}/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/llm/context/{context}/message/{message}/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.ContextMessage)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.ContextMessage {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.getContextMessage.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.getContextMessage.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// ContextMessage fetched successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/llm/context/{context}/message/{message}/get(getContextMessage)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.getContextMessage.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.getContextMessage.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/llm/context/{context}/message/{message}/get(getContextMessage)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/llm/context/{context}/message/{message}/get(getContextMessage)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Components.Responses.InternalServerError)
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Components.Responses.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Start a new RealtimeSession.
+    ///
+    /// Start a new RealtimeSession with the given configuration.
+    ///
+    ///
+    /// - Remark: HTTP `POST /v1/realtime/start`.
+    /// - Remark: Generated from `#/paths//v1/realtime/start/post(startRealtimeSession)`.
+    public enum startRealtimeSession {
+        public static let id: Swift.String = "startRealtimeSession"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/realtime/start/POST/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/realtime/start/POST/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.startRealtimeSession.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.startRealtimeSession.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.startRealtimeSession.Input.Headers
+            /// - Remark: Generated from `#/paths/v1/realtime/start/POST/requestBody`.
+            @frozen public enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/realtime/start/POST/requestBody/json`.
+                public struct jsonPayload: Codable, Hashable, Sendable {
+                    /// Whether the session is simulated.
+                    ///
+                    /// - Remark: Generated from `#/paths/v1/realtime/start/POST/requestBody/json/simulated`.
+                    public var simulated: Swift.Bool?
+                    /// - Remark: Generated from `#/paths/v1/realtime/start/POST/requestBody/json/config`.
+                    public var config: Components.Schemas.RealtimeSessionConfigCreate
+                    /// Extra data for certain Gabber partner integrations.
+                    ///
+                    /// - Remark: Generated from `#/paths/v1/realtime/start/POST/requestBody/json/_extra`.
+                    public struct _extraPayload: Codable, Hashable, Sendable {
+                        /// A container of undocumented properties.
+                        public var additionalProperties: OpenAPIRuntime.OpenAPIObjectContainer
+                        /// Creates a new `_extraPayload`.
+                        ///
+                        /// - Parameters:
+                        ///   - additionalProperties: A container of undocumented properties.
+                        public init(additionalProperties: OpenAPIRuntime.OpenAPIObjectContainer = .init()) {
+                            self.additionalProperties = additionalProperties
+                        }
+                        public init(from decoder: any Decoder) throws {
+                            additionalProperties = try decoder.decodeAdditionalProperties(knownKeys: [])
+                        }
+                        public func encode(to encoder: any Encoder) throws {
+                            try encoder.encodeAdditionalProperties(additionalProperties)
+                        }
+                    }
+                    /// Extra data for certain Gabber partner integrations.
+                    ///
+                    /// - Remark: Generated from `#/paths/v1/realtime/start/POST/requestBody/json/_extra`.
+                    public var _extra: Operations.startRealtimeSession.Input.Body.jsonPayload._extraPayload?
+                    /// Creates a new `jsonPayload`.
+                    ///
+                    /// - Parameters:
+                    ///   - simulated: Whether the session is simulated.
+                    ///   - config:
+                    ///   - _extra: Extra data for certain Gabber partner integrations.
+                    public init(
+                        simulated: Swift.Bool? = nil,
+                        config: Components.Schemas.RealtimeSessionConfigCreate,
+                        _extra: Operations.startRealtimeSession.Input.Body.jsonPayload._extraPayload? = nil
+                    ) {
+                        self.simulated = simulated
+                        self.config = config
+                        self._extra = _extra
+                    }
+                    public enum CodingKeys: String, CodingKey {
+                        case simulated
+                        case config
+                        case _extra
+                    }
+                }
+                /// - Remark: Generated from `#/paths/v1/realtime/start/POST/requestBody/content/application\/json`.
+                case json(Operations.startRealtimeSession.Input.Body.jsonPayload)
+            }
+            public var body: Operations.startRealtimeSession.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            ///   - body:
+            public init(
+                headers: Operations.startRealtimeSession.Input.Headers = .init(),
+                body: Operations.startRealtimeSession.Input.Body
+            ) {
+                self.headers = headers
+                self.body = body
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/realtime/start/POST/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/realtime/start/POST/responses/200/content/application\/json`.
+                    case json(Components.Schemas.RealtimeSessionStartResponse)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.RealtimeSessionStartResponse {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.startRealtimeSession.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.startRealtimeSession.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Session created successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/start/post(startRealtimeSession)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.startRealtimeSession.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.startRealtimeSession.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/start/post(startRealtimeSession)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/start/post(startRealtimeSession)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Components.Responses.InternalServerError)
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Components.Responses.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Update a RealtimeSession.
+    ///
+    /// Update the RealtimeSession with the given identifier.
+    ///
+    ///
+    /// - Remark: HTTP `POST /v1/realtime/{session}/update`.
+    /// - Remark: Generated from `#/paths//v1/realtime/{session}/update/post(updateRealtimeSession)`.
+    public enum updateRealtimeSession {
+        public static let id: Swift.String = "updateRealtimeSession"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/realtime/{session}/update/POST/path`.
+            public struct Path: Sendable, Hashable {
+                /// The unique identifier of the RealtimeSession.
+                ///
+                /// - Remark: Generated from `#/paths/v1/realtime/{session}/update/POST/path/session`.
+                public var session: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - session: The unique identifier of the RealtimeSession.
+                public init(session: Swift.String) {
+                    self.session = session
+                }
+            }
+            public var path: Operations.updateRealtimeSession.Input.Path
+            /// - Remark: Generated from `#/paths/v1/realtime/{session}/update/POST/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/realtime/{session}/update/POST/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.updateRealtimeSession.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.updateRealtimeSession.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.updateRealtimeSession.Input.Headers
+            /// - Remark: Generated from `#/paths/v1/realtime/{session}/update/POST/requestBody`.
+            @frozen public enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/realtime/{session}/update/POST/requestBody/content/application\/json`.
+                case json(Components.Schemas.RealtimeSessionConfigUpdate)
+            }
+            public var body: Operations.updateRealtimeSession.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            ///   - body:
+            public init(
+                path: Operations.updateRealtimeSession.Input.Path,
+                headers: Operations.updateRealtimeSession.Input.Headers = .init(),
+                body: Operations.updateRealtimeSession.Input.Body
+            ) {
+                self.path = path
+                self.headers = headers
+                self.body = body
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/realtime/{session}/update/POST/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/realtime/{session}/update/POST/responses/200/content/application\/json`.
+                    case json(Components.Schemas.RealtimeSession)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.RealtimeSession {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.updateRealtimeSession.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.updateRealtimeSession.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Session updated successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/{session}/update/post(updateRealtimeSession)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.updateRealtimeSession.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.updateRealtimeSession.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/{session}/update/post(updateRealtimeSession)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/{session}/update/post(updateRealtimeSession)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Components.Responses.InternalServerError)
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Components.Responses.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// End a RealtimeSession.
+    ///
+    /// End the RealtimeSession with the given identifier.
+    ///
+    ///
+    /// - Remark: HTTP `POST /v1/realtime/{session}/end`.
+    /// - Remark: Generated from `#/paths//v1/realtime/{session}/end/post(endRealtimeSession)`.
+    public enum endRealtimeSession {
+        public static let id: Swift.String = "endRealtimeSession"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/realtime/{session}/end/POST/path`.
+            public struct Path: Sendable, Hashable {
+                /// The unique identifier of the RealtimeSession.
+                ///
+                /// - Remark: Generated from `#/paths/v1/realtime/{session}/end/POST/path/session`.
+                public var session: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - session: The unique identifier of the RealtimeSession.
+                public init(session: Swift.String) {
+                    self.session = session
+                }
+            }
+            public var path: Operations.endRealtimeSession.Input.Path
+            /// - Remark: Generated from `#/paths/v1/realtime/{session}/end/POST/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/realtime/{session}/end/POST/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.endRealtimeSession.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.endRealtimeSession.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.endRealtimeSession.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.endRealtimeSession.Input.Path,
+                headers: Operations.endRealtimeSession.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/realtime/{session}/end/POST/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/realtime/{session}/end/POST/responses/200/content/application\/json`.
+                    case json(Components.Schemas.RealtimeSession)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.RealtimeSession {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.endRealtimeSession.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.endRealtimeSession.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Session ended successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/{session}/end/post(endRealtimeSession)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.endRealtimeSession.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.endRealtimeSession.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/{session}/end/post(endRealtimeSession)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/{session}/end/post(endRealtimeSession)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Components.Responses.InternalServerError)
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Components.Responses.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Get a RealtimeSession.
+    ///
+    /// End the RealtimeSession with the given identifier.
+    ///
+    ///
+    /// - Remark: HTTP `GET /v1/realtime/{session}`.
+    /// - Remark: Generated from `#/paths//v1/realtime/{session}/get(getRealtimeSession)`.
+    public enum getRealtimeSession {
+        public static let id: Swift.String = "getRealtimeSession"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/realtime/{session}/GET/path`.
+            public struct Path: Sendable, Hashable {
+                /// The unique identifier of the RealtimeSession.
+                ///
+                /// - Remark: Generated from `#/paths/v1/realtime/{session}/GET/path/session`.
+                public var session: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - session: The unique identifier of the RealtimeSession.
+                public init(session: Swift.String) {
+                    self.session = session
+                }
+            }
+            public var path: Operations.getRealtimeSession.Input.Path
+            /// - Remark: Generated from `#/paths/v1/realtime/{session}/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/realtime/{session}/GET/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getRealtimeSession.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getRealtimeSession.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.getRealtimeSession.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.getRealtimeSession.Input.Path,
+                headers: Operations.getRealtimeSession.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/realtime/{session}/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/realtime/{session}/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.RealtimeSession)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.RealtimeSession {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.getRealtimeSession.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.getRealtimeSession.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Session fetched successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/{session}/get(getRealtimeSession)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.getRealtimeSession.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.getRealtimeSession.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/{session}/get(getRealtimeSession)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/{session}/get(getRealtimeSession)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Components.Responses.InternalServerError)
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Components.Responses.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Get a RealtimeSession timeline.
+    ///
+    /// Get the timeline of the RealtimeSession with the given identifier.
+    ///
+    ///
+    /// - Remark: HTTP `GET /v1/realtime/{session}/timeline`.
+    /// - Remark: Generated from `#/paths//v1/realtime/{session}/timeline/get(getRealtimeSessionTimeline)`.
+    public enum getRealtimeSessionTimeline {
+        public static let id: Swift.String = "getRealtimeSessionTimeline"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/realtime/{session}/timeline/GET/path`.
+            public struct Path: Sendable, Hashable {
+                /// The unique identifier of the RealtimeSession.
+                ///
+                /// - Remark: Generated from `#/paths/v1/realtime/{session}/timeline/GET/path/session`.
+                public var session: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - session: The unique identifier of the RealtimeSession.
+                public init(session: Swift.String) {
+                    self.session = session
+                }
+            }
+            public var path: Operations.getRealtimeSessionTimeline.Input.Path
+            /// - Remark: Generated from `#/paths/v1/realtime/{session}/timeline/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/realtime/{session}/timeline/GET/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getRealtimeSessionTimeline.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getRealtimeSessionTimeline.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.getRealtimeSessionTimeline.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.getRealtimeSessionTimeline.Input.Path,
+                headers: Operations.getRealtimeSessionTimeline.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/realtime/{session}/timeline/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/realtime/{session}/timeline/GET/responses/200/content/json`.
+                    public struct jsonPayload: Codable, Hashable, Sendable {
+                        /// The URL to the next page of items.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/realtime/{session}/timeline/GET/responses/200/content/json/next_page`.
+                        public var next_page: Swift.String?
+                        /// The total number of items.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/realtime/{session}/timeline/GET/responses/200/content/json/total_count`.
+                        public var total_count: Swift.Int
+                        /// The list of items.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/realtime/{session}/timeline/GET/responses/200/content/json/values`.
+                        public var values: [Components.Schemas.RealtimeSessionTimelineItem]
+                        /// Creates a new `jsonPayload`.
+                        ///
+                        /// - Parameters:
+                        ///   - next_page: The URL to the next page of items.
+                        ///   - total_count: The total number of items.
+                        ///   - values: The list of items.
+                        public init(
+                            next_page: Swift.String? = nil,
+                            total_count: Swift.Int,
+                            values: [Components.Schemas.RealtimeSessionTimelineItem]
+                        ) {
+                            self.next_page = next_page
+                            self.total_count = total_count
+                            self.values = values
+                        }
+                        public enum CodingKeys: String, CodingKey {
+                            case next_page
+                            case total_count
+                            case values
+                        }
+                    }
+                    /// - Remark: Generated from `#/paths/v1/realtime/{session}/timeline/GET/responses/200/content/application\/json`.
+                    case json(Operations.getRealtimeSessionTimeline.Output.Ok.Body.jsonPayload)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Operations.getRealtimeSessionTimeline.Output.Ok.Body.jsonPayload {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.getRealtimeSessionTimeline.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.getRealtimeSessionTimeline.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Session timeline fetched successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/{session}/timeline/get(getRealtimeSessionTimeline)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.getRealtimeSessionTimeline.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.getRealtimeSessionTimeline.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/{session}/timeline/get(getRealtimeSessionTimeline)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/{session}/timeline/get(getRealtimeSessionTimeline)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Components.Responses.InternalServerError)
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Components.Responses.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Get a RealtimeSession messages.
+    ///
+    /// Get all ContextMessages associated with the given RealtimeSession.
+    ///
+    ///
+    /// - Remark: HTTP `GET /v1/realtime/{session}/messages`.
+    /// - Remark: Generated from `#/paths//v1/realtime/{session}/messages/get(getRealtimeSessionMessages)`.
+    public enum getRealtimeSessionMessages {
+        public static let id: Swift.String = "getRealtimeSessionMessages"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/realtime/{session}/messages/GET/path`.
+            public struct Path: Sendable, Hashable {
+                /// The unique identifier of the RealtimeSession.
+                ///
+                /// - Remark: Generated from `#/paths/v1/realtime/{session}/messages/GET/path/session`.
+                public var session: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - session: The unique identifier of the RealtimeSession.
+                public init(session: Swift.String) {
+                    self.session = session
+                }
+            }
+            public var path: Operations.getRealtimeSessionMessages.Input.Path
+            /// - Remark: Generated from `#/paths/v1/realtime/{session}/messages/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/realtime/{session}/messages/GET/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getRealtimeSessionMessages.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getRealtimeSessionMessages.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.getRealtimeSessionMessages.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.getRealtimeSessionMessages.Input.Path,
+                headers: Operations.getRealtimeSessionMessages.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/realtime/{session}/messages/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/realtime/{session}/messages/GET/responses/200/content/json`.
+                    public struct jsonPayload: Codable, Hashable, Sendable {
+                        /// The URL to the next page of items.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/realtime/{session}/messages/GET/responses/200/content/json/next_page`.
+                        public var next_page: Swift.String?
+                        /// The total number of items.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/realtime/{session}/messages/GET/responses/200/content/json/total_count`.
+                        public var total_count: Swift.Int
+                        /// The list of items.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/realtime/{session}/messages/GET/responses/200/content/json/values`.
+                        public var values: [Components.Schemas.ContextMessage]
+                        /// Creates a new `jsonPayload`.
+                        ///
+                        /// - Parameters:
+                        ///   - next_page: The URL to the next page of items.
+                        ///   - total_count: The total number of items.
+                        ///   - values: The list of items.
+                        public init(
+                            next_page: Swift.String? = nil,
+                            total_count: Swift.Int,
+                            values: [Components.Schemas.ContextMessage]
+                        ) {
+                            self.next_page = next_page
+                            self.total_count = total_count
+                            self.values = values
+                        }
+                        public enum CodingKeys: String, CodingKey {
+                            case next_page
+                            case total_count
+                            case values
+                        }
+                    }
+                    /// - Remark: Generated from `#/paths/v1/realtime/{session}/messages/GET/responses/200/content/application\/json`.
+                    case json(Operations.getRealtimeSessionMessages.Output.Ok.Body.jsonPayload)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Operations.getRealtimeSessionMessages.Output.Ok.Body.jsonPayload {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.getRealtimeSessionMessages.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.getRealtimeSessionMessages.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Session messages fetched successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/{session}/messages/get(getRealtimeSessionMessages)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.getRealtimeSessionMessages.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.getRealtimeSessionMessages.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/{session}/messages/get(getRealtimeSessionMessages)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/{session}/messages/get(getRealtimeSessionMessages)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Components.Responses.InternalServerError)
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Components.Responses.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// List Realtime Sessions.
+    ///
+    /// List all Realtime Sessions.
+    ///
+    ///
+    /// - Remark: HTTP `GET /v1/realtime/list`.
+    /// - Remark: Generated from `#/paths//v1/realtime/list/get(listRealtimeSessions)`.
+    public enum listRealtimeSessions {
+        public static let id: Swift.String = "listRealtimeSessions"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/realtime/list/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                /// When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///
+                /// - Remark: Generated from `#/paths/v1/realtime/list/GET/header/x-human-id`.
+                public var x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier?
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.listRealtimeSessions.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - x_hyphen_human_hyphen_id: When using x-api-key authentication, this header is used to scope requests to a specific human.
+                ///   - accept:
+                public init(
+                    x_hyphen_human_hyphen_id: Components.Parameters.HumanIdIdentifier? = nil,
+                    accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.listRealtimeSessions.AcceptableContentType>] = .defaultValues()
+                ) {
+                    self.x_hyphen_human_hyphen_id = x_hyphen_human_hyphen_id
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.listRealtimeSessions.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            public init(headers: Operations.listRealtimeSessions.Input.Headers = .init()) {
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/realtime/list/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/realtime/list/GET/responses/200/content/json`.
+                    public struct jsonPayload: Codable, Hashable, Sendable {
+                        /// The URL to the next page of items.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/realtime/list/GET/responses/200/content/json/next_page`.
+                        public var next_page: Swift.String?
+                        /// The total number of items.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/realtime/list/GET/responses/200/content/json/total_count`.
+                        public var total_count: Swift.Int
+                        /// The list of items.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/realtime/list/GET/responses/200/content/json/values`.
+                        public var values: [Components.Schemas.RealtimeSession]
+                        /// Creates a new `jsonPayload`.
+                        ///
+                        /// - Parameters:
+                        ///   - next_page: The URL to the next page of items.
+                        ///   - total_count: The total number of items.
+                        ///   - values: The list of items.
+                        public init(
+                            next_page: Swift.String? = nil,
+                            total_count: Swift.Int,
+                            values: [Components.Schemas.RealtimeSession]
+                        ) {
+                            self.next_page = next_page
+                            self.total_count = total_count
+                            self.values = values
+                        }
+                        public enum CodingKeys: String, CodingKey {
+                            case next_page
+                            case total_count
+                            case values
+                        }
+                    }
+                    /// - Remark: Generated from `#/paths/v1/realtime/list/GET/responses/200/content/application\/json`.
+                    case json(Operations.listRealtimeSessions.Output.Ok.Body.jsonPayload)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Operations.listRealtimeSessions.Output.Ok.Body.jsonPayload {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.listRealtimeSessions.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.listRealtimeSessions.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Realtime Sessions fetched successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/list/get(listRealtimeSessions)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.listRealtimeSessions.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.listRealtimeSessions.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/list/get(listRealtimeSessions)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/list/get(listRealtimeSessions)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Components.Responses.InternalServerError)
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Components.Responses.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Attach a human to a RealtimeSession
+    ///
+    /// Attaches a human to a RealtimeSession. This is useful for previously anonymous sessions, for example sessions created via a phone call.
+    ///
+    /// - Remark: HTTP `POST /v1/realtime/session/{session}/attach_human`.
+    /// - Remark: Generated from `#/paths//v1/realtime/session/{session}/attach_human/post(attachHuman)`.
+    public enum attachHuman {
+        public static let id: Swift.String = "attachHuman"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/realtime/session/{session}/attach_human/POST/path`.
+            public struct Path: Sendable, Hashable {
+                /// The unique identifier of the RealtimeSession.
+                ///
+                /// - Remark: Generated from `#/paths/v1/realtime/session/{session}/attach_human/POST/path/session`.
+                public var session: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - session: The unique identifier of the RealtimeSession.
+                public init(session: Swift.String) {
+                    self.session = session
+                }
+            }
+            public var path: Operations.attachHuman.Input.Path
+            /// - Remark: Generated from `#/paths/v1/realtime/session/{session}/attach_human/POST/header`.
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.attachHuman.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.attachHuman.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.attachHuman.Input.Headers
+            /// - Remark: Generated from `#/paths/v1/realtime/session/{session}/attach_human/POST/requestBody`.
+            @frozen public enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/realtime/session/{session}/attach_human/POST/requestBody/json`.
+                public struct jsonPayload: Codable, Hashable, Sendable {
+                    /// The unique identifier of the Human.
+                    ///
+                    /// - Remark: Generated from `#/paths/v1/realtime/session/{session}/attach_human/POST/requestBody/json/human`.
+                    public var human: Swift.String
+                    /// Creates a new `jsonPayload`.
+                    ///
+                    /// - Parameters:
+                    ///   - human: The unique identifier of the Human.
+                    public init(human: Swift.String) {
+                        self.human = human
+                    }
+                    public enum CodingKeys: String, CodingKey {
+                        case human
+                    }
+                }
+                /// - Remark: Generated from `#/paths/v1/realtime/session/{session}/attach_human/POST/requestBody/content/application\/json`.
+                case json(Operations.attachHuman.Input.Body.jsonPayload)
+            }
+            public var body: Operations.attachHuman.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            ///   - body:
+            public init(
+                path: Operations.attachHuman.Input.Path,
+                headers: Operations.attachHuman.Input.Headers = .init(),
+                body: Operations.attachHuman.Input.Body
+            ) {
+                self.path = path
+                self.headers = headers
+                self.body = body
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/realtime/session/{session}/attach_human/POST/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/realtime/session/{session}/attach_human/POST/responses/200/content/application\/json`.
+                    case json(Components.Schemas.RealtimeSession)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.RealtimeSession {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.attachHuman.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.attachHuman.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Token created successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/session/{session}/attach_human/post(attachHuman)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.attachHuman.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.attachHuman.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/session/{session}/attach_human/post(attachHuman)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            public struct InternalServerError: Sendable, Hashable {
+                /// Creates a new `InternalServerError`.
+                public init() {}
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/session/{session}/attach_human/post(attachHuman)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Operations.attachHuman.Output.InternalServerError)
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/session/{session}/attach_human/post(attachHuman)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            public static var internalServerError: Self {
+                .internalServerError(.init())
+            }
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Operations.attachHuman.Output.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Speak
+    ///
+    /// For a live session, force the agent to speak a given text.
+    ///
+    /// - Remark: HTTP `POST /v1/realtime/{session}/speak`.
+    /// - Remark: Generated from `#/paths//v1/realtime/{session}/speak/post(speak)`.
+    public enum speak {
+        public static let id: Swift.String = "speak"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/realtime/{session}/speak/POST/path`.
+            public struct Path: Sendable, Hashable {
+                /// The unique identifier of the RealtimeSession.
+                ///
+                /// - Remark: Generated from `#/paths/v1/realtime/{session}/speak/POST/path/session`.
+                public var session: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - session: The unique identifier of the RealtimeSession.
+                public init(session: Swift.String) {
+                    self.session = session
+                }
+            }
+            public var path: Operations.speak.Input.Path
+            /// - Remark: Generated from `#/paths/v1/realtime/{session}/speak/POST/header`.
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.speak.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.speak.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.speak.Input.Headers
+            /// - Remark: Generated from `#/paths/v1/realtime/{session}/speak/POST/requestBody`.
+            @frozen public enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/realtime/{session}/speak/POST/requestBody/json`.
+                public struct jsonPayload: Codable, Hashable, Sendable {
+                    /// The text to be spoken by the agent.
+                    ///
+                    /// - Remark: Generated from `#/paths/v1/realtime/{session}/speak/POST/requestBody/json/text`.
+                    public var text: Swift.String
+                    /// Creates a new `jsonPayload`.
+                    ///
+                    /// - Parameters:
+                    ///   - text: The text to be spoken by the agent.
+                    public init(text: Swift.String) {
+                        self.text = text
+                    }
+                    public enum CodingKeys: String, CodingKey {
+                        case text
+                    }
+                }
+                /// - Remark: Generated from `#/paths/v1/realtime/{session}/speak/POST/requestBody/content/application\/json`.
+                case json(Operations.speak.Input.Body.jsonPayload)
+            }
+            public var body: Operations.speak.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            ///   - body:
+            public init(
+                path: Operations.speak.Input.Path,
+                headers: Operations.speak.Input.Headers = .init(),
+                body: Operations.speak.Input.Body
+            ) {
+                self.path = path
+                self.headers = headers
+                self.body = body
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/realtime/{session}/speak/POST/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/realtime/{session}/speak/POST/responses/200/content/application\/json`.
+                    case json(Components.Schemas.RealtimeSession)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.RealtimeSession {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.speak.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.speak.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Token created successfully
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/{session}/speak/post(speak)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.speak.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.speak.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/{session}/speak/post(speak)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            public struct InternalServerError: Sendable, Hashable {
+                /// Creates a new `InternalServerError`.
+                public init() {}
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/{session}/speak/post(speak)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Operations.speak.Output.InternalServerError)
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/realtime/{session}/speak/post(speak)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            public static var internalServerError: Self {
+                .internalServerError(.init())
+            }
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Operations.speak.Output.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Create a tool definition
+    ///
+    /// Create a tool definition
+    ///
+    /// - Remark: HTTP `POST /v1/tool`.
+    /// - Remark: Generated from `#/paths//v1/tool/post(createToolDefinition)`.
+    public enum createToolDefinition {
+        public static let id: Swift.String = "createToolDefinition"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/tool/POST/header`.
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.createToolDefinition.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.createToolDefinition.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.createToolDefinition.Input.Headers
+            /// - Remark: Generated from `#/paths/v1/tool/POST/requestBody`.
+            @frozen public enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/tool/POST/requestBody/content/application\/json`.
+                case json(Components.Schemas.CreateToolDefinitionRequest)
+            }
+            public var body: Operations.createToolDefinition.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            ///   - body:
+            public init(
+                headers: Operations.createToolDefinition.Input.Headers = .init(),
+                body: Operations.createToolDefinition.Input.Body
+            ) {
+                self.headers = headers
+                self.body = body
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/tool/POST/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/tool/POST/responses/200/content/application\/json`.
+                    case json(Components.Schemas.ToolDefinition)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.ToolDefinition {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.createToolDefinition.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.createToolDefinition.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Tool created
+            ///
+            /// - Remark: Generated from `#/paths//v1/tool/post(createToolDefinition)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.createToolDefinition.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.createToolDefinition.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/tool/post(createToolDefinition)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/tool/post(createToolDefinition)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Components.Responses.InternalServerError)
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Components.Responses.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Get a tool definition
+    ///
+    /// Get a tool definition
+    ///
+    /// - Remark: HTTP `GET /v1/tool/{tool}`.
+    /// - Remark: Generated from `#/paths//v1/tool/{tool}/get(getToolDefinition)`.
+    public enum getToolDefinition {
+        public static let id: Swift.String = "getToolDefinition"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/tool/{tool}/GET/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/tool/{tool}/GET/path/tool`.
+                public var tool: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - tool:
+                public init(tool: Swift.String) {
+                    self.tool = tool
+                }
+            }
+            public var path: Operations.getToolDefinition.Input.Path
+            /// - Remark: Generated from `#/paths/v1/tool/{tool}/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getToolDefinition.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getToolDefinition.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.getToolDefinition.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.getToolDefinition.Input.Path,
+                headers: Operations.getToolDefinition.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/tool/{tool}/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/tool/{tool}/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.ToolDefinition)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.ToolDefinition {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.getToolDefinition.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.getToolDefinition.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Tool fetched
+            ///
+            /// - Remark: Generated from `#/paths//v1/tool/{tool}/get(getToolDefinition)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.getToolDefinition.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.getToolDefinition.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/tool/{tool}/get(getToolDefinition)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/tool/{tool}/get(getToolDefinition)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Components.Responses.InternalServerError)
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Components.Responses.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Delete a tool definition
+    ///
+    /// Delete a tool definition
+    ///
+    /// - Remark: HTTP `DELETE /v1/tool/{tool}`.
+    /// - Remark: Generated from `#/paths//v1/tool/{tool}/delete(deleteToolDefinition)`.
+    public enum deleteToolDefinition {
+        public static let id: Swift.String = "deleteToolDefinition"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/tool/{tool}/DELETE/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/tool/{tool}/DELETE/path/tool`.
+                public var tool: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - tool:
+                public init(tool: Swift.String) {
+                    self.tool = tool
+                }
+            }
+            public var path: Operations.deleteToolDefinition.Input.Path
+            /// - Remark: Generated from `#/paths/v1/tool/{tool}/DELETE/header`.
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.deleteToolDefinition.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.deleteToolDefinition.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.deleteToolDefinition.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.deleteToolDefinition.Input.Path,
+                headers: Operations.deleteToolDefinition.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// Creates a new `Ok`.
+                public init() {}
+            }
+            /// Tool deleted
+            ///
+            /// - Remark: Generated from `#/paths//v1/tool/{tool}/delete(deleteToolDefinition)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.deleteToolDefinition.Output.Ok)
+            /// Tool deleted
+            ///
+            /// - Remark: Generated from `#/paths//v1/tool/{tool}/delete(deleteToolDefinition)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            public static var ok: Self {
+                .ok(.init())
+            }
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.deleteToolDefinition.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/tool/{tool}/delete(deleteToolDefinition)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/tool/{tool}/delete(deleteToolDefinition)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Components.Responses.InternalServerError)
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Components.Responses.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// List tools
+    ///
+    /// List tools
+    ///
+    /// - Remark: HTTP `GET /v1/tool/list`.
+    /// - Remark: Generated from `#/paths//v1/tool/list/get(listToolDefinitions)`.
+    public enum listToolDefinitions {
+        public static let id: Swift.String = "listToolDefinitions"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/tool/list/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.listToolDefinitions.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.listToolDefinitions.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.listToolDefinitions.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            public init(headers: Operations.listToolDefinitions.Input.Headers = .init()) {
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/tool/list/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/tool/list/GET/responses/200/content/json`.
+                    public struct jsonPayload: Codable, Hashable, Sendable {
+                        /// The token for the next page of results, or null if there are no more pages.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/tool/list/GET/responses/200/content/json/next_page`.
+                        public var next_page: Swift.String?
+                        /// The total number of items available.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/tool/list/GET/responses/200/content/json/total_count`.
+                        public var total_count: Swift.Int
+                        /// The array of tools.
+                        ///
+                        /// - Remark: Generated from `#/paths/v1/tool/list/GET/responses/200/content/json/values`.
+                        public var values: [Components.Schemas.ToolDefinition]
+                        /// Creates a new `jsonPayload`.
+                        ///
+                        /// - Parameters:
+                        ///   - next_page: The token for the next page of results, or null if there are no more pages.
+                        ///   - total_count: The total number of items available.
+                        ///   - values: The array of tools.
+                        public init(
+                            next_page: Swift.String? = nil,
+                            total_count: Swift.Int,
+                            values: [Components.Schemas.ToolDefinition]
+                        ) {
+                            self.next_page = next_page
+                            self.total_count = total_count
+                            self.values = values
+                        }
+                        public enum CodingKeys: String, CodingKey {
+                            case next_page
+                            case total_count
+                            case values
+                        }
+                    }
+                    /// - Remark: Generated from `#/paths/v1/tool/list/GET/responses/200/content/application\/json`.
+                    case json(Operations.listToolDefinitions.Output.Ok.Body.jsonPayload)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Operations.listToolDefinitions.Output.Ok.Body.jsonPayload {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.listToolDefinitions.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.listToolDefinitions.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// List of tools
+            ///
+            /// - Remark: Generated from `#/paths//v1/tool/list/get(listToolDefinitions)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.listToolDefinitions.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.listToolDefinitions.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/tool/list/get(listToolDefinitions)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/tool/list/get(listToolDefinitions)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Components.Responses.InternalServerError)
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Components.Responses.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Get a tool call result
+    ///
+    /// Get a tool call result
+    ///
+    /// - Remark: HTTP `GET /v1/tool/call/{call}/result`.
+    /// - Remark: Generated from `#/paths//v1/tool/call/{call}/result/get(getToolCallResult)`.
+    public enum getToolCallResult {
+        public static let id: Swift.String = "getToolCallResult"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/v1/tool/call/{call}/result/GET/path`.
+            public struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/tool/call/{call}/result/GET/path/call`.
+                public var call: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - call:
+                public init(call: Swift.String) {
+                    self.call = call
+                }
+            }
+            public var path: Operations.getToolCallResult.Input.Path
+            /// - Remark: Generated from `#/paths/v1/tool/call/{call}/result/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getToolCallResult.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.getToolCallResult.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.getToolCallResult.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            public init(
+                path: Operations.getToolCallResult.Input.Path,
+                headers: Operations.getToolCallResult.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/v1/tool/call/{call}/result/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/v1/tool/call/{call}/result/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.ToolCallResult)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Components.Schemas.ToolCallResult {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.getToolCallResult.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.getToolCallResult.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Tool call status fetched
+            ///
+            /// - Remark: Generated from `#/paths//v1/tool/call/{call}/result/get(getToolCallResult)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.getToolCallResult.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.getToolCallResult.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Bad request
+            ///
+            /// - Remark: Generated from `#/paths//v1/tool/call/{call}/result/get(getToolCallResult)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Components.Responses.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            public var badRequest: Components.Responses.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//v1/tool/call/{call}/result/get(getToolCallResult)/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Components.Responses.InternalServerError)
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Components.Responses.InternalServerError {
+                get throws {
+                    switch self {
+                    case let .internalServerError(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "internalServerError",
+                            response: self
+                        )
+                    }
+                }
+            }
+            /// Undocumented response.
+            ///
+            /// A response with a code that is not documented in the OpenAPI document.
+            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+        }
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case other(Swift.String)
+            public init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            public var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                }
+            }
+            public static var allCases: [Self] {
+                [
+                    .json
+                ]
+            }
+        }
+    }
+    /// Dummy endpoint
+    ///
+    /// Dummy endpoint for forcing generation objeects
+    ///
+    /// - Remark: HTTP `GET /dummy`.
+    /// - Remark: Generated from `#/paths//dummy/get`.
+    public enum get_sol_dummy {
+        public static let id: Swift.String = "get/dummy"
+        public struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/dummy/GET/header`.
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_sol_dummy.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.get_sol_dummy.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            public var headers: Operations.get_sol_dummy.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            public init(headers: Operations.get_sol_dummy.Input.Headers = .init()) {
+                self.headers = headers
+            }
+        }
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/dummy/GET/responses/200/content`.
+                @frozen public enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/dummy/GET/responses/200/content/json`.
+                    public struct jsonPayload: Codable, Hashable, Sendable {
+                        /// - Remark: Generated from `#/paths/dummy/GET/responses/200/content/json/webhook_message`.
+                        public var webhook_message: Components.Schemas.WebhookMessage?
+                        /// Creates a new `jsonPayload`.
+                        ///
+                        /// - Parameters:
+                        ///   - webhook_message:
+                        public init(webhook_message: Components.Schemas.WebhookMessage? = nil) {
+                            self.webhook_message = webhook_message
+                        }
+                        public enum CodingKeys: String, CodingKey {
+                            case webhook_message
+                        }
+                    }
+                    /// - Remark: Generated from `#/paths/dummy/GET/responses/200/content/application\/json`.
+                    case json(Operations.get_sol_dummy.Output.Ok.Body.jsonPayload)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    public var json: Operations.get_sol_dummy.Output.Ok.Body.jsonPayload {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                public var body: Operations.get_sol_dummy.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                public init(body: Operations.get_sol_dummy.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Dummy endpoint
+            ///
+            /// - Remark: Generated from `#/paths//dummy/get/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.get_sol_dummy.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            public var ok: Operations.get_sol_dummy.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            public struct InternalServerError: Sendable, Hashable {
+                /// Creates a new `InternalServerError`.
+                public init() {}
+            }
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//dummy/get/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            case internalServerError(Operations.get_sol_dummy.Output.InternalServerError)
+            /// Internal server error
+            ///
+            /// - Remark: Generated from `#/paths//dummy/get/responses/500`.
+            ///
+            /// HTTP response code: `500 internalServerError`.
+            public static var internalServerError: Self {
+                .internalServerError(.init())
+            }
+            /// The associated value of the enum case if `self` is `.internalServerError`.
+            ///
+            /// - Throws: An error if `self` is not `.internalServerError`.
+            /// - SeeAlso: `.internalServerError`.
+            public var internalServerError: Operations.get_sol_dummy.Output.InternalServerError {
                 get throws {
                     switch self {
                     case let .internalServerError(response):

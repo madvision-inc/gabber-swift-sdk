@@ -55,12 +55,12 @@ public class Api {
     public func getVoices() async throws -> PaginatedResponse<Voice> {
         let client = try await getClient()
         do {
-            let response = try await client.get_sol_api_sol_v1_sol_voice_sol_list()
+            let response = try await client.listVoices()
             let jsonResp = try response.ok.body.json
             let totalCount = Int(jsonResp.total_count)
             return PaginatedResponse(values: jsonResp.values, totalCount: totalCount, nextPage: jsonResp.next_page)
         } catch {
-            print("NEIL error \(error)")
+            print("error \(error)")
             throw error
         }
 

@@ -20,7 +20,7 @@ else
 fi
 
 rm -rf $BUNDLED_OPENAPI
-openapi bundle https://app.gabber.dev/openapi.yaml -o $BUNDLED_OPENAPI
+openapi bundle https://api.gabber.dev/openapi.yaml -o $BUNDLED_OPENAPI
 
 # Navigate to the repository directory
 cd "$GENERATOR_REPO_DIR"

@@ -6,31 +6,29 @@ import OpenAPIRuntime
 import AVFoundation
 
 
-public protocol SessionDelegate: AnyObject {
-    func ConnectionStateChanged(state: ConnectionState) -> Void
-    func MessagesChanged(messages: [SessionTranscription]) -> Void
+public protocol RealtimeSessionEngineDelegate: AnyObject {
+    func ConnectionStateChanged(state: Components.Schemas.SDKConnectionState) -> Void
+    func MessagesChanged(messages: [Components.Schemas.SDKSessionTranscription]) -> Void
     func MicrophoneStateChanged(enabled: Bool) -> Void
-    func AgentStateChanged(_ state: AgentState) -> Void
+    func AgentStateChanged(_ state: Components.Schemas.SDKAgentState) -> Void
     func AgentVolumeChanged(bands: [Float], volume: Float) -> Void
     func UserVolumeChanaged(bands: [Float], volume: Float) -> Void
     func RemainingSecondsChange(seconds: Float) -> Void
     func AgentError(msg: String) -> Void
 }
 
-public class Session: RoomDelegate {
+public class RealtimeSessionEngine: RoomDelegate {
 
-    private weak var delegate: SessionDelegate?
-    private var tokenGenerator: () async throws -> String
+    private weak var delegate: RealtimeSessionEngineDelegate?
     
     private var agentParticipant: RemoteParticipant? = nil
     private var agentTrack: RemoteAudioTrack? = nil
-    private var messages: [SessionTranscription] = []
+    private var messages: [Components.Schemas.SDKSessionTranscription] = []
     private var agentVolumeVisualizer: TrackVolumeVisualizer = TrackVolumeVisualizer()
     private var userVolumeVisualizer: TrackVolumeVisualizer = TrackVolumeVisualizer()
-    private var _agentState = AgentState.warmup
+    private var _agentState = Components.Schemas.SDKAgentState.warmup
     
-    public init(tokenGenerator: @escaping () async throws -> String, delegate: SessionDelegate) {
-        self.tokenGenerator = tokenGenerator
+    public init(delegate: RealtimeSessionEngineDelegate) {
         self.delegate = delegate
     }
     
@@ -39,7 +37,7 @@ public class Session: RoomDelegate {
     }()
     
     //this should be private
-    public var agentState: AgentState {
+    public var agentState: Components.Schemas.SDKAgentState {
         set {
             _agentState = newValue
             NSLog("Agent state changed to: \(_agentState)")
@@ -87,46 +85,48 @@ public class Session: RoomDelegate {
 
 
     
-    public func connect(opts: ConnectOptions) async throws {
+    public func connect(opts: Components.Schemas.SDKConnectOptions) async throws {
         print("Attempting to connect to LiveKit room...")
         
-        let token = try await self.tokenGenerator()
-        let url: String
-        let connectToken: String
-        let sessionConfiguration = URLSessionConfiguration.default
 
-        sessionConfiguration.httpAdditionalHeaders = [
-            "Authorization": "Bearer \(token)",
-            "Content-Type": "application/json"
-        ]
-        var config = Configuration.init()
-        config.dateTranscoder = .iso8601WithFractionalSeconds
 
         // Create the URLSessionTransport with the modified configuration
-        let transport = URLSessionTransport(configuration: URLSessionTransport.Configuration(session: URLSession(configuration: sessionConfiguration)))
-        let client = Client(
-            serverURL: URL(string: "https://app.gabber.dev")!,
-            configuration: config,
-            transport: transport
-        )
+
+        var connectToken: String? = nil;
+        var connectUrl: String? = nil;
         
         switch opts {
-        case .connectionDetails(let _url, let _connectToken):
-            url = _url
-            connectToken = _connectToken
-        case .sessionStartRequest(let req):
-            let resp = try await client.post_sol_api_sol_v1_sol_session_sol_start(body: .json(req)).ok.body.json
-            connectToken = resp.connection_details.token!
-            url = resp.connection_details.url!
+        case .case1(let payload):
+            connectToken = payload.connection_details.token
+            connectUrl = payload.connection_details.url
+        case .case2(let payload):
+            let token = payload.token
+            var config = Configuration.init()
+            config.dateTranscoder = .iso8601WithFractionalSeconds
+
+            let sessionConfiguration = URLSessionConfiguration.default
+            sessionConfiguration.httpAdditionalHeaders = [
+                "Authorization": "Bearer \(token)",
+                "Content-Type": "application/json"
+            ]
+            let transport = URLSessionTransport(configuration: URLSessionTransport.Configuration(session: URLSession(configuration: sessionConfiguration)))
+            let client = Client(
+                serverURL: URL(string: "https://api.gabber.dev")!,
+                configuration: config,
+                transport: transport
+            )
+            let jsonBody = Operations.startRealtimeSession.Input.Body.jsonPayload(config: payload.config)
+            let resp = try await client.startRealtimeSession(.init(body: .json(jsonBody))).ok.body.json
+            connectToken = resp.connection_details.token
+            connectUrl = resp.connection_details.url
         }
         
-        
         do {
-            try await self.livekitRoom.connect(url: url, token: connectToken)
+            try await self.livekitRoom.connect(url: connectUrl!, token: connectToken!)
             print("LiveKit connection initiated.")
         } catch {
             print("Failed to connect to LiveKit room with error: \(error.localizedDescription)")
-            self.delegate?.ConnectionStateChanged(state: .notConnected)  // Notify delegate of failure
+            self.delegate?.ConnectionStateChanged(state: .not_connected)  // Notify delegate of failure
             throw error  // Rethrow the error after logging it
         }
     }
@@ -164,7 +164,7 @@ public class Session: RoomDelegate {
 
     public func room(_ room: Room, didDisconnectWithError error: LiveKitError?) {
         NSLog("LiveKit room disconnected with error: \(String(describing: error))")
-        self.delegate?.ConnectionStateChanged(state: .notConnected)
+        self.delegate?.ConnectionStateChanged(state: .not_connected)
     }
 
     
@@ -181,7 +181,7 @@ public class Session: RoomDelegate {
             if let rs = md.remaining_seconds {
                 self.remainingSeconds = rs
             }
-            let agentState = try AgentState.from(md.agent_state)
+            let agentState = Components.Schemas.SDKAgentState.init(rawValue: md.agent_state) ?? .warmup
             self.agentState = agentState
         } catch {
             NSLog("Error decoding agent metadata: \(error)")
@@ -214,7 +214,7 @@ public class Session: RoomDelegate {
                 self.agentParticipant = nil
                 self.agentTrack = nil
                 if self.livekitRoom.connectionState == .connected {
-                    self.delegate?.ConnectionStateChanged(state: .waitingForAgent)
+                    self.delegate?.ConnectionStateChanged(state: .waiting_for_agent)
                 }
             }
         } else {
@@ -232,7 +232,7 @@ public class Session: RoomDelegate {
 
         if topic == "message" {
             do {
-                let sm = try decoder.decode(SessionTranscription.self, from: data)
+                let sm = try decoder.decode(Components.Schemas.SDKSessionTranscription.self, from: data)
                 if let index = self.messages.firstIndex(where: { $0.id == sm.id && $0.agent == sm.agent }) {
                     self.messages[index] = sm
                 } else {
@@ -287,48 +287,6 @@ public class Session: RoomDelegate {
     }
 }
 
-public enum ConnectionState {
-    case notConnected, connecting, waitingForAgent, connected
-}
-
-public enum AgentState {
-    public enum AgentStateError: Error {
-        case parseError(_ state: String)
-    }
-    
-    case warmup, listening, thinking, speaking, timeLimitExceeded
-    
-    static func from(_ str: String) throws -> AgentState {
-        if str == "warmup" {
-            return .warmup
-        } else if str == "listening" {
-            return .listening
-        } else if str == "thinking" {
-            return .thinking
-        } else if str == "speaking" {
-            return .speaking
-        } else if str == "time_limit_exceeded" {
-            return .timeLimitExceeded
-        }
-        throw AgentStateError.parseError("unhandled agent state")
-    }
-}
-
 private struct AgentErrorMessage: Decodable {
     var message: String
-}
-
-public enum ConnectOptions {
-    case sessionStartRequest(req: Components.Schemas.SessionStartRequest)
-    case connectionDetails(url: String, token: String)
-}
-
-public struct SessionTranscription: Decodable {
-    public var id: Int
-    public var agent: Bool
-    public var text: String
-    
-    public var uniqueId: String {
-        "\(agent ? "agent" : "user")_\(id)"
-    }
 }
