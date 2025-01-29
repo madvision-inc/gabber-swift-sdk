@@ -87,8 +87,6 @@ public class RealtimeSessionEngine: RoomDelegate {
     
     public func connect(opts: Components.Schemas.SDKConnectOptions) async throws {
         print("Attempting to connect to LiveKit room...")
-        
-
 
         // Create the URLSessionTransport with the modified configuration
 
@@ -181,6 +179,7 @@ public class RealtimeSessionEngine: RoomDelegate {
             if let rs = md.remaining_seconds {
                 self.remainingSeconds = rs
             }
+
             let agentState = Components.Schemas.SDKAgentState.init(rawValue: md.agent_state) ?? .warmup
             self.agentState = agentState
         } catch {
@@ -228,10 +227,21 @@ public class RealtimeSessionEngine: RoomDelegate {
         }
         
         let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .custom { decoder in
+            let formatter = ISO8601DateFormatter()
+            formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+            let container = try decoder.singleValueContainer()
+            let dateString = try container.decode(String.self)
+            if let date = formatter.date(from: dateString) {
+                return date
+            }
+            throw DecodingError.dataCorruptedError(in: container,
+                debugDescription: "Expected date string to be ISO8601-formatted.")
+        }
         
-
         if topic == "message" {
             do {
+                print("NEIL \(String(decoding: data, as: UTF8.self))")
                 let sm = try decoder.decode(Components.Schemas.SDKSessionTranscription.self, from: data)
                 if let index = self.messages.firstIndex(where: { $0.id == sm.id && $0.agent == sm.agent }) {
                     self.messages[index] = sm
