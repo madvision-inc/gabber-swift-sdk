@@ -17,10 +17,10 @@ let package = Package(
             targets: ["Gabber"]),
     ],
     dependencies: [
-        .package(name: "LiveKit", url: "https://github.com/livekit/client-sdk-swift.git", from: "2.0.16"),
-        .package(url: "https://github.com/apple/swift-openapi-generator", from: "1.0.0"),
-        .package(name: "OpenAPIRuntime", url: "https://github.com/apple/swift-openapi-runtime", from: "1.0.0"),
-        .package(name: "OpenAPIURLSession", url: "https://github.com/apple/swift-openapi-urlsession", from: "1.0.0")
+        .package(url: "https://github.com/livekit/client-sdk-swift.git", from: .init(2, 0, 16)),
+        .package(url: "https://github.com/apple/swift-openapi-generator", from: .init(1, 0, 0)),
+        .package(url: "https://github.com/apple/swift-openapi-runtime", from: .init(1, 0, 0)),
+        .package(url: "https://github.com/apple/swift-openapi-urlsession", from: .init(1, 0, 0)),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.

@@ -27,6 +27,12 @@ public class RealtimeSessionEngine: RoomDelegate {
     private var agentVolumeVisualizer: TrackVolumeVisualizer = TrackVolumeVisualizer()
     private var userVolumeVisualizer: TrackVolumeVisualizer = TrackVolumeVisualizer()
     private var _agentState = Components.Schemas.SDKAgentState.warmup
+    public var userAudioTrack: AudioTrack? {
+        livekitRoom.localParticipant.audioTracks.first?.track as? AudioTrack
+    }
+    public var agentAudioTrack: AudioTrack? {
+        agentParticipant?.audioTracks.first?.track as? AudioTrack
+    }
     
     public init(delegate: RealtimeSessionEngineDelegate) {
         self.delegate = delegate
