@@ -27,7 +27,11 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         
         .target(
-            name: "Gabber", dependencies: ["LiveKit", "OpenAPIRuntime", "OpenAPIURLSession"]),
+            name: "Gabber", dependencies: [
+               .product(name: "LiveKit", package: "client-sdk-swift"),
+               .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
+               .product(name: "OpenAPIURLSession", package: "swift-openapi-urlsession")
+            ]),
         
         .testTarget(
             name: "GabberTests",
